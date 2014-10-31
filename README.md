@@ -1,4 +1,4 @@
-vc-marketplace
+Virto Commerce Marketplace
 ==============
 
-Virto Commerce Marketplace Frontend
+This project contains source code for Virto Commerce Marketplace site. Site is built using Virto Commerce 2.0 and is hosted using Microsoft Cloud (Azure) Platform. 
