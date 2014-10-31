@@ -9,19 +9,19 @@ namespace VirtoCommerce.ApiClient.Extensions
 {
     using System.Configuration;
 
-    public static class BrowseClientExtension
+    public static class ItemsClientExtension
     {
-        public static BrowseClient CreateBrowseClient(this CommerceClients source)
+        public static ItemsClient CreateItemsClient(this CommerceClients source)
         {
             var connectionString = ConnectionHelper.GetConnectionString("vc-commerce-api");
-            return CreateBrowseClient(source, connectionString);
+            return CreateItemsClient(source, connectionString);
         }
 
-        public static BrowseClient CreateBrowseClient(this CommerceClients source, string serviceUrl)
+        public static ItemsClient CreateItemsClient(this CommerceClients source, string serviceUrl)
         {
             var connectionString = serviceUrl;
             var subscriptionKey = ConfigurationManager.AppSettings["vc-marketplace-apikey"];
-            var client = new BrowseClient(new Uri(connectionString), new AzureSubscriptionMessageProcessingHandler(subscriptionKey, "secret"));
+            var client = new ItemsClient(new Uri(connectionString), new AzureSubscriptionMessageProcessingHandler(subscriptionKey, "secret"));
             return client;
         }
     }

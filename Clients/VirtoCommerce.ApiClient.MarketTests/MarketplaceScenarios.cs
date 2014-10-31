@@ -1,45 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VirtoCommerce.ApiClient.Tests
+﻿namespace VirtoCommerce.ApiClient.MarketTests
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Configuration;
+    using System.Text;
     using System.Threading.Tasks;
 
     using VirtoCommerce.ApiClient.DataContracts;
+    using VirtoCommerce.ApiClient.Extensions;
     using VirtoCommerce.ApiClient.Utilities;
 
     using Xunit;
 
     public class MarketplaceScenarios
     {
-		readonly string ServerAddress;
-        private readonly string AdminServerAddress;
-		//readonly string TestStore;
-		readonly string Token;
-        readonly string SubscriptionKey;
+        private string AdminServerAddress;
+        private string ServerAddress;
+
+        private bool UseLocal = true;
 
 		public MarketplaceScenarios()
-		{
-            ServerAddress = "https://virtomarket.azure-api.net/api/1.0/marketplace/";
-            AdminServerAddress = "https://virtomarket.azure-api.net/api/1.0/marketplace/";
-            
-            
-            //ServerAddress = "http://localhost:3179/api/stores/231213/en-us/";
-            //AdminServerAddress = "http://localhost:3179/api/merch/";
-            
-			//TestStore = "samplestore";
-			Token = "TOKEN";
-            SubscriptionKey = "KEY";
+		{   
+            ServerAddress = "http://localhost:3179/api/stores/231213/en-us/";
+            AdminServerAddress = "http://localhost:3179/api/merch/";
+		    UseLocal = false;
 		}
 
         private BrowseClient Client
         {
             get
             {
-                return new BrowseClient(
-                    new Uri(ServerAddress),
-                    new AzureSubscriptionMessageProcessingHandler(SubscriptionKey, Token));
+                return this.UseLocal ? ClientContext.Clients.CreateBrowseClient(this.ServerAddress) : ClientContext.Clients.CreateBrowseClient();
             }
         }
 
@@ -47,16 +38,22 @@ namespace VirtoCommerce.ApiClient.Tests
         {
             get
             {
-                return new ItemsClient(
-                    new Uri(AdminServerAddress),
-                    new AzureSubscriptionMessageProcessingHandler(SubscriptionKey, Token));
+                return this.UseLocal ? ClientContext.Clients.CreateItemsClient(this.ServerAddress) : ClientContext.Clients.CreateItemsClient();
             }
         }
 
         [Fact]
         public void Can_search_market_products()
         {
-            var results = Task.Run(() => Client.GetProductsAsync(new BrowseQuery() { Take = 10 })).Result;
+            var results = Task.Run(() => this.Client.GetProductsAsync(new BrowseQuery() { Take = 10 })).Result;
+            Assert.NotNull(results);
+            Assert.NotNull(results.Items);
+        }
+
+        [Fact]
+        public void Can_get_market_categories()
+        {
+            var results = Task.Run(() => this.Client.GetCategoriesAsync()).Result;
             Assert.NotNull(results);
             Assert.NotNull(results.Items);
         }
@@ -66,7 +63,7 @@ namespace VirtoCommerce.ApiClient.Tests
         {
             var filters = new Dictionary<string, string[]>();
             filters.Add("brand", new [] {"apple"});
-            var results = Task.Run(() => Client.GetProductsAsync(new BrowseQuery() { Take = 10, Filters = filters})).Result;
+            var results = Task.Run(() => this.Client.GetProductsAsync(new BrowseQuery() { Take = 10, Filters = filters})).Result;
             Assert.NotNull(results);
             Assert.NotNull(results.Items);
         }
@@ -74,7 +71,7 @@ namespace VirtoCommerce.ApiClient.Tests
         [Fact]
         public void Can_get_market_product()
         {
-            var results = Task.Run(() => Client.GetProductAsync("v-b001fa1nuk")).Result;
+            var results = Task.Run(() => this.Client.GetProductAsync("v-b001fa1nuk")).Result;
             Assert.NotNull(results);
         }
 
@@ -83,9 +80,7 @@ namespace VirtoCommerce.ApiClient.Tests
         {
             var code = Guid.NewGuid().ToString();
             var product = new Product() { Id = code, Code = code, Name = "Sample Test Product", Catalog = "Samsung" };
-            product.Properties = new Dictionary<string, object>();
-            product.Properties.Add("PublishStatus", "Draft");
-            product.Properties.Add("Price", 121.01d);
+            product.Properties = new Dictionary<string, object> { { "PublishStatus", "Draft" }, { "Price", 121.01d }, { "brand", "Apple" } };
 
             // add variations to a product
             var variationCode = Guid.NewGuid().ToString();
@@ -105,8 +100,11 @@ namespace VirtoCommerce.ApiClient.Tests
             product.Images = new[] { image };
 
             var categoryId = "4d7b8f2d-5a18-4ccb-8a9a-20234224eb8c"; // tvs
-            Task.WaitAll(Task.Run(() => AdminClient.AddAsync(categoryId, product)));
-            //Assert.NotNull(results);
+            Task.WaitAll(Task.Run(() => this.AdminClient.AddAsync(categoryId, product)));
+
+            var results = Task.Run(() => this.Client.GetProductAsync(code)).Result;
+            Assert.NotNull(results);
+            Assert.True(results.Id == code);
         }
     }
 }
