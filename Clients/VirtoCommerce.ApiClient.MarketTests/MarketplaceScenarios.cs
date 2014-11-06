@@ -8,7 +8,6 @@
 
     using VirtoCommerce.ApiClient.DataContracts;
     using VirtoCommerce.ApiClient.Extensions;
-    using VirtoCommerce.ApiClient.Utilities;
 
     using Xunit;
 
