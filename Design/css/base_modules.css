@@ -1,0 +1,137 @@
+/*
+==========================================================================
+   Base layer
+==========================================================================
+*/
+
+
+/*
+data input UI
+-------------
+*/
+
+.it, .itx {
+	color: #bcbec0;
+	font-size: 14px;
+	border: 1px solid #e2e2e2;
+	padding: 14px 18px;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+}
+
+	.it::-webkit-input-placeholder, .itx::-webkit-input-placeholder {
+		font-style: italic;
+	}
+
+	.it:-moz-placeholder, .itx:-moz-placeholder { /* Firefox 18- */
+		font-style: italic;
+	}
+
+	.it::-moz-placeholder, .itx::-moz-placeholder {  /* Firefox 19+ */
+		font-style: italic; 
+	}
+
+	.it:-ms-input-placeholder, .itx:-ms-input-placeholder {  
+		font-style: italic;
+	}
+
+.it {
+	height: 40px;
+}
+
+	.it.it__error {
+		border: 2px solid #ef4236;
+	}
+		.it.it__error::-webkit-input-placeholder {
+			color: #ef4236;
+		}
+
+		.it.it__error:-moz-placeholder { /* Firefox 18- */
+			color: #ef4236;  
+		}
+
+		.it.it__error::-moz-placeholder {  /* Firefox 19+ */
+			color: #ef4236;  
+		}
+
+		.it.it__error:-ms-input-placeholder {  
+			color: #ef4236;  
+		}
+
+		.it.it__radial {
+			border-radius: 40px;
+			-webkit-border-radius: 40px;
+			-moz-border-radius: 40px;
+			-o-border-radius: 40px;
+			-ms-border-radius: 40px;
+		}
+
+.btn {
+	font-family: 'Lato', sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 0 15px;
+	background-color: #bcbcbc;
+	color: #fff;
+	border: 0;
+	font-size: 14px;
+	line-height: 40px;
+	cursor: pointer;
+}
+
+.btn:hover {
+	opacity: 0.7;
+}
+
+	.btn.btn__radial {
+		border-radius: 40px;
+		-webkit-border-radius: 40px;
+		-moz-border-radius: 40px;
+		-o-border-radius: 40px;
+		-ms-border-radius: 40px;
+	}
+	
+	/* sizesa */
+	
+	.btn.btn__small {
+		line-height: 30px;
+	}
+
+	/* colors */
+
+	.btn.btn__info {
+		background-color: #fba61a;
+	}
+	
+.intx {
+	
+}
+
+.form-simple {
+	display: block;
+	position: relative;
+}
+
+	.form-simple .it {
+		width: 100%;
+	}
+
+	.form-simple .btn {
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+	.form-simple .btn.btn__small {
+		position: absolute;
+		right: 5px;
+		top: 5px;
+	}
+
+/* GRID */
+
+.fixw {
+	max-width: 960px;
+	margin: 0 auto;
+}

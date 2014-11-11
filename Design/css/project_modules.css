@@ -1,0 +1,37 @@
+
+#layout
+{
+	min-height: 100%;
+	overflow: hidden;
+	position: relative;
+	z-index: 50;
+
+	-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+}
+
+.header_wrap {
+	height: 100px;
+	background-color: #fff;
+}
+
+	.header_wrap .header_main {
+		-webkit-box-sizing: border-box;
+		   -moz-box-sizing: border-box;
+				box-sizing: border-box;
+		height: 100%;
+		padding-top: 25px;
+	}
+
+	.search-pane {
+		/*width: 565px;*/
+		margin-left: 192px;
+		margin-right: 200px;
+	}
+
+#main-logo {
+	/*display: inline-block;*/
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+
+}
