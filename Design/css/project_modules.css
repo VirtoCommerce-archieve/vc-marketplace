@@ -145,7 +145,149 @@
 		line-height: 17px;
 	}
 
+.bottom-menu {
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+	height: 100px;
+	padding-top: 25px;
+	overflow: hidden;
+}
 
+.bottom-menu .signup-form {
+	width: 100%;
+	max-width: 360px;
+}
+
+	.bottom-menu_lst {
+		list-style: none;
+		display: block;
+		overflow: hidden;
+		float: right;
+	}
+	
+		.bottom-menu_i {
+			display: block;
+			float: left;
+			margin-left: 18px;
+		}
+	
+		.bottom-menu_i_a {
+			line-height: 40px;
+			font-size: 14px;
+			color: #888888;
+			text-decoration: underline;
+		}
+		.bottom-menu_i_a:hover {
+			color: #ef4136;
+		}
+
+
+.links-array {
+	padding: 35px 0 40px 0;
+	overflow: hidden;
+}
+
+	.links-array .links-array_col {
+		padding-left: 50px;
+		padding-top: 15px;
+		color: #fff;
+		font-size: 14px;
+	}
+
+	.links-array .links-array_col:first-child {
+		padding-left: 0px;
+	}
+
+		.links-array .links-array_col_t {
+			text-transform: uppercase;
+			margin-bottom: 10px;
+			font-weight: normal;
+		}
+	
+
+	.links-array .links-array_i {
+		display: block;
+		padding: 10px 0;
+	}
+
+		.links-array .links-array_i_a {
+			display: block;
+			color: #fff;
+		}
+
+			.links-array .links-array_i_a:hover {
+				color: #ef4136;
+			}
+
+		.links-array .links-array_i_t {
+			display: block;
+			text-transform: uppercase;
+			font-weight: bold;
+		}
+
+		.links-array .links-array_i_descr {
+			display: block;
+			margin-top: 5px;
+		}
+
+
+.footer {
+	width: 100%;
+	background-color: #898989;
+}
+	.footer_inner {
+		overflow: hidden;
+	}
+
+	.footer .copiright {
+		display: block;
+		line-height: 100px;
+		float: left;
+		color: #525151;
+		font-size: 14px;
+	}
+
+	.footer .bottom-menu_lst {
+		float: right;
+	}
+
+	.footer .bottom-menu_i_a {
+		line-height: 100px;
+		color: #525151;
+	}
+
+		.footer .bottom-menu_i_a:hover {
+			color: #fff;
+		}
+
+
+/*
+responsive
+----------
+*/
+
+@media (min-width: 768px) and (max-width: 1019px) {
+	.features_outer .features .features_i {
+		font-size: 22px;
+	}
+}
+
+@media (max-width: 767px) {
+	.features_outer .features .features_i {
+		line-height: 150px;
+		padding-left: 40px;
+		text-align: left;
+	}
+}
+
+@media (max-width: 600px) {
+
+}
+
+@media (max-width: 480px) {
+
+}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
 

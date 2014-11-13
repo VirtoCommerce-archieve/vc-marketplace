@@ -17,6 +17,15 @@ data input UI
 	background-color: #f4f4f4;
 }
 
+.transparent_bl {
+	width: 100%;
+}
+
+.dark_bl {
+	width: 100%;
+	background-color: #727272;
+}
+
 .it, .itx {
 	color: #bcbec0;
 	font-size: 14px;
@@ -31,11 +40,11 @@ data input UI
 		font-style: italic;
 	}
 
-	.it:-moz-placeholder, .itx:-moz-placeholder { /* Firefox 18- */
+	.it:-moz-placeholder, .itx:-moz-placeholder {
 		font-style: italic;
 	}
 
-	.it::-moz-placeholder, .itx::-moz-placeholder {  /* Firefox 19+ */
+	.it::-moz-placeholder, .itx::-moz-placeholder {
 		font-style: italic; 
 	}
 
@@ -54,11 +63,11 @@ data input UI
 			color: #ef4236;
 		}
 
-		.it.it__error:-moz-placeholder { /* Firefox 18- */
+		.it.it__error:-moz-placeholder {
 			color: #ef4236;  
 		}
 
-		.it.it__error::-moz-placeholder {  /* Firefox 19+ */
+		.it.it__error::-moz-placeholder {
 			color: #ef4236;  
 		}
 
@@ -160,9 +169,25 @@ data input UI
 	
 }
 
-	.ico_lw.ico_lw_monitor	{ width: 124px; height: 112px; background-position: 0 -66px; }
-	.ico_lw.ico_lw_pile 	{ width: 64px;  height: 56px;  background-position: 0 0;       margin-bottom: -17px; }
-	.ico_lw.ico_lw_ms		{ width: 66px;  height: 66px;  background-position: -64px 0;   margin-bottom: -20px; }
+	.ico_lw.ico_lw_monitor {
+		width: 124px;
+		height: 112px;
+		background-position: 0 -66px;
+	}
+
+	.ico_lw.ico_lw_pile {
+		width: 64px;
+		height: 56px;
+		background-position: 0 0;
+		margin-bottom: -17px;
+	}
+
+	.ico_lw.ico_lw_ms {
+		width: 66px;
+		height: 66px;
+		background-position: -64px 0;
+		margin-bottom: -20px;
+	}
 
 
 /* elements list */
@@ -236,7 +261,7 @@ data input UI
 	margin: 0 auto;
 }
 
-.del1, .del2, .del3, .del4, .del5, .del6 {
+.del1, .del2, .del3, .del4, .del5, .del6, .del2_3, .del3_4, .del5_6 {
 	display: block;
 	float: left;
 	-webkit-box-sizing: border-box;
@@ -270,4 +295,55 @@ data input UI
 }
 .del5_6 {
 	width: 83.33%;
+}
+
+
+
+
+/* responsive */
+
+@media (min-width: 768px) and (max-width: 1019px) {
+	
+}
+
+@media (max-width: 767px) {
+	.del1 {
+		width: 100%;
+	}
+	.del2 {
+		width: 100%;
+	}
+	.del3 {
+		width: 100%;
+	}
+	.del4 {
+		width: 50%;
+	}
+	.del5 {
+		width: 50%;
+	}
+	.del6 {
+		width: 100%;
+	}
+	.del2_3 {
+		width: 100%;
+	}
+	.del3_4 {
+		width: 100%;
+	}
+	.del5_6 {
+		width: 100%;
+	}
+}
+
+@media (max-width: 600px) {
+
+}
+
+@media (max-width: 480px) {
+
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+
 }

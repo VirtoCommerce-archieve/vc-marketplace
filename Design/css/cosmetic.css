@@ -1,0 +1,10 @@
+.bottom-menu .latest-news {
+	color: #888888;
+	font-size: 14px;
+	text-transform: uppercase;
+	line-height: 40px;
+}
+
+.bottom-menu .latest-news:hover {
+	color: #ef4136;
+}
