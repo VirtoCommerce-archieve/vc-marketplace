@@ -321,6 +321,128 @@
 		}
 
 
+.card {
+	overflow: hidden;
+	padding-top: 30px;
+}
+
+	.card_rating_outer {
+		overflow: hidden;
+		padding: 12px 0;
+	}
+
+	.card_rating {
+		float: left;
+	}
+
+	.card_rating_num {
+		display: block;
+		float: left;
+		line-height: 15px;
+		color: #888888;
+		font-size: 14px;
+		font-weight: bold;
+		margin-left: 20px;
+	}
+
+	.card_detail_inner {
+		overflow: hidden;
+		padding-bottom: 45px;
+	}
+
+	.card_data .items_a {
+		display: block;
+		margin-left: 0;
+	}
+
+	.card_descr {
+		color: #888888;
+		font-size: 14px;
+		padding: 23px 0 10px 0;
+		line-height: 16px;
+	}
+
+	.card_properties {
+
+	}
+
+		.card_properties_i {
+			display: block;
+			padding: 10px 0;			
+		}
+
+		.card_properties_i_name {
+			display: block;
+			color: #888888;
+			line-height: 17px;
+			font-size: 14px;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+
+		.card_properties_i_name:after {
+			content: ':';
+		}
+
+		.card_properties_i_value {
+			display: block;
+			color: #888888;
+			line-height: 17px;
+			font-size: 14px;
+			font-weight: normal;
+		}
+
+		.card_links {
+			overflow: hidden;
+			text-align: right;
+		}
+
+			.card_thumb_outer {
+				display: block;
+				float: right;
+				width: 45%;
+				overflow: hidden;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				-o-border-radius: 8px;
+				-ms-border-radius: 8px;
+			}
+				.card_thumb {
+					width: 100%;
+					height: auto;
+					border-radius: 8px;
+					-webkit-border-radius: 8px;
+					-moz-border-radius: 8px;
+					-o-border-radius: 8px;
+					-ms-border-radius: 8px;
+				}
+
+		.card_lk_lst {
+			display: block;
+			float: right;
+			list-style: none;
+			text-align: right;
+			clear: both;
+			width: 60%;
+			padding-top: 15px;
+		}
+			.card_lk_i {
+				padding: 6px 0;
+			}
+				.card_lk {
+					color: #888888;
+					font-size: 12px;
+					text-transform: uppercase;
+					text-decoration: underline;
+					line-height: 12px;
+					font-weight: bold;
+				}
+					.card_lk:hover {
+						color: #ef4136;
+					}
+
+
 /*
 responsive
 ----------

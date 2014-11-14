@@ -118,6 +118,10 @@ data input UI
 		-o-border-radius: 40px;
 		-ms-border-radius: 40px;
 	}
+
+	.btn__block {
+		display: block;
+	}
 	
 	/* sizesa */
 	
@@ -238,12 +242,13 @@ data input UI
 		margin-bottom: 40px;
 	}
 
-	.items .items_a {
+	.items_a {
 		font-weight: bold;
 		text-transform: uppercase;
 		font-size: 14px;
 		color: #faa61a;
 		margin-left: 35px;
+		line-height: 17px;
 	}
 
 	.items .items_a:first-child {
@@ -359,9 +364,12 @@ data input UI
 			display: none;
 		}
 
-			.crums_i_a {
+			.crums_i_a, .crums_i_t {
 				text-decoration: underline;
 				color: #888888;
+			}
+			.crums_i_t {
+				text-decoration: none;
 			}
 
 
