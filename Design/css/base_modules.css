@@ -39,22 +39,27 @@ data input UI
 
 	.it::-webkit-input-placeholder, .itx::-webkit-input-placeholder {
 		font-style: italic;
+		color: #e2e2e2;
 	}
 
 	.it:-moz-placeholder, .itx:-moz-placeholder {
 		font-style: italic;
+		color: #e2e2e2;
 	}
 
 	.it::-moz-placeholder, .itx::-moz-placeholder {
 		font-style: italic; 
+		color: #e2e2e2;
 	}
 
 	.it:-ms-input-placeholder, .itx:-ms-input-placeholder {  
 		font-style: italic;
+		color: #e2e2e2;
 	}
 
 .it {
 	height: 40px;
+
 }
 
 	.it.it__error {
