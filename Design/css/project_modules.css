@@ -326,6 +326,10 @@
 	padding-top: 30px;
 }
 
+	.card_slider {
+		padding-right: 30px;
+	}
+
 	.card_rating_outer {
 		overflow: hidden;
 		padding: 12px 0;

@@ -99,10 +99,15 @@
 		overflow: hidden;
 		position: relative;
 		text-align: center;
-
+		padding: 10px;
 		-webkit-box-sizing: border-box;
 		   -moz-box-sizing: border-box;
 				box-sizing: border-box;
+		border-radius: 8px;
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		-o-border-radius: 8px;
+		-ms-border-radius: 8px;
 	}
 
 		.card .item figure a
@@ -616,7 +621,7 @@
 
 	.card .item figure
 	{
-		line-height: 270px;
+		/*line-height: 270px;*/
 		max-height: 270px;
 		min-height: 270px;
 	}
@@ -751,7 +756,7 @@
 @media only screen and (min-width: 960px) {
 	.card .item figure
 	{
-		line-height: 296px;
+		/*line-height: 296px;*/
 		max-height: 296px;
 		min-height: 296px;
 	}
@@ -800,7 +805,7 @@
 @media only screen and (min-width: 1120px) {
 	.card .item figure
 	{
-		line-height: 300px;
+		/*line-height: 300px;*/
 		max-height: 300px;
 		min-height: 300px;
 	}
@@ -896,7 +901,7 @@
 @media only screen and (min-width: 1440px) {
 	.card .item figure
 	{
-		line-height: 400px;
+		/*line-height: 400px;*/
 		min-height: 400px;
 		max-height: 400px;
 	}
