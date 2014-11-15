@@ -198,28 +198,47 @@
 		.card .list-items ul li
 		{
 			float: left;
-			width: 112px;
+			width: 80px;
+			border-radius: 8px;
+			--border-radius: 8px;
+			--border-radius: 8px;
+			--border-radius: 8px;
+			--border-radius: 8px;
 		}
 
 		.card .list-items ul li + li
 		{
-			margin: 0 0 0 7px;
+			margin: 0 0 0 10px;
 		}
 
 			.card .list-items ul li a
 			{
 				background: #fff;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				-o-border-radius: 8px;
+				-ms-border-radius: 8px;
 				display: block;
-				height: 112px;
-				line-height: 112px;
+				height: 80px;
+				line-height: 80px;
 				position: relative;
 				overflow: hidden;
 				text-align: center;
+
+				-webkit-box-sizing: border-box;
+				   -moz-box-sizing: border-box;
+						box-sizing: border-box;
 			}
 
 			.card .list-items ul li a:after
 			{
-				border: 1px solid #ddd;
+				border: 1px solid #ebebeb;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				-o-border-radius: 8px;
+				-ms-border-radius: 8px;
 				bottom: 0;
 				content: '';
 				left: 0;
@@ -231,7 +250,7 @@
 			.card .list-items ul li a:hover:after,
 			.card .list-items ul li.selected a:after
 			{
-				border: 4px solid #28c0d2;
+				border: 1px solid #fba61a;
 			}
 
 				.card .list-items ul li a img
@@ -241,6 +260,11 @@
 					max-height: 100%;
 					max-width: 100%;
 					vertical-align: middle;
+					border-radius: 8px;
+					-webkit-border-radius: 8px;
+					-moz-border-radius: 8px;
+					-o-border-radius: 8px;
+					-ms-border-radius: 8px;
 				}
 
 .card .item-informer
@@ -714,7 +738,7 @@
 
 	.card .list-items .scroll
 	{
-		margin: 0 25px;
+		margin: 0 35px;
 	}
 
 	.card .list-items ul li
@@ -908,13 +932,13 @@
 
 	.card .list-items ul li
 	{
-		width: 112px;
+		width: 80px;
 	}
 
 	.card .list-items ul li a
 	{
-		height: 112px;
-		line-height: 112px;
+		height: 80px;
+		line-height: 80px;
 	}
 
 	.card .cross-sell header .title
