@@ -445,6 +445,61 @@
 					.card_lk:hover {
 						color: #ef4136;
 					}
+	.card_license_chck {
+		overflow: hidden;
+		color: #888888;
+		font-size: 14px;
+		padding: 20px 14px;
+	}
+	.card_license_tx {
+		overflow: hidden;
+		color: #888888;
+		font-size: 11px;
+		font-style: italic;
+		padding: 20px 14px;
+		line-height: 13px;
+	}
+
+
+.slides {
+	min-height: 100px;
+}
+
+.reviews {
+	padding: 65px 0 100px 0;
+	overflow: hidden;
+}
+
+	.reviews_add {
+		margin-top: 10px;
+		max-width: 240px;
+	}
+
+	.reviews .card_rating_outer {
+		padding: 0;
+	}
+	
+	.reviews_rating_tx {
+		font-size: 14px;
+		text-transform: uppercase;
+		color: #888888;
+		padding: 20px 0;
+	}
+
+.developer-info {
+	overflow: hidden;
+}
+
+	.developer-info_t {
+		text-align: right;
+	}
+
+	.developer-info_tx {
+		text-align: right;
+		font-size: 14px;
+		color: #888888;
+		padding: 20px 0;
+	}
 
 
 /*
@@ -459,6 +514,10 @@ responsive
 }
 
 @media (max-width: 767px) {
+
+	.card_slider {
+		padding-right: 0px;
+	}
 
 	.header_main .to-profile {
 		margin-right: 30px;

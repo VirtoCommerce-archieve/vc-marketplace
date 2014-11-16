@@ -569,7 +569,7 @@
 @media only screen and (min-width: 640px) {
 	.card .item
 	{
-		margin: 0 auto 10px;
+		margin: 0 auto 40px;
 		width: 350px;
 	}
 
@@ -622,19 +622,6 @@
 
 
 
-@media only screen and (max-width: 760px) {
-	
-	.card .list-items .prev:after,
-	.card .list-items .next:after {
-		background: url(../img/arrows_xl.png) no-repeat;
-		background-size: 52px 42px;
-	}
-
-	.card .list-items .next:after
-	{
-		background-position: -40px 0;
-	}
-}
 @media only screen and (min-width: 760px) {
 	.card .item
 	{
@@ -955,5 +942,21 @@
 		margin: -15px 0 0 -37px;
 		font-size: 14px;
 		width: 74px;
+	}
+}
+
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+	
+	.card .list-items .prev:after,
+	.card .list-items .next:after {
+		background: url(../img/arrows_xl.png) no-repeat;
+		background-size: 52px 42px;
+	}
+
+	.card .list-items .next:after
+	{
+		background-position: -40px 0;
 	}
 }

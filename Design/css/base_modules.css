@@ -27,6 +27,99 @@ data input UI
 	background-color: #727272;
 }
 
+
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+[type="checkbox"] + label:before {
+	background: url(../img/chck_xs.png) no-repeat 0 -18px;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+}
+
+[type="checkbox"]:not(:checked) + label:before {
+	background-position: 0 -18px;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+}
+/* checkbox aspect */
+[type="checkbox"]:checked + label:before {
+	background-position: 0 0;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+}
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left:0;
+  width: 18px; height: 18px;
+  border: 1px solid #cecece;
+}
+
+[type="checkbox"]:not(:checked) + label:hover:before,
+[type="checkbox"]:checked + label:hover:before {
+	border: 1px solid #fba61a;
+	transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+/* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+[type="checkbox"]:disabled:checked + label:after {
+  color: #999;
+}
+[type="checkbox"]:disabled + label {
+  color: #aaa;
+}
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+	border: 1px solid #fba61a;
+}
+
+
+
 .it, .itx {
 	color: #bcbec0;
 	font-size: 14px;
@@ -413,6 +506,51 @@ data input UI
 	}
 
 
+/* tabs */
+
+.tabs {
+	padding-top: 65px;
+	overflow: hidden;
+}
+
+	.tabs_lst {
+		list-style: none;
+	}
+	
+		.tabs_i {
+			display: block;
+			float: left;
+			margin-right: 10px;
+		}
+
+		.tabs_i:last-child {
+			margin-right: 0;
+		}
+
+		.tabs_i_a {
+			display: block;
+			width: 198px;
+			line-height: 47px;
+			color: #bcbec0;
+			font-size: 14px;
+			text-transform: uppercase;
+			text-align: center;
+			border-top: 1px solid #f4f4f4;
+			border-left: 1px solid #f4f4f4;
+			border-right: 1px solid #f4f4f4;
+			border-radius: 8px 8px 0 0;
+			-webkit-border-radius: 8px 8px 0 0;
+			-moz-border-radius: 8px 8px 0 0;
+			-o-border-radius: 8px 8px 0 0;
+			-ms-border-radius: 8px 8px 0 0;
+		}
+
+		.tabs_i_a:hover, .tabs_i_a.tabs_i_a__active {
+			color: #888888;
+			background-color: #f4f4f4;
+		}
+
+
 /* GRID */
 
 .fixw {
@@ -547,6 +685,10 @@ data input UI
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+	[type="checkbox"] + label:before {
+		background: url(../img/chck_xl.png) no-repeat 0 -18px;
+		background-size: 18px 18px;
+	}
 	.ico16 {
 		background-image: url(../img/icon32.png);
 		background-size: 100px 100px;
