@@ -466,13 +466,17 @@
 }
 
 .reviews {
-	padding: 65px 0 100px 0;
+	padding-bottom: 100px;
 	overflow: hidden;
 }
 
 	.reviews_add {
 		margin-top: 10px;
 		max-width: 240px;
+	}
+
+	.reviews_rating {
+		padding-top: 65px;
 	}
 
 	.reviews .card_rating_outer {
@@ -486,22 +490,101 @@
 		padding: 20px 0;
 	}
 
-.developer-info {
-	overflow: hidden;
-}
-
-	.developer-info_t {
-		text-align: right;
+	.developer-info {
+		overflow: hidden;
+		padding-top: 65px;
 	}
 
-	.developer-info_tx {
-		text-align: right;
-		font-size: 14px;
-		color: #888888;
-		padding: 20px 0;
+		.developer-info_t {
+			text-align: right;
+		}
+
+		.developer-info_tx {
+			text-align: right;
+			font-size: 14px;
+			color: #888888;
+			padding: 20px 0;
+		}
+	
+	.reviews_lst {
+		overflow: hidden;
+		clear: both;
+		padding-top: 30px;
 	}
 
+	.reviews_i {
+		padding: 40px 0;
+		border-top: 1px solid #e4e4e5;
+	}
+		.reviews_i_info {
+			overflow: hidden;
+		}
 
+		.reviews_i_ava_outer {
+			width: 100px;
+			height: 100px;
+			overflow: hidden;
+			border-radius: 8px;
+			-webkit-border-radius: 8px;
+			-moz-border-radius: 8px;
+			-o-border-radius: 8px;
+			-ms-border-radius: 8px;
+		}
+
+			.reviews_i_ava {
+				width: 100px;
+				height: auto;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				-o-border-radius: 8px;
+				-ms-border-radius: 8px;
+			}
+		
+		.reviews_i_data {
+			margin-left: 120px;
+			padding-top: 6px;
+		}
+
+		.reviews_i_rating {
+		}
+
+		.rating_i_date {
+			font-size: 14px;
+			color: #888888;
+			font-style: italic;
+		}
+
+		.reviews_i_author {
+			margin-top: 40px;
+		}
+
+			.reviews_i_author_name {
+				display: block;
+				font-size: 14px;
+				font-weight: bold;
+				color: #888888;
+				
+			}
+
+				.reviews_i_author_name:after {
+					content: ':';
+				}
+
+				.reviews_i_author_about {
+					font-size: 14px;
+					font-weight: normal;
+					color: #888888;
+					line-height: 17px;
+				}
+		.reviews_i_tx {
+			display: block;
+			font-size: 14px;
+			font-weight: normal;
+			color: #888888;
+			line-height: 17px;
+			padding: 25px 0;
+		}
 /*
 responsive
 ----------
