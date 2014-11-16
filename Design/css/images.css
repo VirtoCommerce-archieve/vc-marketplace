@@ -30,7 +30,6 @@
 
 			.card .item ul.info li .ico:after
 			{
-				background-image: url(../images/icons/cabinet/widgets.png);
 			    background-repeat: no-repeat;
 			    content: "";
 			    height: 24px;
@@ -140,7 +139,6 @@
 	.card .list-items .prev,
 	.card .list-items .next
 	{
-		background: #448ccb;
 		bottom: 0;
 		cursor: pointer;
 		position: absolute;
@@ -153,35 +151,37 @@
 		right: 0;
 	}
 
-	.card .list-items .prev:hover,
-	.card .list-items .next:hover
+	.card .list-items .prev:hover:after {
+		background-position: 0 -21px;
+	}
+	.card .list-items .next:hover:after
 	{
-		background: #28c0d2;
+		background-position: -40px -21px;
 	}
 
 	.card .list-items .prev:after,
 	.card .list-items .next:after
 	{
-		border-style: solid;
-		border-width: 6px 10px;
+		display: block;
+		background: url(../img/arrows_xs.png) no-repeat;
 		content: '';
-		height: 0;
-		margin: -6px 0 0;
+		height: 21px;
+		margin: -11px 0 0;
 		position: absolute;
 		top: 50%;
-		width: 0;
+		width: 12px;
 	}
 
 	.card .list-items .prev:after
 	{
-		border-color: rgba(255, 255, 255, 0) #fff rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
-		left: -5px;
+		background-position: 0 0;
+		left: 0;
 	}
 
 	.card .list-items .next:after
 	{
-		border-color: rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0) #fff;
-		right: -5px;
+		background-position: -40px 0;
+		right: 0;
 	}
 
 	.card .list-items .scroll
@@ -544,15 +544,9 @@
 		width: 40px;
 	}
 
-	.card .list-items .prev:after
-	{
-		left: 5px;
-	}
 
-	.card .list-items .next:after
-	{
-		right: 5px;
-	}
+
+	
 
 	.card .list-items ul li
 	{
@@ -607,15 +601,7 @@
 		width: 40px;
 	}
 
-	.card .list-items .prev:after
-	{
-		left: 5px;
-	}
-
-	.card .list-items .next:after
-	{
-		right: 5px;
-	}
+	
 
 	.card .list-items ul li
 	{
@@ -636,6 +622,19 @@
 
 
 
+@media only screen and (max-width: 760px) {
+	
+	.card .list-items .prev:after,
+	.card .list-items .next:after {
+		background: url(../img/arrows_xl.png) no-repeat;
+		background-size: 52px 42px;
+	}
+
+	.card .list-items .next:after
+	{
+		background-position: -40px 0;
+	}
+}
 @media only screen and (min-width: 760px) {
 	.card .item
 	{
@@ -678,15 +677,7 @@
 		width: 22px;
 	}
 
-	.card .list-items .prev:after
-	{
-		left: -5px;
-	}
 
-	.card .list-items .next:after
-	{
-		right: -5px;
-	}
 
 	.card .list-items ul li
 	{
