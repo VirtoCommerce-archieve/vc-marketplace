@@ -33,7 +33,6 @@ itemDetail = {
 		} else if (images.length > 3) {
 			itemDetail.images();
 		}
-		console.log(newImages);
 	},
 	images: function() {
 		Animate();

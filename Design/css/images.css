@@ -112,21 +112,38 @@
 		.card .item figure a
 		{
 			display: block;
-			width: 100%;
-
+			/*width: 100%;*/
+			position: absolute;
+			left: 10px;
+			right: 10px;
+			top: 10px;
+			bottom: 10px;
+			width: auto;
+			height: auto;
+			overflow: hidden;
 			-webkit-box-sizing: border-box;
 			   -moz-box-sizing: border-box;
 					box-sizing: border-box;
 		}
 
+		.card .item figure a:after {
+			content: '';
+			position: relative;
+			height: 100%;
+			vertical-align: middle;
+			display: inline-block;
+			min-height: inherit;
+		}
+
 		.card .item figure img
 		{
 			display: inline-block;
-			margin: -3px 0 0;
-			max-width: 100%;
+			max-width: 99%;
+			margin: 0 auto;
 			position: relative;
 			vertical-align: middle;
 			z-index: 50;
+			margin: auto;
 		}
 
 /* List items - scroller */
@@ -261,11 +278,6 @@
 					max-height: 100%;
 					max-width: 100%;
 					vertical-align: middle;
-					border-radius: 8px;
-					-webkit-border-radius: 8px;
-					-moz-border-radius: 8px;
-					-o-border-radius: 8px;
-					-ms-border-radius: 8px;
 				}
 
 .card .item-informer
@@ -494,18 +506,46 @@
 
 	.card .list-items ul li
 	{
-		width: 142px;
+		width: 210px;
 	}
 
 	.card .list-items ul li a
 	{
-		height: 142px;
-		line-height: 142px;
+		height: 210px;
+		line-height: 210px;
 	}
 
 	.card .cross-sell
 	{
 		display: none;
+	}
+}
+
+@media only screen and (min-width: 360px) {
+
+	.card .list-items ul li
+	{
+		width: 250px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 250px;
+		line-height: 250px;
+	}
+}
+
+@media only screen and (min-width: 375px) {
+
+	.card .list-items ul li
+	{
+		width: 265px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 265px;
+		line-height: 265px;
 	}
 }
 
@@ -563,6 +603,21 @@
 	.card .cross-sell
 	{
 		display: none;
+	}
+}
+
+
+@media only screen and (min-width: 600px) {
+
+	.card .list-items ul li
+	{
+		width: 432px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 432px;
+		line-height: 432px;
 	}
 }
 

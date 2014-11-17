@@ -212,6 +212,10 @@
 
 .bottom-menu .latest-news {
 	display: block;
+	color: #888888;
+	font-size: 14px;
+	text-transform: uppercase;
+	line-height: 100px;
 }
 
 	.bottom-menu_lst {
@@ -644,6 +648,11 @@ responsive
 
 	.footer .copiright {
 		float: none;
+		line-height: 50px;
+	}
+
+	.footer .bottom-menu_i_a {
+		line-height: 50px;
 	}
 
 	.links-array .links-array_col {
@@ -684,6 +693,20 @@ responsive
 	.card_data {
 		margin-top: 20px;
 	}
+
+	.bottom-menu .latest-news {
+		line-height: 40px;
+	}
+
+	.bottom-menu .del3_4 .del3_4 {
+		margin-top: 0;
+		line-height: 50px;
+	}
+
+	.bottom-menu_i_a {
+		line-height: 50px;
+	}
+
 }
 
 @media (max-width: 600px) {
