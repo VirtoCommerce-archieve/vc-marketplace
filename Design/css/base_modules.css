@@ -124,7 +124,9 @@ data input UI
 	color: #bcbec0;
 	font-size: 14px;
 	border: 1px solid #e2e2e2;
-	padding: 14px 18px;
+	padding: 0 18px;
+	height: 40;
+	vertical-align: middle;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
 			box-sizing: border-box;
@@ -192,8 +194,19 @@ data input UI
 	color: #fff;
 	border: 0;
 	font-size: 14px;
-	line-height: 40px;
+	line-height: 1;
+	height: 40px;
 	cursor: pointer;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+			box-sizing: border-box;
+}
+
+.btn:after {
+	content: '';
+	display: inline-block;
+	height: 40px;
+	vertical-align: middle;
 }
 
 .btn:hover {
@@ -219,13 +232,23 @@ data input UI
 	/* sizesa */
 	
 	.btn.btn__xs {
-		line-height: 30px;
+		/*line-height: 30px;*/
+		height: 30px;
+	}
+
+	.btn.btn__xs:after {
+		height: 32px;
 	}
 	
 	.btn.btn__xl {
 		display: block;
-		line-height: 80px;
+		/*line-height: 80px;*/
+		height: 80px;
 		font-size: 30px;
+	}
+
+	.btn.btn__xl:after {
+		height: 80px;
 	}
 
 	/* colors */
@@ -642,6 +665,15 @@ data input UI
 	.del5_6 {
 		width: 100%;
 	}
+
+	.tabs_i_a {
+		font-size: 12px;
+		width: 100px;
+	}
+
+	.crums {
+		display: none;
+	}
 }
 
 @media (max-width: 600px) {
@@ -679,9 +711,29 @@ data input UI
 	.items .items_i  {
 		padding: 30px 15px;
 	}
+
+	.tabs {
+		margin: 0 -20px;
+	}
+
+	.tabs_i_a {
+		font-size: 12px;
+		width: 100px;
+	}
 }
 
 @media (max-width: 480px) {
+
+
+	.tabs {
+		margin: 0 -20px;
+	}
+
+	.tabs_i_a {
+		font-size: 12px;
+		width: auto;
+		padding: 0 10px;
+	}
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {

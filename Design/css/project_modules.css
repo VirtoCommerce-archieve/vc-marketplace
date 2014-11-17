@@ -262,6 +262,7 @@
 			text-transform: uppercase;
 			margin-bottom: 10px;
 			font-weight: normal;
+			color: #fff;
 		}
 	
 
@@ -550,6 +551,7 @@
 		}
 
 		.rating_i_date {
+			float: right;
 			font-size: 14px;
 			color: #888888;
 			font-style: italic;
@@ -662,6 +664,26 @@ responsive
 		text-align: center;
 		margin: 0 100px;
 	}
+
+	.card_thumb_outer {
+		float: none;
+		margin-top: 20px;
+	}
+	.card_lk_lst {
+		float: none;
+		text-align: left;
+	}
+
+	.developer-info_t {
+		text-align: left;
+	}
+
+	.developer-info_tx {
+		text-align: left;
+	}
+	.card_data {
+		margin-top: 20px;
+	}
 }
 
 @media (max-width: 600px) {
@@ -672,6 +694,16 @@ responsive
 		line-height: 100px;
 		padding-left: 0px;
 		text-align: left;
+	}
+
+	.rating_i_date {
+		float: none;
+		margin-bottom: 10px;
+		font-size: 12px;
+	}
+
+	.reviews_i_author {
+		margin-top: 20px;
 	}
 }
 

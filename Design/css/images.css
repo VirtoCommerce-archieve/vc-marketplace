@@ -193,6 +193,7 @@
 		.card .list-items .scroll ul
 		{
 			width: 10000px;
+			list-style: none;
 		}
 
 		.card .list-items ul li
