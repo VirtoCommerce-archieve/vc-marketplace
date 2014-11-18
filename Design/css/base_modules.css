@@ -43,7 +43,7 @@ data input UI
 }
 
 [type="checkbox"] + label:before {
-	background: url(../img/chck_xs.png) no-repeat 0 -18px;
+	background: url(../images/chck_xs.png) no-repeat 0 -18px;
 	transition: all 0.3s;
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
@@ -157,26 +157,26 @@ data input UI
 
 }
 
-	.it.it__error {
+	.it.it.__error {
 		border: 2px solid #ef4236;
 	}
-		.it.it__error::-webkit-input-placeholder {
+		.it.__error::-webkit-input-placeholder {
 			color: #ef4236;
 		}
 
-		.it.it__error:-moz-placeholder {
+		.it.__error:-moz-placeholder {
 			color: #ef4236;  
 		}
 
-		.it.it__error::-moz-placeholder {
+		.it.__error::-moz-placeholder {
 			color: #ef4236;  
 		}
 
-		.it.it__error:-ms-input-placeholder {  
+		.it.__error:-ms-input-placeholder {  
 			color: #ef4236;  
 		}
 
-		.it.it__radial {
+		.it.__radial {
 			border-radius: 40px;
 			-webkit-border-radius: 40px;
 			-moz-border-radius: 40px;
@@ -217,7 +217,7 @@ data input UI
 		margin-left: 16px;
 	}
 
-	.btn.btn__radial {
+	.btn.__radial {
 		border-radius: 40px;
 		-webkit-border-radius: 40px;
 		-moz-border-radius: 40px;
@@ -225,43 +225,43 @@ data input UI
 		-ms-border-radius: 40px;
 	}
 
-	.btn__block {
+	.btn.__block {
 		display: block;
 	}
 	
 	/* sizesa */
 	
-	.btn.btn__xs {
+	.btn.__xs {
 		/*line-height: 30px;*/
 		height: 30px;
 	}
 
-	.btn.btn__xs:after {
+	.btn.__xs:after {
 		height: 32px;
 	}
 	
-	.btn.btn__xl {
+	.btn.__xl {
 		display: block;
 		/*line-height: 80px;*/
 		height: 80px;
 		font-size: 30px;
 	}
 
-	.btn.btn__xl:after {
+	.btn.__xl:after {
 		height: 85px;
 	}
 
 	/* colors */
 
-	.btn.btn__info {
+	.btn.__info {
 		background-color: #fba61a;
 	}
 
-	.btn.btn__sb {
+	.btn.__sb {
 		background-color: #ef4036;
 	}
 
-	.btn.btn__regular {
+	.btn.__regular {
 		background-color: #f4f4f4;
 		text-transform: capitalize;
 		color: #58595b;
@@ -285,7 +285,7 @@ data input UI
 		right: 0;
 		top: 0;
 	}
-	.form-simple .btn.btn__xs {
+	.form-simple .btn.__xs {
 		position: absolute;
 		right: 5px;
 		top: 5px;
@@ -297,25 +297,25 @@ data input UI
 	display: inline-block;
 	width: 16px;
 	height: 16px;
-	background: url(../img/icon16.png) no-repeat;
+	background: url(../images/icon16.png) no-repeat;
 	margin-bottom: -3px;
 }
 
-	.ico16__user {
+	.ico16.__user {
 		background-position: 0 0;
 	}
 
-	.ico16__menu {
+	.ico16.__menu {
 		background-position: -16px 0;
 	}
 
-	.ico16__back {
+	.ico16.__back {
 		background-position: 0 -16px;
 	}
 
 .ico_lw {
 	display: inline-block;
-	background: url(../img/icon_lw.png) no-repeat;
+	background: url(../images/icon_lw.png) no-repeat;
 }
 
 	.ico_lw.ico_lw_monitor {
@@ -350,11 +350,11 @@ data input UI
 	padding: 70px 0;
 }
 
-.items.items__cat {
+.items.__cat {
 	padding: 30px 0 70px 0;
 }
 
-	.items.items__cat .items_i {
+	.items.__cat .items_i {
 		margin-bottom: 40px;
 	}
 
@@ -495,36 +495,36 @@ data input UI
 	height: 15px;
 	width: 100px;
 	display: block;
-	background: url(../img/rating16.png) repeat-x scroll 0 0;
+	background: url(../images/rating16.png) repeat-x scroll 0 0;
 }
 
 	.rating_progress {
 		display: block;
 		height: 15px;
-		background: url(../img/rating16.png) repeat-x scroll 0 100%;
+		background: url(../images/rating16.png) repeat-x scroll 0 100%;
 	}
 
-	.rating.rating__0 .rating_progress {
+	.rating.__0 .rating_progress {
 		width: 0%;
 	}
 
-	.rating.rating__1 .rating_progress {
+	.rating.__1 .rating_progress {
 		width: 20%;
 	}
 
-	.rating.rating__2 .rating_progress {
+	.rating.__2 .rating_progress {
 		width: 40%;
 	}
 
-	.rating.rating__3 .rating_progress {
+	.rating.__3 .rating_progress {
 		width: 60%;
 	}
 
-	.rating.rating__4 .rating_progress {
+	.rating.__4 .rating_progress {
 		width: 80%;
 	}
 
-	.rating.rating__5 .rating_progress {
+	.rating.__5 .rating_progress {
 		width: 100%;
 	}
 
@@ -568,7 +568,7 @@ data input UI
 			-ms-border-radius: 8px 8px 0 0;
 		}
 
-		.tabs_i_a:hover, .tabs_i_a.tabs_i_a__active {
+		.tabs_i_a:hover, .tabs_i_a.tabs_i_a.__active {
 			color: #888888;
 			background-color: #f4f4f4;
 		}
@@ -705,7 +705,7 @@ data input UI
 		width: 100%;
 	}
 
-	.btn.btn__xl {
+	.btn.__xl {
 		font-size: 20px;
 	}
 	
@@ -747,32 +747,32 @@ data input UI
 }
 
 @media (max-width: 321px) {
-	.btn.btn__xl {
+	.btn.__xl {
 		font-size: 17px;
 	}
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
 	[type="checkbox"] + label:before {
-		background: url(../img/chck_xl.png) no-repeat 0 -18px;
+		background: url(../images/chck_xl.png) no-repeat 0 -18px;
 		background-size: 18px 18px;
 	}
 	.ico16 {
-		background-image: url(../img/icon32.png);
+		background-image: url(../images/icon32.png);
 		background-size: 100px 100px;
 	}
 	.ico_lw {
-		background: url(../img/icon_xlw.png) no-repeat;
+		background: url(../images/icon_xlw.png) no-repeat;
 		background-size: 250px 250px;
 	}
 
 	.rating {
-		background: url(../img/rating32.png) repeat-x scroll 0 0;
+		background: url(../images/rating32.png) repeat-x scroll 0 0;
 		background-size: 20px 30px;
 	}
 
 	.rating_progress {
-		background: url(../img/rating32.png) repeat-x scroll 0 100%;
+		background: url(../images/rating32.png) repeat-x scroll 0 100%;
 		background-size: 20px 30px;
 	}
 }

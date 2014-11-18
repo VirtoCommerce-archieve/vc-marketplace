@@ -1,4 +1,7 @@
 $(function() {
+	/*
+	Menu for mobile resolution
+	*/
 	$('.to-menu').click(function(e) {
 		e.preventDefault();
 		$('html, body').css({overflow: 'hidden'});
