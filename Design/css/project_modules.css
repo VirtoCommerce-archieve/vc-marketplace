@@ -29,6 +29,11 @@
 		margin-right: 200px;
 	}
 
+	.search-pane-alt {
+		/*width: 565px;*/
+		margin: 10px 30px;
+	}
+
 	.header_main .to-menu {
 		display: none;
 	}
@@ -132,6 +137,7 @@
 	
 		.features_bl__left {
 			width: 60%;
+			margin-left: 1px;
 			left: 0;
 			background: -webkit-linear-gradient(left, #ffcbca, #ffddc6);
 			background: -o-linear-gradient(left, #ffcbca, #ffddc6);
@@ -700,7 +706,7 @@ responsive
 
 	.bottom-menu .del3_4 .del3_4 {
 		margin-top: 0;
-		line-height: 50px;
+		/*line-height: 50px;*/
 	}
 
 	.bottom-menu_i_a {

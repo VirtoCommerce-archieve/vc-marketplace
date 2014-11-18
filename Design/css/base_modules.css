@@ -248,7 +248,7 @@ data input UI
 	}
 
 	.btn.btn__xl:after {
-		height: 80px;
+		height: 85px;
 	}
 
 	/* colors */
@@ -708,6 +708,16 @@ data input UI
 	.btn.btn__xl {
 		font-size: 20px;
 	}
+	
+	.items {
+		padding: 30px 0;
+	}
+
+	.items .items_t {
+		margin-bottom: 0;
+		font-size: 18px;
+	}
+
 	.items .items_i  {
 		padding: 30px 15px;
 	}
@@ -733,6 +743,12 @@ data input UI
 		font-size: 12px;
 		width: auto;
 		padding: 0 10px;
+	}
+}
+
+@media (max-width: 321px) {
+	.btn.btn__xl {
+		font-size: 17px;
 	}
 }
 
