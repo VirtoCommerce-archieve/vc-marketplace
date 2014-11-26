@@ -57,7 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClient.cs" />
+    <Compile Include="ContentClient.cs" />
     <Compile Include="DataContracts\Category.cs" />
+    <Compile Include="DataContracts\Contents\DynamicContentItem.cs" />
+    <Compile Include="DataContracts\TagQuery.cs" />
     <Compile Include="Extensions\ItemsClientExtension.cs" />
     <Compile Include="ItemsClient.cs" />
     <Compile Include="BrowseClient.cs" />
@@ -90,6 +93,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -51,5 +51,17 @@ namespace VirtoCommerce.ApiClient.Utilities
 
             return string.Join("&", parts);
         }
+
+        public static string GetQueryString(this TagQuery query)
+        {
+            var parts = new List<string>();
+
+            if (query.Names != null)
+            {
+                parts.AddRange(from name in query.Names let value = query[name] select "tags=" + HttpUtility.UrlEncode(name) + ":" + HttpUtility.UrlEncode(value.ToString()));
+            }
+
+            return string.Join("&", parts);
+        }
     }
 }
