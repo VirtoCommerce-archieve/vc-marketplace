@@ -16,12 +16,15 @@
         private string AdminServerAddress;
         private string ServerAddress;
 
+        private string ContentServerAddress;
+
         private bool UseLocal = true;
 
 		public MarketplaceScenarios()
 		{   
             ServerAddress = "http://localhost:3179/api/stores/231213/en-us/";
             AdminServerAddress = "http://localhost:3179/api/merch/";
+            ContentServerAddress = "http://localhost:3179/api/";
 		    UseLocal = false;
 		}
 
@@ -33,11 +36,19 @@
             }
         }
 
+        private ContentClient ContentClient
+        {
+            get
+            {
+                return this.UseLocal ? ClientContext.Clients.CreateContentClient(this.ContentServerAddress) : ClientContext.Clients.CreateContentClient();
+            }
+        }
+
         private ItemsClient AdminClient
         {
             get
             {
-                return this.UseLocal ? ClientContext.Clients.CreateItemsClient(this.ServerAddress) : ClientContext.Clients.CreateItemsClient();
+                return this.UseLocal ? ClientContext.Clients.CreateItemsClient(this.AdminServerAddress) : ClientContext.Clients.CreateItemsClient();
             }
         }
 
@@ -104,6 +115,13 @@
             var results = Task.Run(() => this.Client.GetProductAsync(code)).Result;
             Assert.NotNull(results);
             Assert.True(results.Id == code);
+        }
+
+        [Fact]
+        public void Can_get_market_content()
+        {
+            var results = Task.Run(() => this.ContentClient.GetDynamicContentAsync("MainSlider", new TagQuery())).Result;
+            Assert.NotNull(results);
         }
     }
 }

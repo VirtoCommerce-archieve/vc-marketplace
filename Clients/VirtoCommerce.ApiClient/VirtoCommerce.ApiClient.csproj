@@ -61,6 +61,7 @@
     <Compile Include="DataContracts\Category.cs" />
     <Compile Include="DataContracts\Contents\DynamicContentItem.cs" />
     <Compile Include="DataContracts\TagQuery.cs" />
+    <Compile Include="Extensions\ContentClientExtension.cs" />
     <Compile Include="Extensions\ItemsClientExtension.cs" />
     <Compile Include="ItemsClient.cs" />
     <Compile Include="BrowseClient.cs" />

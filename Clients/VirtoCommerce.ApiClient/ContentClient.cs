@@ -12,7 +12,7 @@ namespace VirtoCommerce.ApiClient
     {
         protected class RelativePaths
         {
-            public const string Contents = "contents/{0}{1}";
+            public const string Contents = "contents/{0}";
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace VirtoCommerce.ApiClient
         /// </summary>
         public Task<ResponseCollection<DynamicContentItem>> GetDynamicContentAsync(string placeHolder, TagQuery query)
         {
-            return this.GetAsync<ResponseCollection<DynamicContentItem>>(this.CreateRequestUri(String.Format(RelativePaths.Contents, placeHolder, query.ToString())));
+            return this.GetAsync<ResponseCollection<DynamicContentItem>>(this.CreateRequestUri(String.Format(RelativePaths.Contents, placeHolder), query.GetQueryString()));
         }
     }
 }
