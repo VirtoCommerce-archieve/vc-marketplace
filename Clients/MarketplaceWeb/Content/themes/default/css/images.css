@@ -1,0 +1,1018 @@
+.card .item
+{
+	margin: 0 0 10px;
+	position: relative;
+}
+
+	/* РРЅС„РѕСЂРјР°С†РёСЏ Рѕ РґРѕСЃС‚Р°РІРєРµ */
+	.card .item ul.info
+	{
+		bottom: 1px;
+		left: 10px;
+		position: absolute;
+		z-index: 100;
+	}
+
+		.card .item ul.info li
+		{
+			float: left;
+		    height: 42px;
+		    margin: 0 6px 0 0;
+		    position: relative;
+		}
+
+			.card .item ul.info li .ico
+			{
+				background-color: #448ccb;
+			    padding: 0;
+			    position: relative;
+			}
+
+			.card .item ul.info li .ico:after
+			{
+			    background-repeat: no-repeat;
+			    content: "";
+			    height: 24px;
+			    left: 50%;
+			    margin: -12px 0 0 -12px;
+			    position: absolute;
+			    top: 50%;
+			    width: 25px;
+			}
+
+			.card .item ul.info li.supplied .ico:after
+			{
+				background-position: 0 -24px;
+			}
+
+			.card .item ul.info li.sent .ico:after
+			{
+				background-position: 0 -48px;
+			}
+
+			.card .item ul.info li span
+			{
+				background: #fff;
+			    color: #448ccb;
+			    cursor: pointer;
+			    float: left;
+			    font-size: 12px;
+			    font-weight: 400;
+			    height: 42px;
+			    line-height: 12px;
+			    padding: 8px 0 0;
+			    text-align: center;
+			    vertical-align: middle;
+			    width: 44px;
+
+			    -webkit-box-sizing: border-box;
+			       -moz-box-sizing: border-box;
+			    		box-sizing: border-box;
+			}
+
+	/* Р”РѕСЃС‚Р°РІРєР° РёР· РњСЃРє */
+	.card .item .delivery,
+	.card .item .gift
+	{
+		background: #e03265;
+		color: #fff;
+		font-size: 12px;
+		font-weight: 800;
+		height: 26px;
+		left: 50%;
+		margin: 0 0 0 -82px;
+		line-height: 26px;
+		position: absolute;
+		text-align: center;
+		text-transform: uppercase;
+		top: -10px;
+		width: 164px;
+		z-index: 150;
+	}
+
+	.card .item figure
+	{
+		background: #fff;
+		border: 1px solid #d8d8d8;
+		display: block;
+		overflow: hidden;
+		position: relative;
+		text-align: center;
+		padding: 10px;
+		-webkit-box-sizing: border-box;
+		   -moz-box-sizing: border-box;
+				box-sizing: border-box;
+		border-radius: 8px;
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		-o-border-radius: 8px;
+		-ms-border-radius: 8px;
+	}
+
+		.card .item figure a
+		{
+			display: block;
+			/*width: 100%;*/
+			position: absolute;
+			left: 10px;
+			right: 10px;
+			top: 10px;
+			bottom: 10px;
+			width: auto;
+			height: auto;
+			overflow: hidden;
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+					box-sizing: border-box;
+		}
+
+		.card .item figure a:after {
+			content: '';
+			position: relative;
+			height: 100%;
+			vertical-align: middle;
+			display: inline-block;
+			min-height: inherit;
+		}
+
+		.card .item figure img
+		{
+			display: inline-block;
+			max-width: 99%;
+			margin: 0 auto;
+			position: relative;
+			vertical-align: middle;
+			z-index: 50;
+			margin: auto;
+		}
+
+/* List items - scroller */
+.card .list-items
+{
+	margin: 0 0 35px;
+	position: relative;
+}
+
+	.card .list-items .prev,
+	.card .list-items .next
+	{
+		bottom: 0;
+		cursor: pointer;
+		position: absolute;
+		top: 0;
+		width: 22px;
+	}
+
+	.card .list-items .next
+	{
+		right: 0;
+	}
+
+	.card .list-items .prev:hover:after {
+		background-position: 0 -21px;
+	}
+	.card .list-items .next:hover:after
+	{
+		background-position: -40px -21px;
+	}
+
+	.card .list-items .prev:after,
+	.card .list-items .next:after
+	{
+		display: block;
+		background: url(../img/arrows_xs.png) no-repeat;
+		content: '';
+		height: 21px;
+		margin: -11px 0 0;
+		position: absolute;
+		top: 50%;
+		width: 12px;
+	}
+
+	.card .list-items .prev:after
+	{
+		background-position: 0 0;
+		left: 0;
+	}
+
+	.card .list-items .next:after
+	{
+		background-position: -40px 0;
+		right: 0;
+	}
+
+	.card .list-items .scroll
+	{
+		margin: 0 25px;
+		overflow: hidden;
+	}
+
+		.card .list-items .scroll ul
+		{
+			width: 10000px;
+			list-style: none;
+		}
+
+		.card .list-items ul li
+		{
+			float: left;
+			width: 80px;
+			border-radius: 8px;
+			--border-radius: 8px;
+			--border-radius: 8px;
+			--border-radius: 8px;
+			--border-radius: 8px;
+		}
+
+		.card .list-items ul li + li
+		{
+			margin: 0 0 0 10px;
+		}
+
+			.card .list-items ul li a
+			{
+				background: #fff;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				-o-border-radius: 8px;
+				-ms-border-radius: 8px;
+				display: block;
+				height: 80px;
+				line-height: 80px;
+				position: relative;
+				overflow: hidden;
+				text-align: center;
+
+				-webkit-box-sizing: border-box;
+				   -moz-box-sizing: border-box;
+						box-sizing: border-box;
+			}
+
+			.card .list-items ul li a:after
+			{
+				border: 1px solid #ebebeb;
+				border-radius: 8px;
+				-webkit-border-radius: 8px;
+				-moz-border-radius: 8px;
+				-o-border-radius: 8px;
+				-ms-border-radius: 8px;
+				bottom: 0;
+				content: '';
+				left: 0;
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+
+			.card .list-items ul li a:hover:after,
+			.card .list-items ul li.selected a:after
+			{
+				border: 1px solid #fba61a;
+			}
+
+				.card .list-items ul li a img
+				{
+					display: inline-block;
+					margin: -3px 0 0;
+					max-height: 100%;
+					max-width: 100%;
+					vertical-align: middle;
+				}
+
+.card .item-informer
+{
+	border: 4px solid #448ccb;
+	margin: 20px 0 0;
+	padding: 15px;
+}
+
+	.card .item-informer p
+	{
+		font-size: 12px;
+		font-weight: 400;
+	}
+
+		.card .item-informer p a
+		{
+			color: #448ccb;
+		}
+
+		.card .item-informer p a:hover
+		{
+			color: #28c0d2;
+		}
+
+/* Cross sell */
+.card .cross-sell
+{
+	border: 4px solid #f5f5f5;
+	padding: 0 0 25px;
+}
+
+	.card .cross-sell header
+	{
+		margin: 0;
+		padding: 0;
+		text-align: center;
+	}
+
+		.card .cross-sell header .title
+		{
+			background: none;
+			color: #448ccb;
+			display: inline-block;
+			font-size: 14px;
+			font-style: normal;
+			font-weight: 800;
+			line-height: 18px;
+			padding: 20px 0;
+			text-transform: uppercase;
+		}
+
+	.card .cross-sell .list
+	{
+		border-top: 5px solid #f5f5f5;
+		margin: 0 21px;
+		padding: 20px 0 0;
+	}
+
+		.card .cross-sell ul
+		{
+			margin: 0 0 0 -7px;
+		}
+
+			.card .cross-sell ul li
+			{
+				float: left;
+				margin: 7px 0 0 7px;
+				width: 112px;
+			}
+
+				.card .cross-sell ul li a
+				{
+					background: #fff;
+					display: block;
+					height: 112px;
+					line-height: 112px;
+					position: relative;
+					overflow: hidden;
+					text-align: center;
+				}
+
+				.card .cross-sell ul li a:after
+				{
+					border: 1px solid #ddd;
+					bottom: 0;
+					content: '';
+					left: 0;
+					position: absolute;
+					right: 0;
+					top: 0;
+				}
+
+				.card .cross-sell ul li a:hover:after,
+				.card .cross-sell ul li.selected a:after
+				{
+					border: 4px solid #28c0d2;
+				}
+
+					.card .cross-sell ul li a img
+					{
+						display: inline-block;
+						margin: -3px 0 0;
+						max-height: 100%;
+						max-width: 100%;
+						vertical-align: middle;
+					}
+
+					.card .cross-sell ul li a .price
+					{
+						background: #448ccb;
+						color: #fff;
+						font-size: 14px;
+						height: 30px;
+						left: 50%;
+						line-height: 30px;
+						margin: -15px 0 0 -37px;
+						position: absolute;
+						text-align: center;
+						top: 50%;
+						width: 74px;
+					}
+
+					.card .cross-sell ul li a:hover .price
+					{
+						background: #28c0d2;
+					}
+
+.card .item-description
+{
+	display: none;
+}
+
+	.card .item-description p
+	{
+		font-size: 14px;
+		font-weight: 400;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+/*  responsive   */
+
+
+@media only screen and (min-width: 0) {
+
+
+	.card .item
+	{
+		margin: 0 auto 10px;
+		width: 200px;
+	}
+
+	.card .item ul.attrs
+	{
+		left: 25px;
+	}
+
+	.card .item ul.info,
+	.card .item figure
+	{
+		display: none;
+	}
+
+	.card .list-items
+	{
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.card .list-items ul li
+	{
+		width: 142px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 142px;
+		line-height: 142px;
+	}
+
+	.card .cross-sell
+	{
+		display: none;
+	}
+
+}
+
+
+
+
+
+
+@media only screen and (min-width: 320px) {
+	.card .item
+	{
+		margin: 0 auto 10px;
+		width: 200px;
+	}
+
+	.card .item ul.attrs
+	{
+		left: 25px;
+	}
+
+	.card .item ul.info,
+	.card .item figure
+	{
+		display: none;
+	}
+
+	.card .list-items
+	{
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.card .list-items ul li
+	{
+		width: 210px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 210px;
+		line-height: 210px;
+	}
+
+	.card .cross-sell
+	{
+		display: none;
+	}
+}
+
+@media only screen and (min-width: 360px) {
+
+	.card .list-items ul li
+	{
+		width: 250px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 250px;
+		line-height: 250px;
+	}
+}
+
+@media only screen and (min-width: 375px) {
+
+	.card .list-items ul li
+	{
+		width: 265px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 265px;
+		line-height: 265px;
+	}
+}
+
+
+@media only screen and (min-width: 460px) {
+	.card .item
+	{
+		margin: 0 auto 10px;
+		width: 350px;
+	}
+
+	.card .item ul.attrs
+	{
+		left: 25px;
+	}
+
+	.card .item ul.info,
+	.card .item figure
+	{
+		display: none;
+	}
+
+	.card .list-items
+	{
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.card .list-items .scroll
+	{
+		margin: 0 56px;
+	}
+
+	.card .list-items .prev,
+	.card .list-items .next
+	{
+		width: 40px;
+	}
+
+
+
+	
+
+	.card .list-items ul li
+	{
+		width: 300px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 300px;
+		line-height: 300px;
+	}
+
+	.card .cross-sell
+	{
+		display: none;
+	}
+}
+
+
+@media only screen and (min-width: 600px) {
+
+	.card .list-items ul li
+	{
+		width: 432px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 432px;
+		line-height: 432px;
+	}
+}
+
+
+@media only screen and (min-width: 640px) {
+	.card .item
+	{
+		margin: 0 auto 40px;
+		width: 350px;
+	}
+
+	.card .item ul.attrs
+	{
+		left: 25px;
+	}
+
+	.card .item ul.info,
+	.card .item figure
+	{
+		display: none;
+	}
+
+	.card .list-items
+	{
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.card .list-items .scroll
+	{
+		margin: 0 56px;
+	}
+
+	.card .list-items .prev,
+	.card .list-items .next
+	{
+		width: 40px;
+	}
+
+	
+
+	.card .list-items ul li
+	{
+		width: 300px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 300px;
+		line-height: 300px;
+	}
+
+	.card .cross-sell
+	{
+		display: none;
+	}
+}
+
+
+
+@media only screen and (min-width: 760px) {
+	.card .item
+	{
+		float: none;
+		width: 100%;
+	}
+
+	.card .item figure
+	{
+		/*line-height: 270px;*/
+		max-height: 270px;
+		min-height: 270px;
+	}
+
+	.card .item ul.attrs
+	{
+		left: 13px;
+	}
+
+	.card .item ul.info,
+	.card .item figure
+	{
+		display: block;
+	}
+
+	.card .list-items
+	{
+		margin: 0;
+		width: auto;
+	}
+
+	.card .list-items .scroll
+	{
+		margin: 0 25px;
+	}
+
+	.card .list-items .prev,
+	.card .list-items .next
+	{
+		width: 22px;
+	}
+
+
+
+	.card .list-items ul li
+	{
+		width: 106px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 106px;
+		line-height: 106px;
+	}
+
+	.card .cross-sell
+	{
+		display: block;
+		margin: 21px 0 0;
+		overflow: hidden;
+	}
+
+	.card .cross-sell header .title
+	{
+		font-size: 17px;
+	}
+
+	.card .cross-sell ul li
+	{
+		width: 106px;
+	}
+
+	.card .cross-sell ul li a
+	{
+		height: 106px;
+		line-height: 106px;
+	}
+}
+
+
+@media only screen and (min-width: 905px) {
+	.card .item ul.info,
+	.card .item figure
+	{
+		display: block;
+	}
+
+	.card .list-items
+	{
+		margin: 0;
+	}
+
+	.card .list-items .scroll
+	{
+		margin: 0 35px;
+	}
+
+	.card .list-items ul li
+	{
+		width: 106px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 106px;
+		line-height: 106px;
+	}
+
+	.card .cross-sell
+	{
+		margin: 21px 0 0;
+		overflow: hidden;
+	}
+
+	.card .cross-sell header .title
+	{
+		font-size: 17px;
+	}
+
+	.card .cross-sell ul li
+	{
+		width: 106px;
+	}
+
+	.card .cross-sell ul li a
+	{
+		height: 106px;
+		line-height: 106px;
+	}
+}
+
+
+
+@media only screen and (min-width: 960px) {
+	.card .item figure
+	{
+		/*line-height: 296px;*/
+		max-height: 296px;
+		min-height: 296px;
+	}
+
+	.card .list-items
+	{
+		margin: 0;
+	}
+
+	.card .list-items ul li
+	{
+		width: 120px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 120px;
+		line-height: 120px;
+	}
+
+	.card .cross-sell
+	{
+		margin: 25px 0 0;
+		overflow: hidden;
+	}
+
+	.card .cross-sell header .title
+	{
+		font-size: 15px;
+	}
+
+	.card .cross-sell ul li
+	{
+		width: 76px;
+	}
+
+	.card .cross-sell ul li a
+	{
+		height: 75px;
+		line-height: 75px;
+	}
+}
+
+
+
+@media only screen and (min-width: 1120px) {
+	.card .item figure
+	{
+		/*line-height: 300px;*/
+		max-height: 300px;
+		min-height: 300px;
+	}
+
+	.card .list-items,
+	.card .cross-sell
+	{
+		margin: 0;
+	}
+
+	.card .list-items
+	{
+		margin: 0 0 35px;
+	}
+
+	.card .list-items ul li
+	{
+		width: 79px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 79px;
+		line-height: 79px;
+	}
+
+	.card .cross-sell header .title
+	{
+		font-size: 12px;
+	}
+
+	.card .cross-sell ul li
+	{
+		width: 78px;
+	}
+
+	.card .cross-sell ul li a
+	{
+		height: 78px;
+		line-height: 78px;
+	}
+
+	.card .cross-sell ul li a .price
+	{
+		height: 26px;
+		line-height: 26px; 
+		margin: -13px 0 0 -32px;
+		font-size: 12px;
+		width: 64px;
+	}
+}
+
+
+@media only screen and (min-width: 1280px) {
+	.card .list-items ul li
+	{
+		width: 79px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 79px;
+		line-height: 79px;
+	}
+
+	.card .cross-sell header .title
+	{
+		font-size: 12px;
+	}
+
+	.card .cross-sell ul li
+	{
+		width: 78px;
+	}
+
+	.card .cross-sell ul li a
+	{
+		height: 78px;
+		line-height: 78px;
+	}
+
+	.card .cross-sell ul li a .price
+	{
+		height: 26px;
+		line-height: 26px; 
+		margin: -13px 0 0 -32px;
+		font-size: 12px;
+		width: 64px;
+	}
+}
+
+
+@media only screen and (min-width: 1440px) {
+	.card .item figure
+	{
+		/*line-height: 400px;*/
+		min-height: 400px;
+		max-height: 400px;
+	}
+
+	.card .list-items ul li
+	{
+		width: 80px;
+	}
+
+	.card .list-items ul li a
+	{
+		height: 80px;
+		line-height: 80px;
+	}
+
+	.card .cross-sell header .title
+	{
+		font-size: 14px;
+	}
+
+	.card .cross-sell ul li
+	{
+		width: 112px;
+	}
+
+	.card .cross-sell ul li a
+	{
+		height: 112px;
+		line-height: 112px;
+	}
+
+	.card .cross-sell ul li a .price
+	{
+		height: 30px;
+		line-height: 30px; 
+		margin: -15px 0 0 -37px;
+		font-size: 14px;
+		width: 74px;
+	}
+}
+
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+	
+	.card .list-items .prev:after,
+	.card .list-items .next:after {
+		background: url(../img/arrows_xl.png) no-repeat;
+		background-size: 52px 42px;
+	}
+
+	.card .list-items .next:after
+	{
+		background-position: -40px 0;
+	}
+}

@@ -2,43 +2,170 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Virto Commerce Marketplace</title>
-    @Styles.Render("~/Content/css")
+    <meta content="IE=edge, chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=0.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" name="viewport">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <title>@ViewBag.Title</title>
+    <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic">
+    <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic&amp;subset=latin,cyrillic-ext">
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/themes/default/css/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/responsive")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+    <div id="layout">
+        <div class="header_wrap">
+            <header class="header_main fixw">
+                <button class="btn __regular __radial fleft to-menu">
+                    <i class="ico16 ico16 __menu"></i>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Page", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="~/">Home</a></li>
-                    <li><a href="~/about">About</a></li>
-                    <li><a href="~/contact">Contact</a></li>
+                <button class="btn __regular __radial fright to-profile">
+                    <i class="ico16 ico16 __user"></i>
+                    <span class="btn_t">My Account</span>
+                </button>
+                <a href="@Url.Content("~")" id="main-logo" class="fleft">
+                    <img src="@Url.Content("~/Content/themes/default/images/logo.png")" alt="">
+                </a>
+                @Html.Display("", "search")
+            </header>
+        </div>
+        <div class="main-nav_outer bl">
+            <div class="main-nav fixw">
+                <ul class="main-nav_lst">
+                    <li class="main-nav_i"><a href="#" class="main-nav_a">Customer Experience</a></li>
+                    <li class="main-nav_i"><a href="#" class="main-nav_a __active">Site Management</a></li>
+                    <li class="main-nav_i"><a href="#" class="main-nav_a">Integration</a></li>
+                    <li class="main-nav_i"><a href="#" class="main-nav_a">Marketing</a></li>
+                    <li class="main-nav_i"><a href="#" class="main-nav_a">Utilities</a></li>
+                    <li class="main-nav_i"><a href="#" class="main-nav_a">Themes</a></li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+        @RenderBody()
+        <div class="transparent_bl bl">
+            <div class="bottom-menu fixw">
+                <div class="del3_4">
+                    <div class="del4">
+                        <a href="#" class="latest-news">Get the latest news</a>
+                    </div>
+                    <div class="del3_4">
+                        <form action="" class="form-simple signup-form">
+                            <input type="email" placeholder="Your e-mal" class="it it __radial">
+                            <button type="submit" class="is btn __info __xs __radial">Sign up</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="del4">
+                    <ul class="bottom-menu_lst">
+                        <li class="bottom-menu_i"><a href="#" class="bottom-menu_i_a">About</a></li>
+                        <li class="bottom-menu_i"><a href="#" class="bottom-menu_i_a">Q&A</a></li>
+                        <li class="bottom-menu_i"><a href="#" class="bottom-menu_i_a">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="dark_bl bl">
+            <div class="links-array fixw">
+                <div class="del3 links-array_col">
+                    <h4 class="links-array_col_t">Our sites</h4>
+                    <ul class="links-array_lst">
+                        <li class="links-array_i">
+                            <a href="" class="links-array_i_a">
+                                <span class="links-array_i_t">Virto Commerce</span>
+                                <span class="links-array_i_descr">Virto Commerce's Corporate Site</span>
+                            </a>
+                        </li>
+                        <li class="links-array_i">
+                            <a href="" class="links-array_i_a">
+                                <span class="links-array_i_t">Enterprise edition</span>
+                                <span class="links-array_i_descr">Enterprise-Class Platform</span>
+                            </a>
+                        </li>
+                        <li class="links-array_i">
+                            <a href="" class="links-array_i_a">
+                                <span class="links-array_i_t">Virto Commerce GO</span>
+                                <span class="links-array_i_descr">Small Business Storefront</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="del3 links-array_col">
+                    <h4 class="links-array_col_t">Learn More</h4>
+                    <ul class="links-array_lst">
+                        <li class="links-array_i">
+                            <a href="" class="links-array_i_a">
+                                <span class="links-array_i_t">Mcompany</span>
+                            </a>
+                        </li>
+                        <li class="links-array_i">
+                            <a href="" class="links-array_i_a">
+                                <span class="links-array_i_t">Careers</span>
+                            </a>
+                        </li>
+                        <li class="links-array_i">
+                            <a href="" class="links-array_i_a">
+                                <span class="links-array_i_t">Press room</span>
+                            </a>
+                        </li>
+                        <li class="links-array_i">
+                            <a href="" class="links-array_i_a">
+                                <span class="links-array_i_t">Site map</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="del3 links-array_col">
+                    <h4 class="links-array_col_t">Our sites</h4>
+                    <ul class="links-array_lst">
+                        <li class="links-array_i">
+                            <a href="" class="links-array_i_a">
+                                <span class="links-array_i_t">Virto Commerce</span>
+                                <span class="links-array_i_descr">Virto Commerce's Corporate Site</span>
+                            </a>
+                        </li>
+                        <li class="links-array_i">
+                            <a href="" class="links-array_i_a">
+                                <span class="links-array_i_t">Enterprise edition</span>
+                                <span class="links-array_i_descr">Enterprise-Class Platform</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer bl">
+            <div class="footer_inner fixw">
+                <span class="copiright">© 2014 VirtoCommerce".  All rights reserved.</span>
+                <ul class="bottom-menu_lst">
+                    <li class="bottom-menu_i"><a href="#" class="bottom-menu_i_a">Privacy</a></li>
+                    <li class="bottom-menu_i"><a href="#" class="bottom-menu_i_a">Terms Of Service</a></li>
+                </ul>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Virto Commerce Marketplace</p>
-        </footer>
+    <div id="mob-nav_outer">
+        <div class="main-nav fixw">
+            <ul class="main-nav_lst">
+                <li class="main-nav_i"><a href="#" class="main-nav_a">Customer Experience</a></li>
+                <li class="main-nav_i"><a href="#" class="main-nav_a main-nav_a __active">Site Management</a></li>
+                <li class="main-nav_i"><a href="#" class="main-nav_a">Integration</a></li>
+                <li class="main-nav_i"><a href="#" class="main-nav_a">Marketing</a></li>
+                <li class="main-nav_i"><a href="#" class="main-nav_a">Utilities</a></li>
+                <li class="main-nav_i"><a href="#" class="main-nav_a">Themes</a></li>
+            </ul>
+            <form action="" class="form-simple search-pane-alt">
+                <input type="text" placeholder="search for extentions" class="it it __radial">
+                <button type="submit" class="is btn __info __xs __radial">search</button>
+            </form>
+        </div>
+        <button class="close-menu btn __regular __radial"><i class="ico16 __back"></i></button>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
 </body>
 </html>

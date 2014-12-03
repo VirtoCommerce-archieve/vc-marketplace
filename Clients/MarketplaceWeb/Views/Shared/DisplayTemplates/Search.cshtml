@@ -1,0 +1,25 @@
+﻿<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        if ($("input#search"))
+        {
+            $("input#search").autocomplete({
+                minLength: 3,
+                source: '@Url.Action("Find", "Search")',
+                appendTo: "#search_autocomplete",
+                select: function (event, ui)
+                {
+                    document.location.href = ui.item.url;
+                }
+            });
+        }
+    });
+</script>
+
+@using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form-simple search-pane" }))
+{
+    <input id="search" type="text" placeholder="search for extentions" class="it it __radial" value="@Request.QueryString["q"]">
+    <button type="submit" class="is btn __info __xs __radial">search</button>
+    <div id="search_autocomplete" class="search-autocomplete">
+    </div>
+}
