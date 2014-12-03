@@ -34,14 +34,7 @@
         </div>
         <div class="main-nav_outer bl">
             <div class="main-nav fixw">
-                <ul class="main-nav_lst">
-                    <li class="main-nav_i"><a href="#" class="main-nav_a">Customer Experience</a></li>
-                    <li class="main-nav_i"><a href="#" class="main-nav_a __active">Site Management</a></li>
-                    <li class="main-nav_i"><a href="#" class="main-nav_a">Integration</a></li>
-                    <li class="main-nav_i"><a href="#" class="main-nav_a">Marketing</a></li>
-                    <li class="main-nav_i"><a href="#" class="main-nav_a">Utilities</a></li>
-                    <li class="main-nav_i"><a href="#" class="main-nav_a">Themes</a></li>
-                </ul>
+                @Html.MvcSiteMap().Menu(false)
             </div>
         </div>
         @RenderBody()
@@ -148,18 +141,8 @@
     </div>
     <div id="mob-nav_outer">
         <div class="main-nav fixw">
-            <ul class="main-nav_lst">
-                <li class="main-nav_i"><a href="#" class="main-nav_a">Customer Experience</a></li>
-                <li class="main-nav_i"><a href="#" class="main-nav_a main-nav_a __active">Site Management</a></li>
-                <li class="main-nav_i"><a href="#" class="main-nav_a">Integration</a></li>
-                <li class="main-nav_i"><a href="#" class="main-nav_a">Marketing</a></li>
-                <li class="main-nav_i"><a href="#" class="main-nav_a">Utilities</a></li>
-                <li class="main-nav_i"><a href="#" class="main-nav_a">Themes</a></li>
-            </ul>
-            <form action="" class="form-simple search-pane-alt">
-                <input type="text" placeholder="search for extentions" class="it it __radial">
-                <button type="submit" class="is btn __info __xs __radial">search</button>
-            </form>
+            @Html.MvcSiteMap().Menu(false)
+            @Html.Display("", "search", new { searchClass = "search-pane-alt" })
         </div>
         <button class="close-menu btn __regular __radial"><i class="ico16 __back"></i></button>
     </div>

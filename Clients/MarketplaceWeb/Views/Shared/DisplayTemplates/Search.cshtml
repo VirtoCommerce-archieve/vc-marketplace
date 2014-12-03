@@ -1,12 +1,16 @@
-﻿<script type="text/javascript">
+﻿@{
+    var searchClass = ViewData.ContainsKey("searchClass") ? ViewData["searchClass"] : "search-pane";
+}
+
+<script type="text/javascript">
     $(document).ready(function ()
     {
-        if ($("input#search"))
+        if ($("input[id='search-@searchClass']"))
         {
-            $("input#search").autocomplete({
+            $("input[id='search-@searchClass']").autocomplete({
                 minLength: 3,
                 source: '@Url.Action("Find", "Search")',
-                appendTo: "#search_autocomplete",
+                appendTo: "[id='autocomplete-@searchClass']",
                 select: function (event, ui)
                 {
                     document.location.href = ui.item.url;
@@ -16,10 +20,12 @@
     });
 </script>
 
-@using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form-simple search-pane" }))
+
+
+@using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form-simple " + searchClass }))
 {
-    <input id="search" type="text" placeholder="search for extentions" class="it it __radial" value="@Request.QueryString["q"]">
+    <input id="search-@searchClass" type="text" placeholder="search for extentions" class="it it __radial" value="@Request.QueryString["q"]">
     <button type="submit" class="is btn __info __xs __radial">search</button>
-    <div id="search_autocomplete" class="search-autocomplete">
+    <div id="autocomplete-@searchClass" class="search-autocomplete">
     </div>
 }
