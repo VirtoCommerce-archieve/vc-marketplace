@@ -14,8 +14,8 @@ namespace VirtoCommerce.ApiClient
         protected class RelativePaths
         {
             public const string Products = "products/{0}";
-            public const string Categories = "categories?outline={0}";
-            public const string Product = "products/{0}";
+            public const string Categories = "categories?parentId={0}";
+            public const string Product = "product/{0}";
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace VirtoCommerce.ApiClient
             return this.GetAsync<Product>(this.CreateRequestUri(String.Format(RelativePaths.Product, productId)));
         }
 
-        public Task<ResponseCollection<Category>> GetCategoriesAsync(string outline = "")
+        public Task<ResponseCollection<Category>> GetCategoriesAsync(string parentId = null)
         {
-            return this.GetAsync<ResponseCollection<Category>>(this.CreateRequestUri(String.Format(RelativePaths.Categories, outline)));
+            return this.GetAsync<ResponseCollection<Category>>(this.CreateRequestUri(String.Format(RelativePaths.Categories, parentId)));
         }
     }
 }

@@ -63,6 +63,7 @@
     <Compile Include="DataContracts\TagQuery.cs" />
     <Compile Include="Extensions\ContentClientExtension.cs" />
     <Compile Include="Extensions\ItemsClientExtension.cs" />
+    <Compile Include="Extensions\KeyValuePairExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="ItemsClient.cs" />
     <Compile Include="BrowseClient.cs" />

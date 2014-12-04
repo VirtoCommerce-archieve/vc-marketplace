@@ -4,7 +4,7 @@
             xsi:schemaLocation="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-4.0 MvcSiteMapSchema.xsd">
 
   <mvcSiteMapNode title="Home" controller="Page" action="Index">
-    <mvcSiteMapNode title="Categories" controller="Extensions" dynamicNodeProvider="MarketplaceWeb.Helpers.Sitemap.CategoryNodeProvider, MarketplaceWeb" />
+    <mvcSiteMapNode title="Categories" controller="Catalog" dynamicNodeProvider="MarketplaceWeb.Helpers.Sitemap.CategoryNodeProvider, MarketplaceWeb" />
   </mvcSiteMapNode>
 
 </mvcSiteMap>

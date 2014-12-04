@@ -8,7 +8,7 @@ namespace MarketplaceWeb.Controllers
     using System.Web.Mvc;
 
     [RoutePrefix("pages")]
-    public class PageController : Controller
+    public class PageController : ControllerBase
     {
         public ActionResult Index()
         {

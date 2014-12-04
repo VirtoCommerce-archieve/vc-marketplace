@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using MarketplaceWeb.Models;
+using MarketplaceWeb.Models.Binders;
 
 namespace MarketplaceWeb
 {
@@ -16,6 +14,8 @@ namespace MarketplaceWeb
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            ModelBinders.Binders[typeof(SearchParameters)] = new SearchParametersBinder();
         }
     }
 }

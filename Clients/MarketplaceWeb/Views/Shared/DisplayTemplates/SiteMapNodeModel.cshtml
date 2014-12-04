@@ -2,6 +2,14 @@
 @using System.Web.Mvc.Html
 @using MvcSiteMapProvider.Web.Html.Models
 
+@{
+    var nodeClass = "main-nav_a";
+    if (Model.IsCurrentNode)
+    {
+        nodeClass = string.Concat(nodeClass, " ", "__active");
+    }
+}
+
 @if (Model.IsCurrentNode && Model.SourceMetadata["HtmlHelper"].ToString() != "MvcSiteMapProvider.Web.Html.MenuHelper")  { 
     <text>@Model.Title</text>
 }
@@ -9,11 +17,11 @@ else if (Model.IsClickable)
 {
     if (string.IsNullOrEmpty(Model.Description))
     {
-        <a class="main-nav_a" href="@Model.Url">@Model.Title</a>
+        <a class="@nodeClass" href="@Model.Url">@Model.Title</a>
     }
     else
     {
-        <a class="main-nav_a" href="@Model.Url" title="@Model.Description">@Model.Title</a>
+        <a class="@nodeClass" href="@Model.Url" title="@Model.Description">@Model.Title</a>
     }
 }
 else

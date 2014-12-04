@@ -24,7 +24,7 @@
 
 @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "form-simple " + searchClass }))
 {
-    <input id="search-@searchClass" type="text" placeholder="search for extentions" class="it it __radial" value="@Request.QueryString["q"]">
+    <input id="search-@searchClass" name="q" type="text" placeholder="search for extentions" class="it it __radial" value="@Request.QueryString["q"]">
     <button type="submit" class="is btn __info __xs __radial">search</button>
     <div id="autocomplete-@searchClass" class="search-autocomplete">
     </div>
