@@ -5,7 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using MarketplaceWeb.Converters;
 using MarketplaceWeb.Helpers;
+using MarketplaceWeb.Helpers.Marketing;
 using MarketplaceWeb.Models;
 using VirtoCommerce.ApiClient;
 using VirtoCommerce.ApiClient.DataContracts;
@@ -16,18 +18,19 @@ namespace MarketplaceWeb.Controllers
     [RoutePrefix("search")]
     public class SearchController : ControllerBase
     {
-        public async Task<ActionResult> Index(SearchParameters parameters)
+        public async Task<ActionResult> Index(BrowseQuery parameters)
         {
-            ViewBag.Title = String.Format("Searching by '{0}'", parameters.FreeSearch);
+            ViewBag.Title = String.Format("Searching by '{0}'", parameters.Search);
 
             var query = new BrowseQuery
             {
-                Search = parameters.FreeSearch
+                Search = parameters.Search
             };
 
             var results = await SearchClient.GetProductsAsync(query);
+            var model = results.Items.Select(x => x.ToWebModel()).ToArray();
 
-            return View(results);
+            return View(model);
         }
 
         public ActionResult Find(string term)
@@ -47,30 +50,64 @@ namespace MarketplaceWeb.Controllers
             return Json(data.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
+        [Route("extensions/{categoryId}")]
+        public async Task<ActionResult> CategorySearch(string categoryId, BrowseQuery parameters, string name = "Index", bool savePreferences = true)
+        {
+            var category = await SearchClient.GetCategoryAsync(categoryId);
+
+            if (category != null)
+            {
+                ViewBag.Title = String.Format("Searching in '{0}'", category.Name);
+
+                CustomerSession.Current.Tags.Add(ContextFieldConstants.CategoryId, categoryId);
+                CustomerSession.Current.CategoryId = categoryId;
+
+                if (savePreferences)
+                {
+                    RestoreSearchPreferences(parameters);
+                }
+
+                var ids = category.Parents != null ? category.Parents.Select(x => x.Key).ToList() : new List<string>();
+                ids.Add(categoryId);
+                parameters.Outline = string.Join("/", ids);
+
+                var results = await SearchClient.GetProductsAsync(parameters);
+
+                var model = results.Items.Select(x => x.ToWebModel()).ToArray();
+
+                return View(name, model);
+            }
+
+            throw new HttpException(404, "Category not found");
+        }
+
         #region Private Helpers
 
-        private void RestoreSearchPreferences(SearchParameters parameters)
+        private void RestoreSearchPreferences(BrowseQuery parameters)
         {
-            var pageSize = parameters.PageSize;
-            var sort = parameters.Sort;
-            var sortOrder = parameters.SortOrder;
+            var pageSize = parameters.Take;
+            var sort = parameters.SortProperty;
+            var sortOrder = parameters.SortDirection;
 
-            if (pageSize == 0)
+            if (!pageSize.HasValue)
             {
-                Int32.TryParse(CookieHelper.GetCookieValue("pagesizecookie"), out pageSize);
+                int parsedSize;
+                if (Int32.TryParse(CookieHelper.GetCookieValue("pagesizecookie"), out parsedSize))
+                {
+                    pageSize = parsedSize;
+                }
             }
             else
             {
-                CookieHelper.SetCookie(
-                    "pagesizecookie", pageSize.ToString(CultureInfo.InvariantCulture), DateTime.Now.AddMonths(1));
+                CookieHelper.SetCookie("pagesizecookie", pageSize.Value.ToString(CultureInfo.InvariantCulture), DateTime.Now.AddMonths(1));
             }
 
-            if (pageSize == 0)
+            if (!pageSize.HasValue)
             {
-                pageSize = SearchParameters.DefaultPageSize;
+                pageSize = BrowseQuery.DefaultPageSize;
             }
 
-            parameters.PageSize = pageSize;
+            parameters.Take = pageSize;
 
             if (String.IsNullOrEmpty(sort))
             {
@@ -90,8 +127,8 @@ namespace MarketplaceWeb.Controllers
                 CookieHelper.SetCookie("sortordercookie", sortOrder, DateTime.Now.AddMonths(1));
             }
 
-            parameters.Sort = sort;
-            parameters.SortOrder = sortOrder;
+            parameters.SortProperty = sort;
+            parameters.SortDirection = sortOrder;
         }
 
         #endregion

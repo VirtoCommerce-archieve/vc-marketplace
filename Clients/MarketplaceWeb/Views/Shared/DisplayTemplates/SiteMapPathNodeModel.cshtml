@@ -1,0 +1,23 @@
+﻿<li class="crums_i">
+    @if (Model.IsClickable && !Model.IsCurrentNode)
+    {
+
+        if (string.IsNullOrEmpty(Model.Description))
+        {
+            <a class="crums_i_a" href="@Model.Url">@Model.Title</a>
+        }
+        else
+        {
+            <a class="crums_i_a" href="@Model.Url" title="@Model.Description">@Model.Title</a>
+        }
+
+    }
+    else
+    {
+        <span class="crums_i_t">@Model.Title</span>
+    }
+</li>
+
+
+
+

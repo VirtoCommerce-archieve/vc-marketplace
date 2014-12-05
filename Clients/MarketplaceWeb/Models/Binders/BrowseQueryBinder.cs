@@ -4,11 +4,12 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.Mvc;
+using VirtoCommerce.ApiClient.DataContracts;
 using VirtoCommerce.ApiClient.Extensions;
 
 namespace MarketplaceWeb.Models.Binders
 {
-    public class SearchParametersBinder : IModelBinder
+    public class BrowseQueryBinder : IModelBinder
     {
         /// <summary>
         /// Name values to dictionary.
@@ -43,25 +44,25 @@ namespace MarketplaceWeb.Models.Binders
         {
 
             var parameters = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
-            var sp = parameters != null ? parameters.RawValue as SearchParameters : null;
+            var sp = parameters != null ? parameters.RawValue as BrowseQuery : null;
             if (sp == null)
             {
                 var qs = GetParams(controllerContext);
                 var qsDict = NvToDict(qs);
                 var facets = qsDict.Where(k => FacetRegex.IsMatch(k.Key)).Select(k => k.WithKey(FacetRegex.Replace(k.Key, ""))).ToDictionary(x => x.Key, y => y.Value.Split(','));
 
-                sp = new SearchParameters
+                sp = new BrowseQuery
                 {
-                    FreeSearch = qs["q"].EmptyToNull(),
-                    PageIndex = qs["p"].TryParse(1),
-                    PageSize = qs["pageSize"].TryParse(0),
-                    Sort = qs["sort"].EmptyToNull(),
-                    SortOrder = qs["sortorder"].EmptyToNull(),
-                    Facets = facets
+                    Search = qs["q"].EmptyToNull(),
+                    Skip = qs["p"].TryParse(null),
+                    Take = qs["pageSize"].TryParse(null),
+                    SortProperty = qs["sort"].EmptyToNull(),
+                    SortDirection = qs["sortorder"].EmptyToNull(),
+                    Filters = facets
                 };
-                if (!string.IsNullOrEmpty(sp.FreeSearch))
+                if (!string.IsNullOrEmpty(sp.Search))
                 {
-                    sp.FreeSearch = sp.FreeSearch.EscapeSearchTerm();
+                    sp.Search = sp.Search.EscapeSearchTerm();
                 }
             }
             return sp;

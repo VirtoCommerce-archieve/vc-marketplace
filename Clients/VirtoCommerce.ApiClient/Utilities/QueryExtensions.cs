@@ -42,6 +42,11 @@ namespace VirtoCommerce.ApiClient.Utilities
                 parts.Add("q=" + HttpUtility.UrlEncode(query.Search));
             }
 
+            if (!string.IsNullOrEmpty(query.Outline))
+            {
+                parts.Add("outline=" + HttpUtility.UrlEncode(query.Outline));
+            }
+
             if (query.Filters != null && query.Filters.Count > 0)
             {
                 parts.AddRange(query.Filters.Select(filter => String.Format("t_{0}={1}", filter.Key, String.Join(",", filter.Value))));

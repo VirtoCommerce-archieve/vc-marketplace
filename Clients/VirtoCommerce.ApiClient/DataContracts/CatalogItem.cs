@@ -7,16 +7,20 @@ namespace VirtoCommerce.ApiClient.DataContracts
     {
         public string Id { get; set; }
 
+        public string CatalogId { get; set; }
+
         public string Code { get; set; }
 
         public string Name { get; set; }
 
         public ItemImage[] Images { get; set; }
 
-        private IDictionary<string, object> _properties = new Dictionary<string, object>();
+        public EditorialReview[] EditorialReviews { get; set; }
+
+        private IDictionary<string, string> _properties = new Dictionary<string, string>();
         
         [JsonIgnore]
-        public object this[string name]
+        public string this[string name]
         {
             get
             {
@@ -35,7 +39,7 @@ namespace VirtoCommerce.ApiClient.DataContracts
             }
         }
 
-        public IDictionary<string, object> Properties
+        public IDictionary<string, string> Properties
         {
             get
             {
@@ -43,7 +47,5 @@ namespace VirtoCommerce.ApiClient.DataContracts
             }
             set { _properties = value; }
         }
-
-        public string Catalog { get; set; }
     }
 }

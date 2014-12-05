@@ -59,6 +59,7 @@
     <Compile Include="BaseClient.cs" />
     <Compile Include="ContentClient.cs" />
     <Compile Include="DataContracts\Category.cs" />
+    <Compile Include="DataContracts\EditorialReview.cs" />
     <Compile Include="DataContracts\Contents\DynamicContentItem.cs" />
     <Compile Include="DataContracts\TagQuery.cs" />
     <Compile Include="Extensions\ContentClientExtension.cs" />

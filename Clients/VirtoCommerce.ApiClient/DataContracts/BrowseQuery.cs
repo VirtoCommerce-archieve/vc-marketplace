@@ -14,6 +14,12 @@ namespace VirtoCommerce.ApiClient.DataContracts
     [DataContract(Namespace = "http://schemas.virtocommerce.com/2.0")]
     public class BrowseQuery
     {
+
+        /// <summary>
+        /// The default page size
+        /// </summary>
+        public const int DefaultPageSize = 8;
+
         /// <summary>
         /// Gets or sets the number of items to skip as part of this query
         /// </summary>
@@ -44,7 +50,30 @@ namespace VirtoCommerce.ApiClient.DataContracts
         [DataMember, DefaultValue("")]
         public string Search { get; set; }
 
+        /// <summary>
+        /// Gets or sets the outline to filter products. Its category path.
+        /// </summary>
+        [DataMember, DefaultValue("")]
+        public string Outline { get; set; }
+
         [DataMember]
         public Dictionary<string, string[]> Filters { get; set; }
+
+        public override string ToString()
+        {
+            var builder = new StringBuilder();
+            builder.Append(Search);
+            builder.Append(Skip);
+            builder.Append(Take);
+            builder.Append(Outline);
+            builder.Append(SortProperty);
+
+            foreach (var facet in Filters)
+            {
+                builder.Append(facet);
+            }
+
+            return builder.ToString();
+        }
     }
 }

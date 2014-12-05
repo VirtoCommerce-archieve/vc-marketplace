@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using MarketplaceWeb.Helpers.Marketing;
 using VirtoCommerce.ApiClient;
 using VirtoCommerce.ApiClient.Extensions;
 using VirtoCommerce.ApiClient.Utilities;

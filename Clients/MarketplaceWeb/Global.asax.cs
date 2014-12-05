@@ -3,6 +3,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using MarketplaceWeb.Models;
 using MarketplaceWeb.Models.Binders;
+using VirtoCommerce.ApiClient.DataContracts;
 
 namespace MarketplaceWeb
 {
@@ -15,7 +16,7 @@ namespace MarketplaceWeb
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            ModelBinders.Binders[typeof(SearchParameters)] = new SearchParametersBinder();
+            ModelBinders.Binders[typeof(BrowseQuery)] = new BrowseQueryBinder();
         }
     }
 }

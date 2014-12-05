@@ -23,6 +23,16 @@ namespace VirtoCommerce.ApiClient.Extensions
 
         }
 
+        public static int? TryParse(this string u, int? defaultValue)
+        {
+            var result = TryParse(u, defaultValue.HasValue ? defaultValue.Value : int.MinValue);
+
+            if (result == int.MinValue)
+                return null;
+
+            return result;
+        }
+
         public static int TryParse(this string u)
         {
             return TryParse(u, 0);

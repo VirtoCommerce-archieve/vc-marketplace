@@ -89,12 +89,12 @@
         public void Can_create_market_product()
         {
             var code = Guid.NewGuid().ToString();
-            var product = new Product() { Id = code, Code = code, Name = "Sample Test Product", Catalog = "Samsung" };
-            product.Properties = new Dictionary<string, object> { { "PublishStatus", "Draft" }, { "Price", 121.01d }, { "brand", "Apple" } };
+            var product = new Product() { Id = code, Code = code, Name = "Sample Test Product", CatalogId = "Samsung" };
+            product.Properties = new Dictionary<string, string> { { "PublishStatus", "Draft" }, { "Price", 121.01d.ToString() }, { "brand", "Apple" } };
 
             // add variations to a product
             var variationCode = Guid.NewGuid().ToString();
-            var variation = new ProductVariation() { Id = variationCode, Code = variationCode, Name = "Sample Test Product - Variation", Catalog = "Samsung" };
+            var variation = new ProductVariation() { Id = variationCode, Code = variationCode, Name = "Sample Test Product - Variation", CatalogId = "Samsung" };
             product.Variations = new[] { variation };
 
             // add images

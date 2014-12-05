@@ -28,7 +28,7 @@ namespace MarketplaceWeb.Helpers.Sitemap
             var order = 0;
             return response.Items.OrderBy(x => x.Name).Select(cat => new DynamicNode
             {
-                Action = "Display",
+                Action = "CategorySearch",
                 Title = cat.Name,
                 Key = cat.Id,
                 Order = order++,
