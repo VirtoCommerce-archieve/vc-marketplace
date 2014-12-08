@@ -15,44 +15,7 @@
     <div class="items fixw">
         <a href="" class="items_a fright">View all</a>
         <h2 class="items_t">New Extensions</h2>
-        <div class="items_inner">
-            <a href="" class="items_i del4">
-                <figure class="items_i_thumb_outer">
-                    <img src="images_cnt/fox.jpg" alt="" class="items_i_thumb">
-                </figure>
-                <h3 class="items_i_t">Extension name</h3>
-                <article class="items_i_tx">
-                    Habitar Landscapes is a professional and small team based in Buenos...
-                </article>
-            </a>
-            <a href="" class="items_i del4">
-                <figure class="items_i_thumb_outer">
-                    <img src="images_cnt/p.jpg" alt="" class="items_i_thumb">
-                </figure>
-                <h3 class="items_i_t">Extension name</h3>
-                <article class="items_i_tx">
-                    Habitar Landscapes is a professional...
-                </article>
-            </a>
-            <a href="" class="items_i del4">
-                <figure class="items_i_thumb_outer">
-                    <img src="images_cnt/unt.jpg" alt="" class="items_i_thumb">
-                </figure>
-                <h3 class="items_i_t">Extension name</h3>
-                <article class="items_i_tx">
-                    Habitar Landscapes is a professional and small team based in Buenos...
-                </article>
-            </a>
-            <a href="" class="items_i del4">
-                <figure class="items_i_thumb_outer">
-                    <img src="images_cnt/porto.jpg" alt="" class="items_i_thumb">
-                </figure>
-                <h3 class="items_i_t">Extension name</h3>
-                <article class="items_i_tx">
-                    Habitar Landscapes is a professional and small...
-                </article>
-            </a>
-        </div>
+        @{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeNewProducts" });}
     </div>
 </div>
 <div class="neutral-lay bl">

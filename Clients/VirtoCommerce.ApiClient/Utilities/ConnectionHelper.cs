@@ -57,7 +57,12 @@ namespace VirtoCommerce.ApiClient.Utilities
 
         public static string ApiConnectionString(string nameOrConnectionString)
         {
-            return string.Format(GetConnectionString(nameOrConnectionString), ConfigurationManager.AppSettings["DefaultCatalog"], Thread.CurrentThread.CurrentUICulture.Name).ToLower();
+            return ApiConnectionString(nameOrConnectionString, ConfigurationManager.AppSettings["DefaultCatalog"]).ToLower();
+        }
+
+        public static string ApiConnectionString(string nameOrConnectionString, string catalog, string language = null)
+        {
+            return string.Format(GetConnectionString(nameOrConnectionString), catalog ?? "", language ?? Thread.CurrentThread.CurrentUICulture.Name).ToLower();
         }
 
         public static void SetConnectionString(string name, string connectionString)

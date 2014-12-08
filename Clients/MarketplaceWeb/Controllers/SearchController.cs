@@ -28,26 +28,30 @@ namespace MarketplaceWeb.Controllers
             };
 
             var results = await SearchClient.GetProductsAsync(query);
-            var model = results.Items.Select(x => x.ToWebModel()).ToArray();
+            var retVal = CreateSearchResult(results, parameters);
 
-            return View(model);
+            return View(retVal);
         }
 
-        public ActionResult Find(string term)
+        public async Task<ActionResult> Find(string term)
         {
             ViewBag.Title = String.Format("Searching by '{0}'", term);
 
-            //var parameters = new SearchParameters { PageSize = 15 };
-            //var criteria = new CatalogItemSearchCriteria { SearchPhrase = term.EscapeSearchTerm(), IsFuzzySearch = true };
-            //var results = SearchResults(criteria, parameters);
+            var query = new BrowseQuery
+            {
+                Take = 15,
+                Search = term.EscapeSearchTerm()
+            };
+            var results = await SearchClient.GetProductsAsync(query);
 
-            //var data = from i in results.CatalogItems
-            //           select new { url = Url.ItemUrl(i.CatalogItem.Item, i.CatalogItem.ParentItemId), value = i.DisplayName };
-
-            var results = new[] { 0, 1, 2 };
-
-            var data = from i in results select new { url = "http://extensions/"+i, value = "Extension " + i };
+            var data = from i in results.Items select new { url = Url.Action("Display", new { id = i.Id }), value = i.Name };
             return Json(data.ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        [Route("~/extension/{id}")]
+        public ActionResult Display(string id)
+        {
+            throw new NotImplementedException();
         }
 
         [Route("extensions/{categoryId}")]
@@ -57,7 +61,7 @@ namespace MarketplaceWeb.Controllers
 
             if (category != null)
             {
-                ViewBag.Title = String.Format("Searching in '{0}'", category.Name);
+                ViewBag.Title = String.Format(category.Name);
 
                 CustomerSession.Current.Tags.Add(ContextFieldConstants.CategoryId, categoryId);
                 CustomerSession.Current.CategoryId = categoryId;
@@ -67,21 +71,68 @@ namespace MarketplaceWeb.Controllers
                     RestoreSearchPreferences(parameters);
                 }
 
-                var ids = category.Parents != null ? category.Parents.Select(x => x.Key).ToList() : new List<string>();
-                ids.Add(categoryId);
-                parameters.Outline = string.Join("/", ids);
+                parameters.Outline = category.Outline;
 
                 var results = await SearchClient.GetProductsAsync(parameters);
 
-                var model = results.Items.Select(x => x.ToWebModel()).ToArray();
+                var retVal = CreateSearchResult(results, parameters);
 
-                return View(name, model);
+                return View(name, retVal);
             }
 
             throw new HttpException(404, "Category not found");
         }
 
+        [ChildActionOnly]
+        public ActionResult SearchItems(CategoryUrlModel categoryUrl)
+        {
+            var query = new BrowseQuery
+            {
+                SortProperty = categoryUrl.SortField,
+                Take = categoryUrl.ItemCount
+            };
+
+            if (categoryUrl.NewItemsOnly)
+            {
+                query.StartDateFrom = DateTime.UtcNow.AddMonths(-1);
+            }
+
+            if (!string.IsNullOrWhiteSpace(categoryUrl.CategoryCode))
+            {
+                //TODO need api method to get category by code and build its outline for search
+            }
+            //Need to run synchrously because of child action
+            var results = Task.Run(() => SearchClient.GetProductsAsync(query)).Result;
+            var items = results.Items.Select(x => x.ToWebModel()).ToArray();
+
+            return PartialView(items);
+        }
+
         #region Private Helpers
+
+        private SearchResult CreateSearchResult(ResponseCollection<Product> results, BrowseQuery query)
+        {
+            var retVal = new SearchResult
+            {
+                Results = results.Items.Select(x => x.ToWebModel()).ToList(),
+                Pager =
+                {
+                    TotalCount = results.TotalCount,
+                    CurrentPage = query.Skip ?? 0,
+                    RecordsPerPage = query.Take ?? BrowseQuery.DefaultPageSize,
+                    StartingRecord = query.Take ?? 0 * query.Skip ?? 0,
+                    DisplayStartingRecord = query.Skip ?? 0 + 1,
+                    SortValues = new[] { "Price", "Rating" },
+                    SelectedSort = query.SortProperty,
+                    SortOrder = query.SortDirection
+                }
+            };
+
+            var end = query.Skip + query.Take ?? 0;
+            retVal.Pager.DisplayEndingRecord = end > results.TotalCount ? results.TotalCount : end;
+
+            return retVal;
+        }
 
         private void RestoreSearchPreferences(BrowseQuery parameters)
         {
@@ -132,5 +183,6 @@ namespace MarketplaceWeb.Controllers
         }
 
         #endregion
+
     }
 }

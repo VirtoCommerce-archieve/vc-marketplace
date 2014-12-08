@@ -22,10 +22,10 @@ namespace VirtoCommerce.ApiClient.DataContracts.Contents
             get; set; 
         }
 
-        private IDictionary<string, object> _properties = new Dictionary<string, object>();
+        private IDictionary<string, string> _properties = new Dictionary<string, string>();
 
         [JsonIgnore]
-        public object this[string name]
+        public string this[string name]
         {
             get
             {
@@ -44,7 +44,7 @@ namespace VirtoCommerce.ApiClient.DataContracts.Contents
             }
         }
 
-        public IDictionary<string, object> Properties
+        public IDictionary<string, string> Properties
         {
             get
             {

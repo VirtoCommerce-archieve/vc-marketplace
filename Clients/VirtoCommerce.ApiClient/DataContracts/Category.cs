@@ -19,5 +19,15 @@ namespace VirtoCommerce.ApiClient.DataContracts
         public Dictionary<string, string> Parents { get; set; }
 
         public bool Virtual { get; set; }
+
+        public string Outline
+        {
+            get
+            {
+                var ids = Parents != null ? Parents.Select(x => x.Key).ToList() : new List<string>();
+                ids.Add(Id);
+                return string.Join("/", ids);
+            }
+        }
     }
 }

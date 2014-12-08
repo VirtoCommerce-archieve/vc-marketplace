@@ -1,0 +1,8 @@
+﻿@model PagerModel
+
+<div class="items_nav fright">
+    @foreach (var sort in Model.SortValues)
+    {
+        <a class="items_a fleft" href="@Url.SetParameter("sort", sort)">sort by @sort</a>
+    }
+</div>

@@ -51,6 +51,11 @@ namespace VirtoCommerce.ApiClient.DataContracts
         public string Search { get; set; }
 
         /// <summary>
+        /// Gets or sets the start date from.
+        /// </summary>
+        public DateTime? StartDateFrom { get; set; }
+
+        /// <summary>
         /// Gets or sets the outline to filter products. Its category path.
         /// </summary>
         [DataMember, DefaultValue("")]

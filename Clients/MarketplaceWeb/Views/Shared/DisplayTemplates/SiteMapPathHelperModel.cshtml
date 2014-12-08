@@ -1,6 +1,11 @@
-﻿<ul class="crums_lst">
-    @foreach (var node in Model)
-    {
-        @Html.DisplayFor(m => node, "SiteMapPathNodeModel");
-    }
-</ul>
+﻿@model MvcSiteMapProvider.Web.Html.Models.SiteMapPathHelperModel
+
+@if (Model.Count() > 1)
+{
+    <ul class="crums_lst">
+        @foreach (var node in Model)
+        {
+            @Html.DisplayFor(m => node, "SiteMapPathNodeModel")
+        }
+    </ul>
+}

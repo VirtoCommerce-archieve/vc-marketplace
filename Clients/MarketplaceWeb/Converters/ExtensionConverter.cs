@@ -21,7 +21,9 @@ namespace MarketplaceWeb.Converters
                 Id = item.Id, 
                 Name = item.Name,
                 CatalogId = item.CatalogId,
-                Images = item.Images
+                Images = item.Images,
+                Rating = item.Rating,
+                ReviewsTotal = item.ReviewsTotal
             };
 
             if (item.EditorialReviews != null)
@@ -65,7 +67,12 @@ namespace MarketplaceWeb.Converters
 
             if (!retVal.IsFree && !string.IsNullOrWhiteSpace(retVal.Currency))
             {
-                retVal.FormatedCurrency = CurrencyHelper.FormatCurrency(retVal.Price, retVal.Currency);
+                retVal.FormatedPrice = CurrencyHelper.FormatCurrency(retVal.Price, retVal.Currency);
+            }
+
+            if (retVal.IsFree)
+            {
+                retVal.FormatedPrice = "Free";
             }
 
             return retVal;

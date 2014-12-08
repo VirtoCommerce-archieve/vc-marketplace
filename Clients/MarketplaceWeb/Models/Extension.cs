@@ -23,7 +23,7 @@ namespace MarketplaceWeb.Models
 
         public string Currency { get; set; }
 
-        public string FormatedCurrency { get; set; }
+        public string FormatedPrice { get; set; }
 
         public string Description { get; set; }
 
@@ -31,9 +31,8 @@ namespace MarketplaceWeb.Models
 
         public ItemImage[] Images { get; set; }
 
-        public ItemImage PrimaryImage
-        {
-            get { return Images != null ? Images.FirstOrDefault() : null; }
-        }
+        public int ReviewsTotal { get; set; }
+
+        public decimal Rating { get; set; }
     }
 }

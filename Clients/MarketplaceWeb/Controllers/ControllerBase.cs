@@ -21,6 +21,14 @@ namespace MarketplaceWeb.Controllers
                 return ClientContext.Clients.CreateBrowseClient(ConnectionHelper.ApiConnectionString("vc-commerce-api"));
             }
         }
+
+        public ContentClient ContentClient
+        {
+            get
+            {
+                return ClientContext.Clients.CreateContentClient(ConnectionHelper.ApiConnectionString("vc-commerce-api", null));
+            }
+        }
     
     }
 }
