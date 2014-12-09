@@ -1,9 +1,10 @@
-﻿@model Extension
-           
+﻿
+@model Extension
+
 @{
-    var ratingClass = string.Format("__{0}", Math.Round(Model.Rating));   
+    var ratingClass = string.Format("__{0}", Math.Round(Model.Rating));
 }
-           
+
 @functions
 {
     //Temporary workaround for trimming long description
@@ -20,11 +21,11 @@
         }
 
         return retVal;
-    }  
+    }
 }
 
 
-<a class="items_i del4" href="">
+<a class="items_i del4" href="@Url.Action("Display","Extension",new {id = Model.Id})">
     <figure class="items_i_thumb_outer">
         <img class="items_i_thumb" alt="" src="@Url.Image(Model, "primaryimage")" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';">
     </figure>

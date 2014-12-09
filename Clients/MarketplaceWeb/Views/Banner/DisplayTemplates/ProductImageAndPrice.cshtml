@@ -5,6 +5,6 @@
 
 @if (currentModel != null)
 {
-    @Html.Action("DisplayItemNoCache", "Catalog", new { itemId = currentModel.ProductCode, bycode = true, displayOptions = ItemDisplayOptions.ItemMedium, name = "DisplayTemplates/Item" })
+    @Html.Action("DisplayDynamic", "Extension", new { itemCode = currentModel.ProductCode })
 }
 

@@ -1,23 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MarketplaceWeb.Converters;
+using MarketplaceWeb.Helpers;
+using MarketplaceWeb.Helpers.Marketing;
+using MarketplaceWeb.Models;
+using System;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using MarketplaceWeb.Converters;
-using MarketplaceWeb.Helpers;
-using MarketplaceWeb.Helpers.Marketing;
-using MarketplaceWeb.Models;
-using VirtoCommerce.ApiClient;
 using VirtoCommerce.ApiClient.DataContracts;
 using VirtoCommerce.ApiClient.Extensions;
 
 namespace MarketplaceWeb.Controllers
 {
-    [RoutePrefix("search")]
+    [RoutePrefix("extensions")]
     public class SearchController : ControllerBase
     {
+        [Route("search")]
         public async Task<ActionResult> Index(BrowseQuery parameters)
         {
             ViewBag.Title = String.Format("Searching by '{0}'", parameters.Search);
@@ -44,17 +43,11 @@ namespace MarketplaceWeb.Controllers
             };
             var results = await SearchClient.GetProductsAsync(query);
 
-            var data = from i in results.Items select new { url = Url.Action("Display", new { id = i.Id }), value = i.Name };
+            var data = from i in results.Items select new { url = Url.Action("Display","Extension", new { id = i.Id }), value = i.Name };
             return Json(data.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        [Route("~/extension/{id}")]
-        public ActionResult Display(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        [Route("extensions/{categoryId}")]
+        [Route("{categoryId}")]
         public async Task<ActionResult> CategorySearch(string categoryId, BrowseQuery parameters, string name = "Index", bool savePreferences = true)
         {
             var category = await SearchClient.GetCategoryAsync(categoryId);
