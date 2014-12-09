@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using MarketplaceWeb.Converters;
+using MarketplaceWeb.Models;
 using VirtoCommerce.ApiClient;
 
 namespace MarketplaceWeb.Controllers
@@ -14,9 +15,21 @@ namespace MarketplaceWeb.Controllers
     {
 
         [Route("{id}")]
-        public async Task<ActionResult> Display(string id)
+        public async Task<ActionResult> DisplayItem(string id)
         {
-            throw new NotImplementedException();
+            var item = await SearchClient.GetProductAsync(id);
+
+            if (ReferenceEquals(item, null))
+            {
+                throw new HttpException(404, "Item not found");
+            }
+
+            var model = new FullExtension
+            {
+                Extension = item.ToWebModel()
+            };
+
+            return View(model);
         }
 
         /// <summary>
@@ -25,10 +38,16 @@ namespace MarketplaceWeb.Controllers
         [ChildActionOnly]
         public ActionResult DisplayDynamic(string itemCode)
         {
-            //TODO here should call get by code when available
-            var result = Task.Run(() => SearchClient.GetProductAsync(itemCode)).Result;
-            var model = result.ToWebModel();
-            return PartialView("DisplayTemplates/Item", model);
+            try
+            {
+                var result = Task.Run(() => SearchClient.GetProductByCodeAsync(itemCode)).Result;
+                var model = result.ToWebModel();
+                return PartialView("DisplayTemplates/Item", model);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

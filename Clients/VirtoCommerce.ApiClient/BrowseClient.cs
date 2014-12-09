@@ -50,11 +50,20 @@ namespace VirtoCommerce.ApiClient
             return GetAsync<Product>(CreateRequestUri(String.Format(RelativePaths.Product, productId)));
         }
 
-        public Task<ResponseCollection<Category>> GetCategoriesAsync(string parentId = null)
+        public Task<Product> GetProductByCodeAsync(string code)
         {
-            return GetAsync<ResponseCollection<Category>>(CreateRequestUri(RelativePaths.Categories, "parentId=" + parentId));
+            return GetAsync<Product>((CreateRequestUri(RelativePaths.Products, string.Format("code={0}", code))));
         }
 
+        public Task<ResponseCollection<Category>> GetCategoriesAsync(string parentId = null)
+        {
+            return GetAsync<ResponseCollection<Category>>(CreateRequestUri(RelativePaths.Categories, string.Format("parentId={0}", parentId)));
+        }
+
+        public Task<Category> GetCategoryByCodeAsync(string code)
+        {
+            return GetAsync<Category>(CreateRequestUri(RelativePaths.Categories, "code=" + code));
+        }
 
         public Task<Category> GetCategoryAsync(string categoryId)
         {

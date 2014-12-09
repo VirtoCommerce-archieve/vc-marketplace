@@ -180,7 +180,7 @@
 	.card .list-items .next:after
 	{
 		display: block;
-		background: url(../img/arrows_xs.png) no-repeat;
+		background: url(../images/arrows_xs.png) no-repeat;
 		content: '';
 		height: 21px;
 		margin: -11px 0 0;

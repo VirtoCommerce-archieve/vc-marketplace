@@ -43,7 +43,7 @@ namespace MarketplaceWeb.Controllers
             };
             var results = await SearchClient.GetProductsAsync(query);
 
-            var data = from i in results.Items select new { url = Url.Action("Display","Extension", new { id = i.Id }), value = i.Name };
+            var data = from i in results.Items select new { url = Url.Action("DisplayItem","Extension", new { id = i.Id }), value = i.Name };
             return Json(data.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
@@ -92,12 +92,17 @@ namespace MarketplaceWeb.Controllers
 
             if (!string.IsNullOrWhiteSpace(categoryUrl.CategoryCode))
             {
-                //TODO need api method to get category by code and build its outline for search
+                var category =Task.Run(() => SearchClient.GetCategoryByCodeAsync(categoryUrl.CategoryCode)).Result;
+
+                if (category != null)
+                {
+                    query.Outline = category.Outline;
+                }
             }
             //Need to run synchrously because of child action
             var results = Task.Run(() => SearchClient.GetProductsAsync(query)).Result;
             var items = results.Items.Select(x => x.ToWebModel()).ToArray();
-
+             
             return PartialView(items);
         }
 
