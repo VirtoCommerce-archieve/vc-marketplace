@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,6 +46,11 @@ namespace VirtoCommerce.ApiClient.Utilities
             if (!string.IsNullOrEmpty(query.Outline))
             {
                 parts.Add("outline=" + HttpUtility.UrlEncode(query.Outline));
+            }
+
+            if (query.StartDateFrom.HasValue)
+            {
+                parts.Add("startdatefrom=" + HttpUtility.UrlEncode(query.StartDateFrom.Value.ToString(CultureInfo.InvariantCulture)));
             }
 
             if (query.Filters != null && query.Filters.Count > 0)

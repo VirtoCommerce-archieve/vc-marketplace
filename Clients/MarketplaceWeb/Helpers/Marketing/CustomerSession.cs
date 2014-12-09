@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Web;
 using System.Web.Security;
+using VirtoCommerce.ApiClient.DataContracts;
 
 namespace MarketplaceWeb.Helpers.Marketing
 {
@@ -18,7 +19,7 @@ namespace MarketplaceWeb.Helpers.Marketing
             Tags.Add(ContextFieldConstants.StoreId, "MarketPlace");
         }
 
-        public readonly TagSet Tags = new TagSet();
+        public readonly TagQuery Tags = new TagQuery();
 
 
         public string CategoryId
@@ -41,6 +42,17 @@ namespace MarketplaceWeb.Helpers.Marketing
             get
             {
                 const string key = "mp-customersession";
+
+                if (HttpContext.Current == null)
+                {
+                    var ctxThread = Thread.GetData(Thread.GetNamedDataSlot(key));
+                    if (ctxThread != null)
+                        return (CustomerSession)ctxThread;
+
+                    var ctx = new CustomerSession();
+                    Thread.SetData(Thread.GetNamedDataSlot(key), ctx);
+                    return ctx;
+                }
 
                 // Persist in HttpContext
                 if (HttpContext.Current.Items[key] == null)

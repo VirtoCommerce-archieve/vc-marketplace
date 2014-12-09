@@ -7,6 +7,7 @@ using System.Net.Http.Formatting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using Newtonsoft.Json;
 using VirtoCommerce.ApiClient.DataContracts;
 
 namespace VirtoCommerce.ApiClient
@@ -26,9 +27,9 @@ namespace VirtoCommerce.ApiClient
         /// <param name="handler">Message processing handler</param>
         public BaseClient(Uri baseEndpoint, MessageProcessingHandler handler = null)
         {
-            this.BaseAddress = baseEndpoint;
-            this.httpClient = new HttpClient(handler);
-            this.disposed = false;
+            BaseAddress = baseEndpoint;
+            httpClient = new HttpClient(handler);
+            disposed = false;
         }
 
         /// <summary>
@@ -51,7 +52,7 @@ namespace VirtoCommerce.ApiClient
 
             if (queryStringParameters != null && queryStringParameters.Length > 0)
             {
-                NameValueCollection queryStringProperties = HttpUtility.ParseQueryString(this.BaseAddress.Query);
+                NameValueCollection queryStringProperties = HttpUtility.ParseQueryString(BaseAddress.Query);
                 foreach (KeyValuePair<string, string> queryStringParameter in queryStringParameters)
                 {
                     queryStringProperties[queryStringParameter.Key] = queryStringParameter.Value;
@@ -60,7 +61,7 @@ namespace VirtoCommerce.ApiClient
                 queryString = queryStringProperties.ToString();
             }
 
-            return this.CreateRequestUri(relativePath, queryString);
+            return CreateRequestUri(relativePath, queryString);
         }
 
         /// <summary>
@@ -71,7 +72,7 @@ namespace VirtoCommerce.ApiClient
         /// <returns>Request URI</returns>
         protected Uri CreateRequestUri(string relativePath, string queryString)
         {
-            var endpoint = new Uri(this.BaseAddress, relativePath);
+            var endpoint = new Uri(BaseAddress, relativePath);
             var uriBuilder = new UriBuilder(endpoint) { Query = queryString };
             return uriBuilder.Uri;
         }
@@ -92,9 +93,9 @@ namespace VirtoCommerce.ApiClient
                 message.Headers.Add(Constants.Headers.PrincipalId, HttpUtility.UrlEncode(userId));
             }
 
-            using (HttpResponseMessage response = await this.httpClient.SendAsync(message))
+            using (HttpResponseMessage response = await httpClient.SendAsync(message))
             {
-                await this.ThrowIfResponseNotSuccessfulAsync(response);
+                await ThrowIfResponseNotSuccessfulAsync(response);
 
                 return await response.Content.ReadAsAsync<T>();
             }
@@ -108,7 +109,7 @@ namespace VirtoCommerce.ApiClient
         /// <param name="userId">The user id. Only required by the tenant API.</param>
         protected Task SendAsync(Uri requestUri, HttpMethod httpMethod, string userId = null)
         {
-            return this.SendAsync<object>(requestUri, httpMethod, userId);
+            return SendAsync<object>(requestUri, httpMethod, userId);
         }
 
         /// <summary>
@@ -121,7 +122,7 @@ namespace VirtoCommerce.ApiClient
         protected Task<TOutput> SendAsync<TOutput>(Uri requestUri, HttpMethod httpMethod, string userId = null)
         {
             var message = new HttpRequestMessage(httpMethod, requestUri);
-            return this.SendAsync<TOutput>(requestUri, httpMethod, message, true, userId);
+            return SendAsync<TOutput>(requestUri, httpMethod, message, true, userId);
         }
 
         /// <summary>
@@ -134,7 +135,7 @@ namespace VirtoCommerce.ApiClient
         /// <param name="userId">The user id. Only required by the tenant API.</param>
         protected Task SendAsync<TInput>(Uri requestUri, HttpMethod httpMethod, TInput body, string userId = null)
         {
-            return this.SendAsync<TInput, object>(requestUri, httpMethod, body, userId);
+            return SendAsync<TInput, object>(requestUri, httpMethod, body, userId);
         }
 
         /// <summary>
@@ -150,10 +151,10 @@ namespace VirtoCommerce.ApiClient
         {
             var message = new HttpRequestMessage(httpMethod, requestUri)
             {
-                Content = new ObjectContent<TInput>(body, this.CreateMediaTypeFormatter())
+                Content = new ObjectContent<TInput>(body, CreateMediaTypeFormatter())
             };
 
-            return this.SendAsync<TOutput>(requestUri, httpMethod, message, true, userId);
+            return SendAsync<TOutput>(requestUri, httpMethod, message, true, userId);
         }
 
         private async Task<TOutput> SendAsync<TOutput>(Uri requestUri, HttpMethod httpMethod, HttpRequestMessage message, bool hasResult, string userId = null)
@@ -163,9 +164,9 @@ namespace VirtoCommerce.ApiClient
                 message.Headers.Add(Constants.Headers.PrincipalId, userId);
             }
 
-            using (HttpResponseMessage response = await this.httpClient.SendAsync(message))
+            using (HttpResponseMessage response = await httpClient.SendAsync(message))
             {
-                await this.ThrowIfResponseNotSuccessfulAsync(response);
+                await ThrowIfResponseNotSuccessfulAsync(response);
 
                 if (!hasResult)
                 {
@@ -215,8 +216,8 @@ namespace VirtoCommerce.ApiClient
         {
             //MediaTypeFormatter formatter;
             var formatter = new JsonMediaTypeFormatter();
-            formatter.SerializerSettings.DefaultValueHandling = Newtonsoft.Json.DefaultValueHandling.Ignore;
-            formatter.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
+            formatter.SerializerSettings.DefaultValueHandling = DefaultValueHandling.Ignore;
+            formatter.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
 
             return formatter;
         }
@@ -226,7 +227,7 @@ namespace VirtoCommerce.ApiClient
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -237,13 +238,13 @@ namespace VirtoCommerce.ApiClient
         {
             if (disposing)
             {
-                if (!this.disposed)
+                if (!disposed)
                 {
-                    this.httpClient.Dispose();
+                    httpClient.Dispose();
                 }
             }
 
-            this.disposed = true;
+            disposed = true;
         }
     }
 }

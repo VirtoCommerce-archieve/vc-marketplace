@@ -17,6 +17,12 @@ namespace VirtoCommerce.ApiClient.DataContracts
 
         public EditorialReview[] EditorialReviews { get; set; }
 
+        public int ReviewsTotal { get; set; }
+
+        public decimal Rating { get; set; }
+
+        #region Properties
+
         private IDictionary<string, string> _properties = new Dictionary<string, string>();
         
         [JsonIgnore]
@@ -47,5 +53,7 @@ namespace VirtoCommerce.ApiClient.DataContracts
             }
             set { _properties = value; }
         }
+
+        #endregion
     }
 }

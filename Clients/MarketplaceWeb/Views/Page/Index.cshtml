@@ -2,57 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="features_outer bl">
-    <div class="features_bl features_bl __left"></div>
-    <div class="features_bl features_bl __right"></div>
-    <div class="features_bl features_bl __all"></div>
-    <div class="features fixw">
-        <a href="#" class="features_i del2"><i class="features_i_ico ico_lw ico_lw_pile"></i><span class="features_i_t">Feature number one</span></a>
-        <a href="#" class="features_i del2"><i class="features_i_ico ico_lw ico_lw_ms"></i><span class="features_i_t">Second feature</span></a>
-    </div>
-</div>
+@{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeMain" });}
 <div class="items_outer bl">
     <div class="items fixw">
         <a href="" class="items_a fright">View all</a>
         <h2 class="items_t">New Extensions</h2>
-        <div class="items_inner">
-            <a href="" class="items_i del4">
-                <figure class="items_i_thumb_outer">
-                    <img src="images_cnt/fox.jpg" alt="" class="items_i_thumb">
-                </figure>
-                <h3 class="items_i_t">Extension name</h3>
-                <article class="items_i_tx">
-                    Habitar Landscapes is a professional and small team based in Buenos...
-                </article>
-            </a>
-            <a href="" class="items_i del4">
-                <figure class="items_i_thumb_outer">
-                    <img src="images_cnt/p.jpg" alt="" class="items_i_thumb">
-                </figure>
-                <h3 class="items_i_t">Extension name</h3>
-                <article class="items_i_tx">
-                    Habitar Landscapes is a professional...
-                </article>
-            </a>
-            <a href="" class="items_i del4">
-                <figure class="items_i_thumb_outer">
-                    <img src="images_cnt/unt.jpg" alt="" class="items_i_thumb">
-                </figure>
-                <h3 class="items_i_t">Extension name</h3>
-                <article class="items_i_tx">
-                    Habitar Landscapes is a professional and small team based in Buenos...
-                </article>
-            </a>
-            <a href="" class="items_i del4">
-                <figure class="items_i_thumb_outer">
-                    <img src="images_cnt/porto.jpg" alt="" class="items_i_thumb">
-                </figure>
-                <h3 class="items_i_t">Extension name</h3>
-                <article class="items_i_tx">
-                    Habitar Landscapes is a professional and small...
-                </article>
-            </a>
-        </div>
+        @{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeStaffPick" });}
     </div>
 </div>
 <div class="neutral-lay bl">

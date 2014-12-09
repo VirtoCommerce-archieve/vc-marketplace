@@ -55,7 +55,7 @@ namespace MarketplaceWeb.Models.Binders
                 {
                     Search = qs["q"].EmptyToNull(),
                     Skip = qs["p"].TryParse(null),
-                    Take = qs["pageSize"].TryParse(null),
+                    Take = qs["pageSize"].TryParse(BrowseQuery.DefaultPageSize),
                     SortProperty = qs["sort"].EmptyToNull(),
                     SortDirection = qs["sortorder"].EmptyToNull(),
                     Filters = facets

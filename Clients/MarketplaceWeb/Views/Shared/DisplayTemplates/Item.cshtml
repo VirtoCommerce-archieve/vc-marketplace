@@ -1,0 +1,42 @@
+﻿
+@model Extension
+
+@{
+    var ratingClass = string.Format("__{0}", Math.Round(Model.Rating));
+}
+
+@functions
+{
+    //Temporary workaround for trimming long description
+    //TODO: this should be solved in CSS!
+    string Trim(string text, int maxChars)
+    {
+        var retVal = text;
+        if (!string.IsNullOrWhiteSpace(retVal) && retVal.Length > maxChars)
+        {
+            var myString = retVal.Substring(0, maxChars);
+            var index = myString.LastIndexOf(' ');
+            retVal = myString.Substring(0, index);
+            retVal += "...";
+        }
+
+        return retVal;
+    }
+}
+
+
+<a class="items_i del4" href="@Url.Action("DisplayItem","Extension",new {id = Model.Id})">
+    <figure class="items_i_thumb_outer">
+        <img class="items_i_thumb" alt="" src="@Url.Image(Model, "primaryimage")" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';">
+    </figure>
+    <h3 class="items_i_t">@Model.Title</h3>
+    <article class="items_i_tx">
+        @Html.Raw(Trim(Model.Description, 50))
+    </article>
+    <span class="items_i_data">
+        <span class="items_i_price fright">@Model.Price.FormatedPrice</span>
+        <span class="items_i_rating rating @ratingClass fleft">
+            <span class="rating_progress"></span>
+        </span>
+    </span>
+</a>
