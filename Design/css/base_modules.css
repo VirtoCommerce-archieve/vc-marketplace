@@ -433,10 +433,6 @@ data input UI
 			font-weight: bold;
 		}
 
-			.items_i_price:before {
-				content: '$';
-			}
-
 	.items .items_i .items_i_t {
 		margin-top: 34px;
 		font-weight: bold;
@@ -453,8 +449,10 @@ data input UI
 		margin-top: 20px;
 		color: #888888;
 		height: 25px;
+		text-overflow: clip;
+		display: block;
+		overflow: hidden;
 	}
-
 
 /* bread crums */
 
