@@ -1,13 +1,14 @@
 using System;
+using System.Collections.Generic;
 
 namespace MarketplaceWeb.Models
 {
     public class Release
     {
         public DateTime? ReleaseDate { get; set; }
-        public Version Version { get; set; }
-        public Version[] Compatibility { get; set; }
+        public string Version { get; set; }
+        public List<string> Compatibility { get; set; }
         public string Note { get; set; }
-        public Uri DownloadLink { get; set; }
+        public string DownloadLink { get; set; }
     }
 }

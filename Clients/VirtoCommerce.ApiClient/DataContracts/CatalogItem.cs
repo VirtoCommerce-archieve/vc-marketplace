@@ -19,14 +19,14 @@ namespace VirtoCommerce.ApiClient.DataContracts
 
         public int ReviewsTotal { get; set; }
 
-        public decimal Rating { get; set; }
+        public double Rating { get; set; }
 
         #region Properties
 
-        private IDictionary<string, string> _properties = new Dictionary<string, string>();
+        private IDictionary<string, string[]> _properties = new Dictionary<string, string[]>();
         
         [JsonIgnore]
-        public string this[string name]
+        public string[] this[string name]
         {
             get
             {
@@ -45,7 +45,7 @@ namespace VirtoCommerce.ApiClient.DataContracts
             }
         }
 
-        public IDictionary<string, string> Properties
+        public IDictionary<string, string[]> Properties
         {
             get
             {

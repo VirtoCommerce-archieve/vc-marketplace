@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using MarketplaceWeb.Helpers;
 
 namespace MarketplaceWeb.Models
@@ -17,27 +19,30 @@ namespace MarketplaceWeb.Models
 
         public string FormatedPrice { get; set; }
 
-        public static PriceModel Parse(IDictionary<string, string> propertyDictionary)
+        public static PriceModel Parse(IDictionary<string, string[]> propertyDictionary)
         {
             var retVal = new PriceModel();
 
-            if (propertyDictionary.ContainsKey(PriceProperty))
+            var key = propertyDictionary.Keys.FirstOrDefault(x => x.Equals(PriceProperty, StringComparison.OrdinalIgnoreCase));
+            if (!string.IsNullOrEmpty(key))
             {
                 decimal price;
-                decimal.TryParse(propertyDictionary[PriceProperty], out price);
+                decimal.TryParse(propertyDictionary[PriceProperty].First(), out price);
                 retVal.Price = price;
             }
 
-            if (propertyDictionary.ContainsKey(IsFreeProperty))
+            key = propertyDictionary.Keys.FirstOrDefault(x => x.Equals(IsFreeProperty, StringComparison.OrdinalIgnoreCase));
+            if (!string.IsNullOrEmpty(key))
             {
                 bool isFree;
-                bool.TryParse(propertyDictionary[IsFreeProperty], out isFree);
+                bool.TryParse(propertyDictionary[IsFreeProperty].First(), out isFree);
                 retVal.IsFree = isFree;
             }
 
-            if (propertyDictionary.ContainsKey(CurrencyProperty))
+            key = propertyDictionary.Keys.FirstOrDefault(x => x.Equals(CurrencyProperty, StringComparison.OrdinalIgnoreCase));
+            if (!string.IsNullOrEmpty(key))
             {
-                retVal.Currency = propertyDictionary[CurrencyProperty];
+                retVal.Currency = propertyDictionary[CurrencyProperty].First();
             }
 
             if (!retVal.IsFree && !string.IsNullOrWhiteSpace(retVal.Currency))

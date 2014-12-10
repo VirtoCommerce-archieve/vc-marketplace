@@ -1,9 +1,4 @@
-﻿
-@model Extension
-
-@{
-    var ratingClass = string.Format("__{0}", Math.Round(Model.Rating));
-}
+﻿@model Extension
 
 @functions
 {
@@ -35,8 +30,8 @@
     </article>
     <span class="items_i_data">
         <span class="items_i_price fright">@Model.Price.FormatedPrice</span>
-        <span class="items_i_rating rating @ratingClass fleft">
-            <span class="rating_progress"></span>
+        <span class="items_i_rating rating fleft">
+            <span class="rating_progress" style="width: @(Model.Rating * 20)%"></span>
         </span>
     </span>
 </a>

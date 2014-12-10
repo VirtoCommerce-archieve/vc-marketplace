@@ -29,6 +29,14 @@ namespace MarketplaceWeb.Controllers
                 return ClientContext.Clients.CreateContentClient(ConnectionHelper.ApiConnectionString("vc-commerce-api", null));
             }
         }
+
+        public ReviewsClient ReviewsClient
+        {
+            get
+            {
+                return ClientContext.Clients.CreateReviewsClient(ConnectionHelper.ApiConnectionString("vc-commerce-api"));
+            }
+        }
     
     }
 }

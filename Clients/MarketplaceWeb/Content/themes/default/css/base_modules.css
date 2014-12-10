@@ -449,6 +449,9 @@ data input UI
 		margin-top: 20px;
 		color: #888888;
 		height: 25px;
+		text-overflow: clip;
+		display: block;
+		overflow: hidden;
 	}
 
 

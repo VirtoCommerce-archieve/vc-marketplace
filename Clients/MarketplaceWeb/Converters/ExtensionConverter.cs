@@ -10,6 +10,9 @@ namespace MarketplaceWeb.Converters
 {
     public static class ExtensionConverter
     {
+        public const string LicenseProperty = "license";
+        public const string LocaleProperty = "locale";
+
 
         public static Extension ToWebModel(this CatalogItem item)
         {
@@ -41,6 +44,21 @@ namespace MarketplaceWeb.Converters
                 {
                     retVal.FullDescription = fullReview.Content;
                 }               
+            }
+
+            if (item.Properties != null)
+            {
+                var key = item.Properties.Keys.FirstOrDefault(x => x.Equals(LicenseProperty, StringComparison.OrdinalIgnoreCase));
+                if (!string.IsNullOrEmpty(key))
+                {
+                    retVal.License = item.Properties[key].First();
+                }
+
+                key = item.Properties.Keys.FirstOrDefault(x => x.Equals(LocaleProperty, StringComparison.OrdinalIgnoreCase));
+                if (!string.IsNullOrEmpty(key))
+                {
+                    retVal.Locale = string.Join(", ", item.Properties[key]);
+                }
             }
 
             return retVal;

@@ -11,19 +11,21 @@
 
 <div class="bl transparent_bl">
     <div class="card fixw">
+
         <div class="del2 card_slider">
             <!-- images block -->
             <div class="item">
                 <figure>
-                    <a rel="biggroup" href="img_cnt/expic.jpg" data-image-id="0" class="fancybox">
-                        <img alt="" itemprop="image" src="images_cnt/expic.jpg">
-                    </a>
-                    <a rel="biggroup" href="http://cs617522.vk.me/v617522798/1159f/eqe6iOrG3wA.jpg" data-image-id="1" style="display:none" class="fancybox">
-                        <img alt="" itemprop="image" src="http://cs617522.vk.me/v617522798/1159f/eqe6iOrG3wA.jpg">
-                    </a>
-                    <a rel="biggroup" href="http://cs618930.vk.me/v618930798/4148/v5M6BNJg8uY.jpg" data-image-id="2" style="display:none" class="fancybox">
-                        <img alt="" itemprop="image" src="http://cs618930.vk.me/v618930798/4148/v5M6BNJg8uY.jpg">
-                    </a>
+                    @if (Model.Extension.Images != null)
+                    {
+                        for (var i = 0; i < Model.Extension.Images.Length; i++)
+                        {
+                            var image = Model.Extension.Images[i];
+                            <a rel="biggroup" href="@Url.Image(image)" data-image-id="@i" class="fancybox">
+                                <img alt="" itemprop="image" src="@Url.Image(image)">
+                            </a>
+                        }
+                    }
                 </figure>
             </div>
             <!-- Листалка -->
@@ -31,21 +33,19 @@
                 <a class="prev"></a>
                 <div class="scroll">
                     <ul class="clearfix">
-                        <li onclick="$('.list-items .prev').click();" data-bigimage-id="2">
-                            <a>
-                                <img alt="" itemprop="image" src="http://cs618930.vk.me/v618930798/4148/v5M6BNJg8uY.jpg">
-                            </a>
-                        </li>
-                        <li class="selected" data-bigimage-id="0">
-                            <a>
-                                <img alt="" itemprop="image" src="images_cnt/expicxs.jpg">
-                            </a>
-                        </li>
-                        <li data-bigimage-id="1">
-                            <a>
-                                <img alt="" itemprop="image" src="http://cs617522.vk.me/v617522798/1159f/eqe6iOrG3wA.jpg">
-                            </a>
-                        </li>
+                        @if (Model.Extension.Images != null)
+                        {
+                            for (var i = 0; i < Model.Extension.Images.Length; i++)
+                            {
+                                var image = Model.Extension.Images[i];
+
+                                <li data-bigimage-id="@i">
+                                    <a>
+                                        <img alt="" itemprop="image" src="@Url.Image(image)">
+                                    </a>
+                                </li>
+                            }
+                        }
                     </ul>
                 </div>
                 <a class="next"></a>
@@ -55,27 +55,22 @@
         <div class="del2 card_detail">
             <div class="card_detail_inner">
                 <div class="del2 card_data">
-                    <h2 class="card_t">Paypal Exchanger</h2>
+                    <h2 class="card_t">@Model.Extension.Title</h2>
                     <div class="card_rating_outer">
-                        <div class="card_rating rating __4">
-                            <div class="rating_progress"></div>
+                        <div class="card_rating rating">
+                            <div class="rating_progress" style="width: @(Model.ReviewsAverage * 20)%"></div>
                         </div>
-                        <div class="card_rating_num">4.5/5</div>
+                        <div class="card_rating_num">@Model.ReviewsAverage</div>
                     </div>
-                    <a href="#" class="items_a">read all 5 reviews</a>
+                    @*<a href="#" class="items_a">read all 5 reviews</a>*@
                     <a href="#" class="items_a">write a review</a>
                     <article class="card_descr">
-                        In Virto Commerce every product has a fixed
-                        attribute set that cannot be changed
-                        after the product's creation. This is in
-                        many productive contexts not an
-                        acceptable limitation.
-
+                        @Html.Raw(@Model.Extension.Description)
                     </article>
                     <div class="card_properties">
                         <div class="card_properties_i">
                             <span class="card_properties_i_name">Locale</span>
-                            <span class="card_properties_i_value">English, Spanish</span>
+                            <span class="card_properties_i_value">@Model.Extension.Locale</span>
                         </div>
                         <div class="card_properties_i">
                             <span class="card_properties_i_name">compatible with</span>

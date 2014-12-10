@@ -90,7 +90,7 @@
         {
             var code = Guid.NewGuid().ToString();
             var product = new Product() { Id = code, Code = code, Name = "Sample Test Product", CatalogId = "Samsung" };
-            product.Properties = new Dictionary<string, string> { { "PublishStatus", "Draft" }, { "Price", 121.01d.ToString() }, { "brand", "Apple" } };
+            product.Properties = new Dictionary<string, string[]> { { "PublishStatus", new []{"Draft"} }, { "Price", new[]{121.01d.ToString()} }, { "brand", new[]{"Apple"} } };
 
             // add variations to a product
             var variationCode = Guid.NewGuid().ToString();

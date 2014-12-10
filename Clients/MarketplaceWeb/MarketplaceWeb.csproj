@@ -154,6 +154,7 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Converters\ExtensionConverter.cs" />
+    <Compile Include="Converters\ReviewConverter.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\CurrencyHelper.cs" />
     <Compile Include="Helpers\Marketing\ContextFieldConstants.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Models\FullExtension.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\Release.cs" />
+    <Compile Include="Models\ReviewModels.cs" />
     <Compile Include="Models\SearchModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -234,6 +236,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <None Include="Resources\Icon1.ico" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Mvc.sitemap" />

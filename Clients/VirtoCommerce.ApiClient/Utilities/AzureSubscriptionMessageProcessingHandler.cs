@@ -17,8 +17,9 @@ namespace VirtoCommerce.ApiClient.Utilities
         private string subscriptionKey;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TokenMessageProcessingHandler"/> class.
+        /// Initializes a new instance of the <see cref="TokenMessageProcessingHandler" /> class.
         /// </summary>
+        /// <param name="subscriptionKey">The subscription key.</param>
         /// <param name="token">The token.</param>
         /// <exception cref="System.ArgumentException">Security token</exception>
         public AzureSubscriptionMessageProcessingHandler(string subscriptionKey, string token)
@@ -42,7 +43,7 @@ namespace VirtoCommerce.ApiClient.Utilities
         /// </returns>
         protected override HttpRequestMessage ProcessRequest(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            request.Headers.Add("ocp-apim-subscription-key", this.subscriptionKey);
+            request.Headers.Add("ocp-apim-subscription-key", subscriptionKey);
             base.ProcessRequest(request, cancellationToken);
             return request;
         }

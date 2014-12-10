@@ -1,5 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 using VirtoCommerce.ApiClient.DataContracts;
 
 namespace MarketplaceWeb.Models
@@ -26,10 +30,58 @@ namespace MarketplaceWeb.Models
 
         public int ReviewsTotal { get; set; }
 
-        public decimal Rating { get; set; }
+        public double Rating { get; set; }
 
-        public string[] Locale { get; set; }
+        public string Locale { get; set; }
+
+        public IEnumerable<string> Compatibility
+        {
+            get
+            {
+                if (Releases != null)
+                {
+                    return Releases.SelectMany(x => x.Compatibility).Distinct();
+                }
+
+                return null;
+            }
+        }
 
         public Release[] Releases { get; set; }
+    }
+
+    public class CustomPropertyCollection : Collection<CustomProperty>
+    {
+        public static CustomPropertyCollection Parse(IDictionary<string, string[]> propertyDictionary, IDictionary<string, string> keyDictionary)
+        {
+            var retVal = new CustomPropertyCollection();
+            foreach (var keyValue in propertyDictionary)
+            {
+                var displayKey = keyDictionary.FirstOrDefault(k => k.Key.Equals(keyValue.Key, StringComparison.OrdinalIgnoreCase));
+                if (!displayKey.Equals(default(KeyValuePair<string,string>)))
+                {
+                    retVal.Add(CustomProperty.Parse(new KeyValuePair<string, string[]>(displayKey.Value, keyValue.Value)));
+                }
+            }
+
+            return retVal;
+        }
+    }
+
+    public class CustomProperty
+    {
+
+        public static CustomProperty Parse(KeyValuePair<string, string[]> valuePair)
+        {
+            return new CustomProperty
+            {
+                DisplayName = valuePair.Key,
+                DisplayValue = string.Join(", ", valuePair.Value)
+            };
+        }
+
+        public string DisplayName { get; set; }
+
+        public string DisplayValue { get; set; }
     }
 }

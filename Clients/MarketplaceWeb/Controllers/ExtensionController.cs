@@ -18,6 +18,7 @@ namespace MarketplaceWeb.Controllers
         public async Task<ActionResult> DisplayItem(string id)
         {
             var item = await SearchClient.GetProductAsync(id);
+            var reviews = await ReviewsClient.GetReviewsAsync(id);
 
             if (ReferenceEquals(item, null))
             {
@@ -28,6 +29,11 @@ namespace MarketplaceWeb.Controllers
             {
                 Extension = item.ToWebModel()
             };
+
+            if (reviews != null && reviews.TotalCount > 0)
+            {
+                model.Reviews = reviews.Items.Select(x => x.ToWebModel()).ToArray();
+            }
 
             return View(model);
         }

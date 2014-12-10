@@ -14,13 +14,18 @@ namespace MarketplaceWeb.Helpers
     {
         public static string Image(this UrlHelper helper, Extension item, string name)
         {
-            const string defaultImage = "blank.png";
 
             if (item == null)
                 return null;
 
             var image = FindItemImage(item.Images, name);
 
+            return Image(helper, image);
+        }
+
+        public static string Image(this UrlHelper helper, ItemImage image)
+        {
+            const string defaultImage = "blank.png";
             return helper.Content(image == null ? String.Format("~/Content/themes/default/images/{0}", defaultImage) : string.Format("~/{0}", image.Src));
         }
 
