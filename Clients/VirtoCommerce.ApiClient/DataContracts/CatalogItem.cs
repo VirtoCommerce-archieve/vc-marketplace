@@ -21,6 +21,8 @@ namespace VirtoCommerce.ApiClient.DataContracts
 
         public double Rating { get; set; }
 
+        public string[] Categories { get; set; }
+
         #region Properties
 
         private IDictionary<string, string[]> _properties = new Dictionary<string, string[]>();

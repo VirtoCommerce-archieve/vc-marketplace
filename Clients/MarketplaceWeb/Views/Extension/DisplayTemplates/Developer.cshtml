@@ -1,0 +1,12 @@
+﻿@model User
+           
+<div class="del2 card_links">
+    <figure class="card_thumb_outer">
+        <img src="@string.Format("data:image/jpg;base64,{0}",Model.Icon)" />
+    </figure>
+    <ul class="card_lk_lst">
+        <li class="card_lk_i"><a href="@Url.Action("Profile","Account",new {id=Model.Id})" class="card_lk">Developer’s profile</a></li>
+        <li class="card_lk_i"><a href="@Url.Action("Contact", "Account", new { id = Model.Id })" class="card_lk">Contact the developer</a></li>
+        <li class="card_lk_i"><a href="@Url.SetFacet(Url.Action("Index","Search"), "userId", Model.Id)" class="card_lk">More extensions by Developer</a></li>
+    </ul>
+</div>

@@ -52,13 +52,13 @@ namespace MarketplaceWeb.Helpers
         public static string SetFacet(this UrlHelper helper, string url, string field, string value)
         {
             url = helper.SetParameter(url, helper.GetFacetKey(field), value, false);
-            return helper.SetParameter(url, "p", "1");
+            return helper.SetParameter(url, "p", "0");
         }
 
         public static string RemoveFacet(this UrlHelper helper, string field, string value)
         {
             var noFacet = helper.RemoveParameterUrl(helper.RequestContext.HttpContext.Request.RawUrl, helper.GetFacetKey(field), value);
-            return helper.SetParameter(noFacet, "p", "1");
+            return helper.SetParameter(noFacet, "p", "0");
         }
 
         public static string RemoveAllFacets(this UrlHelper helper)
@@ -78,7 +78,7 @@ namespace MarketplaceWeb.Helpers
             }
 
             var noFacets = parts[0] + "?" + DictToQuerystring(qs);
-            return helper.SetParameter(noFacets, "p", "1");
+            return helper.SetParameter(noFacets, "p", "0");
         }
 
         /// <summary>
