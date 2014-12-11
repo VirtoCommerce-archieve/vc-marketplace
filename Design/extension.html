@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="css/images.css">
 	<script src="js/jquery.js"></script>
 	<script src="js/responsive.js"></script>
+	<script src="js/scripts.js"></script>
 	<script src="js/images.js"></script>
 </head>
 <body>
@@ -159,77 +160,85 @@
 		</div>
 		<div class="transparent_bl bl">
 			<div class="tabs fixw">
-				<ul class="tabs_lst">
-					<li class="tabs_i"><a href="#" class="tabs_i_a">Overview</a></li>
-					<li class="tabs_i"><a href="#" class="tabs_i_a">release notes</a></li>
-					<li class="tabs_i"><a href="#" class="tabs_i_a __active">reviews</a></li>
+				<ul class="tabs_lst tabs_act_lst">
+					<li class="tabs_i tabs_act_i"><a href="#overview" class="tabs_i_a tabs_act_a">Overview</a></li>
+					<li class="tabs_i tabs_act_i"><a href="#releases" class="tabs_i_a tabs_act_a">release notes</a></li>
+					<li class="tabs_i tabs_act_i"><a href="#reviews" class="tabs_i_a tabs_act_a __active">reviews</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="neutral-lay bl">
-			<div class="slides fixw">
-				<div class="reviews">
-					<div class="reviews_rating del2">
-						<div class="card_rating_outer fright">
-							<div class="card_rating rating __4">
-								<div class="rating_progress"></div>
+			<div class="tabs_act_outer">
+				<div class="slides fixw tabs_act_content" rel="reviews">
+					<div class="reviews">
+						<div class="reviews_rating del2">
+							<div class="card_rating_outer fright">
+								<div class="card_rating rating __4">
+									<div class="rating_progress"></div>
+								</div>
+								<div class="card_rating_num">4.5/5</div>
 							</div>
-							<div class="card_rating_num">4.5/5</div>
+							<h4 class="reviews_rating_t">Overall rating</h4>
+							<div class="reviews_rating_tx">10 out of 12 (86%) reviewers recommend this extension</div>
+							<a href="#" class="btn __block __radial __info reviews_add">write a review</a>
 						</div>
-						<h4 class="reviews_rating_t">Overall rating</h4>
-						<div class="reviews_rating_tx">10 out of 12 (86%) reviewers recommend this extension</div>
-						<a href="#" class="btn __block __radial __info reviews_add">write a review</a>
-					</div>
-					<div class="developer-info del2">
-						<h4 class="developer-info_t">About the Developer</h4>
-						<div class="developer-info_tx">
-							This extension was developed by<br />and is supported by i95Dev
+						<div class="developer-info del2">
+							<h4 class="developer-info_t">About the Developer</h4>
+							<div class="developer-info_tx">
+								This extension was developed by<br />and is supported by i95Dev
+							</div>
+							<ul class="card_lk_lst">
+								<li class="card_lk_i"><a href="#" class="card_lk">support for this extension</a></li>
+								<li class="card_lk_i"><a href="#" class="card_lk">feedback to developer</a></li>
+								<li class="card_lk_i"><a href="#" class="card_lk">Developer’s profile</a></li>
+								<li class="card_lk_i"><a href="#" class="card_lk">More extensions<br />by Developer</a></li>
+							</ul>
 						</div>
-						<ul class="card_lk_lst">
-							<li class="card_lk_i"><a href="#" class="card_lk">support for this extension</a></li>
-							<li class="card_lk_i"><a href="#" class="card_lk">feedback to developer</a></li>
-							<li class="card_lk_i"><a href="#" class="card_lk">Developer’s profile</a></li>
-							<li class="card_lk_i"><a href="#" class="card_lk">More extensions<br />by Developer</a></li>
-						</ul>
-					</div>
-					<div class="reviews_lst">
-						<div class="reviews_i">
-							<div class="reviews_i_info">
-								<figure class="reviews_i_ava_outer fleft"><img src="images_cnt/ava.png" alt="" class="reviews_i_ava"></figure>
-								<div class="reviews_i_data">
-									<span class="rating_i_date fright">2014 / 10 / 15 -  12 : 45 : 57</span>
-									<div class="reviews_i_rating rating __3">
-										<div class="rating_progress"></div>
-									</div>
-									<div class="reviews_i_author">
-										<a href="#" class="reviews_i_author_name">vinod_kumar505</a>
-										<span class="reviews_i_author_about">I'm a deployment & integrations provider, I useEnterprise</span>
+						<div class="reviews_lst">
+							<div class="reviews_i">
+								<div class="reviews_i_info">
+									<figure class="reviews_i_ava_outer fleft"><img src="images_cnt/ava.png" alt="" class="reviews_i_ava"></figure>
+									<div class="reviews_i_data">
+										<span class="rating_i_date fright">2014 / 10 / 15 -  12 : 45 : 57</span>
+										<div class="reviews_i_rating rating __3">
+											<div class="rating_progress"></div>
+										</div>
+										<div class="reviews_i_author">
+											<a href="#" class="reviews_i_author_name">vinod_kumar505</a>
+											<span class="reviews_i_author_about">I'm a deployment & integrations provider, I useEnterprise</span>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="reviews_i_tx">
-								In Virto Commerce every product has a fixed attribute set that cannot be changed after the product's creation. This is in many productive contexts not an acceptable limitation. This module overrides the standard behaviour and makes it possible to change attribute sets after the item's creation making Virto Commerce even more flexible. :).
-							</div>
-						</div>
-						<div class="reviews_i">
-							<div class="reviews_i_info">
-								<figure class="reviews_i_ava_outer fleft"><img src="images_cnt/ava_1.png" alt="" class="reviews_i_ava"></figure>
-								<div class="reviews_i_data">
-									<span class="rating_i_date fright">2014 / 10 / 15 -  12 : 45 : 57</span>
-									<div class="reviews_i_rating rating __3">
-										<div class="rating_progress"></div>
-									</div>
-									<div class="reviews_i_author">
-										<a href="#" class="reviews_i_author_name">vinod_kumar505</a>
-										<span class="reviews_i_author_about">I'm a deployment & integrations provider, I useEnterprise</span>
-									</div>
+								<div class="reviews_i_tx">
+									In Virto Commerce every product has a fixed attribute set that cannot be changed after the product's creation. This is in many productive contexts not an acceptable limitation. This module overrides the standard behaviour and makes it possible to change attribute sets after the item's creation making Virto Commerce even more flexible. :).
 								</div>
 							</div>
-							<div class="reviews_i_tx">
-								In Virto Commerce every product has a fixed attribute set that cannot be changed after the product's creation. This is in many productive contexts not an acceptable limitation. This module overrides the standard behaviour and makes it possible to change attribute sets after the item's creation making Virto Commerce even more flexible. :).
+							<div class="reviews_i">
+								<div class="reviews_i_info">
+									<figure class="reviews_i_ava_outer fleft"><img src="images_cnt/ava_1.png" alt="" class="reviews_i_ava"></figure>
+									<div class="reviews_i_data">
+										<span class="rating_i_date fright">2014 / 10 / 15 -  12 : 45 : 57</span>
+										<div class="reviews_i_rating rating __3">
+											<div class="rating_progress"></div>
+										</div>
+										<div class="reviews_i_author">
+											<a href="#" class="reviews_i_author_name">vinod_kumar505</a>
+											<span class="reviews_i_author_about">I'm a deployment & integrations provider, I useEnterprise</span>
+										</div>
+									</div>
+								</div>
+								<div class="reviews_i_tx">
+									In Virto Commerce every product has a fixed attribute set that cannot be changed after the product's creation. This is in many productive contexts not an acceptable limitation. This module overrides the standard behaviour and makes it possible to change attribute sets after the item's creation making Virto Commerce even more flexible. :).
+								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="slides fixw tabs_act_content" rel="overview" style="display: none;">
+					>> content overiew
+				</div>
+				<div class="slides fixw tabs_act_content" rel="releases" style="display: none;">
+					>> content releases
 				</div>
 			</div>
 		</div>
