@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using MarketplaceWeb.Converters;
 using MarketplaceWeb.Models;
+using MvcSiteMapProvider;
 using VirtoCommerce.ApiClient;
 
 namespace MarketplaceWeb.Controllers
@@ -33,6 +34,15 @@ namespace MarketplaceWeb.Controllers
             if (reviews != null && reviews.TotalCount > 0)
             {
                 model.Reviews = reviews.Items.Select(x => x.ToWebModel()).ToArray();
+            }
+
+            if (SiteMaps.Current != null)
+            {
+                var node = SiteMaps.Current.CurrentNode;
+                if (node != null)
+                {
+                    node.Title = item.Name;
+                }
             }
 
             return View(model);
