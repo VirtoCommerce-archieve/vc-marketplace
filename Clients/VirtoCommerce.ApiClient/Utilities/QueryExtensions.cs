@@ -56,8 +56,6 @@ namespace VirtoCommerce.ApiClient.Utilities
             if (query.Filters != null && query.Filters.Count > 0)
             {
                 parts.AddRange(query.Filters.Select(filter => String.Format("t_{0}={1}", filter.Key, String.Join(",", filter.Value))));
-
-                parts.Add("q=" + HttpUtility.UrlEncode(query.Search));
             }
 
             return string.Join("&", parts);

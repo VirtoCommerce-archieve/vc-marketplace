@@ -21,12 +21,8 @@ namespace MarketplaceWeb.Controllers
         {
             ViewBag.Title = String.Format("Searching by '{0}'", parameters.Search);
 
-            var query = new BrowseQuery
-            {
-                Search = parameters.Search
-            };
 
-            var results = await SearchClient.GetProductsAsync(query);
+            var results = await SearchClient.GetProductsAsync(parameters);
             var retVal = CreateSearchResult(results, parameters);
 
             return View(retVal);

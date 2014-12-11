@@ -10,9 +10,18 @@ namespace MarketplaceWeb.Models
 {
     public class Extension
     {
+
+        /// <summary>
+        /// Product id
+        /// </summary>
         public string Id { get; set; }
 
         public string CatalogId { get; set; }
+
+        /// <summary>
+        /// Category ids where extension is placed
+        /// </summary>
+        public List<string> CategoryList { get; set; }
 
         public string Code { get; set; }
 
@@ -26,62 +35,57 @@ namespace MarketplaceWeb.Models
 
         public string License { get; set; }
 
-        public ItemImage[] Images { get; set; }
+        public List<ItemImage> Images { get; set; }
 
         public int ReviewsTotal { get; set; }
 
         public double Rating { get; set; }
 
-        public string Locale { get; set; }
+        public List<string> Locale { get; set; }
+
+        public string UserId { get; set; }
+
+        public User User { get; set; }
+
+        public List<Release> Releases { get; set; }
+
+        public ReleaseStatus ReleaseStatus
+        {
+            get
+            {
+                return HasRelease ? LatestRelease.ReleaseStatus : ReleaseStatus.Draft;
+            }
+        }
+
+        public bool HasRelease
+        {
+            get { return Releases != null && Releases.Any(); }
+        }
 
         public IEnumerable<string> Compatibility
         {
             get
             {
-                if (Releases != null)
+                if (HasRelease)
                 {
                     return Releases.SelectMany(x => x.Compatibility).Distinct();
+                }
+
+                return new string[0];
+            }
+        }
+
+        public Release LatestRelease
+        {
+            get
+            {
+                if (HasRelease)
+                {
+                    return Releases.OrderByDescending(x => x.ReleaseDate).First();
                 }
 
                 return null;
             }
         }
-
-        public Release[] Releases { get; set; }
-    }
-
-    public class CustomPropertyCollection : Collection<CustomProperty>
-    {
-        public static CustomPropertyCollection Parse(IDictionary<string, string[]> propertyDictionary, IDictionary<string, string> keyDictionary)
-        {
-            var retVal = new CustomPropertyCollection();
-            foreach (var keyValue in propertyDictionary)
-            {
-                var displayKey = keyDictionary.FirstOrDefault(k => k.Key.Equals(keyValue.Key, StringComparison.OrdinalIgnoreCase));
-                if (!displayKey.Equals(default(KeyValuePair<string,string>)))
-                {
-                    retVal.Add(CustomProperty.Parse(new KeyValuePair<string, string[]>(displayKey.Value, keyValue.Value)));
-                }
-            }
-
-            return retVal;
-        }
-    }
-
-    public class CustomProperty
-    {
-
-        public static CustomProperty Parse(KeyValuePair<string, string[]> valuePair)
-        {
-            return new CustomProperty
-            {
-                DisplayName = valuePair.Key,
-                DisplayValue = string.Join(", ", valuePair.Value)
-            };
-        }
-
-        public string DisplayName { get; set; }
-
-        public string DisplayValue { get; set; }
     }
 }

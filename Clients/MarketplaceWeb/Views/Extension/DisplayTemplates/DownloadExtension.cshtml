@@ -1,0 +1,20 @@
+﻿@model Extension
+
+@if (Model.HasRelease && Model.LatestRelease.ReleaseStatus == ReleaseStatus.Active)
+{
+    <a href="@Model.LatestRelease.DownloadLink" class="card_get-lk btn __sb __block __radial">@string.Format("Get extension ({0})", Model.Price.FormatedPrice)</a>
+    <div class="card_license">
+        <div class="card_license_chck del2">
+            <p><input type="checkbox" name="" id="license"><label for="license">I agree with license terms</label></p>
+        </div>
+        <div class="card_license_tx del2">
+            Please note that this extension is provided as is.
+            It is recommended to always backup your
+            installation prior to use.
+        </div>
+    </div>
+}
+else
+{
+    <a title="Extension is not published or you have no permission to download" class="card_get-lk btn __sb __block __radial __disabled">@string.Format("Get extension ({0})", Model.Price.FormatedPrice)</a>
+}

@@ -266,6 +266,12 @@ data input UI
 		text-transform: capitalize;
 		color: #58595b;
 	}
+
+    .btn.__disabled {
+        pointer-events: none;
+        cursor: default;
+        background-color: #bcbcbc;
+    }
 	
 .intx {
 	
