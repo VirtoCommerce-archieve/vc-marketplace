@@ -597,6 +597,48 @@
 			line-height: 17px;
 			padding: 25px 0;
 		}
+
+.releases {
+	padding: 30px;
+}
+
+	.releases .releases_info {
+		display: block;
+		font-size: 14px;
+		color: #888888;
+		line-height: 18px;
+	}
+
+		.releases .releases_info .releases_info_property {
+			display: block;
+			padding: 10px 0;
+		}
+
+			.releases .releases_info .releases_info_property_name {
+				font-weight: bold;
+				display: block;
+			}
+
+			.releases .releases_info .releases_info_property_val {
+				display: block;
+			}
+
+			.releases .get-ext {
+				padding-top: 10px;
+			}
+
+.overview {
+	display: block;
+	font-size: 14px;
+	color: #888888;
+	line-height: 18px;
+	padding: 30px;
+}
+
+.overview .p {
+	margin-bottom: 20px;
+}
+
 /*
 responsive
 ----------

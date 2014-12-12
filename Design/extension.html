@@ -162,14 +162,14 @@
 			<div class="tabs fixw">
 				<ul class="tabs_lst tabs_act_lst">
 					<li class="tabs_i tabs_act_i"><a href="#overview" class="tabs_i_a tabs_act_a">Overview</a></li>
-					<li class="tabs_i tabs_act_i"><a href="#releases" class="tabs_i_a tabs_act_a">release notes</a></li>
-					<li class="tabs_i tabs_act_i"><a href="#reviews" class="tabs_i_a tabs_act_a __active">reviews</a></li>
+					<li class="tabs_i tabs_act_i"><a href="#releases" class="tabs_i_a tabs_act_a __active">release notes</a></li>
+					<li class="tabs_i tabs_act_i"><a href="#reviews" class="tabs_i_a tabs_act_a">reviews</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="neutral-lay bl">
 			<div class="tabs_act_outer">
-				<div class="slides fixw tabs_act_content" rel="reviews">
+				<div class="slides fixw tabs_act_content" rel="reviews" style="display: none;">
 					<div class="reviews">
 						<div class="reviews_rating del2">
 							<div class="card_rating_outer fright">
@@ -235,10 +235,52 @@
 					</div>
 				</div>
 				<div class="slides fixw tabs_act_content" rel="overview" style="display: none;">
-					>> content overiew
+					<div class="overview">
+						<p class="p">Flagbit Change Attribute Set
+
+</p><p class="p">
+About
+</p><p class="p">
+In Magento every product has a fixed attribute set that cannot be changed after the product's creation. This is in many productive contexts 
+not an acceptable limitation. This module overrides the standard behaviour and makes it possible to change attribute sets after the item's 
+creation making Magento even more flexible. :).
+</p><p class="p">
+Compatibility
+</p><p class="p">
+We do not use any rewrites anymore. So we should be fully compatible with any other modules.
+</p><p class="p">
+Though we did not test this extensively the extension should be compatible with the Enterprise Edition. We have lots of positive feedback 
+about running it with the Enterprise Edition.
+</p><p class="p">
+Technical Background
+</p><p class="p">
+The extension simply switches the Attribute-Set-ID. Which has a side effect: If you switch back your attribute values are still present. BUT 
+it may also litter your database as the values not used anymore still use up space in your database. If you have lots of products you may 
+want to clean up this.
+					</div>
 				</div>
-				<div class="slides fixw tabs_act_content" rel="releases" style="display: none;">
-					>> content releases
+				<div class="slides fixw tabs_act_content" rel="releases">
+					<div class="releases">
+						<div class="releases_info">
+							<div class="releases_info_property __version">
+								<span class="releases_info_property_name">Version number 5.345.2111.09</span>
+								<span class="releases_info_property_val">
+									<span class="italic">2014 / 10 / 15 -  12 : 45 : 57</span>
+								</span>
+							</div>
+							<div class="releases_info_property __features">
+								<span class="releases_info_property_name">Upgrade features:</span>
+								<span class="releases_info_property_val">In Magento every product has a fixed attribute set that cannot be changed after the products creation. This is in many productive contexts 
+not an acceptable limitation. This module overrides the standard behaviour and makes it possible to change attribute</span>
+							</div>
+						</div>
+						<div class="get-ext">
+							<a href="#" class="card_get-lk btn __sb __radial __xm __disabled">GET EXTENSION  (&nbsp;$&nbsp;546&nbsp;)</a>
+							<div class="card_license_chck">
+								<p><input type="checkbox" name="" id="license2"><label for="license2">I agree with license terms</label></p>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

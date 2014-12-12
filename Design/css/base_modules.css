@@ -27,6 +27,9 @@ data input UI
 	background-color: #727272;
 }
 
+.italic {
+	font-style: italic;
+}
 
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
@@ -189,6 +192,7 @@ data input UI
 	font-weight: bold;
 	text-transform: uppercase;
 	text-align: center;
+	display: inline-block;
 	padding: 0 15px;
 	background-color: #bcbcbc;
 	color: #fff;
@@ -239,6 +243,10 @@ data input UI
 	.btn.__xs:after {
 		height: 32px;
 	}
+
+	.btn.__xm {
+		min-width: 240px;
+	}
 	
 	.btn.__xl {
 		display: block;
@@ -270,7 +278,8 @@ data input UI
     .btn.__disabled {
         pointer-events: none;
         cursor: default;
-        background-color: #bcbcbc;
+        /*background-color: #bcbcbc;*/
+        opacity: 0.5;
     }
 	
 .intx {
