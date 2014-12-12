@@ -14,7 +14,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/responsive")
-
+    <base href="~/" />
 </head>
 <body>
     <div id="layout">
@@ -155,6 +155,13 @@
     
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquerymisc")
     @RenderSection("scripts", required: false)
+    
+    <script type="text/javascript">
+        $(function() {
+            VirtoCommerce.renderDynamicContent();
+        });
+    </script>
 </body>
 </html>

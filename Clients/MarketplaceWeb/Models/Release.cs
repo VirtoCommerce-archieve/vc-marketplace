@@ -5,6 +5,7 @@ namespace MarketplaceWeb.Models
 {
     public class Release
     {
+        public string Id { get; set; }
         /// <summary>
         /// Should this field come from LastModified?
         /// </summary>
@@ -34,5 +35,7 @@ namespace MarketplaceWeb.Models
         /// Parsed from property Status
         /// </summary>
         public ReleaseStatus ReleaseStatus { get; set; }
+
+        public Extension ParentExtension { get; set; }
     }
 }

@@ -68,7 +68,7 @@ namespace MarketplaceWeb.Converters
 
             if (item.Variations != null)
             {
-                retVal.Releases = item.Variations.Select(x => x.ToWebModel()).ToList();
+                retVal.Releases = item.Variations.Select(x => x.ToWebModel(retVal)).ToList();
             }
 
             //TODO replace hardcoded developer when api service available
@@ -84,16 +84,18 @@ namespace MarketplaceWeb.Converters
             return retVal;
         }
 
-        public static Release ToWebModel(this CatalogItem variation)
+        public static Release ToWebModel(this CatalogItem variation, Extension parent)
         {
             var retVal = new Release
             {
+                Id = variation.Id,
                 Compatibility = variation.Properties.ParseProperty(CompatibilityProperty).ToList(),
                 DownloadLink = variation.Properties.ParsePropertyToString(LinkProperty),
                 ReleaseDate = variation.Properties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
                 Note = variation.Properties.ParsePropertyToString(NoteProperty),
                 Version = variation.Properties.ParsePropertyToString(VersionProperty),
-                ReleaseStatus = variation.Properties.ParseProperty<ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault()
+                ReleaseStatus = variation.Properties.ParseProperty<ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
+                ParentExtension = parent
             };
 
             return retVal;

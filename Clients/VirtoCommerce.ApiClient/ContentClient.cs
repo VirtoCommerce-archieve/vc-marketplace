@@ -39,9 +39,9 @@ namespace VirtoCommerce.ApiClient
         /// <summary>
         /// List items matching the given query
         /// </summary>
-        public Task<ResponseCollection<DynamicContentItem>> GetDynamicContentAsync(string placeHolder, TagQuery query)
+        public Task<ResponseCollection<DynamicContentItemGroup>> GetDynamicContentAsync(string[] placeHolder, TagQuery query)
         {
-            return this.GetAsync<ResponseCollection<DynamicContentItem>>(this.CreateRequestUri(String.Format(RelativePaths.Contents, placeHolder), query.GetQueryString()));
+            return this.GetAsync<ResponseCollection<DynamicContentItemGroup>>(this.CreateRequestUri(String.Format(RelativePaths.Contents, string.Join(",", placeHolder)), query.GetQueryString()));
         }
     }
 }

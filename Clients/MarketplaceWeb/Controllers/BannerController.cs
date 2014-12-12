@@ -21,20 +21,25 @@ namespace MarketplaceWeb.Controllers
         /// <param name="placeName">Name of dynamic content place.</param>
         /// <returns>ActionResult.</returns>
         //[DonutOutputCache(CacheProfile = "BannerCache")]
-        public ActionResult ShowDynamicContent(string placeName)
+        public async Task<ActionResult> ShowDynamicContent(string placeName)
         {
-            var items = Task.Run(()=>ContentClient.GetDynamicContentAsync(placeName, CustomerSession.Current.Tags)).Result;
-            if (items != null && items.TotalCount > 0)
+            var result = await ContentClient.GetDynamicContentAsync(new[] { placeName }, CustomerSession.Current.Tags);
+            if (result != null && result.TotalCount > 0)
             {
-                return PartialView("BaseContentPlace", new BannerModel(items.Items.ToArray()));
+                return PartialView("BaseContentPlace", new BannerModel(result.Items.First().Items.ToArray()));
             }
             return null;
         }
 
         //[DonutOutputCache(CacheProfile = "BannerCache")]
-        public ActionResult ShowDynamicContents(string[] placeName)
+        public async Task<ActionResult> ShowDynamicContents(string[] placeName)
         {
-            return PartialView("MultiBanner", placeName);
+            var result = await ContentClient.GetDynamicContentAsync(placeName, CustomerSession.Current.Tags);
+            if (result != null && result.TotalCount > 0)
+            {
+                return PartialView("MultiBanner", result.Items);
+            }
+            return null;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Web.Mvc;
@@ -28,7 +29,7 @@ namespace MarketplaceWeb.Models
 		/// Initializes a new instance of the <see cref="BannerModel" /> class.
 		/// </summary>
 		/// <param name="items">The items.</param>
-        public BannerModel(DynamicContentItem[] items)
+        public BannerModel(ICollection<DynamicContentItem> items)
         {
             Items = items;
         }
@@ -37,7 +38,7 @@ namespace MarketplaceWeb.Models
 		/// Gets or sets the items.
 		/// </summary>
 		/// <value>The items.</value>
-        public DynamicContentItem[] Items { get; set; }
+        public ICollection<DynamicContentItem> Items { get; set; }
     }
 
 	/// <summary>

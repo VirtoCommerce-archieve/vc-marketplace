@@ -1,0 +1,49 @@
+﻿@model Release
+
+@if (Model.ReleaseStatus == ReleaseStatus.Active)
+{
+    <text>
+<script>
+    $(function() {
+        $('#license-@Model.Id').click(function ()
+        {
+            if ($(this).is(':checked'))
+            {
+                $('#dowload-release-@Model.Id').removeClass("__disabled");
+            } else
+            {
+                $('#dowload-release-@Model.Id').addClass("__disabled");
+            }
+        });
+    });
+</script>
+    </text>
+
+}
+
+<div class="releases_info">
+    <div class="releases_info_property __version">
+        <span class="releases_info_property_name">Version number @Model.Version</span>
+        <span class="releases_info_property_val">
+            @if (Model.ReleaseDate.HasValue)
+            {
+                <span class="italic">@Model.ReleaseDate.Value.ToString("G")</span>
+            }
+        </span>
+    </div>
+    <div class="releases_info_property __features">
+        <span class="releases_info_property_name">Upgrade features:</span>
+        <span class="releases_info_property_val">
+            @Model.Note
+        </span>
+    </div>
+</div>
+<div class="get-ext">
+    <a id="dowload-release-@Model.Id" href="@Model.DownloadLink" class="card_get-lk btn __sb __radial __xm __disabled">@string.Format("get extension ({0})", Model.ParentExtension.Price.FormatedPrice)</a>
+    <div class="card_license_chck">
+        <p>
+            <input type="checkbox" name="" id="license-@Model.Id">
+            <label for="license-@Model.Id">I agree with license terms</label>
+        </p>
+    </div>
+</div>

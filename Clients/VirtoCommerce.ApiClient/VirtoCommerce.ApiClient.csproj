@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClient.cs" />
+    <Compile Include="DataContracts\Contents\DynamicContentItemGroup.cs" />
+    <Compile Include="Extensions\ExpandoExtensions.cs" />
+    <Compile Include="Extensions\ExceptionExtensions.cs" />
     <Compile Include="Extensions\ReviewsClientExtnesion.cs" />
     <Compile Include="ReviewsClient.cs" />
     <Compile Include="ContentClient.cs" />

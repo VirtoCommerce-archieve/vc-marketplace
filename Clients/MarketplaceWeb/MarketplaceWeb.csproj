@@ -52,6 +52,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.identitymodel.services" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -262,6 +263,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\v\validation.js" />
+    <Content Include="Scripts\v\virto-commerce.js" />
+    <Content Include="Scripts\v\virto-jquery.js" />
+    <Content Include="Scripts\v\virto-reviews.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -330,6 +335,10 @@
     <Content Include="Views\Extension\DisplayTemplates\DownloadExtension.cshtml" />
     <Content Include="Views\Extension\DisplayTemplates\Developer.cshtml" />
     <Content Include="Views\Extension\DisplayTemplates\ReviewModel.cshtml" />
+    <Content Include="Views\Shared\_ErrorLayout.cshtml" />
+    <Content Include="Views\Errors\Oops.cshtml" />
+    <Content Include="Views\Errors\ServiceError.cshtml" />
+    <Content Include="Views\Extension\DisplayTemplates\Release.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
