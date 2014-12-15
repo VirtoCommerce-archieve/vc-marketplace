@@ -23,39 +23,42 @@
         {
             if (data.length > 0)
             {
-                $('#dynamic-content-2').html(data);
+                $('#dynamic-content-top').html(data);
             }
         });
     })
 </script>
 
+<div id="dynamic-content-top">
+@*@{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeMain" });}*@
+</div>
 
-<div class="items_outer bl">
-    <div class="items fixw">
-        <a href="" class="items_a fright">View all</a>
-        <h2 class="items_t">Staff Pick</h2>
-        <div id="dynamic-content-0">
-            @*@{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeStaffPick" });}*@
+    <div class="items_outer bl">
+        <div class="items fixw">
+            <a href="" class="items_a fright">View all</a>
+            <h2 class="items_t">Staff Pick</h2>
+            <div id="dynamic-content-0">
+                @*@{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeStaffPick" });}*@
+            </div>
         </div>
     </div>
-</div>
-<div class="items_outer bl">
-    <div class="items fixw">
-        <a href="" class="items_a fright">View all</a>
-        <h2 class="items_t">New Extensions</h2>
-        <div id="dynamic-content-1">
-            @*@{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeNewProducts" });}*@
+    <div class="items_outer bl">
+        <div class="items fixw">
+            <a href="" class="items_a fright">View all</a>
+            <h2 class="items_t">New Extensions</h2>
+            <div id="dynamic-content-1">
+                @*@{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeNewProducts" });}*@
+            </div>
         </div>
     </div>
-</div>
-<div id="dynamic-content-2" class="neutral-lay bl">
-    <div class="offer">
-        <figure><i class="offer_ico ico_lw ico_lw_monitor"></i></figure>
-        <article class="offer_tx">
-            Kopf und Kragen are the german words for "head and collar".<br />
-            Kopf und Kragen sells high quality urban fashion materials with s on caps.<br />
-            With a store based in the heart of Hamburg  upcoming online shop KK Hamburg.
-        </article>
-        <a href="#" class="btn __sb __xl __radial">Become a developer</a>
+    <div id="dynamic-content-2" class="neutral-lay bl">
+        <div class="offer">
+            <figure><i class="offer_ico ico_lw ico_lw_monitor"></i></figure>
+            <article class="offer_tx">
+                Kopf und Kragen are the german words for "head and collar".<br />
+                Kopf und Kragen sells high quality urban fashion materials with s on caps.<br />
+                With a store based in the heart of Hamburg  upcoming online shop KK Hamburg.
+            </article>
+            <a href="#" class="btn __sb __xl __radial">Become a developer</a>
+        </div>
     </div>
-</div>

@@ -38,11 +38,18 @@
                 @Html.MvcSiteMap().Menu(false)
             </div>
         </div>
-        <div class="bl transparent_bl">
-            <div class="crums fixw">
-                @Html.MvcSiteMap().SiteMapPath()
-            </div>
-        </div>
+        @{
+            var breadcrumb = Html.MvcSiteMap().SiteMapPath(null, new {name = "BreadCrumb"});
+
+            if (!string.IsNullOrWhiteSpace(breadcrumb.ToString().Trim()))
+            {
+                <div class="bl transparent_bl">
+                    <div class="crums fixw">
+                        @breadcrumb
+                    </div>
+                </div>
+            }
+        }
         @RenderBody()
         <div class="transparent_bl bl">
             <div class="bottom-menu fixw">
