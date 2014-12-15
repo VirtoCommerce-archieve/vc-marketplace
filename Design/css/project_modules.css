@@ -639,6 +639,22 @@
 	margin-bottom: 20px;
 }
 
+.pass-recovery {
+	padding: 30px 0;
+}
+
+	.pass-recovery .h4.slim {
+		margin-top: 40px;
+	}
+
+	.recover_form {
+		padding: 50px 0;
+	}
+
+	.recover_form .btn.__sb {
+		margin-top: 50px;
+	}
+
 /*
 responsive
 ----------

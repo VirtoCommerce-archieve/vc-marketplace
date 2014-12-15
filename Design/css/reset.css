@@ -63,7 +63,8 @@ a {
 	float: right;
 }
 
-h2 {
+h2, .h2 {
+	display: block;
 	font-size: 24px;
 	text-transform: uppercase;
 	font-weight: normal;
@@ -71,10 +72,16 @@ h2 {
 	padding: 10px 0;
 }
 
-h4 {
+h4, .h4 {
+	display: block;
 	font-size: 14px;
 	font-weight: bold;
 	text-transform: uppercase;
 	color: #888888;
 	line-height: 1.5;
+}
+
+h4.slim, .h4.slim {
+	font-weight: normal;
+	color: #58595b;
 }

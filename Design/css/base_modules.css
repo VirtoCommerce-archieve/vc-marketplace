@@ -31,6 +31,25 @@ data input UI
 	font-style: italic;
 }
 
+.it-group {
+	display: block;
+	font-size: 12px;
+	color: #888888;
+	padding: 15px 0;
+}
+
+.it-group.__block .it {
+	display: block;
+	width: 100%;
+}
+
+
+.it-group .label {
+	display: block;
+	padding: 5px 10px;
+}
+
+
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
   position: absolute;
@@ -482,6 +501,7 @@ data input UI
 
 		.crums_i {
 			display: inline-block;
+			text-transform: capitalize;
 		}
 
 		.crums_i:after {
@@ -588,6 +608,11 @@ data input UI
 
 
 /* GRID */
+
+.row {
+	display: block;
+	overflow: hidden;
+}
 
 .fixw {
 	max-width: 890px;
