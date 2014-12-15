@@ -240,6 +240,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="App_Data\Configuration\connectionStrings.local.config" />
+    <Content Include="App_Data\Configuration\connectionStrings.azure.config" />
     <None Include="Resources\Icon1.ico" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -340,9 +342,7 @@
     <Content Include="Views\Errors\ServiceError.cshtml" />
     <Content Include="Views\Extension\DisplayTemplates\Release.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
