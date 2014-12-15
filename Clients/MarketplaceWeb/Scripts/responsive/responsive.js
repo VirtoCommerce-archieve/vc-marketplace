@@ -13,6 +13,9 @@ $(function() {
 		$('#mob-nav_outer').animate({left: '-100%'}, 300);
 	});
 
+    /*
+    Tab switching
+     */
 	$('.tabs_act_lst .tabs_act_a').click(function (e)
 	{
 	    e.preventDefault();

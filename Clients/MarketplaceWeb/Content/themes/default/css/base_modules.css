@@ -27,6 +27,9 @@ data input UI
 	background-color: #727272;
 }
 
+.italic {
+	font-style: italic;
+}
 
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
@@ -125,7 +128,7 @@ data input UI
 	font-size: 14px;
 	border: 1px solid #e2e2e2;
 	padding: 0 18px;
-	height: 40;
+	height: 40px;
 	vertical-align: middle;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
@@ -189,6 +192,7 @@ data input UI
 	font-weight: bold;
 	text-transform: uppercase;
 	text-align: center;
+	display: inline-block;
 	padding: 0 15px;
 	background-color: #bcbcbc;
 	color: #fff;
@@ -239,6 +243,10 @@ data input UI
 	.btn.__xs:after {
 		height: 32px;
 	}
+
+	.btn.__xm {
+		min-width: 240px;
+	}
 	
 	.btn.__xl {
 		display: block;
@@ -270,7 +278,8 @@ data input UI
     .btn.__disabled {
         pointer-events: none;
         cursor: default;
-        background-color: #bcbcbc;
+        /*background-color: #bcbcbc;*/
+        opacity: 0.5;
     }
 	
 .intx {
@@ -459,7 +468,6 @@ data input UI
 		display: block;
 		overflow: hidden;
 	}
-
 
 /* bread crums */
 

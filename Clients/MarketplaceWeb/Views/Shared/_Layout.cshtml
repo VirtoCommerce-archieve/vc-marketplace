@@ -14,7 +14,7 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/responsive")
-
+    <base href="~/" />
 </head>
 <body>
     <div id="layout">
@@ -38,11 +38,18 @@
                 @Html.MvcSiteMap().Menu(false)
             </div>
         </div>
-        <div class="bl transparent_bl">
-            <div class="crums fixw">
-                @Html.MvcSiteMap().SiteMapPath()
-            </div>
-        </div>
+        @{
+            var breadcrumb = Html.MvcSiteMap().SiteMapPath(null, new {name = "BreadCrumb"});
+
+            if (!string.IsNullOrWhiteSpace(breadcrumb.ToString().Trim()))
+            {
+                <div class="bl transparent_bl">
+                    <div class="crums fixw">
+                        @breadcrumb
+                    </div>
+                </div>
+            }
+        }
         @RenderBody()
         <div class="transparent_bl bl">
             <div class="bottom-menu fixw">
@@ -155,6 +162,13 @@
     
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquerymisc")
     @RenderSection("scripts", required: false)
+    
+    <script type="text/javascript">
+        $(function() {
+            VirtoCommerce.renderDynamicContent();
+        });
+    </script>
 </body>
 </html>

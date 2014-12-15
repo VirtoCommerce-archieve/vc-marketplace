@@ -8,7 +8,7 @@
         <div class="reviews_i_data">
             @if (Model.Created.HasValue)
             {
-                <span class="rating_i_date fright">@Model.Created.Value.ToString("yyyy / MM / dd - HH : mm : ss")</span>
+                <span class="rating_i_date fright">@Model.Created.Value.ToString("G")</span>
             }
             <div class="reviews_i_rating rating">
                 <div class="rating_progress" style="width: @(Model.Rating * 20)%"></div>

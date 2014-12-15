@@ -120,7 +120,7 @@
         [Fact]
         public void Can_get_market_content()
         {
-            var results = Task.Run(() => this.ContentClient.GetDynamicContentAsync("MainSlider", new TagQuery())).Result;
+            var results = Task.Run(() => this.ContentClient.GetDynamicContentAsync(new []{"MainSlider"}, new TagQuery())).Result;
             Assert.NotNull(results);
         }
     }

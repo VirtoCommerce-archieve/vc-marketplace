@@ -17,6 +17,15 @@ namespace MarketplaceWeb
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jquerymisc").Include(
+            "~/Scripts/v/virto-jquery.js",
+            //"~/Scripts/cloudzoom.js",
+           // "~/Scripts/ajaxq.js",
+            //"~/Scripts/jquery.rateit.js",
+            "~/Scripts/v/virto-commerce.js",
+            "~/Scripts/responsive/responsive.js",
+            "~/Scripts/v/validation.js"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -56,7 +65,7 @@ namespace MarketplaceWeb
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = false;
+            //BundleTable.EnableOptimizations = false;
         }
     }
 }

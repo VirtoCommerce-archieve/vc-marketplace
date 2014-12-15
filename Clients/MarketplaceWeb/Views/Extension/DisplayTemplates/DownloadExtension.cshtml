@@ -1,6 +1,6 @@
 ﻿@model Extension
 
-@if (Model.HasRelease && Model.LatestRelease.ReleaseStatus == ReleaseStatus.Active)
+@if (Model.ReleaseStatus == ReleaseStatus.Active)
 {
     <a href="@Model.LatestRelease.DownloadLink" class="card_get-lk btn __sb __block __radial">@string.Format("Get extension ({0})", Model.Price.FormatedPrice)</a>
     <div class="card_license">
