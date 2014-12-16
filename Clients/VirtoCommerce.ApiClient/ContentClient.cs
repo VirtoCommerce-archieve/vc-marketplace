@@ -6,7 +6,7 @@ using VirtoCommerce.ApiClient.Utilities;
 
 namespace VirtoCommerce.ApiClient
 {
-    using VirtoCommerce.ApiClient.DataContracts.Contents;
+    using DataContracts.Contents;
 
     public class ContentClient : BaseClient
     {
@@ -41,7 +41,7 @@ namespace VirtoCommerce.ApiClient
         /// </summary>
         public Task<ResponseCollection<DynamicContentItemGroup>> GetDynamicContentAsync(string[] placeHolder, TagQuery query)
         {
-            return this.GetAsync<ResponseCollection<DynamicContentItemGroup>>(this.CreateRequestUri(String.Format(RelativePaths.Contents, string.Join(",", placeHolder)), query.GetQueryString()));
+            return GetAsync<ResponseCollection<DynamicContentItemGroup>>(CreateRequestUri(String.Format(RelativePaths.Contents, string.Join(",", placeHolder)), query.GetQueryString()));
         }
     }
 }

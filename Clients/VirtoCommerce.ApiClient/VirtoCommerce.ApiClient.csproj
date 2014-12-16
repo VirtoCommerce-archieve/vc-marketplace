@@ -57,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClient.cs" />
+    <Compile Include="DataContracts\Security\ApplicationUser.cs" />
+    <Compile Include="Extensions\SecurityClientExtension.cs" />
+    <Compile Include="SecurityClient.cs" />
     <Compile Include="DataContracts\Contents\DynamicContentItemGroup.cs" />
     <Compile Include="Extensions\ExpandoExtensions.cs" />
     <Compile Include="Extensions\ExceptionExtensions.cs" />

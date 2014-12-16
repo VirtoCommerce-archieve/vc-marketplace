@@ -13,7 +13,7 @@ namespace VirtoCommerce.ApiClient.Extensions
     {
         public static ContentClient CreateContentClient(this CommerceClients source)
         {
-            var connectionString = ConnectionHelper.GetConnectionString("vc-commerce-api");
+            var connectionString = ConnectionHelper.GetConnectionString("vc-commerce-api-mp");
             return CreateContentClient(source, connectionString);
         }
 

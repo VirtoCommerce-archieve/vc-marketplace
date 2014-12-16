@@ -182,6 +182,11 @@ namespace VirtoCommerce.ApiClient
         {
             if (!response.IsSuccessStatusCode)
             {
+                if (response.StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    throw new UnauthorizedAccessException();
+                }
+
                 ManagementServiceError managementServiceError = null;
 
                 try

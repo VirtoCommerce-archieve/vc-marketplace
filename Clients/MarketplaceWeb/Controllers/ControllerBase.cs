@@ -18,7 +18,7 @@ namespace MarketplaceWeb.Controllers
         {
             get
             {
-                return ClientContext.Clients.CreateBrowseClient(ConnectionHelper.ApiConnectionString("vc-commerce-api"));
+                return ClientContext.Clients.CreateBrowseClient(ConnectionHelper.ApiConnectionString("vc-commerce-api-mp"));
             }
         }
 
@@ -26,7 +26,7 @@ namespace MarketplaceWeb.Controllers
         {
             get
             {
-                return ClientContext.Clients.CreateContentClient(ConnectionHelper.ApiConnectionString("vc-commerce-api", null));
+                return ClientContext.Clients.CreateContentClient(ConnectionHelper.ApiConnectionString("vc-commerce-api-mp", null));
             }
         }
 
@@ -34,7 +34,15 @@ namespace MarketplaceWeb.Controllers
         {
             get
             {
-                return ClientContext.Clients.CreateReviewsClient(ConnectionHelper.ApiConnectionString("vc-commerce-api"));
+                return ClientContext.Clients.CreateReviewsClient(ConnectionHelper.ApiConnectionString("vc-commerce-api-mp"));
+            }
+        }
+
+        public SecurityClient SecurityClient
+        {
+            get
+            {
+                return ClientContext.Clients.CreateSecurityClient();
             }
         }
     

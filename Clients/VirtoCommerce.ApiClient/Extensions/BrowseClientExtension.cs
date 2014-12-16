@@ -13,7 +13,7 @@ namespace VirtoCommerce.ApiClient.Extensions
     {
         public static BrowseClient CreateBrowseClient(this CommerceClients source)
         {
-            var connectionString = ConnectionHelper.GetConnectionString("vc-commerce-api");
+            var connectionString = ConnectionHelper.GetConnectionString("vc-commerce-api-mp");
             return CreateBrowseClient(source, connectionString);
         }
 
