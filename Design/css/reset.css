@@ -63,6 +63,13 @@ a {
 	float: right;
 }
 
+.p {
+	font-size: 14px;
+	line-height: 1.5;
+	color: #888888;
+	margin: 30px 0 0 0;
+}
+
 h2, .h2 {
 	display: block;
 	font-size: 24px;

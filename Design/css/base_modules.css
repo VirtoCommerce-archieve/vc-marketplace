@@ -300,6 +300,10 @@ data input UI
         /*background-color: #bcbcbc;*/
         opacity: 0.5;
     }
+
+    .btn.__soc {
+    	line-height: 4.3;
+    }
 	
 .intx {
 	
@@ -370,6 +374,20 @@ data input UI
 		height: 64px;
 		background-position: -64px 0;
 		margin-bottom: -20px;
+	}
+
+.ico_soc {
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+	background: url(../images/iconsoc_xs.png) no-repeat;
+}
+
+	.ico_soc.__fb {
+		background-position: 0 0;
+	}
+	.ico_soc.__gp {
+		background-position: -30px 0;
 	}
 
 
