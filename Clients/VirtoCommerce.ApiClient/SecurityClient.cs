@@ -7,13 +7,15 @@ using VirtoCommerce.ApiClient.Utilities;
 
 namespace VirtoCommerce.ApiClient
 {
-    using VirtoCommerce.ApiClient.DataContracts.Contents;
+    using DataContracts.Contents;
 
     public class SecurityClient : BaseClient
     {
         protected class RelativePaths
         {
-            public const string Login = "login";
+            public const string FindById = "users/id/{0}";
+            public const string FindByName = "users/name/{0}";
+            public const string Create = "users/create";
         }
 
         /// <summary>
@@ -37,13 +39,22 @@ namespace VirtoCommerce.ApiClient
 
         }
 
-        /// <summary>
-        /// List items matching the given query
-        /// </summary>
-        public Task<AuthInfo> LoginAsync(UserLogin login)
+        public Task<ApplicationUser> FindByIdAsync(string userId)
         {
-            var requestUri = this.CreateRequestUri(RelativePaths.Login);
-            return SendAsync<UserLogin, AuthInfo>(requestUri, HttpMethod.Post, login);
+            var requestUri = CreateRequestUri(string.Format(RelativePaths.FindById,userId));
+            return GetAsync<ApplicationUser>(requestUri);
+        }
+
+        public Task<ApplicationUser> FindByNameAsync(string userName)
+        {
+            var requestUri = CreateRequestUri(string.Format(RelativePaths.FindByName, userName));
+            return GetAsync<ApplicationUser>(requestUri);
+        }
+
+        public Task CreateAsync(ApplicationUser user)
+        {
+            var requestUri = CreateRequestUri(RelativePaths.Create);
+            return SendAsync(requestUri, HttpMethod.Post, user);
         }
     }
 }

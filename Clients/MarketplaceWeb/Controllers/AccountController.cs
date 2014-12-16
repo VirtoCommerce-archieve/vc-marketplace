@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using MarketplaceWeb.Models;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using VirtoCommerce.ApiClient.DataContracts.Security;
 
 namespace MarketplaceWeb.Controllers
@@ -9,10 +12,35 @@ namespace MarketplaceWeb.Controllers
     [Authorize]
     public class AccountController : ControllerBase
     {
+        private ApplicationSignInManager _signInManager;
+        protected ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? (_signInManager = HttpContext.GetOwinContext().Get<ApplicationSignInManager>());
+            }
+            set
+            {
+                _signInManager = value;
+            }
+        }
+
+        private IAuthenticationManager _authenticationManager;
+        protected IAuthenticationManager AuthenticationManager
+        {
+            get
+            {
+                return _authenticationManager ?? (_authenticationManager = HttpContext.GetOwinContext().Authentication);
+            }
+            set
+            {
+                _authenticationManager = value;
+            }
+        }
 
         public ActionResult Index()
         {
-            throw new System.NotImplementedException();
+            return View();
         }
 
         /// <summary>
@@ -40,7 +68,8 @@ namespace MarketplaceWeb.Controllers
 
                 try
                 {
-                    var authUser = await SecurityClient.LoginAsync(new UserLogin {Password = model.Password, RememberMe = model.RememberMe, UserName = model.Email});
+                    var status =  await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, true);
+                        //await SecurityClient.LoginAsync(new UserLogin {Password = model.Password, RememberMe = model.RememberMe, UserName = model.Email});
                     return RedirectToLocal(returnUrl);
                 }
                 catch (Exception e)

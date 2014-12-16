@@ -57,9 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClient.cs" />
-    <Compile Include="DataContracts\Security\AuthInfo.cs" />
-    <Compile Include="DataContracts\Security\RegisterType.cs" />
-    <Compile Include="DataContracts\Security\UserLogin.cs" />
+    <Compile Include="DataContracts\Security\ApplicationUser.cs" />
     <Compile Include="Extensions\SecurityClientExtension.cs" />
     <Compile Include="SecurityClient.cs" />
     <Compile Include="DataContracts\Contents\DynamicContentItemGroup.cs" />

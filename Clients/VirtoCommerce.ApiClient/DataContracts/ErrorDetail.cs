@@ -38,7 +38,7 @@ namespace VirtoCommerce.ApiClient.DataContracts
         /// <returns>string representing the error detail</returns>
         public override string ToString()
         {
-            return string.Format(CultureInfo.InvariantCulture, "Code: {0}, Source: {1}, Message: {2}", this.Code, this.Source, this.Message);
+            return string.Format(CultureInfo.InvariantCulture, "Code: {0}, Source: {1}, Message: {2}", Code, Source, Message);
         }
     }
 }

@@ -42,7 +42,7 @@ namespace VirtoCommerce.ApiClient.Utilities
         /// </returns>
         protected override HttpRequestMessage ProcessRequest(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.token);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
             return request;
         }
 
