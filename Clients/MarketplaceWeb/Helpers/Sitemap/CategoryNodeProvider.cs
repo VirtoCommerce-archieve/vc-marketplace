@@ -18,7 +18,7 @@ namespace MarketplaceWeb.Helpers.Sitemap
         {
             get
             {
-                return ClientContext.Clients.CreateBrowseClient(ConnectionHelper.ApiConnectionString("vc-commerce-api"));
+                return ClientContext.Clients.CreateBrowseClient(ConnectionHelper.ApiConnectionString("vc-commerce-api-mp"));
             }
         }
 

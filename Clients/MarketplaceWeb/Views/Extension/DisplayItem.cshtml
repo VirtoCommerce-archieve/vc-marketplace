@@ -23,7 +23,7 @@
                         {
                             var image = Model.Extension.Images[i];
                             <a rel="biggroup" href="@Url.Image(image)" data-image-id="@i" class="fancybox">
-                                <img alt="" itemprop="image" src="@Url.Image(image)">
+                                <img alt="" itemprop="image" src="@Url.Image(image)" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';">
                             </a>
                         }
                     }
