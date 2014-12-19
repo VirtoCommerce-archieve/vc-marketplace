@@ -26,7 +26,7 @@ namespace MarketplaceWeb.Helpers
         public static string Image(this UrlHelper helper, ItemImage image)
         {
             const string defaultImage = "blank.png";
-            return helper.Content(image == null ? String.Format("~/Content/themes/default/images/{0}", defaultImage) : string.Format("~/{0}", image.Src));
+            return helper.Content(image == null ? String.Format("~/Content/themes/default/images/{0}", defaultImage) : image.Src);
         }
 
         private static ItemImage FindItemImage(IEnumerable<ItemImage> images, string name)

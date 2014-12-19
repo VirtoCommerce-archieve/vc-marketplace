@@ -86,9 +86,9 @@
                         }
                     </div>
                 </div>
-               @Html.DisplayFor(x=>x.Extension.User, "Developer")
+                @Html.DisplayFor(x => x.Extension.User, "Developer")
             </div>
-           @Html.DisplayFor(x=>x.Extension, "DownloadExtension")
+            @Html.DisplayFor(x => x.Extension, "DownloadExtension")
         </div>
     </div>
 </div>
@@ -110,7 +110,9 @@
 <div class="neutral-lay bl">
     <div class="tabs_act_outer">
         <div class="slides fixw tabs_act_content" rel="overview">
-            @Html.Raw(Model.Extension.FullDescription)
+            <div class="overview">
+                @Html.Raw(Model.Extension.FullDescription)
+            </div>
         </div>
         <div class="slides fixw tabs_act_content" rel="releases" style="display: none;">
             @if (@Model.Extension.HasRelease)

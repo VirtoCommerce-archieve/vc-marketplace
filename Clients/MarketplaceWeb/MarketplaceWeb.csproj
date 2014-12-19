@@ -201,7 +201,27 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SampleData\SampleMP.sql" />
+    <Content Include="App_Data\SampleData\dbo_Catalog.sql" />
+    <Content Include="App_Data\SampleData\dbo_CatalogBase.sql" />
+    <Content Include="App_Data\SampleData\dbo_Category.sql" />
+    <Content Include="App_Data\SampleData\dbo_CategoryBase.sql" />
+    <Content Include="App_Data\SampleData\dbo_CategoryItemRelation.sql" />
+    <Content Include="App_Data\SampleData\dbo_DynamicContentItem.sql" />
+    <Content Include="App_Data\SampleData\dbo_DynamicContentItemProperty.sql" />
+    <Content Include="App_Data\SampleData\dbo_DynamicContentPlace.sql" />
+    <Content Include="App_Data\SampleData\dbo_DynamicContentPublishingGroup.sql" />
+    <Content Include="App_Data\SampleData\dbo_EditorialReview.sql" />
+    <Content Include="App_Data\SampleData\dbo_Item.sql" />
+    <Content Include="App_Data\SampleData\dbo_ItemAsset.sql" />
+    <Content Include="App_Data\SampleData\dbo_ItemPropertyValue.sql" />
+    <Content Include="App_Data\SampleData\dbo_ItemRelation.sql" />
+    <Content Include="App_Data\SampleData\dbo_Property.sql" />
+    <Content Include="App_Data\SampleData\dbo_PropertySet.sql" />
+    <Content Include="App_Data\SampleData\dbo_PropertySetProperty.sql" />
+    <Content Include="App_Data\SampleData\dbo_PropertyValue.sql" />
+    <Content Include="App_Data\SampleData\dbo_PublishingGroupContentItem.sql" />
+    <Content Include="App_Data\SampleData\dbo_PublishingGroupContentPlace.sql" />
+    <Content Include="App_Data\SampleData\dbo_Store.sql" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\default\css\base_modules.css" />
@@ -262,6 +282,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="App_Data\Configuration\connectionStrings.local.config" />
     <Content Include="App_Data\Configuration\connectionStrings.azure.config" />
+    <Content Include="App_Data\SampleData\setup-database.ps1" />
     <None Include="Resources\Icon1.ico" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

@@ -42,10 +42,11 @@ namespace MarketplaceWeb.Converters
 
             if (item.EditorialReviews != null)
             {
-                var shortReview = item.EditorialReviews.FirstOrDefault(
+                var reviews = item.EditorialReviews.Where(x => !string.IsNullOrWhiteSpace(x.ReviewType)).ToArray();
+                var shortReview = reviews.FirstOrDefault(
                     x => x.ReviewType.Equals("QuickReview", StringComparison.OrdinalIgnoreCase));
 
-                var fullReview = item.EditorialReviews.FirstOrDefault(
+                var fullReview = reviews.FirstOrDefault(
                     x => x.ReviewType.Equals("FullReview", StringComparison.OrdinalIgnoreCase));
 
                 if (shortReview != null)

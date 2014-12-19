@@ -73,13 +73,16 @@ VirtoCommerce.prototype = {
                     for (var key in VirtoCommerce.DynamicContent)
                     {
                         var selector = VirtoCommerce.DynamicContent[key];
-                        var bannerContent = htmlData.find('#' + key).html().trim();
-                        if (typeof selector == 'function')
-                        {
-                            selector(bannerContent);
-                        } else
-                        {
-                            $(selector).html(bannerContent);
+                        var bannerContent = htmlData.find('#' + key);
+                        if (bannerContent.length > 0) {
+                            var bannerContentHtml = bannerContent.html().trim();
+                            if (typeof selector == 'function')
+                            {
+                                selector(bannerContentHtml);
+                            } else
+                            {
+                                $(selector).html(bannerContentHtml);
+                            }
                         }
                     }
                 }
