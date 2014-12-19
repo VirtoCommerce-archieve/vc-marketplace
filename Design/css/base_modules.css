@@ -416,6 +416,7 @@ data input UI
 		font-size: 14px;
 		color: #faa61a;
 		margin-left: 35px;
+		margin-top: 12px;
 		line-height: 17px;
 	}
 
@@ -428,19 +429,27 @@ data input UI
 	}
 
 	.items .items_t {
-		font-family: 'Lato', sans-serif;
 		font-size: 22px;
-		font-weight: lighter;
 		text-transform: uppercase;
 		color: #888888;
 		margin-bottom: 40px;
 		/*padding-left: 15px;*/
 	}
 
+	.items .items_t.bold
+	{
+		font-weight: 400;
+	}
+
 	.items .items_inner  {
 		/*overflow: hidden;*/
 		margin: 0 -15px;
 		
+	}
+
+	.items .items_holder
+	{
+		margin: 30px 0 20px;
 	}
 
 	.items .items_inner:after  {

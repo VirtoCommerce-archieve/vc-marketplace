@@ -377,6 +377,11 @@
 		line-height: 16px;
 	}
 
+	.card_descr.fixed
+	{
+		padding-top: 0;
+	}
+
 	.card_properties {
 
 	}
