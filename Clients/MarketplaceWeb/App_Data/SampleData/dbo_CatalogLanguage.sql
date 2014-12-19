@@ -1,0 +1,2 @@
+﻿INSERT INTO [CatalogLanguage] ([CatalogLanguageId],[Language],[CatalogId],[LastModified],[Created],[Discriminator]) VALUES (N'970a7239-2c72-4f21-8863-2d7e92bd4a40',N'en-US',N'MarketPlace',N'20141219 08:40:11.487',N'20141219 08:40:11.487',N'CatalogLanguage');
+INSERT INTO [CatalogLanguage] ([CatalogLanguageId],[Language],[CatalogId],[LastModified],[Created],[Discriminator]) VALUES (N'edcfbd30-5ad6-491e-b528-6acece8d60c9',N'ru-RU',N'MarketPlace',N'20141219 08:40:11.487',N'20141219 08:40:11.487',N'CatalogLanguage');

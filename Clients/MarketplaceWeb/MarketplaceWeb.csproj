@@ -184,6 +184,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\BannerModel.cs" />
+    <Compile Include="Models\DeveloperProfile.cs" />
     <Compile Include="Models\ReleaseStatus.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\ExtensionModels.cs" />
@@ -203,6 +204,7 @@
   <ItemGroup>
     <Content Include="App_Data\SampleData\dbo_Catalog.sql" />
     <Content Include="App_Data\SampleData\dbo_CatalogBase.sql" />
+    <Content Include="App_Data\SampleData\dbo_CatalogLanguage.sql" />
     <Content Include="App_Data\SampleData\dbo_Category.sql" />
     <Content Include="App_Data\SampleData\dbo_CategoryBase.sql" />
     <Content Include="App_Data\SampleData\dbo_CategoryItemRelation.sql" />
@@ -240,6 +242,7 @@
     <Content Include="Content\themes\default\images\icon_lw.png" />
     <Content Include="Content\themes\default\images\icon_xlw.png" />
     <Content Include="Content\themes\default\images\logo.png" />
+    <Content Include="Content\themes\default\images\our_team.jpg" />
     <Content Include="Content\themes\default\images\rating16.png" />
     <Content Include="Content\themes\default\images\rating32.png" />
     <Content Include="Content\themes\default\images\yellow-diagon.png" />
@@ -383,6 +386,7 @@
     <Content Include="Views\Errors\ServiceError.cshtml" />
     <Content Include="Views\Extension\DisplayTemplates\Release.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

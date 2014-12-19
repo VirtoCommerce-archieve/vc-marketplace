@@ -6,6 +6,8 @@ namespace MarketplaceWeb.Models
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public string FullDescription { get; set; }
+
         public UserType UserType { get; set; }
 
         /// <summary>

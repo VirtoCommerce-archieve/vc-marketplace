@@ -1,0 +1,30 @@
+﻿@model DeveloperProfile
+
+<div class="items_outer bl">
+    <div class="items fixw __cat">
+        <div class="clearfix">
+            <div class="del3_4">
+                <div class="items_nav fright">
+                    <a class="items_a fleft" href="http://virtocommerce.com/contact-us">Contact</a>
+                    <a class="items_a fleft" href="@Url.Action("Support", new {id=Model.User.Id})">Support</a>
+                </div>
+                <h2 class="items_t">@Model.User.Name</h2>
+                @Html.Raw(Model.User.FullDescription)
+            </div>
+            <div class="del4 card_links">
+                <figure class="card_thumb_outer">
+                    <img src="@string.Format("data:image/jpg;base64,{0}", Model.User.Icon)" class="card_thumb" />
+                </figure>
+            </div>
+        </div>
+        <div class="items_holder">
+            <span class="h4 slim">extensions by this developer (@Model.Extensions.Count())</span>
+        </div>
+        <div class="items_inner clearfix">
+            @foreach (var item in Model.Extensions)
+            {
+                @Html.DisplayFor(m => item, "Item")
+            }
+        </div>
+    </div>
+</div>

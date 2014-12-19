@@ -21,6 +21,7 @@ if($useWidowsLogin)
 {
 invoke-sqlcmd -inputfile "$($datafolder)\dbo_CatalogBase.sql" -serverinstance $serverinstance -database $db
 invoke-sqlcmd -inputfile "$($datafolder)\dbo_Catalog.sql" -serverinstance $serverinstance -database $db
+invoke-sqlcmd -inputfile "$($datafolder)\dbo_CatalogLanguage.sql" -serverinstance $serverinstance -database $db
 invoke-sqlcmd -inputfile "$($datafolder)\dbo_Store.sql" -serverinstance $serverinstance -database $db
 
 invoke-sqlcmd -inputfile "$($datafolder)\dbo_Property.sql" -serverinstance $serverinstance -database $db
@@ -50,6 +51,7 @@ else
 
 invoke-sqlcmd -inputfile "$($datafolder)\dbo_CatalogBase.sql" -serverinstance $serverinstance -database $db -Username $user -Password $pwd
 invoke-sqlcmd -inputfile "$($datafolder)\dbo_Catalog.sql" -serverinstance $serverinstance -database $db -Username $user -Password $pwd
+invoke-sqlcmd -inputfile "$($datafolder)\dbo_CatalogLanguage.sql" -serverinstance $serverinstance -database $db -Username $user -Password $pwd
 invoke-sqlcmd -inputfile "$($datafolder)\dbo_Store.sql" -serverinstance $serverinstance -database $db -Username $user -Password $pwd
 
 invoke-sqlcmd -inputfile "$($datafolder)\dbo_Property.sql" -serverinstance $serverinstance -database $db -Username $user -Password $pwd
