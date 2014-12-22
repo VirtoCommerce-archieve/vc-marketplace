@@ -1,0 +1,26 @@
+﻿<div class="fixw">
+    <span class="h2">Become a developer</span>
+    <div class="row">
+        <form class="form del2" action="@Url.Action("Send","Mail")" method="POST" id="becomedeveloperform">
+            <input type="hidden" name="Subject" value="Become Developer"/>
+            <input type="hidden" name="RedirectUrl" value="@Url.Action("Index")" />
+            <div class="it-group __block">
+                <label for="uemail" class="label">E-mail Adress</label>
+                <input type="email" placeholder="Your e-mail" class="it" id="uemail" name="To" 
+                       data-val="true" 
+                       data-val-required="You must enter your email address" 
+                       data-val-email="You must enter valid email address">
+                <br />
+                <span data-valmsg-replace="true" data-valmsg-for="To" class="field-validation-valid"tyle="float: left;"></span>
+            </div>
+            <div class="it-group __block">
+                <label for="uemail" class="label">Full name</label>
+                <input type="text" placeholder="Your name" class="it" id="uemail" name="FullName">
+            </div>
+            <div class="it-group __block">
+                <a class="btn __sb __block __radial" onclick="$('#becomedeveloperform').submit();">Become a developer</a>
+            </div>
+        </form>
+    </div>
+</div>
+

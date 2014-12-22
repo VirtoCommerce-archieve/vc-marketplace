@@ -66,6 +66,7 @@ VirtoCommerce.prototype = {
                 type: "GET",
                 dataType: "html",
                 url: url,
+                cache: false,
                 success: function (data)
                 {
                     var htmlData = $('<div/>').html(data);

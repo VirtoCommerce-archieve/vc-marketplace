@@ -254,6 +254,7 @@
     <Content Include="Content\themes\default\images\our_team.jpg" />
     <Content Include="Content\themes\default\images\rating16.png" />
     <Content Include="Content\themes\default\images\rating32.png" />
+    <Content Include="Content\themes\default\images\validation_advice_bg.gif" />
     <Content Include="Content\themes\default\images\yellow-diagon.png" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
@@ -396,6 +397,7 @@
     <Content Include="Views\Extension\DisplayTemplates\Release.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Page\BecomeDeveloper.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
