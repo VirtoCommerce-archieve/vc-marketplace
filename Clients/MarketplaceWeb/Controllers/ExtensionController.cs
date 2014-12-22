@@ -56,8 +56,10 @@ namespace MarketplaceWeb.Controllers
         {
             try
             {
-                var result = Task.Run(() => SearchClient.GetProductByCodeAsync(itemCode)).Result;
-                var model = result.ToWebModel();
+                var product = Task.Run(() => SearchClient.GetProductByCodeAsync(itemCode)).Result;
+                var reviews = Task.Run(() => ReviewsClient.GetReviewsAsync(product.Id)).Result;
+                var model = product.ToWebModel();
+                model.Rating = reviews.TotalCount > 0 ? reviews.Items.Average(x => x.Rating) : 0;
                 return PartialView("DisplayTemplates/Item", model);
             }
             catch (Exception)
