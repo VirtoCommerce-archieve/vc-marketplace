@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using VirtoCommerce.ApiClient.DataContracts;
+using VirtoCommerce.ApiClient.Extensions;
 using VirtoCommerce.ApiClient.Utilities;
 
 namespace VirtoCommerce.ApiClient

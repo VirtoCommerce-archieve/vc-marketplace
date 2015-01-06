@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using VirtoCommerce.ApiClient.DataContracts;
 
-namespace VirtoCommerce.ApiClient.Utilities
+namespace VirtoCommerce.ApiClient.Extensions
 {
     internal static class QueryExtensions
     {

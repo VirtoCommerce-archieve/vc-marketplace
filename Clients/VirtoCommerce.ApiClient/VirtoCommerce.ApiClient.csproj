@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="BaseClient.cs" />
     <Compile Include="DataContracts\Security\ApplicationUser.cs" />
+    <Compile Include="Extensions\QueryExtensions.cs" />
     <Compile Include="Extensions\SecurityClientExtension.cs" />
     <Compile Include="SecurityClient.cs" />
     <Compile Include="DataContracts\Contents\DynamicContentItemGroup.cs" />
@@ -101,7 +102,6 @@
     <Compile Include="DataContracts\ResponseCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\ConnectionHelper.cs" />
-    <Compile Include="Utilities\QueryExtensions.cs" />
     <Compile Include="Utilities\AzureSubscriptionMessageProcessingHandler.cs" />
     <Compile Include="Utilities\TokenMessageProcessingHandler.cs" />
   </ItemGroup>

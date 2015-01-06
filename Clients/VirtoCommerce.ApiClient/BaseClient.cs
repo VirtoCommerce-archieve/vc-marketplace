@@ -123,7 +123,7 @@ namespace VirtoCommerce.ApiClient
         protected Task<TOutput> SendAsync<TOutput>(Uri requestUri, HttpMethod httpMethod, string userId = null)
         {
             var message = new HttpRequestMessage(httpMethod, requestUri);
-            return SendAsync<TOutput>(requestUri, httpMethod, message, true, userId);
+            return SendAsync<TOutput>(message, true, userId);
         }
 
         /// <summary>
@@ -155,10 +155,10 @@ namespace VirtoCommerce.ApiClient
                 Content = new ObjectContent<TInput>(body, CreateMediaTypeFormatter())
             };
 
-            return SendAsync<TOutput>(requestUri, httpMethod, message, true, userId);
+            return SendAsync<TOutput>(message, true, userId);
         }
 
-        private async Task<TOutput> SendAsync<TOutput>(Uri requestUri, HttpMethod httpMethod, HttpRequestMessage message, bool hasResult, string userId = null)
+        private async Task<TOutput> SendAsync<TOutput>(HttpRequestMessage message, bool hasResult, string userId = null)
         {
             if (!string.IsNullOrWhiteSpace(userId))
             {
