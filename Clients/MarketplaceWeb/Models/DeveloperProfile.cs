@@ -5,10 +5,15 @@ using System.Web;
 
 namespace MarketplaceWeb.Models
 {
-    public class DeveloperProfile
-    {
-        public User User { get; set; }
+	public class VendorInformationModel
+	{
+		public VendorInformationModel()
+		{
+			User = new User();
+		}
 
-        public IEnumerable<Extension> Extensions { get; set; }
-    }
+		public User User { get; set; }
+
+		public IEnumerable<Extension> Extensions { get; set; }
+	}
 }

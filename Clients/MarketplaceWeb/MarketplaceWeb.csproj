@@ -60,6 +60,10 @@
     <Reference Include="MvcSiteMapProvider.WebActivator">
       <HintPath>..\..\packages\MvcSiteMapProvider.MVC5.4.6.17\lib\net45\MvcSiteMapProvider.WebActivator.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Omu.ValueInjecter">
       <HintPath>..\..\packages\valueinjecter.2.3.3\lib\net35\Omu.ValueInjecter.dll</HintPath>
     </Reference>
@@ -74,6 +78,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.identitymodel.services" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -125,6 +133,10 @@
       <Private>True</Private>
       <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="VirtoCommerce.ApiClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Shared\VirtoCommerce.ApiClient.dll</HintPath>
+    </Reference>
     <Reference Include="WebActivatorEx">
       <HintPath>..\..\packages\WebActivatorEx.2.0.1\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -138,9 +150,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Owin">
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -179,6 +188,7 @@
     <Compile Include="Controllers\MailController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\PageController.cs" />
+    <Compile Include="Controllers\VendorController.cs" />
     <Compile Include="Converters\ExtensionConverter.cs" />
     <Compile Include="Converters\ReviewConverter.cs" />
     <Compile Include="Converters\UserConverters.cs" />
@@ -186,7 +196,9 @@
     <Compile Include="Helpers\CurrencyHelper.cs" />
     <Compile Include="Helpers\Marketing\ContextFieldConstants.cs" />
     <Compile Include="Helpers\Marketing\CustomerSession.cs" />
+    <Compile Include="Helpers\SiteUrlHelper.cs" />
     <Compile Include="Helpers\UrlHelperExtensions.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Helpers\ViewRenderer.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -296,6 +308,7 @@
     <Content Include="App_Data\Configuration\connectionStrings.local.config" />
     <Content Include="App_Data\Configuration\connectionStrings.azure.config" />
     <Content Include="App_Data\SampleData\setup-database.ps1" />
+    <None Include="Properties\PublishProfiles\mp-frontend.pubxml" />
     <None Include="Resources\Icon1.ico" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -396,7 +409,7 @@
     <Content Include="Views\Errors\ServiceError.cshtml" />
     <Content Include="Views\Extension\DisplayTemplates\Release.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Vendor\Information.cshtml" />
     <Content Include="Views\Page\BecomeDeveloper.cshtml" />
   </ItemGroup>
   <ItemGroup />
@@ -405,12 +418,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VirtoCommerce.ApiClient\VirtoCommerce.ApiClient.csproj">
-      <Project>{f8466993-51a9-4093-b6a3-faf7b1c9d620}</Project>
-      <Name>VirtoCommerce.ApiClient</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -14,6 +14,8 @@ namespace MarketplaceWeb.Models
         /// Icon is byte[] encoded as base64
         /// </summary>
         public string Icon { get; set; }
+
+		public string UserEmail { get; set; }
     }
 
     public enum UserType

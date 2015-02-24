@@ -6,6 +6,7 @@ using System.Threading;
 using System.Web;
 using System.Web.Security;
 using VirtoCommerce.ApiClient.DataContracts;
+using VirtoCommerce.Web.Core.DataContracts;
 
 namespace MarketplaceWeb.Helpers.Marketing
 {

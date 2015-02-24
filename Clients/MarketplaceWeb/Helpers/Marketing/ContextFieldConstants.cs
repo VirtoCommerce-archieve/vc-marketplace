@@ -9,6 +9,7 @@ namespace MarketplaceWeb.Helpers.Marketing
     {
         public static readonly string CategoryOutline = "CategoryOutline";
         public static readonly string CategoryId = "CategoryId";
+		public static readonly string CategoryCode = "CategoryCode";
         public static readonly string StoreId = "StoreId";
 
         public static readonly string StoreSearchPhrase = "StoreSearchPhrase";

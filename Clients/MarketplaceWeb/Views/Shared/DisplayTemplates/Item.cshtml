@@ -20,7 +20,7 @@
 }
 
 
-<a class="items_i del4" href="@Url.Action("DisplayItem","Extension",new {id = Model.Id})">
+<a class="items_i del4" href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/extension/{0}", Model.Code))">
     <figure class="items_i_thumb_outer">
         <img class="items_i_thumb" alt="" src="@Url.Image(Model, "primaryimage")" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';">
     </figure>

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using MarketplaceWeb.Models;
 using VirtoCommerce.ApiClient.DataContracts;
 using VirtoCommerce.ApiClient.Extensions;
+using VirtoCommerce.Web.Core.DataContracts;
 
 namespace MarketplaceWeb.Helpers
 {

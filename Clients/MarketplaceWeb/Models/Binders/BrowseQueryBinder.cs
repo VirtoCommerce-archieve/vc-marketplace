@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Web.Mvc;
 using VirtoCommerce.ApiClient.DataContracts;
 using VirtoCommerce.ApiClient.Extensions;
+using VirtoCommerce.Web.Core.DataContracts;
 
 namespace MarketplaceWeb.Models.Binders
 {

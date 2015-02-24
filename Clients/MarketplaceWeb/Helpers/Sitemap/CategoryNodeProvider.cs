@@ -18,7 +18,7 @@ namespace MarketplaceWeb.Helpers.Sitemap
         {
             get
             {
-                return ClientContext.Clients.CreateBrowseClient(ConnectionHelper.ApiConnectionString("vc-commerce-api-mp"));
+                return ClientContext.Clients.CreateBrowseClient("MarketPlace");
             }
         }
 
@@ -30,10 +30,10 @@ namespace MarketplaceWeb.Helpers.Sitemap
             {
                 Action = "CategorySearch",
                 Title = cat.Name,
-                Key = cat.Id,
+                Key = cat.Code,
                 Order = order++,
                 ParentKey = cat.ParentId,
-                RouteValues = new Dictionary<string, object> { { "categoryId", cat.Id } }
+				RouteValues = new Dictionary<string, object> { { "categoryId", cat.Code } }
             });
         }
     }

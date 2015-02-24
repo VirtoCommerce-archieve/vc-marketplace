@@ -9,42 +9,51 @@ using MarketplaceWeb.Helpers.Marketing;
 using VirtoCommerce.ApiClient;
 using VirtoCommerce.ApiClient.Extensions;
 using VirtoCommerce.ApiClient.Utilities;
+using MarketplaceWeb.Models;
+using System.Threading.Tasks;
 
 namespace MarketplaceWeb.Controllers
 {
-    public abstract class ControllerBase : Controller
+	public abstract class ControllerBase : Controller
 	{
-        public BrowseClient SearchClient
-        {
-            get
-            {
-                return ClientContext.Clients.CreateBrowseClient(ConnectionHelper.ApiConnectionString("vc-commerce-api-mp"));
-            }
-        }
+		public BrowseClient SearchClient
+		{
+			get
+			{
+				return ClientContext.Clients.CreateBrowseClient("marketplace");
+			}
+		}
 
-        public ContentClient ContentClient
-        {
-            get
-            {
-                return ClientContext.Clients.CreateContentClient(ConnectionHelper.ApiConnectionString("vc-commerce-api-mp", null));
-            }
-        }
+		public ContentClient ContentClient
+		{
+			get
+			{
+				return ClientContext.Clients.CreateDefaultContentClient();
+			}
+		}
 
-        public ReviewsClient ReviewsClient
-        {
-            get
-            {
-                return ClientContext.Clients.CreateReviewsClient(ConnectionHelper.ApiConnectionString("vc-commerce-api-mp"));
-            }
-        }
+		public ReviewsClient ReviewsClient
+		{
+			get
+			{
+				return ClientContext.Clients.CreateReviewsClient();
+			}
+		}
 
-        public SecurityClient SecurityClient
-        {
-            get
-            {
-                return ClientContext.Clients.CreateSecurityClient();
-            }
-        }
-    
-    }
+		public SecurityClient SecurityClient
+		{
+			get
+			{
+				return ClientContext.Clients.CreateSecurityClient();
+			}
+		}
+
+		public CustomerServiceClient CustomerServiceClient
+		{
+			get
+			{
+				return ClientContext.Clients.CreateDefaultCustomerServiceClient();
+			}
+		}
+	}
 }

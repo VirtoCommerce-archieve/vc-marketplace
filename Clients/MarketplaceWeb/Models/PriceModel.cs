@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using MarketplaceWeb.Helpers;
+using MarketplaceWeb.Converters;
 
 namespace MarketplaceWeb.Models
 {
@@ -19,7 +20,7 @@ namespace MarketplaceWeb.Models
 
         public string FormatedPrice { get; set; }
 
-        public static PriceModel Parse(IDictionary<string, string[]> propertyDictionary)
+        public static PriceModel Parse(IDictionary<string, object> propertyDictionary)
         {
             var retVal = new PriceModel();
 
@@ -27,7 +28,7 @@ namespace MarketplaceWeb.Models
             if (!string.IsNullOrEmpty(key))
             {
                 decimal price;
-                decimal.TryParse(propertyDictionary[PriceProperty].First(), out price);
+                decimal.TryParse(propertyDictionary.ParsePropertyToString(PriceProperty), out price);
                 retVal.Price = price;
             }
 
@@ -35,14 +36,14 @@ namespace MarketplaceWeb.Models
             if (!string.IsNullOrEmpty(key))
             {
                 bool isFree;
-                bool.TryParse(propertyDictionary[IsFreeProperty].First(), out isFree);
+                bool.TryParse((string)propertyDictionary[IsFreeProperty], out isFree);
                 retVal.IsFree = isFree;
             }
 
             key = propertyDictionary.Keys.FirstOrDefault(x => x.Equals(CurrencyProperty, StringComparison.OrdinalIgnoreCase));
             if (!string.IsNullOrEmpty(key))
             {
-                retVal.Currency = propertyDictionary[CurrencyProperty].First();
+                retVal.Currency = (string)propertyDictionary[CurrencyProperty];
             }
 
             if (!retVal.IsFree && !string.IsNullOrWhiteSpace(retVal.Currency))

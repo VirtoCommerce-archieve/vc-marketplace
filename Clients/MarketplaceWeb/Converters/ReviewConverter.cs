@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using MarketplaceWeb.Models;
 using VirtoCommerce.ApiClient.DataContracts;
+using VirtoCommerce.Web.Core.DataContracts;
 
 namespace MarketplaceWeb.Converters
 {

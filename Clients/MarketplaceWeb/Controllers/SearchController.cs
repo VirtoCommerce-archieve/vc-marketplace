@@ -13,6 +13,8 @@ using System.Web.Mvc;
 using VirtoCommerce.ApiClient;
 using VirtoCommerce.ApiClient.DataContracts;
 using VirtoCommerce.ApiClient.Extensions;
+using VirtoCommerce.Web.Core.DataContracts;
+using System.Collections.Generic;
 
 namespace MarketplaceWeb.Controllers
 {
@@ -33,21 +35,21 @@ namespace MarketplaceWeb.Controllers
             return View(retVal);
         }
 
-        [Route("{categoryId}")]
-        public async Task<ActionResult> CategorySearch(string categoryId, BrowseQuery query)
+		[Route("{categoryId}")]
+		public async Task<ActionResult> CategorySearch(string categoryId, BrowseQuery query)
         {
-            var category = await SearchClient.GetCategoryAsync(categoryId);
+			var category = await SearchClient.GetCategoryByCodeAsync(categoryId);
 
             if (category != null)
             {
                 ViewBag.Title = String.Format(category.Name);
 
-                CustomerSession.Current.Tags.Add(ContextFieldConstants.CategoryId, categoryId);
-                CustomerSession.Current.CategoryId = categoryId;
+				CustomerSession.Current.Tags.Add(ContextFieldConstants.CategoryCode, categoryId);
+				CustomerSession.Current.CategoryId = categoryId;
 
                 RestoreSearchPreferences(query);
 
-                query.Outline = category.Outline;
+				query.Outline = GetOutline(category);
 
                 var retVal = await SearchAsync(query);
 
@@ -57,11 +59,11 @@ namespace MarketplaceWeb.Controllers
             throw new HttpException(404, "Category not found");
         }
 
-        [Route("developer/{userId}")]
-        public async Task<ActionResult> DevelopersExtensions(BrowseQuery query, string userId)
+		[Route("developer/{vendorId}")]
+		public async Task<ActionResult> DevelopersExtensions(BrowseQuery query, string vendorId)
         {
             ViewBag.Title = "Developer extensions";
-            query.Filters.Add("userId", new[] { userId });
+			query.Filters.Add("vendorId", new[] { vendorId });
             var retVal = await SearchAsync(query);
             return View("Index", retVal);
         }
@@ -106,7 +108,7 @@ namespace MarketplaceWeb.Controllers
 
                 if (category != null)
                 {
-                    query.Outline = category.Outline;
+					query.Outline = GetOutline(category);
                 }
             }
 
@@ -202,6 +204,13 @@ namespace MarketplaceWeb.Controllers
             parameters.SortProperty = sort;
             parameters.SortDirection = sortOrder;
         }
+
+		private string GetOutline(Category category)
+		{
+			var ids = category.Parents != null ? category.Parents.Select(x => x.Id).ToList() : new List<string>();
+			ids.Add(category.Id);
+            return string.Join("/", ids);
+		}
 
         #endregion
 
