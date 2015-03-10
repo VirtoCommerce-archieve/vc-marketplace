@@ -140,14 +140,19 @@ data input UI
 	border: 1px solid #fba61a;
 }
 
+textarea
+{
+	resize: none;
+}
+
 
 
 .it, .itx {
 	color: #bcbec0;
 	font-size: 14px;
 	border: 1px solid #e2e2e2;
-	padding: 0 18px;
-	height: 40px;
+	padding: 10px 18px;
+	height: 40;
 	vertical-align: middle;
 	-webkit-box-sizing: border-box;
 	   -moz-box-sizing: border-box;
@@ -177,6 +182,13 @@ data input UI
 .it {
 	height: 40px;
 
+}
+
+.it.__db,
+.itx.__db
+{
+	display: block;
+	width: 100%;
 }
 
 	.it.it.__error {
@@ -685,6 +697,97 @@ data input UI
 
 
 
+/* Popup reviews  */
+.popup-overlay
+{
+	background: rgba(89,89,91,.8);
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 5000;
+}
+
+.popup
+{
+	background: #fff;
+	padding: 25px 40px 40px;
+	left: 50%;
+	position: absolute;
+	top: 50%;
+	z-index: 9000;
+
+	-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+}
+
+.popup.__review
+{
+	width: 60%;
+}
+
+.popup.__review .popup-close
+{
+	background: url(../images/close_xs.png) no-repeat scroll 0 0;
+	cursor: pointer;
+	height: 18px;
+	position: absolute;
+	right: 25px;
+	top: 25px;
+	width: 18px;
+}
+
+.popup.__review .popup-head
+{
+	border-bottom: 1px solid #e4e4e5;
+	margin: 0 -40px 25px;
+	padding: 0 0 25px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+.popup-head_t
+{
+	color: #888;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.popup.__review .popup-cnt
+{
+	margin: 0 0 15px;
+}
+
+.popup-cnt .popup-rating
+{
+	margin: 0 0 15px;
+	overflow: hidden;
+}
+
+.popup-cnt .popup-rating_text
+{
+	color: #888;
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0 40px 0 0;
+	text-transform: uppercase;
+}
+
+.popup.__review .popup-foot
+{
+
+}
+
+.popup-foot .btn.__info
+{
+	margin: 0 10px 0 0;
+	width: 200px;
+}
+
+
+
+
 /* responsive */
 
 @media (min-width: 768px) and (max-width: 1019px) {
@@ -795,6 +898,14 @@ data input UI
 		font-size: 12px;
 		width: 100px;
 	}
+
+	.popup-foot .btn.__info,
+	.popup-foot .btn
+	{
+		display: block;
+		margin: 0 0 10px;
+		width: 100%;
+	}
 }
 
 @media (max-width: 480px) {
@@ -839,5 +950,11 @@ data input UI
 	.rating_progress {
 		background: url(../images/rating32.png) repeat-x scroll 0 100%;
 		background-size: 20px 30px;
+	}
+
+	.popup.__review .popup-close
+	{
+		background: url(../images/close_xl.png) repeat-x scroll 0 100%;
+		background-size: 18px 18px;
 	}
 }
