@@ -17,201 +17,201 @@ using System.Collections.Generic;
 
 namespace MarketplaceWeb.Controllers
 {
-    [RoutePrefix("extensions")]
-    public class SearchController : ControllerBase
-    {
-        [Route("search")]
-        public async Task<ActionResult> Index(BrowseQuery query)
-        {
+	[RoutePrefix("extensions")]
+	public class SearchController : ControllerBase
+	{
+		[Route("search")]
+		public async Task<ActionResult> Index(BrowseQuery query)
+		{
 
-            if (!string.IsNullOrWhiteSpace(query.Search))
-            {
-                ViewBag.Title = String.Format("Searching by '{0}'", query.Search);
-            }
+			if (!string.IsNullOrWhiteSpace(query.Search))
+			{
+				ViewBag.Title = String.Format("Searching by '{0}'", query.Search);
+			}
 
-            var retVal = await SearchAsync(query);
+			var retVal = await SearchAsync(query);
 
-            return View(retVal);
-        }
+			return View(retVal);
+		}
 
 		[Route("{categoryId}")]
 		public async Task<ActionResult> CategorySearch(string categoryId, BrowseQuery query)
-        {
+		{
 			var category = await SearchClient.GetCategoryByCodeAsync("MarketPlace", "en-US", categoryId);
 
-            if (category != null)
-            {
-                ViewBag.Title = String.Format(category.Name);
+			if (category != null)
+			{
+				ViewBag.Title = String.Format(category.Name);
 
 				CustomerSession.Current.Tags.Add(ContextFieldConstants.CategoryCode, categoryId);
 				CustomerSession.Current.CategoryId = categoryId;
 
-                RestoreSearchPreferences(query);
+				RestoreSearchPreferences(query);
 
 				query.Outline = GetOutline(category);
 
-                var retVal = await SearchAsync(query);
+				var retVal = await SearchAsync(query);
 
-                return View("Index", retVal);
-            }
+				return View("Index", retVal);
+			}
 
-            throw new HttpException(404, "Category not found");
-        }
+			throw new HttpException(404, "Category not found");
+		}
 
 		[Route("developer/{vendorId}")]
 		public async Task<ActionResult> DevelopersExtensions(BrowseQuery query, string vendorId)
-        {
-            ViewBag.Title = "Developer extensions";
+		{
+			ViewBag.Title = "Developer extensions";
 			query.Filters.Add("vendorId", new[] { vendorId });
-            var retVal = await SearchAsync(query);
-            return View("Index", retVal);
-        }
+			var retVal = await SearchAsync(query);
+			return View("Index", retVal);
+		}
 
-        public async Task<ActionResult> Find(string term)
-        {
-            ViewBag.Title = String.Format("Searching by '{0}'", term);
+		public async Task<ActionResult> Find(string term)
+		{
+			ViewBag.Title = String.Format("Searching by '{0}'", term);
 
-            var query = new BrowseQuery
-            {
-                Take = 15, //autocomplete returns first 15
-                Search = term.EscapeSearchTerm()
-            };
+			var query = new BrowseQuery
+			{
+				Take = 15, //autocomplete returns first 15
+				Search = term.EscapeSearchTerm()
+			};
 			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query);
 
-            var data = from i in results.Items
-                       select new
-                           {
-                               url = Url.Action("DisplayItem", "Extension", new { id = i.Id }),
-                               value = i.Name
-                           };
-            return Json(data.ToArray(), JsonRequestBehavior.AllowGet);
-        }
+			var data = from i in results.Items
+					   select new
+						   {
+							   url = Url.Action("DisplayItem", "Extension", new { id = i.Id }),
+							   value = i.Name
+						   };
+			return Json(data.ToArray(), JsonRequestBehavior.AllowGet);
+		}
 
-        [ChildActionOnly]
-        public ActionResult SearchItems(CategoryUrlModel categoryUrl)
-        {
-            var query = new BrowseQuery
-            {
-                SortProperty = categoryUrl.SortField,
-                Take = categoryUrl.ItemCount
-            };
+		[ChildActionOnly]
+		public ActionResult SearchItems(CategoryUrlModel categoryUrl)
+		{
+			var query = new BrowseQuery
+			{
+				SortProperty = categoryUrl.SortField,
+				Take = categoryUrl.ItemCount
+			};
 
-            if (categoryUrl.NewItemsOnly)
-            {
-                query.StartDateFrom = DateTime.UtcNow.AddMonths(-1);
-            }
+			if (categoryUrl.NewItemsOnly)
+			{
+				query.StartDateFrom = DateTime.UtcNow.AddMonths(-1);
+			}
 
-            if (!string.IsNullOrWhiteSpace(categoryUrl.CategoryCode))
-            {
+			if (!string.IsNullOrWhiteSpace(categoryUrl.CategoryCode))
+			{
 				var category = Task.Run(() => SearchClient.GetCategoryByCodeAsync("MarketPlace", "en-US", categoryUrl.CategoryCode)).Result;
 
-                if (category != null)
-                {
+				if (category != null)
+				{
 					query.Outline = GetOutline(category);
-                }
-            }
+				}
+			}
 
-            //Need to run synchrously because of child action
-            var model = Search(query);
+			//Need to run synchrously because of child action
+			var model = Search(query);
 
-            return PartialView(model.Results);
-        }
+			return PartialView(model.Results);
+		}
 
-        #region Private Helpers
+		#region Private Helpers
 
-        private static SearchResult CreateSearchResult(ResponseCollection<Product> results, BrowseQuery query)
-        {
-            var retVal = new SearchResult
-            {
-                Results = results.Items.Select(x => x.ToWebModel()).ToList(),
-                Pager =
-                {
-                    TotalCount = results.TotalCount,
-                    CurrentPage = query.Skip ?? 0,
-                    RecordsPerPage = query.Take ?? BrowseQuery.DefaultPageSize,
-                    StartingRecord = query.Take ?? 0 * query.Skip ?? 0,
-                    DisplayStartingRecord = query.Skip ?? 0 + 1,
-                    SortValues = new[] { "Price", "Rating" },
-                    SelectedSort = query.SortProperty,
-                    SortOrder = query.SortDirection
-                }
-            };
+		private static SearchResult CreateSearchResult(ResponseCollection<Product> results, BrowseQuery query)
+		{
+			var retVal = new SearchResult
+			{
+				Results = results.Items.Select(x => x.ToWebModel()).ToList(),
+				Pager =
+				{
+					TotalCount = results.TotalCount,
+					CurrentPage = query.Skip ?? 0,
+					RecordsPerPage = query.Take ?? BrowseQuery.DefaultPageSize,
+					StartingRecord = query.Take ?? 0 * query.Skip ?? 0,
+					DisplayStartingRecord = query.Skip ?? 0 + 1,
+					SortValues = new[] { "Price", "Rating" },
+					SelectedSort = query.SortProperty,
+					SortOrder = query.SortDirection
+				}
+			};
 
-            var end = query.Skip + query.Take ?? 0;
-            retVal.Pager.DisplayEndingRecord = end > results.TotalCount ? results.TotalCount : end;
+			var end = query.Skip + query.Take ?? 0;
+			retVal.Pager.DisplayEndingRecord = end > results.TotalCount ? results.TotalCount : end;
 
-            return retVal;
-        }
+			return retVal;
+		}
 
-        private async Task<SearchResult> SearchAsync(BrowseQuery query)
-        {
-			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query);
-            var retVal = CreateSearchResult(results, query);
+		private async Task<SearchResult> SearchAsync(BrowseQuery query)
+		{
+			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query, ItemResponseGroups.ItemSmall);
+			var retVal = CreateSearchResult(results, query);
 
-            return retVal;
-        }
+			return retVal;
+		}
 
-        private SearchResult Search(BrowseQuery query)
-        {
-            return Task.Run(() => SearchAsync(query)).Result;
-        }
+		private SearchResult Search(BrowseQuery query)
+		{
+			return Task.Run(() => SearchAsync(query)).Result;
+		}
 
-        private void RestoreSearchPreferences(BrowseQuery parameters)
-        {
-            var pageSize = parameters.Take;
-            var sort = parameters.SortProperty;
-            var sortOrder = parameters.SortDirection;
+		private void RestoreSearchPreferences(BrowseQuery parameters)
+		{
+			var pageSize = parameters.Take;
+			var sort = parameters.SortProperty;
+			var sortOrder = parameters.SortDirection;
 
-            if (!pageSize.HasValue)
-            {
-                int parsedSize;
-                if (Int32.TryParse(CookieHelper.GetCookieValue("pagesizecookie"), out parsedSize))
-                {
-                    pageSize = parsedSize;
-                }
-            }
-            else
-            {
-                CookieHelper.SetCookie("pagesizecookie", pageSize.Value.ToString(CultureInfo.InvariantCulture), DateTime.Now.AddMonths(1));
-            }
+			if (!pageSize.HasValue)
+			{
+				int parsedSize;
+				if (Int32.TryParse(CookieHelper.GetCookieValue("pagesizecookie"), out parsedSize))
+				{
+					pageSize = parsedSize;
+				}
+			}
+			else
+			{
+				CookieHelper.SetCookie("pagesizecookie", pageSize.Value.ToString(CultureInfo.InvariantCulture), DateTime.Now.AddMonths(1));
+			}
 
-            if (!pageSize.HasValue)
-            {
-                pageSize = BrowseQuery.DefaultPageSize;
-            }
+			if (!pageSize.HasValue)
+			{
+				pageSize = BrowseQuery.DefaultPageSize;
+			}
 
-            parameters.Take = pageSize;
+			parameters.Take = pageSize;
 
-            if (String.IsNullOrEmpty(sort))
-            {
-                sort = CookieHelper.GetCookieValue("sortcookie");
-            }
-            else
-            {
-                CookieHelper.SetCookie("sortcookie", sort, DateTime.Now.AddMonths(1));
-            }
+			if (String.IsNullOrEmpty(sort))
+			{
+				sort = CookieHelper.GetCookieValue("sortcookie");
+			}
+			else
+			{
+				CookieHelper.SetCookie("sortcookie", sort, DateTime.Now.AddMonths(1));
+			}
 
-            if (String.IsNullOrEmpty(sortOrder))
-            {
-                sortOrder = CookieHelper.GetCookieValue("sortordercookie");
-            }
-            else
-            {
-                CookieHelper.SetCookie("sortordercookie", sortOrder, DateTime.Now.AddMonths(1));
-            }
+			if (String.IsNullOrEmpty(sortOrder))
+			{
+				sortOrder = CookieHelper.GetCookieValue("sortordercookie");
+			}
+			else
+			{
+				CookieHelper.SetCookie("sortordercookie", sortOrder, DateTime.Now.AddMonths(1));
+			}
 
-            parameters.SortProperty = sort;
-            parameters.SortDirection = sortOrder;
-        }
+			parameters.SortProperty = sort;
+			parameters.SortDirection = sortOrder;
+		}
 
 		private string GetOutline(Category category)
 		{
 			var ids = category.Parents != null ? category.Parents.Select(x => x.Id).ToList() : new List<string>();
 			ids.Add(category.Id);
-            return string.Join("/", ids);
+			return string.Join("/", ids);
 		}
 
-        #endregion
+		#endregion
 
-    }
+	}
 }

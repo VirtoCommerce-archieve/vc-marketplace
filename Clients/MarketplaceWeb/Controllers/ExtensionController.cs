@@ -9,6 +9,7 @@ using MarketplaceWeb.Models;
 using MvcSiteMapProvider;
 using VirtoCommerce.ApiClient;
 using MarketplaceWeb.Helpers;
+using VirtoCommerce.ApiClient.DataContracts;
 
 namespace MarketplaceWeb.Controllers
 {
@@ -19,7 +20,7 @@ namespace MarketplaceWeb.Controllers
 		[Route("{id}")]
 		public async Task<ActionResult> DisplayItem(string id)
 		{
-			var item = await SearchClient.GetProductByCodeAsync("MarketPlace", "en-US", id);
+			var item = await SearchClient.GetProductByCodeAsync("MarketPlace", "en-US", id, ItemResponseGroups.ItemLarge);
 			var reviews = await ReviewsClient.GetReviewsAsync(id);
 
 			if (ReferenceEquals(item, null))
