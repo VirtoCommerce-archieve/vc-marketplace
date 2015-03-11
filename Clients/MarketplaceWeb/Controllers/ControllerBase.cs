@@ -20,7 +20,7 @@ namespace MarketplaceWeb.Controllers
 		{
 			get
 			{
-				return ClientContext.Clients.CreateBrowseClient("marketplace");
+				return ClientContext.Clients.CreateBrowseClient();
 			}
 		}
 
@@ -52,7 +52,7 @@ namespace MarketplaceWeb.Controllers
 		{
 			get
 			{
-				return ClientContext.Clients.CreateDefaultCustomerServiceClient();
+				return ClientContext.Clients.CreateCustomerServiceClient();
 			}
 		}
 	}

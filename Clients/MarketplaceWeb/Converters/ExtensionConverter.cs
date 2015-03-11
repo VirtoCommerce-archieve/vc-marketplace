@@ -7,7 +7,6 @@ using System.Web;
 using MarketplaceWeb.Helpers;
 using MarketplaceWeb.Models;
 using VirtoCommerce.ApiClient.DataContracts;
-using VirtoCommerce.Web.Core.DataContracts;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
@@ -17,7 +16,8 @@ namespace MarketplaceWeb.Converters
     {
         public const string LicenseProperty = "License";
         public const string LocaleProperty = "Locale";
-        public const string UserIdProperty = "UserId";
+        public const string UserIdProperty = "VendorId";
+		public const string DescriptionProperty = "Description";
 
         //Variation properties
         public const string CompatibilityProperty = "Compatibility";
@@ -52,11 +52,6 @@ namespace MarketplaceWeb.Converters
                 var fullReview = reviews.FirstOrDefault(
                     x => x.ReviewType.Equals("FullReview", StringComparison.OrdinalIgnoreCase));
 
-                if (shortReview != null)
-                {
-                    retVal.Description = shortReview.Content;
-                }
-
                 if (fullReview != null)
                 {
                     retVal.FullDescription = fullReview.Content;
@@ -68,6 +63,7 @@ namespace MarketplaceWeb.Converters
                 retVal.License = item.Properties.ParsePropertyToString(LicenseProperty);
                 retVal.Locale = item.Properties.ParseProperty(LocaleProperty).ToList();
                 retVal.UserId = item.Properties.ParsePropertyToString(UserIdProperty);
+				retVal.Description = item.Properties.ParsePropertyToString(DescriptionProperty);
             }
 
             if (item.Variations != null)

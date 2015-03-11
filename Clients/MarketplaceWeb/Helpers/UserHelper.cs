@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Web;
 using VirtoCommerce.ApiClient;
 using VirtoCommerce.ApiClient.DataContracts.CustomerService;
-using VirtoCommerce.Web.Core.DataContracts;
 using VirtoCommerce.ApiClient.Extensions;
 using MarketplaceWeb.Converters;
+using VirtoCommerce.ApiClient.DataContracts;
 
 namespace MarketplaceWeb.Helpers
 {
@@ -18,7 +18,7 @@ namespace MarketplaceWeb.Helpers
 		{
 			get
 			{
-				return ClientContext.Clients.CreateDefaultCustomerServiceClient();
+				return ClientContext.Clients.CreateCustomerServiceClient();
 			}
 		}
 
@@ -40,7 +40,7 @@ namespace MarketplaceWeb.Helpers
 		{
 			var user = new User();
 
-			var contact = await CustomerServiceClient.GetContactById(vendorId);
+			var contact = await CustomerServiceClient.GetContactByIdAsync(vendorId);
 
 			if(contact != null)
 			{

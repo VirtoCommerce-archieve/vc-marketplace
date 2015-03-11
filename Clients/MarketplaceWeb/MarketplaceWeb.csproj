@@ -411,6 +411,7 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Vendor\Information.cshtml" />
     <Content Include="Views\Page\BecomeDeveloper.cshtml" />
+    <Content Include="Views\Shared\_ModuleLayout.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

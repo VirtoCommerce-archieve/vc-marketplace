@@ -22,6 +22,12 @@
 
 @if (Model.ReleaseStatus == ReleaseStatus.Active)
 {
+	if(!Model.Price.FormatedPrice.Equals("Free"))
+	{
+		<meta itemprop="priceCurrency" content="USD" />
+		<meta itemprop="price" content="@Model.Price.Price" />
+	}
+
     <a id="dowload-extension" href="@Model.LatestRelease.DownloadLink" class="card_get-lk btn __sb __block __radial __disabled">@string.Format("Get extension ({0})", Model.Price.FormatedPrice)</a>
     <div class="card_license">
         <div class="card_license_chck del2">

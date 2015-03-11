@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using MarketplaceWeb.Converters;
-using VirtoCommerce.Web.Core.DataContracts;
 using MarketplaceWeb.Helpers;
+using VirtoCommerce.ApiClient.DataContracts;
 
 namespace MarketplaceWeb.Controllers
 {
@@ -30,7 +30,7 @@ namespace MarketplaceWeb.Controllers
 			model.User = await userHelper.GetUser(vendorId);
 
 			query.Filters.Add("vendorId", new[] { vendorId });
-			var results = await SearchClient.GetProductsAsync(query);
+			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query);
 
 			model.Extensions = results.Items.Select(x => x.ToWebModel());
 
