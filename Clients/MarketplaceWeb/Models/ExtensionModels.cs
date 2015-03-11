@@ -5,7 +5,6 @@ using System.Linq;
 using System.Web;
 using Microsoft.Ajax.Utilities;
 using VirtoCommerce.ApiClient.DataContracts;
-using VirtoCommerce.Web.Core.DataContracts;
 
 namespace MarketplaceWeb.Models
 {

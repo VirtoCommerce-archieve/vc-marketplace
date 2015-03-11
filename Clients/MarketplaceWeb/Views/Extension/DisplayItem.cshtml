@@ -10,87 +10,91 @@
     <link type="text/css" rel="stylesheet" href="@Url.Content("~/Content/themes/default/css/images.css")">
 }
 
-<div class="bl transparent_bl">
-    <div class="card fixw">
+@{
+	Layout = "~/Views/Shared/_ModuleLayout.cshtml";
+}
 
-        <div class="del2 card_slider">
-            <!-- images block -->
-            <div class="item">
-                <figure>
-                    @if (Model.Extension.Images != null)
+<div class="bl transparent_bl">
+	<div class="card fixw">
+
+		<div class="del2 card_slider">
+			<!-- images block -->
+			<div class="item">
+				<figure>
+					@if (Model.Extension.Images != null)
                     {
                         for (var i = 0; i < Model.Extension.Images.Count; i++)
                         {
                             var image = Model.Extension.Images[i];
-                            <a rel="biggroup" href="@Url.Image(image)" data-image-id="@i" class="fancybox">
-                                <img alt="" itemprop="image" src="@Url.Image(image)" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';">
-                            </a>
+					<a rel="biggroup" href="@Url.Image(image)" data-image-id="@i" class="fancybox">
+						<img alt="" itemprop="image" src="@Url.Image(image)" onerror="this.onerror=null;this.src='@Href("~/Content/themes/default/images/blank.png")';">
+					</a>
                         }
                     }
-                </figure>
-            </div>
-            <!-- Листалка -->
-            <div class="list-items">
-                <a class="prev"></a>
-                <div class="scroll">
-                    <ul class="clearfix">
-                        @if (Model.Extension.Images != null)
+				</figure>
+			</div>
+			<!-- Листалка -->
+			<div class="list-items">
+				<a class="prev"></a>
+				<div class="scroll">
+					<ul class="clearfix">
+						@if (Model.Extension.Images != null)
                         {
                             for (var i = 0; i < Model.Extension.Images.Count; i++)
                             {
                                 var image = Model.Extension.Images[i];
 
-                                <li data-bigimage-id="@i">
-                                    <a>
-                                        <img alt="" itemprop="image" src="@Url.Image(image)">
-                                    </a>
-                                </li>
+						<li data-bigimage-id="@i">
+							<a>
+								<img alt="" itemprop="image" src="@Url.Image(image)">
+							</a>
+						</li>
                             }
                         }
-                    </ul>
-                </div>
-                <a class="next"></a>
-            </div>
-            <!-- / images block -->
-        </div>
-        <div class="del2 card_detail">
-            <div class="card_detail_inner">
-                <div class="del2 card_data">
-                    <h2 class="card_t">@Model.Extension.Title</h2>
-                    <div class="card_rating_outer">
-                        <div class="card_rating rating">
-                            <div class="rating_progress" style="width: @(Model.ReviewsAverage * 20)%"></div>
-                        </div>
-                        <div class="card_rating_num">@Model.ReviewsAverage</div>
-                    </div>
-                    @*<a href="#" class="items_a">read all 5 reviews</a>*@
-                    <a href="#" class="items_a">write a review</a>
-                    <article class="card_descr">
-                        @Html.Raw(Model.Extension.Description)
-                    </article>
-                    <div class="card_properties">
-                        <div class="card_properties_i">
-                            <span class="card_properties_i_name">Locale</span>
-                            <span class="card_properties_i_value">@string.Join(", ", Model.Extension.Locale)</span>
-                        </div>
-                        <div class="card_properties_i">
-                            <span class="card_properties_i_name">compatible with</span>
-                            <span class="card_properties_i_value">@string.Join(", ", Model.Extension.Compatibility)</span>
-                        </div>
-                        @if (Model.Extension.HasRelease)
+					</ul>
+				</div>
+				<a class="next"></a>
+			</div>
+			<!-- / images block -->
+		</div>
+		<div class="del2 card_detail">
+			<div class="card_detail_inner">
+				<div class="del2 card_data">
+					<h2 class="card_t" itemprop="name">@Model.Extension.Title</h2>
+					<div class="card_rating_outer">
+						<div class="card_rating rating">
+							<div class="rating_progress" style="width: @(Model.ReviewsAverage * 20)%"></div>
+						</div>
+						<div class="card_rating_num">@Model.ReviewsAverage</div>
+					</div>
+					@*<a href="#" class="items_a">read all 5 reviews</a>*@
+					<a href="#" class="items_a">write a review</a>
+					<article class="card_descr" itemprop="description">
+						@Html.Raw(Model.Extension.Description)
+					</article>
+					<div class="card_properties">
+						<div class="card_properties_i">
+							<span class="card_properties_i_name">Locale</span>
+							<span class="card_properties_i_value">@string.Join(", ", Model.Extension.Locale)</span>
+						</div>
+						<div class="card_properties_i">
+							<span class="card_properties_i_name">compatible with</span>
+							<span class="card_properties_i_value">@string.Join(", ", Model.Extension.Compatibility)</span>
+						</div>
+						@if (Model.Extension.HasRelease)
                         {
-                            <div class="card_properties_i">
-                                <span class="card_properties_i_name">last release</span>
-                                <span class="card_properties_i_value">@string.Format("{0} from {1:d}", Model.Extension.LatestRelease.Version, Model.Extension.LatestRelease.ReleaseDate)</span>
-                            </div>
+						<div class="card_properties_i">
+							<span class="card_properties_i_name">last release</span>
+							<span class="card_properties_i_value">@string.Format("{0} from {1:d}", Model.Extension.LatestRelease.Version, Model.Extension.LatestRelease.ReleaseDate)</span>
+						</div>
                         }
-                    </div>
-                </div>
-                @Html.DisplayFor(x => x.Extension.User, "Developer")
-            </div>
-            @Html.DisplayFor(x => x.Extension, "DownloadExtension")
-        </div>
-    </div>
+					</div>
+				</div>
+				@Html.DisplayFor(x => x.Extension.User, "Developer")
+			</div>
+			@Html.DisplayFor(x => x.Extension, "DownloadExtension")
+		</div>
+	</div>
 </div>
 <div class="transparent_bl bl">
     <div class="tabs fixw">

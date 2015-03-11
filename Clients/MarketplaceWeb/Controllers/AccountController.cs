@@ -9,7 +9,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using VirtoCommerce.ApiClient.DataContracts;
 using VirtoCommerce.ApiClient.DataContracts.Security;
-using VirtoCommerce.Web.Core.DataContracts;
 
 namespace MarketplaceWeb.Controllers
 {

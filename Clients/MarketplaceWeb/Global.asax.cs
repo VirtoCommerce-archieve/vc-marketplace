@@ -4,7 +4,6 @@ using System.Web.Routing;
 using MarketplaceWeb.Models;
 using MarketplaceWeb.Models.Binders;
 using VirtoCommerce.ApiClient.DataContracts;
-using VirtoCommerce.Web.Core.DataContracts;
 
 namespace MarketplaceWeb
 {

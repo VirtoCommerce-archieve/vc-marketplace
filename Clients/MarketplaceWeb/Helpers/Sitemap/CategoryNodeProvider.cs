@@ -18,13 +18,13 @@ namespace MarketplaceWeb.Helpers.Sitemap
         {
             get
             {
-                return ClientContext.Clients.CreateBrowseClient("MarketPlace");
+                return ClientContext.Clients.CreateBrowseClient();
             }
         }
 
         public override IEnumerable<DynamicNode> GetDynamicNodeCollection(ISiteMapNode node)
         {
-            var response = Task.Run(()=>SearchClient.GetCategoriesAsync()).Result;
+            var response = Task.Run(()=>SearchClient.GetCategoriesAsync("MarketPlace", "en-US")).Result;
             var order = 0;
             return response.Items.OrderBy(x => x.Name).Select(cat => new DynamicNode
             {
@@ -32,7 +32,7 @@ namespace MarketplaceWeb.Helpers.Sitemap
                 Title = cat.Name,
                 Key = cat.Code,
                 Order = order++,
-                ParentKey = cat.ParentId,
+                ParentKey = (cat.Parents != null && cat.Parents.Length > 0) ? cat.Parents[0].Id : null,
 				RouteValues = new Dictionary<string, object> { { "categoryId", cat.Code } }
             });
         }

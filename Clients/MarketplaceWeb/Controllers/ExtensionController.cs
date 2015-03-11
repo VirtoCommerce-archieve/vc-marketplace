@@ -19,7 +19,7 @@ namespace MarketplaceWeb.Controllers
 		[Route("{id}")]
 		public async Task<ActionResult> DisplayItem(string id)
 		{
-			var item = await SearchClient.GetProductAsync(id);
+			var item = await SearchClient.GetProductByCodeAsync("MarketPlace", "en-US", id);
 			var reviews = await ReviewsClient.GetReviewsAsync(id);
 
 			if (ReferenceEquals(item, null))
@@ -50,14 +50,20 @@ namespace MarketplaceWeb.Controllers
 				}
 			}
 
-			if (item.SeoKeywords.Any())
+			if (item.Seo.Any())
 			{
-				ViewBag.Title = item.SeoKeywords[0].Title;
-				ViewBag.Description = item.SeoKeywords[0].MetaDescription;
+				ViewBag.Title = item.Seo[0].Title;
+				ViewBag.Description = item.Seo[0].MetaDescription;
 			}
 
 			return View(model);
 		}
+
+		//[Route("review/{id}")]
+		//public async Task<ActionResult> SaveReview(string id)
+		//{
+
+		//}
 
 		/// <summary>
 		/// This method used only for dynamic content. It cannot be exectuted async due to request limitations
@@ -67,8 +73,8 @@ namespace MarketplaceWeb.Controllers
 		{
 			try
 			{
-				var product = Task.Run(() => SearchClient.GetProductByCodeAsync(itemCode)).Result;
-				var reviews = Task.Run(() => ReviewsClient.GetReviewsAsync(product.Id)).Result;
+				var product = Task.Run(() => SearchClient.GetProductByCodeAsync("MarketPlace", "en-US", itemCode)).Result;
+				var reviews = ReviewsClient.GetReviewsAsync(product.Id).Result;
 
 				var extension = product.ToWebModel();
 				var userHelper = new UserHelper();

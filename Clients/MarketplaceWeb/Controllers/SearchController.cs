@@ -13,7 +13,6 @@ using System.Web.Mvc;
 using VirtoCommerce.ApiClient;
 using VirtoCommerce.ApiClient.DataContracts;
 using VirtoCommerce.ApiClient.Extensions;
-using VirtoCommerce.Web.Core.DataContracts;
 using System.Collections.Generic;
 
 namespace MarketplaceWeb.Controllers
@@ -38,7 +37,7 @@ namespace MarketplaceWeb.Controllers
 		[Route("{categoryId}")]
 		public async Task<ActionResult> CategorySearch(string categoryId, BrowseQuery query)
         {
-			var category = await SearchClient.GetCategoryByCodeAsync(categoryId);
+			var category = await SearchClient.GetCategoryByCodeAsync("MarketPlace", "en-US", categoryId);
 
             if (category != null)
             {
@@ -77,7 +76,7 @@ namespace MarketplaceWeb.Controllers
                 Take = 15, //autocomplete returns first 15
                 Search = term.EscapeSearchTerm()
             };
-            var results = await SearchClient.GetProductsAsync(query);
+			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query);
 
             var data = from i in results.Items
                        select new
@@ -104,7 +103,7 @@ namespace MarketplaceWeb.Controllers
 
             if (!string.IsNullOrWhiteSpace(categoryUrl.CategoryCode))
             {
-                var category = Task.Run(() => SearchClient.GetCategoryByCodeAsync(categoryUrl.CategoryCode)).Result;
+				var category = Task.Run(() => SearchClient.GetCategoryByCodeAsync("MarketPlace", "en-US", categoryUrl.CategoryCode)).Result;
 
                 if (category != null)
                 {
@@ -146,7 +145,7 @@ namespace MarketplaceWeb.Controllers
 
         private async Task<SearchResult> SearchAsync(BrowseQuery query)
         {
-            var results = await SearchClient.GetProductsAsync(query);
+			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query);
             var retVal = CreateSearchResult(results, query);
 
             return retVal;
