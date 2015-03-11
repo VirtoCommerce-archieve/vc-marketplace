@@ -309,6 +309,7 @@
     <Content Include="App_Data\Configuration\connectionStrings.azure.config" />
     <Content Include="App_Data\SampleData\setup-database.ps1" />
     <None Include="Properties\PublishProfiles\mp-frontend.pubxml" />
+    <None Include="Properties\PublishProfiles\virtocommerce-com-marketplace.pubxml" />
     <None Include="Resources\Icon1.ico" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
