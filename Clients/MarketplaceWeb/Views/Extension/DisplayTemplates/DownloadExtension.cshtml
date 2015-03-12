@@ -22,26 +22,32 @@
 
 @if (Model.ReleaseStatus == ReleaseStatus.Active)
 {
-	if(!Model.Price.FormatedPrice.Equals("Free"))
-	{
-		<meta itemprop="priceCurrency" content="USD" />
-		<meta itemprop="price" content="@Model.Price.Price" />
-	}
 
     <a id="dowload-extension" href="@Model.LatestRelease.DownloadLink" class="card_get-lk btn __sb __block __radial __disabled">@string.Format("Get extension ({0})", Model.Price.FormatedPrice)</a>
-    <div class="card_license">
-        <div class="card_license_chck del2">
-            <p>
-                <input type="checkbox" name="" id="extension-license">
-                <label for="extension-license">I agree with license terms</label>
-            </p>
-        </div>
-        <div class="card_license_tx del2">
-            Please note that this extension is provided as is.
-            It is recommended to always backup your
-            installation prior to use.
-        </div>
-    </div>
+	<div class="card_license" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+		@if (!Model.Price.FormatedPrice.Equals("Free"))
+		{
+			<meta itemprop="priceCurrency" content="@Model.Price.Currency" />
+			<meta itemprop="price" content="@Model.Price.Price" />
+		}
+		else
+		{
+			<meta itemprop="price" content="0" />
+		}
+
+		<div class="card_license_chck del2">
+			<p>
+				<input type="checkbox" name="" id="extension-license">
+				<label for="extension-license">I agree with license terms</label>
+			</p>
+		</div>
+		<div class="card_license_tx del2">
+			Please note that this extension is provided as is.
+			It is recommended to always backup your
+			installation prior to use.
+		</div>
+	</div>
 }
 else
 {

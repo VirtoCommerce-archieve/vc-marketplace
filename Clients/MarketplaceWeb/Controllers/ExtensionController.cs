@@ -39,7 +39,7 @@ namespace MarketplaceWeb.Controllers
 
 			if (reviews != null && reviews.TotalCount > 0)
 			{
-				model.Reviews = reviews.Items.Select(x => x.ToWebModel()).ToArray();
+				model.Reviews = reviews.Items.Select(x => x.ToWebModel(id)).ToArray();
 			}
 
 			if (SiteMaps.Current != null)

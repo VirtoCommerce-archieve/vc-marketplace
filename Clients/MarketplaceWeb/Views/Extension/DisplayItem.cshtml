@@ -14,6 +14,13 @@
 	Layout = "~/Views/Shared/_ModuleLayout.cshtml";
 }
 
+<meta itemprop="brand" content="@Model.Extension.UserId" />
+<meta itemprop="productID" content="@Model.Extension.Code" />
+@if(Model.Extension.CategoryList.Any())
+{
+	<meta itemprop="category" content="@Model.Extension.CategoryList.Last()" />
+}
+
 <div class="bl transparent_bl">
 	<div class="card fixw">
 
@@ -132,29 +139,35 @@
         <div class="slides fixw tabs_act_content" rel="reviews" style="display: none;">
             <div class="reviews">
                 <div class="reviews_rating del2">
-                    <div class="card_rating_outer fright">
-                        <div class="card_rating rating">
-                            <div class="rating_progress" style="width: @(Model.ReviewsAverage * 20)%"></div>
-                        </div>
-                        <div class="card_rating_num">@Model.ReviewsAverage</div>
-                    </div>
+					<div class="card_rating_outer fright" itemscope itemtype="http://schema.org/Rating">
+						@if (Model.Reviews != null && Model.Reviews.Any())
+						{
+							<meta itemprop="bestRating" content="@Model.Reviews.Select(r => r.Rating).Max()" />
+							<meta itemprop="ratingValue" content="@Model.ReviewsAverage" />
+						}
+						<div class="card_rating rating">
+							<div class="rating_progress" style="width: @(Model.ReviewsAverage * 20)%"></div>
+						</div>
+						<div class="card_rating_num">@Model.ReviewsAverage</div>
+					</div>
                     <h4 class="reviews_rating_t">Overall rating</h4>
                     @*We dont have field recommed y/n*@
                     @*<div class="reviews_rating_tx">10 out of 12 (86%) reviewers recommend this extension</div>*@
                     <a href="#" class="btn __block __radial __info reviews_add">write a review</a>
                 </div>
                 @Html.DisplayFor(x => x.Extension.User, "Developer", new { displayMode = "full" })
-                <div class="reviews_lst">
+				<div class="reviews_lst">
 
-                    @if (Model.Reviews != null)
-                    {
-                        foreach (var reviewModel in Model.Reviews)
-                        {
-                            @Html.DisplayFor(x => reviewModel)
-                        }
-                    }
+					@if (Model.Reviews != null)
+					{
+						foreach (var reviewModel in Model.Reviews)
+						{
+							@Html.DisplayFor(x => reviewModel)
+						}
+					}
 
-                </div>
+				</div>
+
             </div>
         </div>
     </div>
