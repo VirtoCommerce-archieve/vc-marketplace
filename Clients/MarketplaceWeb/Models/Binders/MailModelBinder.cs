@@ -8,7 +8,7 @@ namespace MarketplaceWeb.Models.Binders
 {
     public class MailModelBinder : IModelBinder
     {
-        private readonly string[] _removedKeys = { "To", "Subject", "RedirectUrl" };
+        private readonly string[] _removedKeys = { "to", "subject" };
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
@@ -21,15 +21,17 @@ namespace MarketplaceWeb.Models.Binders
             var retVal = new MailModel();
 
             var form = controllerContext.RequestContext.HttpContext.Request.Form;
-            var allKeys = form.AllKeys.ToList();
+			var allKeys = form.AllKeys.ToList();
+			allKeys.Remove("returnUrl");
+			allKeys.Remove("vendore");
 
             CheckAndRemoveKeys(allKeys);
 
-            if (allKeys.Contains("FullName"))
-                retVal.FullName = form["FullName"];
+            if (allKeys.Contains("fullname"))
+                retVal.FullName = form["fullname"];
 
-            retVal.To = form["To"];
-            retVal.Subject = form["Subject"];
+            retVal.To = form["to"];
+            retVal.Subject = form["subject"];
 
             var builder = new StringBuilder();
             foreach (var key in allKeys)
@@ -39,7 +41,7 @@ namespace MarketplaceWeb.Models.Binders
 
             retVal.MailBody = builder.ToString();
 
-            builder.AppendLine(string.Format("EmailTo: {0}", form["To"]));
+            builder.AppendLine(string.Format("EmailTo: {0}", form["to"]));
             retVal.FullMailBody = builder.ToString();
 
             return retVal;

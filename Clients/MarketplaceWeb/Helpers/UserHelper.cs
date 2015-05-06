@@ -22,9 +22,9 @@ namespace MarketplaceWeb.Helpers
 			}
 		}
 
-		public async Task<User> GetUser(Product item)
+		public async Task<Vendor> GetUser(Product item)
 		{
-			var user = new User();
+			var user = new Vendor();
 
 			var vendorId = item.Properties.ParsePropertyToString("VendorId");
 
@@ -36,9 +36,9 @@ namespace MarketplaceWeb.Helpers
 			return user;
 		}
 
-		public async Task<User> GetUser(string vendorId)
+		public async Task<Vendor> GetUser(string vendorId)
 		{
-			var user = new User();
+			var user = new Vendor();
 
 			var contact = await CustomerServiceClient.GetContactByIdAsync(vendorId);
 
@@ -51,6 +51,9 @@ namespace MarketplaceWeb.Helpers
 				user.Description = contact.Properties.TryGetValue("Description");
 				user.FullDescription = contact.Properties.TryGetValue("FullDescription");
 				user.UserEmail = contact.Properties.TryGetValue("Email");
+
+				user.Seo.Title = contact.Properties.TryGetValue("Title");
+				user.Seo.MetaDescription = contact.Properties.TryGetValue("MetaDescription");
 			}
 
 			return user;

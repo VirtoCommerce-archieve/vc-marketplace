@@ -1,0 +1,251 @@
+﻿@model MarketplaceWeb.Models.Module
+
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<article class="main" role="main" itemscope itemtype="http://schema.org/Product">
+	<div class="breadcrumbs __responsive">
+		<ul class="menu __inline">
+			<li class="menu-item">
+				<a class="menu-link" href="@SiteUrlHelper.ResolveServerUrl("~")">HOME</a>
+			</li>
+			@foreach (var cat in Model.CategoryList)
+			{
+				<li class="menu-item">
+					<a class="menu-link" href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/cat/{0}", cat.Key))">@cat.Value</a>
+				</li>
+			}
+			<li class="menu-item" itemprop="name">
+				@Model.Title
+			</li>
+		</ul>
+	</div>
+	<div class="extension __responsive clearfix">
+		<div class="extension-slider __left">
+			<div class="slider-item">
+				<figure class="slider-outer">
+					<a href="#" class="slider-pic">
+						<img itemprop="image" src="@Url.Image(Model, "primaryimage")" class="slider-img">
+					</a>
+				</figure>
+			</div>
+			@if (Model.Images.Count > 1)
+			{
+				<div class="slider-list_items">
+					<a class="slider-control __ctrl-l"></a>
+					<a class="slider-control __ctrl-r"></a>
+					<div class="slider-scroll">
+						<ul class="list" style="margin-left: 0px;">
+							<li class="list-item __selected">
+								<a class="list-pic">
+									<img src="http://fakeimg.pl/300x200/00CED1/FFF/" class="list-img">
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			}
+		</div>
+		<div class="extension-detail">
+			<div class="extension-detail_inner __col-w">
+				<div class="extension-info col __col-60">
+					<h2 class="extension-t">@Model.Title</h2>
+					@if(Model.Reviews.Count > 0)
+					{
+						<div class="extension-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+							<div class="rating @Url.CssClassForRating(Model)">
+								<div class="rating-progress"></div>
+							</div>
+							<div class="rating-num"><span itemprop="ratingValue">@Model.Rating</span>/5</div>
+							<div class="rating-count">
+								All reviews: <span class="count" itemprop="reviewCount">@Model.Reviews.Count</span>
+							</div>
+						</div>
+					}
+					<div class="reviews-links">
+						@if (Model.Reviews.Count > 0)
+						{
+							<a class="link __ucase" id="read_all_reviews">Read all @Model.Reviews.Count reviews</a>
+						}
+						<a class="link __ucase" style="cursor:pointer;" data-id="reviewFormButton">Write a review</a>
+					</div>
+					<div class="extension-descr" itemprop="description">
+						@Model.Description
+					</div>
+					<ul class="list __properties">
+						<li class="list-item">
+							<span class="list-t">Locale:</span>
+							<span class="list-name">@Html.Locale(Model)</span>
+						</li>
+						<li class="list-item">
+							<span class="list-t">Compatible with:</span>
+							<span class="list-name">@Html.Compatibility(Model)</span>
+						</li>
+						<li class="list-item">
+							<span class="list-t">last release:</span>
+							<span class="list-name">@Html.LastRelease(Model)</span>
+						</li>
+					</ul>
+				</div>
+				<div class="extension-links col __col-40">
+					<div class="extension-canvas __right">
+						<img class="extension-img" alt="" src="@Model.Vendor.Icon">
+					</div>
+					<ul class="menu">
+						<li class="menu-item __author">
+							<a href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/{0}", Model.Vendor.Id))" class="menu-link">@Model.Vendor.Name</a>
+						</li>
+						<li class="menu-item">
+							<a href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/{0}", Model.Vendor.Id))" class="menu-link">Developer's profile</a>
+						</li>
+						<li class="menu-item">
+							<a href="#" class="menu-link">Contact the developer</a>
+						</li>
+						<li class="menu-item">
+							<a href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/search/vendor/{0}", Model.Vendor.Id))" class="menu-link">More extensions by Developer</a>
+						</li>
+					</ul>
+					<div class="socials">
+						<div class="social-t">Share</div>
+						<ul class="list __inline __socials">
+							@Html.ShareLinksBlock(Model)
+						</ul>
+					</div>
+				</div>
+			</div>
+			<a data-id="buyButton_top" class="btn __red __round __block __ucase __disabled" target="_blank" href="http://virtocommerce.com/">
+				@Html.GetExtensionButton(Model)	
+			</a>
+			<div class="extension-license __col-w">
+				<div class="extension-chck col __col-40">
+					<label data-id="buySpan_top" class="form-control __checkbox" for="some">
+						<input type="checkbox" id="some">
+						<span data-id="buySpan_top" class="switch"></span>
+						<span data-id="buySpan_top" class="control-name">I agree with license terms</span>
+					</label>
+				</div>
+				<div class="extension-note col __col-60">
+					Please note that this extension is provided as is. It is recommended to always backup your installation prior to use.
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tabs">
+		<ul class="menu __inline __tabs __responsive">
+			<li class="menu-item __selected">Overview</li>
+			@if (Model.Releases.Count > 0)
+			{
+				<li class="menu-item" id="li_releases">Release notes</li>
+			}
+			@if (Model.Reviews.Count > 0)
+			{
+				<li class="menu-item" id="li_reviews">Reviews</li>
+			}
+		</ul>
+		<div class="tab-content" id="license">
+			<div class="content-inner __responsive">
+				@Model.License
+			</div>
+		</div>
+		@if (Model.Releases.Count > 0)
+		{
+			<div class="tab-content" id="releases">
+				<div class="content-inner __responsive">
+					@if (Model.Releases.Count > 0)
+					{
+						<p class="tab-t">Version number @Model.Releases.First().Version</p>
+						<p>@Model.Releases.First().ReleaseDate.Value.ToString("MM/dd/yyyy")</p>
+						<p class="tab-t">Upgrade features:</p>
+						<p>
+							@Model.Releases.First().Note
+						</p>
+						<a data-id="buyButton_bottom" class="btn __round __red __ucase __disabled" href="#">GET EXTENSION  ( @Model.Price.FormatedPrice )</a>
+						<div class="form-group">
+							<label data-id="buySpan_bottom" class="form-control __checkbox __license">
+								<input type="checkbox">
+								<span data-id="buySpan_bottom" class="switch"></span>
+								<span data-id="buySpan_bottom" class="control-name">I agree with license terms</span>
+							</label>
+						</div>
+					}
+				</div>
+			</div>
+		}
+		@if (Model.Reviews.Count > 0)
+		{
+			<div class="tab-content" id="reviews">
+				<div class="content-inner __responsive">
+					<div class="reviews __col-w">
+						<div class="review-info col __col-70">
+							<div class="review-t">Overall rating</div>
+							<div class="extension-rating __inline">
+								<div class="rating __good">
+									<div class="rating-progress"></div>
+								</div>
+								<div class="rating-num">@Model.Rating/5</div>
+								<div class="rating-count __inline">
+									All reviews: <span class="count">@Model.Reviews.Count</span>
+								</div>
+							</div>
+							<div class="review-text">@Model.Reviews.Count(r => r.Rating > 3) out of @Model.Reviews.Count (@((Model.Reviews.Count(r => r.Rating > 3) / Model.Reviews.Count) * 100)%) reviewers recommend this extension</div>
+							<a class="btn __round __yellow __ucase" data-id="reviewFormButton">Write review</a>
+						</div>
+						<div class="dev-info col __col-30">
+							<div class="dev-info_t">About the Developer</div>
+							<div class="dev-info_text">
+								This extension was developed by
+								and is supported by <span>@Model.Vendor.Name</span>
+							</div>
+							<ul class="menu">
+								<li class="menu-item">
+									<a class="menu-link">Feedback to developer</a>
+								</li>
+								<li class="menu-item">
+									<a class="menu-link" href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/{0}", Model.Vendor.Id))">Developer’s profile</a>
+								</li>
+								<li class="menu-item">
+									<a class="menu-link" href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/search/vendor/{0}", Model.Vendor.Id))">More extensions by Developer</a>
+								</li>
+							</ul>
+						</div>
+						@if (Model.Reviews.Count > 0)
+						{
+							<ul class="list __review-list">
+								@foreach (var item in Model.Reviews)
+								{
+									<li class="list-item" itemprop="review" itemscope itemtype="http://schema.org/Review">
+										<img class="list-img __left" alt="" src="@item.Author.Icon">
+										<div class="review-list_info">
+											<div class="col __col-70">
+												<div class="rating __normal @Url.CssClassForRating(Model.Rating)" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+													<meta itemprop="worstRating" content="@Model.Reviews.Min(r => r.Rating)" />
+													<span style="display:none;" itemprop="ratingValue">@item.Rating</span>
+													<span style="display:none;" itemprop="bestRating">5</span>
+													<div class="rating-progress"></div>
+												</div>
+												<div class="date">@item.Created.Value.ToString("MM/dd/yyyy")</div>
+												<div class="author" itemprop="author">@item.Author.Name</div>
+												<div class="comment" itemprop="description">
+													@item.ReviewText
+												</div>
+											</div>
+										</div>
+									</li>
+								}
+							</ul>
+						}
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+</article>
+
+
+@section scripts {
+	<script type="text/javascript" src="@SiteUrlHelper.ResolveServerUrl("~/Scripts/new.js")"></script>
+}
+
+@section forms {
+	@Html.Partial("_ReviewFormPartial", Model.Code)
+}

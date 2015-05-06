@@ -1,30 +1,50 @@
-﻿@model VendorInformationModel
+﻿@model Vendor
 
-<div class="items_outer bl">
-    <div class="items fixw __cat">
-        <div class="clearfix">
-            <div class="del3_4">
-                <div class="items_nav fright">
-                    <a class="items_a fleft" href="http://virtocommerce.com/contact-us">Contact</a>
-                    <a class="items_a fleft" href="@Url.Action("Support", new {id=Model.User.Id})">Support</a>
-                </div>
-                <h2 class="items_t">@Model.User.Name</h2>
-                @Html.Raw(Model.User.FullDescription)
-            </div>
-            <div class="del4 card_links">
-                <figure class="card_thumb_outer">
-                    <img src="@string.Format("data:image/jpg;base64,{0}", Model.User.Icon)" class="card_thumb" />
-                </figure>
-            </div>
-        </div>
-        <div class="items_holder">
-            <span class="h4 slim">extensions by this developer (@Model.Extensions.Count())</span>
-        </div>
-        <div class="items_inner clearfix">
-            @foreach (var item in Model.Extensions)
-            {
-                @Html.DisplayFor(m => item, "Item")
-            }
-        </div>
-    </div>
-</div>
+<article role="main" class="main">
+	<div class="profile __responsive">
+		<div class="col-w">
+			<div class="col __col-70">
+				<div class="title-w">
+					<h2 class="t">@Model.Name</h2>
+					<ul class="menu __inline __right">
+						<li class="menu-item">
+							<a class="menu-link" style="cursor:pointer;" data-id="contactVendorFormButton">Contact</a>
+						</li>
+						<li class="menu-item">
+							<a class="menu-link" style="cursor:pointer;" data-id="supportVendorFormButton">Support</a>
+						</li>
+					</ul>
+				</div>
+				<div class="profile-descr">
+					@Html.Raw(Model.FullDescription)
+				</div>
+			</div>
+			<div class="extension-links col __col-30">
+				<div class="extension-canvas __right">
+					<img src="@Model.Icon" alt="" class="extension-img">
+				</div>
+			</div>
+		</div>
+		@if (Model.Modules.Count > 0)
+		{
+			<div class="profile-extensions">
+				<div class="sub-t">Extensions by this developer (@Model.Modules.Count)</div>
+				<div class="list __items __inline">
+					<ul class="profile">
+						@foreach(var item in Model.Modules)
+						{
+							<li class="list-item">
+								@Html.Partial("ShortModuleInfo", item)
+							</li>
+						}
+					</ul>
+				</div>
+			</div>
+		}
+	</div>
+</article>
+
+@section forms {
+	@Html.Partial("_ContactVendorFormPartial", Model)
+	@Html.Partial("_SupportVendorFormPartial", Model)
+}

@@ -1,0 +1,25 @@
+﻿@model MarketplaceWeb.Models.Module
+
+<a class="list-link" href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/{0}", Model.Code))">
+	<figure class="image-outer">
+		<img alt="" src="@Url.Image(Model, "primaryimage")" class="list-img" onerror="this.onerror=null;this.src='@Url.Content("~/Content/images/blank.png")';">
+	</figure>
+	<h3 class="list-name">@Model.Title</h3>
+	<span class="list-descr">@Model.Description</span>
+	@if(Model.Rating > 0)
+	{
+		<span class="list-rating __left">
+			@*<ul class="list __inline __rating @Url.CssClassForRating(Model)">
+				<li class="list-item"></li>
+				<li class="list-item"></li>
+				<li class="list-item"></li>
+				<li class="list-item"></li>
+				<li class="list-item"></li>
+			</ul>*@
+			<span class="rating @Url.CssClassForRating(Model)">
+				<span class="rating-progress"></span>
+			</span>
+		</span>
+	}
+	<span class="list-price __right">@Model.Price.FormatedPrice</span>
+</a>

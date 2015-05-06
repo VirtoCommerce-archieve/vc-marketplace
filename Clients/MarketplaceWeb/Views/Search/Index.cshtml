@@ -1,7 +1,0 @@
-﻿@model SearchResult
-
-<div class="items fixw __cat">
-   @Html.DisplayFor(m=>m.Pager, "SearchPager")
-    <h2 class="items_t">@ViewBag.Title</h2>
-    @Html.Partial("SearchItems", Model.Results)
-</div>

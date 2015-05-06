@@ -1,0 +1,48 @@
+﻿<div class="overlay" style="display:none;" id="becomeDeveloperForm">
+	<div class="overlay-cnt">
+		<div class="popup">
+			<a class="popup-close"></a>
+			<div class="popup-head">BECOME A DEVELOPER</div>
+			<form class="popup-cnt" data-id="becomedeveloper" action="@SiteUrlHelper.ResolveServerUrl("~/mail/send")" method="post">
+				<input type="hidden" value="Become a developer" name="subject" />
+				<input type="hidden" value="@SiteUrlHelper.ResolveServerUrl("~/")" name="redirectUrl" />
+
+				
+				@*<div>
+					<span>Your company e-mail</span>
+				</div>*@
+				<div class="form-group">
+					<label class="form-label">Your company e-mail</label>
+					<div class="form-input">
+						<input type="text" name="to" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Your company e-mail</label>
+					<div class="form-input">
+						<input type="text" name="companyName" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Your company e-mail</label>
+					<div class="form-input">
+						<input type="text" name="fullname" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Your company e-mail</label>
+					<div class="form-input">
+						<textarea rows="10" cols="30" id="" name="comment"></textarea>
+					</div>
+				</div>
+			</form>
+			<div class="popup-footer">
+				<a class="btn __yellow __mini __round __ucase" data-id="submitPopup" data-formid="becomedeveloper">Submit</a>
+				<a class="btn __cancel __mini __round __ucase" data-id="closePopup">Cancel</a>
+			</div>
+		</div>
+	</div>
+</div>

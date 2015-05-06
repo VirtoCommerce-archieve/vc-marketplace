@@ -1,0 +1,51 @@
+﻿@model Vendor
+
+<div class="overlay" style="display:none;" id="supportVendorForm">
+	<div class="overlay-cnt">
+		<div class="popup">
+			<a class="popup-close"></a>
+			<div class="popup-head">SUPPORT VENDOR</div>
+			<form class="popup-cnt" data-id="supportVendor" action="@SiteUrlHelper.ResolveServerUrl("~/mail/send")" method="post">
+				<input type="hidden" value="Support vendor" name="subject" />
+				<input type="hidden" value="@SiteUrlHelper.ResolveServerUrl("~/")" name="redirectUrl" />
+				<input type="hidden" value="@Model.Name" name="vendorName" />
+				<input type="hidden" value="@Model.UserEmail.Replace("@", "[")" name="vendore" />
+
+				@*<div>
+				<span>Your company e-mail</span>
+			</div>*@
+				<div class="form-group">
+					<label class="form-label">Your e-mail</label>
+					<div class="form-input">
+						<input type="text" name="to" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Your fullname</label>
+					<div class="form-input">
+						<input type="text" name="fullname" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Developer extension name</label>
+					<div class="form-input">
+						<input type="text" name="modulename" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="form-label">Your message</label>
+					<div class="form-input">
+						<textarea rows="10" cols="30" id="" name="message"></textarea>
+					</div>
+				</div>
+			</form>
+			<div class="popup-footer">
+				<a class="btn __yellow __mini __round __ucase" data-id="submitPopup" data-formid="supportVendorForm">Submit</a>
+				<a class="btn __cancel __mini __round __ucase" data-id="closePopup">Cancel</a>
+			</div>
+		</div>
+	</div>
+</div>

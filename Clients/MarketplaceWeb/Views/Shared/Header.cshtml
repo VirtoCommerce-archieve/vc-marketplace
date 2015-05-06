@@ -1,0 +1,28 @@
+﻿<div class="swipe">
+	<ul class="menu">
+		@{Html.RenderAction("CategoryMenu", "Category");}
+	</ul>
+	<form class="form" action="@SiteUrlHelper.ResolveServerUrl("~/search/term")">
+		<div class="form-input __search">
+			<input autocomplete="off" name="q" type="text" placeholder="Search for extensions" class="__round">
+		</div>
+	</form>
+</div>
+<div class="header-w">
+	<header class="header __responsive">
+		<a class="header-mobile_nav btn __round">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a>
+		<a class="header-lg" href="">Virto Commerce Marketplace</a>
+		<a class="header-vc btn __round" href="http://virtocommerce.com/">Virtocommerce</a>
+
+		<form class="header-search" action="@SiteUrlHelper.ResolveServerUrl("~/search/term")">
+			<div class="form-input __search">
+				<input autocomplete="off" id="searchInput" name="q" type="text" placeholder="Search for extensions" class="__round">
+				<button class="btn __mini __round __yellow __ucase">Ok</button>
+			</div>
+		</form>
+	</header>
+</div>

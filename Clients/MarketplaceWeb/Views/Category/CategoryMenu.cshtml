@@ -1,0 +1,8 @@
+﻿@model MarketplaceWeb.Models.CategoryMenu
+
+@foreach(var item in Model.Categories)
+{
+	<li class="menu-item">
+		<a class="menu-link" href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/{0}", item.CategoryCode))">@item.CategoryName</a>
+	</li>
+}

@@ -54,12 +54,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="MvcSiteMapProvider">
-      <HintPath>..\..\packages\MvcSiteMapProvider.MVC5.Core.4.6.17\lib\net45\MvcSiteMapProvider.dll</HintPath>
-    </Reference>
-    <Reference Include="MvcSiteMapProvider.WebActivator">
-      <HintPath>..\..\packages\MvcSiteMapProvider.MVC5.4.6.17\lib\net45\MvcSiteMapProvider.WebActivator.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -78,9 +72,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.identitymodel.services" />
     <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
@@ -89,6 +83,38 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -106,39 +132,12 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
-    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.Helpers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Optimization">
       <HintPath>..\..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="VirtoCommerce.ApiClient, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Shared\VirtoCommerce.ApiClient.dll</HintPath>
-    </Reference>
-    <Reference Include="WebActivatorEx">
-      <HintPath>..\..\packages\WebActivatorEx.2.0.1\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -181,44 +180,42 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\BannerController.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ControllerBase.cs" />
-    <Compile Include="Controllers\ExtensionController.cs" />
     <Compile Include="Controllers\MailController.cs" />
+    <Compile Include="Controllers\ModuleController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\PageController.cs" />
     <Compile Include="Controllers\VendorController.cs" />
-    <Compile Include="Converters\ExtensionConverter.cs" />
+    <Compile Include="Converters\ModuleConverter.cs" />
     <Compile Include="Converters\ReviewConverter.cs" />
-    <Compile Include="Converters\UserConverters.cs" />
+    <Compile Include="Converters\VendorConverters.cs" />
+    <Compile Include="Helpers\CollectionExtensions.cs" />
     <Compile Include="Helpers\CookieHelper.cs" />
     <Compile Include="Helpers\CurrencyHelper.cs" />
+    <Compile Include="Helpers\HtmlHelperExtensions.cs" />
     <Compile Include="Helpers\Marketing\ContextFieldConstants.cs" />
     <Compile Include="Helpers\Marketing\CustomerSession.cs" />
     <Compile Include="Helpers\SiteUrlHelper.cs" />
     <Compile Include="Helpers\UrlHelperExtensions.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Helpers\ViewRenderer.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\BannerModel.cs" />
     <Compile Include="Models\Binders\MailModelBinder.cs" />
-    <Compile Include="Models\DeveloperProfile.cs" />
+    <Compile Include="Models\CategoryModels.cs" />
     <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\ReleaseStatus.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\ExtensionModels.cs" />
+    <Compile Include="Models\VendorModels.cs" />
+    <Compile Include="Models\ModuleModels.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\Sitemap\CategoryNodeProvider.cs" />
     <Compile Include="Models\Binders\BrowseQueryBinder.cs" />
-    <Compile Include="Models\FullExtension.cs" />
     <Compile Include="Models\PriceModel.cs" />
     <Compile Include="Models\Release.cs" />
     <Compile Include="Models\ReviewModels.cs" />
     <Compile Include="Models\SearchModels.cs" />
+    <Compile Include="Modules\RedirectModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -245,100 +242,57 @@
     <Content Include="App_Data\SampleData\dbo_PublishingGroupContentItem.sql" />
     <Content Include="App_Data\SampleData\dbo_PublishingGroupContentPlace.sql" />
     <Content Include="App_Data\SampleData\dbo_Store.sql" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\themes\default\css\base_modules.css" />
-    <Content Include="Content\themes\default\css\cosmetic.css" />
-    <Content Include="Content\themes\default\css\images.css" />
-    <Content Include="Content\themes\default\css\project_modules.css" />
-    <Content Include="Content\themes\default\css\reset.css" />
-    <Content Include="Content\themes\default\css\responsive.css" />
-    <Content Include="Content\themes\default\images\arrows_xl.png" />
-    <Content Include="Content\themes\default\images\arrows_xs.png" />
-    <Content Include="Content\themes\default\images\blank.png" />
-    <Content Include="Content\themes\default\images\chck_xl.png" />
-    <Content Include="Content\themes\default\images\chck_xs.png" />
-    <Content Include="Content\themes\default\images\icon16.png" />
-    <Content Include="Content\themes\default\images\icon32.png" />
-    <Content Include="Content\themes\default\images\icon_lw.png" />
-    <Content Include="Content\themes\default\images\icon_xlw.png" />
-    <Content Include="Content\themes\default\images\logo.png" />
-    <Content Include="Content\themes\default\images\our_team.jpg" />
-    <Content Include="Content\themes\default\images\rating16.png" />
-    <Content Include="Content\themes\default\images\rating32.png" />
-    <Content Include="Content\themes\default\images\validation_advice_bg.gif" />
-    <Content Include="Content\themes\default\images\yellow-diagon.png" />
-    <Content Include="Content\themes\base\accordion.css" />
-    <Content Include="Content\themes\base\all.css" />
-    <Content Include="Content\themes\base\autocomplete.css" />
-    <Content Include="Content\themes\base\base.css" />
-    <Content Include="Content\themes\base\button.css" />
-    <Content Include="Content\themes\base\core.css" />
-    <Content Include="Content\themes\base\datepicker.css" />
-    <Content Include="Content\themes\base\dialog.css" />
-    <Content Include="Content\themes\base\draggable.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\menu.css" />
-    <Content Include="Content\themes\base\progressbar.css" />
-    <Content Include="Content\themes\base\resizable.css" />
-    <Content Include="Content\themes\base\selectable.css" />
-    <Content Include="Content\themes\base\selectmenu.css" />
-    <Content Include="Content\themes\base\slider.css" />
-    <Content Include="Content\themes\base\sortable.css" />
-    <Content Include="Content\themes\base\spinner.css" />
-    <Content Include="Content\themes\base\tabs.css" />
-    <Content Include="Content\themes\base\theme.css" />
-    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\css\base-modules.css" />
+    <Content Include="Content\css\cosmetic.css" />
+    <Content Include="Content\css\project-modules.css" />
+    <Content Include="Content\css\reset.css" />
+    <Content Include="Content\css\responsive.css" />
+    <Content Include="Content\images\azure.png" />
+    <Content Include="Content\images\azurex2.png" />
+    <Content Include="Content\images\bg-pattern.png" />
+    <Content Include="Content\images\blank.png" />
+    <Content Include="Content\images\extensions\1.jpg" />
+    <Content Include="Content\images\extensions\2.jpg" />
+    <Content Include="Content\images\extensions\3.jpg" />
+    <Content Include="Content\images\extensions\4.jpg" />
+    <Content Include="Content\images\icons\breadcrumbs-divider.png" />
+    <Content Include="Content\images\icons\breadcrumbs-dividerx2.png" />
+    <Content Include="Content\images\icons\check.png" />
+    <Content Include="Content\images\icons\checkx2.png" />
+    <Content Include="Content\images\icons\close.png" />
+    <Content Include="Content\images\icons\closex2.png" />
+    <Content Include="Content\images\icons\dev.png" />
+    <Content Include="Content\images\icons\devx2.png" />
+    <Content Include="Content\images\icons\features.png" />
+    <Content Include="Content\images\icons\featuresx2.png" />
+    <Content Include="Content\images\icons\head.png" />
+    <Content Include="Content\images\icons\headx2.png" />
+    <Content Include="Content\images\icons\info.png" />
+    <Content Include="Content\images\icons\infox2.png" />
+    <Content Include="Content\images\icons\rating.png" />
+    <Content Include="Content\images\icons\ratingx2.png" />
+    <Content Include="Content\images\icons\socials.png" />
+    <Content Include="Content\images\icons\socialsx2.png" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\microsoft.png" />
+    <Content Include="Content\images\microsoftx2.png" />
+    <Content Include="Content\images\slider\arrows.png" />
+    <Content Include="Content\images\slider\arrowsx2.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="App_Data\Configuration\connectionStrings.local.config" />
+    <Content Include="App_Data\Configuration\connectionStrings.local.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\Configuration\connectionStrings.azure.config" />
     <Content Include="App_Data\SampleData\setup-database.ps1" />
     <None Include="Properties\PublishProfiles\mp-frontend.pubxml" />
     <None Include="Properties\PublishProfiles\virtocommerce-com-marketplace.pubxml" />
     <None Include="Properties\PublishProfiles\virtocommerce-public.pubxml" />
-    <None Include="Resources\Icon1.ico" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Mvc.sitemap" />
-    <None Include="MvcSiteMapSchema.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Scripts\jquery-1.11.0.intellisense.js" />
-    <Content Include="Scripts\jquery-1.11.0.js" />
-    <Content Include="Scripts\jquery-1.11.0.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.2.js" />
-    <Content Include="Scripts\jquery-ui-1.11.2.min.js" />
-    <Content Include="Scripts\v\images.js" />
-    <Content Include="Scripts\responsive\responsive.js" />
-    <Content Include="Scripts\jquery-1.11.0.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\v\validation.js" />
-    <Content Include="Scripts\v\virto-commerce.js" />
-    <Content Include="Scripts\v\virto-jquery.js" />
-    <Content Include="Scripts\v\virto-reviews.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\main.js" />
+    <Content Include="Scripts\modernizr.js" />
+    <Content Include="Scripts\new.js" />
+    <Content Include="Scripts\slider.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -350,70 +304,27 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Page\About.cshtml" />
-    <Content Include="Views\Page\Contact.cshtml" />
     <Content Include="Views\Page\Index.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Search.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathNodeModel.cshtml" />
     <Content Include="Views\Search\DisplayTemplates\SearchPager.cshtml" />
-    <Content Include="Views\Banner\BaseContentPlace.cshtml" />
-    <Content Include="Views\Banner\DisplayTemplates\CategoryUrl.cshtml" />
-    <Content Include="Views\Banner\DisplayTemplates\Flash.cshtml" />
-    <Content Include="Views\Banner\DisplayTemplates\ImageClick.cshtml" />
-    <Content Include="Views\Banner\DisplayTemplates\ImageClickSlide.cshtml" />
-    <Content Include="Views\Banner\DisplayTemplates\ImageNoClick.cshtml" />
-    <Content Include="Views\Banner\DisplayTemplates\ImageNoClickSlide.cshtml" />
-    <Content Include="Views\Banner\DisplayTemplates\ProductImageAndPrice.cshtml" />
-    <Content Include="Views\Banner\DisplayTemplates\RawHtml.cshtml" />
-    <Content Include="Views\Banner\MultiBanner.cshtml" />
-    <Content Include="Views\Search\SearchItems.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\Item.cshtml" />
-    <Content Include="Views\Extension\DisplayItem.cshtml" />
-    <Content Include="Views\Extension\DisplayTemplates\DownloadExtension.cshtml" />
-    <Content Include="Views\Extension\DisplayTemplates\Developer.cshtml" />
-    <Content Include="Views\Extension\DisplayTemplates\ReviewModel.cshtml" />
-    <Content Include="Views\Shared\_ErrorLayout.cshtml" />
-    <Content Include="Views\Errors\Oops.cshtml" />
-    <Content Include="Views\Errors\ServiceError.cshtml" />
-    <Content Include="Views\Extension\DisplayTemplates\Release.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Vendor\Information.cshtml" />
-    <Content Include="Views\Page\BecomeDeveloper.cshtml" />
     <Content Include="Views\Shared\_ModuleLayout.cshtml" />
+    <Content Include="Views\Category\CategoryMenu.cshtml" />
+    <Content Include="Views\Module\MainModules.cshtml" />
+    <Content Include="Views\Shared\ShortModuleInfo.cshtml" />
+    <Content Include="Views\Module\Module.cshtml" />
+    <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Shared\NavigationBlock.cshtml" />
+    <Content Include="Views\Category\Category.cshtml" />
+    <Content Include="Views\Search\DeveloperExtensions.cshtml" />
+    <Content Include="Views\Shared\_GoogleAnalyticsPartial.cshtml" />
+    <Content Include="Views\Shared\_FacebookTrackerPartial.cshtml" />
+    <Content Include="Views\Module\_ReviewFormPartial.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Views\Page\_BecomeDeveloperFormPartial.cshtml" />
+    <Content Include="Views\Vendor\_ContactVendorFormPartial.cshtml" />
+    <Content Include="Views\Vendor\_SupportVendorFormPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

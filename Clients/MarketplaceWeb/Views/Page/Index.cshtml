@@ -1,57 +1,28 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿<article role="main" class="main">
+	<div class="items __responsive">
+		<div class="title-w">
+			<h2 class="t">New Extensions</h2>
+			<ul class="menu __inline __right">
+				<li class="menu-item">
+					<a class="menu-link" href="#">View all</a>
+				</li>
+			</ul>
+		</div>
+		<div class="list __items __inline">
+			@{Html.RenderAction("MainModules", "Module");}
+		</div>
+	</div>
+	<div class="info-w">
+		<div class="info __responsive">
+			<div class="info-ico"></div>
+			<div class="info-descr">
+				If you want sell your module on our marketplace become a developer.
+			</div>
+			<a class="btn __large __round __red __ucase" data-id="becomeDeveloperFormButton">Become a developer</a>
+		</div>
+	</div>
+</article>
+
+@section forms {
+	@Html.Partial("_BecomeDeveloperFormPartial")
 }
-
-<script>
-    $(function ()
-    {
-        //VirtoCommerce.registerDynamicContent("MainSlider", function (data) {
-        //    $('.main-slider .container').html(data);
-        //    VirtoCommerce.initSliders();
-        //});
-        //VirtoCommerce.registerDynamicContent("HomeNewProducts", function (data) {
-        //    $('div.new-products ul.products-list').html(data);
-        //    $('div.new-products').virtoSlider();
-        //});
-        //VirtoCommerce.registerDynamicContent("HomeStaffPick", function (data) {
-        //    $('div.staff-pick ul.products-list').html(data);
-        //    $('div.staff-pick').virtoSlider();
-        //});
-        VirtoCommerce.registerDynamicContent("HomeStaffPick", '#dynamic-content-0');
-        VirtoCommerce.registerDynamicContent("HomeNewProducts", '#dynamic-content-1');
-        VirtoCommerce.registerDynamicContent("HomeBottom", '#dynamic-content-2');
-        VirtoCommerce.registerDynamicContent("HomeMain", function (data)
-        {
-            if (data.length > 0)
-            {
-                $('#dynamic-content-top').html(data);
-            }
-        });
-    })
-</script>
-
-<div id="dynamic-content-top">
-@*@{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeMain" });}*@
-</div>
-
-    <div class="items_outer bl">
-        <div class="items fixw">
-            <a href="" class="items_a fright">View all</a>
-            <h2 class="items_t">Staff Pick</h2>
-            <div id="dynamic-content-0">
-                @*@{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeStaffPick" });}*@
-            </div>
-        </div>
-    </div>
-    <div class="items_outer bl">
-        <div class="items fixw">
-            <a href="" class="items_a fright">View all</a>
-            <h2 class="items_t">New Extensions</h2>
-            <div id="dynamic-content-1">
-                @*@{Html.RenderAction("ShowDynamicContent", "Banner", new { placeName = "HomeNewProducts" });}*@
-            </div>
-        </div>
-    </div>
-    <div id="dynamic-content-2" class="neutral-lay bl">
-     
-    </div>

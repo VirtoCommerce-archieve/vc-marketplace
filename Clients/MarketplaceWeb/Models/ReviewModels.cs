@@ -14,7 +14,12 @@ namespace MarketplaceWeb.Models
 		public DateTime? Created { get; set; }
 		public string ProductId { get; set; }
 
-		public User Author { get; set; }
+		public ReviewAuthor Author { get; set; }
+	}
 
+	public class ReviewAuthor
+	{
+		public string Name { get; set; }
+		public string Icon { get; set; }
 	}
 }

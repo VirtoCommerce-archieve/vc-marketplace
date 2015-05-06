@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using MarketplaceWeb.Converters;
 using MarketplaceWeb.Helpers;
 using VirtoCommerce.ApiClient.DataContracts;
+using VirtoCommerce.ApiClient.Extensions;
 
 namespace MarketplaceWeb.Controllers
 {
@@ -23,16 +24,25 @@ namespace MarketplaceWeb.Controllers
 		[Route("{vendorId}")]
 		public async Task<ActionResult> Information(string vendorId, BrowseQuery query)
 		{
-			var model = new VendorInformationModel();
+			var model = new Vendor();
 
 			var userHelper = new UserHelper();
 
-			model.User = await userHelper.GetUser(vendorId);
+			model = await userHelper.GetUser(vendorId);
 
 			query.Filters.Add("vendorId", new[] { vendorId });
-			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query);
+			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query, ItemResponseGroups.ItemLarge);
 
-			model.Extensions = results.Items.Select(x => x.ToWebModel());
+			foreach(var module in results.Items.Select(x => x.ToWebModel()))
+			{
+				var reviews = await ReviewsClient.GetReviewsAsync(module.Code);
+				module.Reviews.AddRange(reviews.Items.Select(r => r.ToWebModel(module.Code)));
+
+				model.Modules.Add(module);
+			}
+
+			ViewBag.Title = model.Seo.Title;
+			ViewBag.MetaDescription = model.Seo.MetaDescription;
 
 			return View(model);
 		}

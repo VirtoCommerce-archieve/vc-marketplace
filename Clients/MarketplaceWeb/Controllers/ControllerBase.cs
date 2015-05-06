@@ -55,5 +55,13 @@ namespace MarketplaceWeb.Controllers
 				return ClientContext.Clients.CreateCustomerServiceClient();
 			}
 		}
+
+		public StoreClient StoreClient
+		{
+			get
+			{
+				return ClientContext.Clients.CreateStoreClient();
+			}
+		}
 	}
 }

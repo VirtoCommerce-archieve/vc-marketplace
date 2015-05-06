@@ -1,0 +1,76 @@
+/* Links */
+a
+{
+    text-decoration: none;
+}
+
+.link
+{
+    text-decoration: underline;
+}
+
+a,
+.link,
+.__link
+{
+    color: #fba61a;
+
+    -webkit-transition: color .25s ease 0s;
+    		transition: color .25s ease 0s;
+}
+
+.no-touch a:hover,
+.no-touch .link:hover,
+.no-touch .__link:hover,
+.no-touch .list-link:hover,
+.no-touch .menu-link:hover
+{
+    color: #ef4136;
+}
+
+.footer .footer-dev .menu-link::before,
+.footer .partner .link,
+.list.__socials .list-link
+{
+	background-color: #76797b;
+
+	-webkit-transition: background-color .25s ease 0s;
+    		transition: background-color .25s ease 0s;
+}
+
+.no-touch .footer-dev .menu-link:hover::before,
+.no-touch .footer .partner .link:hover,
+.no-touch .list.__socials .list-link:hover
+{
+	background-color: #fcb040;
+}
+
+.slider-scroll .list-item
+{
+	-webkit-transition: border-color .25s ease 0s;
+			transition: border-color .25s ease 0s;
+}
+
+.btn
+{
+	-webkit-transition: background-color .25s ease 0s;
+    		transition: background-color .25s ease 0s;
+}
+
+.slider-list_items .slider-control::after
+{
+	-webkit-transition: background-position .45s ease 0s;
+			transition: background-position .45s ease 0s;
+}
+
+.form-control.__checkbox .switch::after
+{
+	-webkit-transition: background-position .25s ease 0s;
+			transition: background-position .25s ease 0s;
+}
+
+.form-control.__radio .switch::after
+{
+	-webkit-transition: top .25s ease 0s;
+			transition: top .25s ease 0s;
+}

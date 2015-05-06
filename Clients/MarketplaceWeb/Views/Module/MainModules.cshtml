@@ -1,0 +1,10 @@
+﻿@model MarketplaceWeb.Models.ModulesModel
+
+<ul class="main">
+	@foreach (var item in Model.Items)
+	{
+		<li class="list-item">
+			@Html.Partial("ShortModuleInfo", item)
+		</li>
+	}
+</ul>

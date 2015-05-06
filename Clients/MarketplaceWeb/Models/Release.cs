@@ -36,6 +36,6 @@ namespace MarketplaceWeb.Models
         /// </summary>
         public ReleaseStatus ReleaseStatus { get; set; }
 
-        public Extension ParentExtension { get; set; }
+		public Module ParentExtension { get; set; }
     }
 }

@@ -1,0 +1,30 @@
+*
+{
+	margin: 0;
+	outline: none;
+	padding: 0;
+}
+
+html,
+body
+{
+	height: 100%;
+	width: 100%;
+}
+
+body
+{
+	background: #fff;
+	color: #888;
+	font-family: 'PT Sans';
+	font-size: 14px;
+	line-height: 1.4;
+}
+
+.clearfix:after
+{
+	clear: both;
+	content: '';
+	display: block;
+	font-size: 0;
+}

@@ -10,277 +10,314 @@ using VirtoCommerce.ApiClient.Extensions;
 
 namespace MarketplaceWeb.Helpers
 {
-    public static class UrlHelperExtensions
-    {
-        public static string Image(this UrlHelper helper, Extension item, string name)
-        {
+	public static class UrlHelperExtensions
+	{
+		public static string CssClassForRating(this UrlHelper helper, Module module)
+		{
+			return CssClassForRating(helper, module.Rating);
+		}
 
-            if (item == null)
-                return null;
+		public static string CssClassForRating(this UrlHelper helper, double rating)
+		{
+			var retVal = string.Empty;
 
-            var image = FindItemImage(item.Images, name);
+			if (rating == 0)
+			{
+				retVal = "";
+			}
+			else if (rating <= 1.0)
+			{
+				retVal = "__bad";
+			}
+			else if (rating <= 2.0)
+			{
+				retVal = "__not-bad";
+			}
+			else if (rating <= 3.0)
+			{
+				retVal = "__normal";
+			}
+			else if (rating <= 4.0)
+			{
+				retVal = "__good";
+			}
+			else if (rating <= 5.0)
+			{
+				retVal = "__nice";
+			}
 
-            return Image(helper, image);
-        }
+			return retVal;
+		}
 
-        public static string Image(this UrlHelper helper, ItemImage image)
-        {
-            const string defaultImage = "blank.png";
-            return helper.Content(image == null ? String.Format("~/Content/themes/default/images/{0}", defaultImage) : image.Src);
-        }
+		public static string Image(this UrlHelper helper, Module item, string name)
+		{
 
-        private static ItemImage FindItemImage(IEnumerable<ItemImage> images, string name)
-        {
-            return images == null ? null : images.FirstOrDefault(i => i.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-        }
-    }
+			if (item == null)
+				return null;
 
-    public static class UrlHelperFacetExtensions
-    {
-        public static string FacetPrefix = "f_";
+			var image = FindItemImage(item.Images, name);
 
-        public static string GetFacetKey(this UrlHelper helper, string field)
-        {
-            return string.Concat(FacetPrefix, field);
-        }
+			return Image(helper, image);
+		}
 
-        public static string SetFacet(this UrlHelper helper, string field, string value)
-        {
-            return helper.SetFacet(helper.RequestContext.HttpContext.Request.RawUrl, field, value);
-        }
+		public static string Image(this UrlHelper helper, ItemImage image)
+		{
+			const string defaultImage = "blank.png";
+			return helper.Content(image == null ? String.Format("~/Content/themes/default/images/{0}", defaultImage) : image.Src);
+		}
 
-        public static string SetFacet(this UrlHelper helper, string url, string field, string value)
-        {
-            url = helper.SetParameter(url, helper.GetFacetKey(field), value, false);
-            return helper.SetParameter(url, "p", "0");
-        }
+		private static ItemImage FindItemImage(IEnumerable<ItemImage> images, string name)
+		{
+			return images == null ? null : images.FirstOrDefault(i => i.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+		}
+	}
 
-        public static string RemoveFacet(this UrlHelper helper, string field, string value)
-        {
-            var noFacet = helper.RemoveParameterUrl(helper.RequestContext.HttpContext.Request.RawUrl, helper.GetFacetKey(field), value);
-            return helper.SetParameter(noFacet, "p", "0");
-        }
+	public static class UrlHelperFacetExtensions
+	{
+		public static string FacetPrefix = "f_";
 
-        public static string RemoveAllFacets(this UrlHelper helper)
-        {
-            string url = helper.RequestContext.HttpContext.Request.RawUrl;
-            var parts = url.Split('?');
+		public static string GetFacetKey(this UrlHelper helper, string field)
+		{
+			return string.Concat(FacetPrefix, field);
+		}
 
-            if (parts.Length == 1) return parts[0];
+		public static string SetFacet(this UrlHelper helper, string field, string value)
+		{
+			return helper.SetFacet(helper.RequestContext.HttpContext.Request.RawUrl, field, value);
+		}
 
-            var qs = ParseQueryString(parts[1]);
+		public static string SetFacet(this UrlHelper helper, string url, string field, string value)
+		{
+			url = helper.SetParameter(url, helper.GetFacetKey(field), value, false);
+			return helper.SetParameter(url, "p", "0");
+		}
 
-            var keysToRemove = (from p in qs where p.Key.StartsWith(FacetPrefix) select p.Key).ToList();
+		public static string RemoveFacet(this UrlHelper helper, string field, string value)
+		{
+			var noFacet = helper.RemoveParameterUrl(helper.RequestContext.HttpContext.Request.RawUrl, helper.GetFacetKey(field), value);
+			return helper.SetParameter(noFacet, "p", "0");
+		}
 
-            foreach (var p in keysToRemove)
-            {
-                qs.Remove(p);
-            }
+		public static string RemoveAllFacets(this UrlHelper helper)
+		{
+			string url = helper.RequestContext.HttpContext.Request.RawUrl;
+			var parts = url.Split('?');
 
-            var noFacets = parts[0] + "?" + DictToQuerystring(qs);
-            return helper.SetParameter(noFacets, "p", "0");
-        }
+			if (parts.Length == 1) return parts[0];
 
-        /// <summary>
-        /// Sets/changes an url's query string parameter.
-        /// </summary>
-        /// <param name="helper">The helper.</param>
-        /// <param name="url">URL to process</param>
-        /// <param name="key">Query string parameter key to set/change</param>
-        /// <param name="value">Query string parameter value</param>
-        /// <param name="replace">if set to <c>true</c> [replace].</param>
-        /// <returns>
-        /// Resulting URL
-        /// </returns>
-        public static string SetParameter(this UrlHelper helper, string url, string key, string value, bool replace = true)
-        {
-            return helper.SetParameters(url, new Dictionary<string, object> { { key, value } }, replace);
-        }
+			var qs = ParseQueryString(parts[1]);
 
-        /// <summary>
-        /// Sets/changes an url's query string parameters.
-        /// </summary>
-        /// <param name="helper">The helper.</param>
-        /// <param name="url">URL to process</param>
-        /// <param name="parameters">Paramteres to set/change</param>
-        /// <param name="replace">if set to <c>true</c> [replace].</param>
-        /// <returns>
-        /// Resulting URL
-        /// </returns>
-        public static string SetParameters(this UrlHelper helper, string url, IDictionary<string, object> parameters, bool replace = true)
-        {
-            var parts = url.Split('?');
+			var keysToRemove = (from p in qs where p.Key.StartsWith(FacetPrefix) select p.Key).ToList();
 
-            IDictionary<string, string[]> qs = new Dictionary<string, string[]>();
+			foreach (var p in keysToRemove)
+			{
+				qs.Remove(p);
+			}
 
-            if (parts.Length > 1)
-            {
-                qs = ParseQueryString(parts[1]);
-            }
+			var noFacets = parts[0] + "?" + DictToQuerystring(qs);
+			return helper.SetParameter(noFacets, "p", "0");
+		}
 
-            // now go through all the parameters and add them into the querystring
-            foreach (var p in parameters)
-            {
-                if (p.Value == null)
-                {
-                    qs[p.Key] = null;
-                }
-                else
-                {
-                    var values = p.Value.ToString().Split(',');
+		/// <summary>
+		/// Sets/changes an url's query string parameter.
+		/// </summary>
+		/// <param name="helper">The helper.</param>
+		/// <param name="url">URL to process</param>
+		/// <param name="key">Query string parameter key to set/change</param>
+		/// <param name="value">Query string parameter value</param>
+		/// <param name="replace">if set to <c>true</c> [replace].</param>
+		/// <returns>
+		/// Resulting URL
+		/// </returns>
+		public static string SetParameter(this UrlHelper helper, string url, string key, string value, bool replace = true)
+		{
+			return helper.SetParameters(url, new Dictionary<string, object> { { key, value } }, replace);
+		}
 
-                    if (qs.ContainsKey(p.Key) && !replace)
-                    {
-                        var list = new List<String>(qs[p.Key]);
-                        list.AddRange(values);
+		/// <summary>
+		/// Sets/changes an url's query string parameters.
+		/// </summary>
+		/// <param name="helper">The helper.</param>
+		/// <param name="url">URL to process</param>
+		/// <param name="parameters">Paramteres to set/change</param>
+		/// <param name="replace">if set to <c>true</c> [replace].</param>
+		/// <returns>
+		/// Resulting URL
+		/// </returns>
+		public static string SetParameters(this UrlHelper helper, string url, IDictionary<string, object> parameters, bool replace = true)
+		{
+			var parts = url.Split('?');
 
-                        qs[p.Key] = list.Distinct().ToArray();
-                    }
-                    else
-                    {
-                        qs[p.Key] = values;
-                    }
-                }
-            }
+			IDictionary<string, string[]> qs = new Dictionary<string, string[]>();
 
-            return parts[0] + "?" + DictToQuerystring(qs);
-        }
+			if (parts.Length > 1)
+			{
+				qs = ParseQueryString(parts[1]);
+			}
 
-        /// <summary>
-        /// Sets/changes an url's query string parameters.
-        /// </summary>
-        /// <param name="helper">The helper.</param>
-        /// <param name="query">The query.</param>
-        /// <param name="parameters">The parameters.</param>
-        /// <returns></returns>
-        public static string SetQueryParameters(this UrlHelper helper, string query, IDictionary<string, object> parameters)
-        {
-            var qs = ParseQueryString(query);
-            foreach (var p in parameters)
-            {
-                if (p.Value == null)
-                {
-                    qs[p.Key] = null;
-                }
-                else
-                {
-                    qs[p.Key] = p.Value.ToString().Split(',');
-                }
-            }
-            return DictToQuerystring(qs);
-        }
+			// now go through all the parameters and add them into the querystring
+			foreach (var p in parameters)
+			{
+				if (p.Value == null)
+				{
+					qs[p.Key] = null;
+				}
+				else
+				{
+					var values = p.Value.ToString().Split(',');
 
-        /// <summary>
-        /// Removes parameters from an url's query string
-        /// </summary>
-        /// <param name="helper"></param>
-        /// <param name="url">URL to process</param>
-        /// <param name="parameters">Query string parameter keys to remove</param>
-        /// <returns>Resulting URL</returns>
-        public static string RemoveParametersUrl(this UrlHelper helper, string url, params string[] parameters)
-        {
-            var parts = url.Split('?');
-            if (parts.Length == 1) return parts[0];
+					if (qs.ContainsKey(p.Key) && !replace)
+					{
+						var list = new List<String>(qs[p.Key]);
+						list.AddRange(values);
 
-            var qs = ParseQueryString(parts[1]);
+						qs[p.Key] = list.Distinct().ToArray();
+					}
+					else
+					{
+						qs[p.Key] = values;
+					}
+				}
+			}
 
-            foreach (var p in parameters)
-            {
-                qs.Remove(p);
-            }
+			return parts[0] + "?" + DictToQuerystring(qs);
+		}
 
-            return parts[0] + "?" + DictToQuerystring(qs);
-        }
+		/// <summary>
+		/// Sets/changes an url's query string parameters.
+		/// </summary>
+		/// <param name="helper">The helper.</param>
+		/// <param name="query">The query.</param>
+		/// <param name="parameters">The parameters.</param>
+		/// <returns></returns>
+		public static string SetQueryParameters(this UrlHelper helper, string query, IDictionary<string, object> parameters)
+		{
+			var qs = ParseQueryString(query);
+			foreach (var p in parameters)
+			{
+				if (p.Value == null)
+				{
+					qs[p.Key] = null;
+				}
+				else
+				{
+					qs[p.Key] = p.Value.ToString().Split(',');
+				}
+			}
+			return DictToQuerystring(qs);
+		}
 
-        public static string RemoveParameterUrl(this UrlHelper helper, string url, string parameter, string value)
-        {
-            var parts = url.Split('?');
-            if (parts.Length == 1) return parts[0];
+		/// <summary>
+		/// Removes parameters from an url's query string
+		/// </summary>
+		/// <param name="helper"></param>
+		/// <param name="url">URL to process</param>
+		/// <param name="parameters">Query string parameter keys to remove</param>
+		/// <returns>Resulting URL</returns>
+		public static string RemoveParametersUrl(this UrlHelper helper, string url, params string[] parameters)
+		{
+			var parts = url.Split('?');
+			if (parts.Length == 1) return parts[0];
 
-            var qs = ParseQueryString(parts[1]);
+			var qs = ParseQueryString(parts[1]);
 
-            if (qs.ContainsKey(parameter))
-            {
-                var values = qs[parameter];
-                if (values == null || values.Length <= 1)
-                {
-                    qs.Remove(parameter);
-                }
-                else
-                {
-                    qs[parameter] = values.Where(x => !x.Equals(value, StringComparison.OrdinalIgnoreCase)).ToArray();
-                }
-            }
+			foreach (var p in parameters)
+			{
+				qs.Remove(p);
+			}
 
-            return parts[0] + "?" + DictToQuerystring(qs);
-        }
+			return parts[0] + "?" + DictToQuerystring(qs);
+		}
 
-        private static string DictToQuerystring(IEnumerable<KeyValuePair<string, string[]>> qs)
-        {
-            return string.Join("&", qs
-                .Where(k => !string.IsNullOrEmpty(k.Key))
-                .Select(k => string.Format("{0}={1}", HttpUtility.UrlEncode(k.Key), String.Join(",", k.Value.Select(HttpUtility.UrlEncode).ToArray()))).ToArray());
-        }
+		public static string RemoveParameterUrl(this UrlHelper helper, string url, string parameter, string value)
+		{
+			var parts = url.Split('?');
+			if (parts.Length == 1) return parts[0];
 
-        /// <summary>
-        /// Sets/changes a single parameter from the current query string.
-        /// </summary>
-        /// <param name="helper"></param>
-        /// <param name="key">Parameter key</param>
-        /// <param name="value">Parameter value</param>
-        /// <param name="replace"></param>
-        /// <returns>Resulting URL</returns>
-        public static string SetParameter(this UrlHelper helper, string key, object value, bool replace = true)
-        {
-            return helper.SetParameter(helper.RequestContext.HttpContext.Request.RawUrl, key, value.ToNullOrString(), replace);
-        }
+			var qs = ParseQueryString(parts[1]);
 
-        /// <summary>
-        /// Sets/changes the current query string's parameters, using <paramref name="parameterDictionary" /> as dictionary
-        /// </summary>
-        /// <param name="helper">The helper.</param>
-        /// <param name="parameterDictionary">Parameters to set/change</param>
-        /// <param name="replace">if set to <c>true</c> [replace].</param>
-        /// <returns>
-        /// Resulting URL
-        /// </returns>
-        public static string SetParameters(this UrlHelper helper, object parameterDictionary, bool replace = true)
-        {
-            return helper.SetParameters(helper.RequestContext.HttpContext.Request.RawUrl, parameterDictionary.ToPropertyDictionary(), replace);
-        }
+			if (qs.ContainsKey(parameter))
+			{
+				var values = qs[parameter];
+				if (values == null || values.Length <= 1)
+				{
+					qs.Remove(parameter);
+				}
+				else
+				{
+					qs[parameter] = values.Where(x => !x.Equals(value, StringComparison.OrdinalIgnoreCase)).ToArray();
+				}
+			}
 
-        /// <summary>
-        /// Parses a query string. If duplicates are present, the last key/value is kept.
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        private static IDictionary<string, string[]> ParseQueryString(string s)
-        {
-            var d = new Dictionary<string, string[]>(StringComparer.InvariantCultureIgnoreCase);
+			return parts[0] + "?" + DictToQuerystring(qs);
+		}
 
-            if (s == null)
-            {
-                return d;
-            }
+		private static string DictToQuerystring(IEnumerable<KeyValuePair<string, string[]>> qs)
+		{
+			return string.Join("&", qs
+				.Where(k => !string.IsNullOrEmpty(k.Key))
+				.Select(k => string.Format("{0}={1}", HttpUtility.UrlEncode(k.Key), String.Join(",", k.Value.Select(HttpUtility.UrlEncode).ToArray()))).ToArray());
+		}
 
-            if (s.StartsWith("?"))
-            {
-                s = s.Substring(1);
-            }
+		/// <summary>
+		/// Sets/changes a single parameter from the current query string.
+		/// </summary>
+		/// <param name="helper"></param>
+		/// <param name="key">Parameter key</param>
+		/// <param name="value">Parameter value</param>
+		/// <param name="replace"></param>
+		/// <returns>Resulting URL</returns>
+		public static string SetParameter(this UrlHelper helper, string key, object value, bool replace = true)
+		{
+			return helper.SetParameter(helper.RequestContext.HttpContext.Request.RawUrl, key, value.ToNullOrString(), replace);
+		}
 
-            foreach (var kv in s.Split('&'))
-            {
-                var v = kv.Split('=');
-                if (string.IsNullOrEmpty(v[0]))
-                {
-                    continue;
-                }
+		/// <summary>
+		/// Sets/changes the current query string's parameters, using <paramref name="parameterDictionary" /> as dictionary
+		/// </summary>
+		/// <param name="helper">The helper.</param>
+		/// <param name="parameterDictionary">Parameters to set/change</param>
+		/// <param name="replace">if set to <c>true</c> [replace].</param>
+		/// <returns>
+		/// Resulting URL
+		/// </returns>
+		public static string SetParameters(this UrlHelper helper, object parameterDictionary, bool replace = true)
+		{
+			return helper.SetParameters(helper.RequestContext.HttpContext.Request.RawUrl, parameterDictionary.ToPropertyDictionary(), replace);
+		}
 
-                var valueArray = v[1].Split(',').Select(x => HttpUtility.UrlDecode(x.ToString(CultureInfo.InvariantCulture))).ToArray();
-                d[HttpUtility.UrlDecode(v[0])] = valueArray;
-            }
-            return d;
-        }
+		/// <summary>
+		/// Parses a query string. If duplicates are present, the last key/value is kept.
+		/// </summary>
+		/// <param name="s"></param>
+		/// <returns></returns>
+		private static IDictionary<string, string[]> ParseQueryString(string s)
+		{
+			var d = new Dictionary<string, string[]>(StringComparer.InvariantCultureIgnoreCase);
 
-    }
+			if (s == null)
+			{
+				return d;
+			}
+
+			if (s.StartsWith("?"))
+			{
+				s = s.Substring(1);
+			}
+
+			foreach (var kv in s.Split('&'))
+			{
+				var v = kv.Split('=');
+				if (string.IsNullOrEmpty(v[0]))
+				{
+					continue;
+				}
+
+				var valueArray = v[1].Split(',').Select(x => HttpUtility.UrlDecode(x.ToString(CultureInfo.InvariantCulture))).ToArray();
+				d[HttpUtility.UrlDecode(v[0])] = valueArray;
+			}
+			return d;
+		}
+
+	}
 }

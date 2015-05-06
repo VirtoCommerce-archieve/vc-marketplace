@@ -14,24 +14,38 @@ namespace MarketplaceWeb.Controllers
 		// GET: Mail
 		//[ValidateAntiForgeryToken]
 		[Route("send")]
-		public ActionResult Send([ModelBinder(typeof(MailModelBinder))]MailModel model, string redirectUrl)
+		public ActionResult Send([ModelBinder(typeof(MailModelBinder))]MailModel model, string vendore, string redirectUrl)
 		{
 			var username = ConfigurationManager.AppSettings["SendGridUsername"];
 			var password = ConfigurationManager.AppSettings["SendGridPassword"];
 
 			var message = new SendGridMessage();
-
 			message.AddTo(ConfigurationManager.AppSettings["SupportToEmail"]);
 			message.From = new MailAddress(model.To, model.FullName);
 			message.Subject = model.Subject;
 			message.Html = model.FullMailBody;
-
 			var credentials = new NetworkCredential(username, password);
 			var transportWeb = new Web(credentials);
 			transportWeb.Deliver(message);
 
+			if (!string.IsNullOrEmpty(vendore))
+			{
+				try
+				{
+					message = new SendGridMessage();
+					message.AddTo(vendore.Replace("[", "@"));
+					message.From = new MailAddress(model.To, model.FullName);
+					message.Subject = model.Subject;
+					message.Html = model.FullMailBody;
+					transportWeb.Deliver(message);
+				}
+				catch
+				{
 
-		    return Redirect(redirectUrl);
+				}
+			}
+
+			return Redirect(redirectUrl);
 		}
 	}
 }
