@@ -50,8 +50,8 @@ namespace MarketplaceWeb.Controllers
 				retVal.Modules.AddRange(products.Items.Select(i => i.ToWebModel()));
 				foreach (var module in retVal.Modules)
 				{
-					var reviews = await ReviewsClient.GetReviewsAsync(module.Code);
-					module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Code)));
+					var reviews = await ReviewsClient.GetReviewsAsync(module.Keyword);
+					module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Keyword)));
 				}
 
 				retVal.CategoryCode = category.Code;

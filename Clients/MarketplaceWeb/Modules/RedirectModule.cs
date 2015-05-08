@@ -56,7 +56,7 @@ namespace MarketplaceWeb.Modules
 					context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/cat/" + id);
 				}
 
-				var product = Task.Run(() => SearchClient.GetProductByCodeAsync("MarketPlace", "en-US", id)).Result;
+				var product = Task.Run(() => SearchClient.GetProductByKeywordAsync("MarketPlace", "en-US", id)).Result;
 				if (product != null)
 				{
 					context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/modules/" + id);

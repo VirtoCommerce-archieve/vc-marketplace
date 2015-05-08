@@ -12,7 +12,7 @@
 			@foreach (var cat in Model.CategoryList)
 			{
 				<li class="menu-item">
-					<a class="menu-link" href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/cat/{0}", cat.Key))">@cat.Value</a>
+					<a class="menu-link" href="@SiteUrlHelper.ResolveServerUrl(string.Format("~/{0}", cat.Key))">@cat.Value</a>
 				</li>
 			}
 			<li class="menu-item" itemprop="name">
@@ -113,21 +113,24 @@
 					</div>
 				</div>
 			</div>
-			<a data-id="buyButton_top" class="btn __red __round __block __ucase __disabled" target="_blank" href="http://virtocommerce.com/">
-				@Html.GetExtensionButton(Model)	
-			</a>
-			<div class="extension-license __col-w">
-				<div class="extension-chck col __col-40">
-					<label data-id="buySpan_top" class="form-control __checkbox" for="some">
-						<input type="checkbox" id="some">
-						<span data-id="buySpan_top" class="switch"></span>
-						<span data-id="buySpan_top" class="control-name">I agree with license terms</span>
-					</label>
+			@if(Model.IsDownloadable)
+			{
+				<a data-id="buyButton_top" class="btn __red __round __block __ucase __disabled" target="_blank" href="http://virtocommerce.com/">
+					@Html.GetExtensionButton(Model)	
+				</a>
+				<div class="extension-license __col-w">
+					<div class="extension-chck col __col-40">
+						<label data-id="buySpan_top" class="form-control __checkbox" for="some">
+							<input type="checkbox" id="some">
+							<span data-id="buySpan_top" class="switch"></span>
+							<span data-id="buySpan_top" class="control-name">I agree with license terms</span>
+						</label>
+					</div>
+					<div class="extension-note col __col-60">
+						Please note that this extension is provided as is. It is recommended to always backup your installation prior to use.
+					</div>
 				</div>
-				<div class="extension-note col __col-60">
-					Please note that this extension is provided as is. It is recommended to always backup your installation prior to use.
-				</div>
-			</div>
+			}
 		</div>
 	</div>
 	<div class="tabs">
@@ -144,7 +147,7 @@
 		</ul>
 		<div class="tab-content" id="license">
 			<div class="content-inner __responsive">
-				@Model.License
+				@Html.Raw(Model.Overview)
 			</div>
 		</div>
 		@if (Model.Releases.Count > 0)
@@ -247,5 +250,5 @@
 }
 
 @section forms {
-	@Html.Partial("_ReviewFormPartial", Model.Code)
+	@Html.Partial("_ReviewFormPartial", Model.Keyword)
 }

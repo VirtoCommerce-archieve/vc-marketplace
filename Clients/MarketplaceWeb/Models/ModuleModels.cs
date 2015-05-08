@@ -39,6 +39,8 @@ namespace MarketplaceWeb.Models
 
 		public string Code { get; set; }
 
+		public string Keyword { get; set; }
+
 		public string Title { get; set; }
 
 		public PriceModel Price { get; set; }
@@ -47,7 +49,11 @@ namespace MarketplaceWeb.Models
 
 		public string FullDescription { get; set; }
 
-		public string License { get; set; }
+		public string Overview { get; set; }
+
+		public string DownloadLink { get; set; }
+
+		public bool IsDownloadable { get { return !string.IsNullOrEmpty(this.DownloadLink); } }
 
 		public List<ItemImage> Images { get; set; }
 

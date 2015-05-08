@@ -32,8 +32,8 @@ namespace MarketplaceWeb.Controllers
 			retVal.Results.AddRange(results.Items.Select(i => i.ToWebModel()));
 			foreach (var module in retVal.Results)
 			{
-				var reviews = await ReviewsClient.GetReviewsAsync(module.Code);
-				module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Code)));
+				var reviews = await ReviewsClient.GetReviewsAsync(module.Keyword);
+				module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Keyword)));
 			}
 
 			var customer = await CustomerServiceClient.GetContactByIdAsync(vendorId);
@@ -57,8 +57,8 @@ namespace MarketplaceWeb.Controllers
 			retVal.Results.AddRange(results.Items.Select(i => i.ToWebModel()));
 			foreach (var module in retVal.Results)
 			{
-				var reviews = await ReviewsClient.GetReviewsAsync(module.Code);
-				module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Code)));
+				var reviews = await ReviewsClient.GetReviewsAsync(module.Keyword);
+				module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Keyword)));
 			}
 
 			retVal.SearchTerm = q;

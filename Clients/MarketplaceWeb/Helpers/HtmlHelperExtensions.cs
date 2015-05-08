@@ -46,7 +46,7 @@ namespace MarketplaceWeb.Helpers
 				retVal.AppendLine(
 					string.Format(
 					"<a target=\"_blank\" href=\"http://www.twitter.com/share?url={0}\" class=\"list-link\">Twitter</a>",
-					HttpUtility.UrlEncode(string.Format(SiteUrlHelper.ResolveServerUrl("~/modules/{0}"), module.Code))));
+					HttpUtility.UrlEncode(string.Format(SiteUrlHelper.ResolveServerUrl("~/{0}"), module.Keyword))));
 
 				retVal.AppendLine("</li>");
 			}
@@ -57,7 +57,7 @@ namespace MarketplaceWeb.Helpers
 				retVal.AppendLine(
 					string.Format(
 					"<a target=\"_blank\" href=\"https://www.facebook.com/sharer/sharer.php?u={0}\" class=\"list-link\">Facebook</a>",
-					HttpUtility.UrlEncode(string.Format(SiteUrlHelper.ResolveServerUrl("~/modules/{0}"), module.Code))));
+					HttpUtility.UrlEncode(string.Format(SiteUrlHelper.ResolveServerUrl("~/{0}"), module.Keyword))));
 				
 				retVal.AppendLine("</li>");
 			}
@@ -68,7 +68,7 @@ namespace MarketplaceWeb.Helpers
 				retVal.AppendLine(
 					string.Format(
 					"<a target=\"_blank\" href=\"https://plus.google.com/share?url={0}\" class=\"list-link\">Google plus</a>",
-					HttpUtility.UrlEncode(string.Format(SiteUrlHelper.ResolveServerUrl("~/modules/{0}"), module.Code))));
+					HttpUtility.UrlEncode(string.Format(SiteUrlHelper.ResolveServerUrl("~/{0}"), module.Keyword))));
 				
 				retVal.AppendLine("</li>");
 			}
@@ -79,7 +79,7 @@ namespace MarketplaceWeb.Helpers
 				retVal.AppendLine(
 					string.Format(
 					"<a target=\"_blank\" href=\"https://www.linkedin.com/shareArticle?mini=true&url={0}&title={1}&summary={2}&source={3}\" class=\"list-link\">Linkedin</a>",
-					HttpUtility.UrlEncode(string.Format(SiteUrlHelper.ResolveServerUrl("~/modules/{0}"), module.Code)),
+					HttpUtility.UrlEncode(string.Format(SiteUrlHelper.ResolveServerUrl("~/{0}"), module.Keyword)),
 					module.Title,
 					module.FullDescription,
 					SiteUrlHelper.ResolveServerUrl("~")));

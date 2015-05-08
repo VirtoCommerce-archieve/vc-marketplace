@@ -6,11 +6,6 @@
 			<form class="popup-cnt" data-id="becomedeveloper" action="@SiteUrlHelper.ResolveServerUrl("~/mail/send")" method="post">
 				<input type="hidden" value="Become a developer" name="subject" />
 				<input type="hidden" value="@SiteUrlHelper.ResolveServerUrl("~/")" name="redirectUrl" />
-
-				
-				@*<div>
-					<span>Your company e-mail</span>
-				</div>*@
 				<div class="form-group">
 					<label class="form-label">Your company e-mail</label>
 					<div class="form-input">
@@ -19,21 +14,21 @@
 				</div>
 
 				<div class="form-group">
-					<label class="form-label">Your company e-mail</label>
+					<label class="form-label">Your company name</label>
 					<div class="form-input">
 						<input type="text" name="companyName" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="form-label">Your company e-mail</label>
+					<label class="form-label">Your fullname</label>
 					<div class="form-input">
 						<input type="text" name="fullname" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="form-label">Your company e-mail</label>
+					<label class="form-label">Your message</label>
 					<div class="form-input">
 						<textarea rows="10" cols="30" id="" name="comment"></textarea>
 					</div>

@@ -334,22 +334,39 @@
 
         .list.__items .list-link
         {
+            background: #f6f6f6;
+            border: 1px solid #eee;
             display: block;
+            overflow: hidden;
+            padding: 5px;
+
+            -webkit-border-radius: 5px;
+                    border-radius: 5px;
         }
 
             .list.__items .image-outer
             {
+                background: #fff;
+                height: 208px;
                 margin: 0 0 25px;
                 overflow: hidden;
+                text-align: center;
+            }
+
+            .list.__items .image-outer::after
+            {
+                content: '';
+                display: inline-block;
+                height: 100%;
+                vertical-align: middle;
             }
 
             .list.__items .list-img
             {
-                display: block;
-                width: 100%;
-
-                -webkit-border-radius: 10px;
-                        border-radius: 10px;
+                display: inline-block;
+                margin: 0 0 0 4px;
+                max-width: 170px;
+                vertical-align: middle;
             }
 
             .list.__items .list-name,
@@ -357,6 +374,13 @@
             .list.__items .list-rating
             {
                 margin: 0 5px;
+            }
+
+            .list.__items .list-name
+            {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
 
             .list.__items .list-name

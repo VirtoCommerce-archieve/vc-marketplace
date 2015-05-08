@@ -21,10 +21,10 @@ namespace MarketplaceWeb.Controllers
 			return PartialView(retVal);
 		}
 
-		[Route("{code}")]
-		public ActionResult Module(string code)
+		[Route("{keyword}")]
+		public ActionResult Module(string keyword)
 		{
-			var product = Task.Run(() => SearchClient.GetProductByCodeAsync("MarketPlace", "en-US", code, ItemResponseGroups.ItemLarge)).Result;
+			var product = Task.Run(() => SearchClient.GetProductByKeywordAsync("MarketPlace", "en-US", keyword, ItemResponseGroups.ItemLarge)).Result;
 			var reviews = Task.Run(() => ReviewsClient.GetReviewsAsync(product.Code)).Result;
 			var category = Task.Run(() => SearchClient.GetCategoryAsync("MarketPlace", "en-US", product.Categories.Last())).Result;
 
@@ -59,8 +59,8 @@ namespace MarketplaceWeb.Controllers
 
 			foreach (var item in retVal.Items)
 			{
-				var reviews = Task.Run(() => ReviewsClient.GetReviewsAsync(item.Code)).Result;
-				item.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(item.Code)));
+				var reviews = Task.Run(() => ReviewsClient.GetReviewsAsync(item.Keyword)).Result;
+				item.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(item.Keyword)));
 			}
 
 			return retVal;

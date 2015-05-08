@@ -24,6 +24,11 @@
 		width: 20%;
 	}
 
+	.list.__items .image-outer
+	{
+		height: 198px;
+	}
+
 	/* News */
 	.news .form
     {
@@ -450,6 +455,7 @@
 
 	.list.__items .image-outer
 	{
+		height: 207px;
 		margin: 0 0 15px;
 	}
 
@@ -819,6 +825,17 @@
 	{
 		text-align: left;
 		width: 220px;
+	}
+
+	.list.__items .image-outer
+	{
+		height: 188px;
+	}
+
+	.list.__items .list-name
+	{
+		white-space: normal;
+		text-overflow: inherit;
 	}
 
 	/* Breadcrumbs */

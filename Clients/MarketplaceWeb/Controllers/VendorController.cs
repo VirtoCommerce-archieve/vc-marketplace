@@ -35,8 +35,8 @@ namespace MarketplaceWeb.Controllers
 
 			foreach(var module in results.Items.Select(x => x.ToWebModel()))
 			{
-				var reviews = await ReviewsClient.GetReviewsAsync(module.Code);
-				module.Reviews.AddRange(reviews.Items.Select(r => r.ToWebModel(module.Code)));
+				var reviews = await ReviewsClient.GetReviewsAsync(module.Keyword);
+				module.Reviews.AddRange(reviews.Items.Select(r => r.ToWebModel(module.Keyword)));
 
 				model.Modules.Add(module);
 			}
