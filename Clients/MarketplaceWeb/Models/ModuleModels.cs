@@ -19,6 +19,7 @@ namespace MarketplaceWeb.Models
 		public Module()
 		{
 			CategoryList = new Dictionary<string, string>();
+			Releases = new List<Release>();
 		}
 
 		/// <summary>

@@ -26,7 +26,7 @@ namespace MarketplaceWeb.Controllers
 		{
 			var product = Task.Run(() => SearchClient.GetProductByCodeAsync("MarketPlace", "en-US", code, ItemResponseGroups.ItemLarge)).Result;
 			var reviews = Task.Run(() => ReviewsClient.GetReviewsAsync(product.Code)).Result;
-			var category = Task.Run(() => SearchClient.GetCategoryAsync("MarketPlace", "en-US", product.Outline)).Result;
+			var category = Task.Run(() => SearchClient.GetCategoryAsync("MarketPlace", "en-US", product.Categories.Last())).Result;
 
 			var module = product.ToWebModel();
 

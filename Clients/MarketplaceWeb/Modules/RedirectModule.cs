@@ -47,24 +47,25 @@ namespace MarketplaceWeb.Modules
 			}
 
 			var steps = filePath.Split(new string[] { "/" }, StringSplitOptions.RemoveEmptyEntries);
-			if (steps.Length == 2)
+			if (steps.Length > 0)
 			{
-				var category = Task.Run(() => SearchClient.GetCategoryByCodeAsync("MarketPlace", "en-US", steps[1])).Result;
+				var id = steps.Last();
+				var category = Task.Run(() => SearchClient.GetCategoryByCodeAsync("MarketPlace", "en-US", id)).Result;
 				if (category != null)
 				{
-					context.RewritePath(context.Request.Path.Replace("/" + steps[1], string.Empty) + "/cat/" + steps[1]);
+					context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/cat/" + id);
 				}
 
-				var product = Task.Run(() => SearchClient.GetProductByCodeAsync("MarketPlace", "en-US", steps[1])).Result;
+				var product = Task.Run(() => SearchClient.GetProductByCodeAsync("MarketPlace", "en-US", id)).Result;
 				if (product != null)
 				{
-					context.RewritePath(context.Request.Path.Replace("/" + steps[1], string.Empty) + "/modules/" + steps[1]);
+					context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/modules/" + id);
 				}
 
-				var vendor = Task.Run(() => CustomerServiceClient.GetContactByIdAsync(steps[1])).Result;
+				var vendor = Task.Run(() => CustomerServiceClient.GetContactByIdAsync(id)).Result;
 				if (vendor != null)
 				{
-					context.RewritePath(context.Request.Path.Replace("/" + steps[1], string.Empty) + "/vendor/" + steps[1]);
+					context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/vendor/" + id);
 				}
 			}
 		}

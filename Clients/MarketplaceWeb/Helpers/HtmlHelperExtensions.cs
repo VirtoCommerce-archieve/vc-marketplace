@@ -23,9 +23,14 @@ namespace MarketplaceWeb.Helpers
 
 		public static string LastRelease(this HtmlHelper helper, Module module)
 		{
-			return string.Format("{0} from {1}",
-				module.LatestRelease.Version,
-				module.LatestRelease.ReleaseDate.Value.ToString("MM/dd/yyyy"));
+			if (module.LatestRelease != null)
+			{
+				return string.Format("{0} from {1}",
+					module.LatestRelease.Version,
+					module.LatestRelease.ReleaseDate.Value.ToString("MM/dd/yyyy"));
+			}
+
+			return string.Empty;
 		}
 
 		public static MvcHtmlString ShareLinksBlock(this HtmlHelper helper, Module module)
