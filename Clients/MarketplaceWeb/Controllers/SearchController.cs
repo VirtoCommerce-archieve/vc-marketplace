@@ -20,12 +20,13 @@ namespace MarketplaceWeb.Controllers
 	[RoutePrefix("search")]
 	public class SearchController : ControllerBase
 	{
-		[Route("vendor/{vendorId}")]
+		[Route("ven")]
 		public async Task<ActionResult> DeveloperExtensions(string vendorId, string sort)
 		{
 			var query = new BrowseQuery();
 			query.Filters = new Dictionary<string, string[]>();
 			query.Filters.Add("vendorId", new[] { vendorId });
+			query.Take = 50;
 			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query, ItemResponseGroups.ItemLarge);
 
 			DeveloperSearchResult retVal = new DeveloperSearchResult();

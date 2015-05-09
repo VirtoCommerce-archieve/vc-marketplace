@@ -31,9 +31,10 @@ namespace MarketplaceWeb.Controllers
 			model = await userHelper.GetUser(vendorId);
 
 			query.Filters.Add("vendorId", new[] { vendorId });
+			query.Take = 50;
 			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query, ItemResponseGroups.ItemLarge);
 
-			foreach(var module in results.Items.Select(x => x.ToWebModel()))
+			foreach (var module in results.Items.Select(x => x.ToWebModel()))
 			{
 				var reviews = await ReviewsClient.GetReviewsAsync(module.Keyword);
 				module.Reviews.AddRange(reviews.Items.Select(r => r.ToWebModel(module.Keyword)));
