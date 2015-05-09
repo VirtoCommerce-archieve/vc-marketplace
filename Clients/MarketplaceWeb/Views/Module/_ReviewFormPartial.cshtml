@@ -8,7 +8,7 @@
 			<form class="popup-cnt" data-id="reviewForm" action="@SiteUrlHelper.ResolveServerUrl("~/mail/send")" method="post">
 				<input type="hidden" value="Review app store" name="subject" />
 				<input type="hidden" value="@Model" name="productCode" />
-				<input type="hidden" value="@SiteUrlHelper.ResolveServerUrl("~/modules/" + Model)" name="redirectUrl" />
+				<input type="hidden" value="@SiteUrlHelper.ResolveServerUrl("~/" + Model)" name="redirectUrl" />
 				<input type="hidden" value="0" name="rating" />
 				<div class="popup-rating">
 					<div class="rating-t">Please select rating</div>
@@ -49,7 +49,7 @@
 				</div>
 			</form>
 			<div class="popup-footer">
-				<a class="btn __yellow __mini __round __ucase" data-id="submitPopup" data-formId="review">Submit</a>
+				<a class="btn __yellow __mini __round __ucase" data-id="submitPopup" data-formid="reviewForm">Submit</a>
 				<a class="btn __cancel __mini __round __ucase" data-id="closePopup">Cancel</a>
 			</div>
 		</div>
