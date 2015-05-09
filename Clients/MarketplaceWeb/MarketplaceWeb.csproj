@@ -323,7 +323,7 @@
     <Content Include="Views\Module\_ReviewFormPartial.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Page\_BecomeDeveloperFormPartial.cshtml" />
-    <Content Include="Views\Vendor\_ContactVendorFormPartial.cshtml" />
+    <Content Include="Views\Shared\_ContactVendorFormPartial.cshtml" />
     <Content Include="Views\Vendor\_SupportVendorFormPartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
