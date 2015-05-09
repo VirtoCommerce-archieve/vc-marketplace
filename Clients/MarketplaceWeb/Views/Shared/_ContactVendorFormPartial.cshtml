@@ -5,7 +5,7 @@
 		<div class="popup">
 			<a class="popup-close"></a>
 			<div class="popup-head">CONTACT VENDOR</div>
-			<form class="popup-cnt" data-id="contactVendor" action="@SiteUrlHelper.ResolveServerUrl("~/mail/send")" method="post">
+			<form class="popup-cnt" data-id="contactVendorForm" action="@SiteUrlHelper.ResolveServerUrl("~/mail/send")" method="post">
 				<input type="hidden" value="Contact vendor" name="subject" />
 				<input type="hidden" value="@SiteUrlHelper.ResolveServerUrl("~/")" name="redirectUrl" />
 				<input type="hidden" value="@Model.Name" name="vendorName" />

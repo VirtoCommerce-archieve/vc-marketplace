@@ -5,7 +5,7 @@
 		<div class="popup">
 			<a class="popup-close"></a>
 			<div class="popup-head">YOUR REVIEW</div>
-			<form class="popup-cnt" data-id="review" action="@SiteUrlHelper.ResolveServerUrl("~/mail/send")" method="post">
+			<form class="popup-cnt" data-id="reviewForm" action="@SiteUrlHelper.ResolveServerUrl("~/mail/send")" method="post">
 				<input type="hidden" value="Review app store" name="subject" />
 				<input type="hidden" value="@Model" name="productCode" />
 				<input type="hidden" value="@SiteUrlHelper.ResolveServerUrl("~/modules/" + Model)" name="redirectUrl" />
