@@ -216,10 +216,14 @@
     <Compile Include="Models\ReviewModels.cs" />
     <Compile Include="Models\SearchModels.cs" />
     <Compile Include="Modules\RedirectModule.cs" />
+    <Compile Include="Modules\SiteMapModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="vendors_sitemap.xml" />
+    <Content Include="modules_sitemap.xml" />
+    <Content Include="categories_sitemap.xml" />
     <Content Include="App_Data\SampleData\dbo_Catalog.sql" />
     <Content Include="App_Data\SampleData\dbo_CatalogBase.sql" />
     <Content Include="App_Data\SampleData\dbo_CatalogLanguage.sql" />
