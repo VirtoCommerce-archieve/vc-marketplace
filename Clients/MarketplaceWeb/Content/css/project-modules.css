@@ -1002,6 +1002,11 @@
             background-position: -216px 0;
         }
 
+		.footer-dev .__marketplace .menu-link::before
+        {
+            background-position: -252px 0;
+        }
+
     .footer .footer-social
     {
         margin: 0 0 0 30px;
