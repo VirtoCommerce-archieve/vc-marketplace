@@ -61,7 +61,7 @@ namespace MarketplaceWeb.Modules
 			lock (lockObject)
 			{
 				var fileChangeDate = File.GetLastWriteTimeUtc(Path.Combine(_path, _categoriesSitemapFileName));
-				if (fileChangeDate.Day != DateTime.UtcNow.Day && fileChangeDate.Month != DateTime.UtcNow.Month)
+				if (fileChangeDate.Day != DateTime.UtcNow.Day)
 				{
 					try
 					{
@@ -88,7 +88,7 @@ namespace MarketplaceWeb.Modules
 			{
 				foreach (var category in categories.Items)
 				{
-					categoriesSitemap.Add(BuildUrlElement(_urlTag, category.Code));
+					categoriesSitemap.Add(BuildUrlElement(category.Code));
 				}
 
 				categoriesSitemap.Save(Path.Combine(_path, _categoriesSitemapFileName));
@@ -118,7 +118,7 @@ namespace MarketplaceWeb.Modules
 
 					if (product.Seo.Any())
 					{
-						productsSitemap.Add(BuildUrlElement(_urlTag, product.Seo.First().Keyword));
+						productsSitemap.Add(BuildUrlElement(product.Seo.First().Keyword));
 					}
 				}
 
@@ -138,7 +138,7 @@ namespace MarketplaceWeb.Modules
 
 					if (vendor != null)
 					{
-						vendorsSitemap.Add(BuildUrlElement(_urlTag, vendor.Id));
+						vendorsSitemap.Add(BuildUrlElement(vendor.Id));
 					}
 				}
 
@@ -146,14 +146,14 @@ namespace MarketplaceWeb.Modules
 			}
 		}
 
-		private static XElement BuildUrlElement(XNamespace xmlNamespace, string keyword)
+		private static XElement BuildUrlElement(string keyword)
 		{
-			var urlElement = new XElement(xmlNamespace + "url");
+			var urlElement = new XElement(_xmlNamespace + _urlTag);
 
-			urlElement.Add(new XElement(xmlNamespace + "loc", string.Format("{0}/{1}", _baseUrl, keyword)));
-			urlElement.Add(new XElement(xmlNamespace + "changefreq", "daily"));
-			urlElement.Add(new XElement(xmlNamespace + "priority", "0.8"));
-			urlElement.Add(new XElement(xmlNamespace + "lastmod", DateTime.UtcNow.ToString("yyyy-MM-dd")));
+			urlElement.Add(new XElement(_xmlNamespace + "loc", string.Format("{0}/{1}", _baseUrl, keyword)));
+			urlElement.Add(new XElement(_xmlNamespace + "changefreq", "daily"));
+			urlElement.Add(new XElement(_xmlNamespace + "priority", "0.8"));
+			urlElement.Add(new XElement(_xmlNamespace + "lastmod", DateTime.UtcNow.ToString("yyyy-MM-dd")));
 
 			return urlElement;
 		}
