@@ -24,13 +24,13 @@ namespace MarketplaceWeb.Controllers
 			}
 		}
 
-		public ContentClient ContentClient
-		{
-			get
-			{
-				return ClientContext.Clients.CreateDefaultContentClient();
-			}
-		}
+		//public  ContentClient
+		//{
+		//	get
+		//	{
+		//		return ClientContext.Clients.CreateDefaultContentClient();
+		//	}
+		//}
 
 		public ReviewsClient ReviewsClient
 		{

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using VirtoCommerce.ApiClient.DataContracts.CustomerService;
 using VirtoCommerce.ApiClient.Extensions;
+using MarketplaceWeb.Helpers;
 
 namespace MarketplaceWeb.Converters
 {
@@ -19,10 +20,10 @@ namespace MarketplaceWeb.Converters
 				vendor.Id = contact.Id;
 				vendor.Name = contact.FullName;
 
-				vendor.Icon = contact.Properties.TryGetValue("Icon");
-				vendor.Description = contact.Properties.TryGetValue("Description");
-				vendor.FullDescription = contact.Properties.TryGetValue("FullDescription");
-				vendor.UserEmail = contact.Properties.TryGetValue("Email");
+				vendor.Icon = contact.GetPropertyValue("Icon");
+				vendor.Description = contact.GetPropertyValue("Description");
+				vendor.FullDescription = contact.GetPropertyValue("FullDescription");
+				vendor.UserEmail = contact.GetPropertyValue("Email");
 			}
 
 			return vendor;

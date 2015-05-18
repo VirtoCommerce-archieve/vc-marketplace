@@ -47,13 +47,13 @@ namespace MarketplaceWeb.Helpers
 				user.Id = contact.Id;
 				user.Name = contact.FullName;
 
-				user.Icon = contact.Properties.TryGetValue("Icon");
-				user.Description = contact.Properties.TryGetValue("Description");
-				user.FullDescription = contact.Properties.TryGetValue("FullDescription");
-				user.UserEmail = contact.Properties.TryGetValue("Email");
+				user.Icon = contact.GetPropertyValue("Icon");
+				user.Description = contact.GetPropertyValue("Description");
+				user.FullDescription = contact.GetPropertyValue("FullDescription");
+				user.UserEmail = contact.GetPropertyValue("Email");
 
-				user.Seo.Title = contact.Properties.TryGetValue("Title");
-				user.Seo.MetaDescription = contact.Properties.TryGetValue("MetaDescription");
+				user.Seo.Title = contact.GetPropertyValue("Title");
+				user.Seo.MetaDescription = contact.GetPropertyValue("MetaDescription");
 			}
 
 			return user;
