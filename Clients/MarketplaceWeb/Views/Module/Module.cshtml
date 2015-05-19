@@ -165,7 +165,7 @@
 						<p>
 							@Model.LatestRelease.Note
 						</p>
-						<a data-id="buyButton_bottom" class="btn __round __red __ucase @(Model.IsLicenseAvailable ? "__disabled" : string.Empty)" href="@Model.DownloadLink">GET EXTENSION  ( @Model.Price.FormatedPrice )</a>
+						<a data-id="buyButton_bottom" class="btn __round __red __ucase __left @(Model.IsLicenseAvailable ? "__disabled" : string.Empty)" href="@Model.DownloadLink">GET EXTENSION  ( @Model.Price.FormatedPrice )</a>
 						if(Model.IsLicenseAvailable)
 						{
 							<div class="form-group">
