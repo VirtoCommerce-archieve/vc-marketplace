@@ -115,7 +115,7 @@
 			</div>
 			@if(Model.IsDownloadable)
 			{
-				<a data-id="buyButton_top" class="btn __red __round __block __ucase __disabled" target="_blank" href="http://virtocommerce.com/">
+				<a data-id="buyButton_top" class="btn __red __round __block __ucase __disabled" target="_blank" href="@Model.DownloadLink">
 					@Html.GetExtensionButton(Model)	
 				</a>
 				<div class="extension-license __col-w">
@@ -156,13 +156,13 @@
 				<div class="content-inner __responsive">
 					@if (Model.Releases.Count > 0)
 					{
-						<p class="tab-t">Version number @Model.Releases.First().Version</p>
-						<p>@Model.Releases.First().ReleaseDate.Value.ToString("MM/dd/yyyy")</p>
+						<p class="tab-t">Version number @Model.LatestRelease.Version</p>
+						<p>@Model.LatestRelease.ReleaseDate.Value.ToString("MM/dd/yyyy")</p>
 						<p class="tab-t">Upgrade features:</p>
 						<p>
-							@Model.Releases.First().Note
+							@Model.LatestRelease.Note
 						</p>
-						<a data-id="buyButton_bottom" class="btn __round __red __ucase __disabled" href="#">GET EXTENSION  ( @Model.Price.FormatedPrice )</a>
+						<a data-id="buyButton_bottom" class="btn __round __red __ucase __disabled" href="@Model.DownloadLink">GET EXTENSION  ( @Model.Price.FormatedPrice )</a>
 						<div class="form-group">
 							<label data-id="buySpan_bottom" class="form-control __checkbox __license">
 								<input type="checkbox">
