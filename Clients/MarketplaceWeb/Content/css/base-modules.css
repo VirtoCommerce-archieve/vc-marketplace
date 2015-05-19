@@ -843,8 +843,17 @@ p
 
         .tabs .tab-content .content-inner
         {
+            overflow: hidden;
             padding: 30px;
+            text-align: center;
         }
+
+            .tab-content .content-inner ul,
+            .tab-content .content-inner ol,
+            .tab-content .content-inner p
+            {
+                text-align: left;
+            }
 
             .tab-content .content-inner ul,
             .tab-content .content-inner ol
@@ -857,6 +866,49 @@ p
             {
                 list-style: inside decimal;
             }
+
+            .tab-content .content-inner .list,
+            .tab-content .content-inner .menu
+            {
+                list-style: none;
+            }
+
+            .tab-content .content-inner .tab-img
+            {
+                display: inline-block;
+                max-width: 100%;
+            }
+
+            .tab-content .content-inner .tab-img.__i-left
+            {
+                float: left;
+                margin: 0 20px 20px 0;
+            }
+
+            .tab-content .content-inner .tab-img.__i-list
+            {
+                clear: both;
+                display: block;
+            }
+
+                .tab-img img
+                {
+                    background: #fff;
+                    border: 1px solid #ccc;
+                    display: block;
+                    max-width: 100%;
+                    padding: 5px;
+
+                    -webkit-box-sizing: border-box;
+                            box-sizing: border-box;
+                }
+
+                .tab-img.__i-list img
+                {
+                    display: inline-block;
+                    margin: 10px;
+                    vertical-align: middle;
+                }
 
 
 /* Reviews */

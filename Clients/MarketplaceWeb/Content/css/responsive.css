@@ -812,6 +812,18 @@
 	{
 		display: none;
 	}
+
+	.tab-content .content-inner .tab-img.__i-left
+	{
+		float: none;
+		margin: 0 0 10px;
+	}
+
+	.tab-img.__i-list img
+	{
+		display: block;
+		margin: 0 auto 10px;
+	}
 }
 
 @media (max-width: 460px) {

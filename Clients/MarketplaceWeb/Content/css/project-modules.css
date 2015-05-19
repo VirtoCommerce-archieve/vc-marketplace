@@ -371,7 +371,8 @@
 
             .list.__items .list-name,
             .list.__items .list-descr,
-            .list.__items .list-rating
+            .list.__items .list-rating,
+            .list.__items .list-price
             {
                 margin: 0 5px;
             }
@@ -402,7 +403,8 @@
                 overflow: hidden;
             }
 
-            .list.__items .list-rating
+            .list.__items .list-rating,
+            .list.__items .list-price
             {
                 margin-top: 15px;
             }
@@ -412,7 +414,6 @@
                 color: #888;
                 font-size: 14px;
                 font-weight: bold;
-                margin: 15px 5px 0 0;
                 text-transform: uppercase;
             }
 
@@ -1000,11 +1001,6 @@
         .footer-dev .__stackoverflow .menu-link::before
         {
             background-position: -216px 0;
-        }
-
-		.footer-dev .__marketplace .menu-link::before
-        {
-            background-position: -252px 0;
         }
 
     .footer .footer-social

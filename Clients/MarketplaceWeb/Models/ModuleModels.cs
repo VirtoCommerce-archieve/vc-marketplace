@@ -59,6 +59,10 @@ namespace MarketplaceWeb.Models
 
 		public int ReviewsTotal { get; set; }
 
+		public string License { get; set; }
+
+		public bool IsLicenseAvailable { get { return !string.IsNullOrEmpty(this.License); } }
+
 		public double Rating
 		{
 			get

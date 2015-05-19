@@ -18,6 +18,7 @@ namespace MarketplaceWeb.Converters
 		public const string LocaleProperty = "Locale";
 		public const string UserIdProperty = "VendorId";
 		public const string DescriptionProperty = "Description";
+		public const string LicenseProperty = "License";
 
 		//Variation properties
 		public const string CompatibilityProperty = "Compatibility";
@@ -39,7 +40,7 @@ namespace MarketplaceWeb.Converters
 				Images = item.Images.ToList(),
 				ReviewsTotal = item.ReviewsTotal,
 				Price = PriceModel.Parse(item.Properties),
-				Keyword = item.Seo.FirstOrDefault() != null ? item.Seo.First().Keyword : string.Empty
+				Keyword = item.Seo.FirstOrDefault() != null ? item.Seo.First().Keyword : string.Empty,
 				//CategoryList = item.Categories != null ? item.Categories.ToList() : null
 			};
 
@@ -64,6 +65,7 @@ namespace MarketplaceWeb.Converters
 				retVal.Locale = item.Properties.ParseProperty(LocaleProperty).ToList();
 				retVal.UserId = item.Properties.ParsePropertyToString(UserIdProperty);
 				retVal.Description = item.Properties.ParsePropertyToString(DescriptionProperty);
+				retVal.License = item.Properties.ParsePropertyToString(LicenseProperty);
 			}
 
 			if (item.Variations != null)
@@ -71,7 +73,7 @@ namespace MarketplaceWeb.Converters
 				retVal.Releases = item.Variations.Select(x => x.ToWebModel(retVal)).ToList();
 			}
 
-			if(retVal.Releases.Count > 0)
+			if (retVal.Releases.Count > 0)
 			{
 				retVal.DownloadLink = retVal.Releases.OrderBy(r => r.ReleaseDate).First().DownloadLink;
 			}
