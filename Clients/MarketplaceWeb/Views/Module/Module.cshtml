@@ -119,16 +119,19 @@
 					@Html.GetExtensionButton(Model)
 				</a>
 				<div class="extension-license __col-w">
-					<div class="extension-chck col __col-40">
-						<label data-id="buySpan_top" class="form-control __checkbox" for="some">
-							<input type="checkbox" id="some">
-							<span data-id="buySpan_top" class="switch"></span>
-							<span data-id="buySpan_top" class="control-name">I agree with license terms</span>
-						</label>
-					</div>
-					<div class="extension-note col __col-60">
-						Please note that this extension is provided as is. It is recommended to always backup your installation prior to use.
-					</div>
+					@if(Model.IsLicenseAvailable)
+					{
+						<div class="extension-chck col __col-40">
+							<label data-id="buySpan_top" class="form-control __checkbox" for="some">
+								<input type="checkbox" id="some">
+								<span data-id="buySpan_top" class="switch"></span>
+								<span data-id="buySpan_top" class="control-name">I agree with license terms</span>
+							</label>
+						</div>
+						<div class="extension-note col __col-60">
+							Please note that this extension is provided as is. It is recommended to always backup your installation prior to use.
+						</div>
+					}
 				</div>
 			}
 		</div>
@@ -163,13 +166,16 @@
 							@Model.LatestRelease.Note
 						</p>
 						<a data-id="buyButton_bottom" class="btn __round __red __ucase @(Model.IsLicenseAvailable ? "__disabled" : string.Empty)" href="@Model.DownloadLink">GET EXTENSION  ( @Model.Price.FormatedPrice )</a>
-						<div class="form-group">
-							<label data-id="buySpan_bottom" class="form-control __checkbox __license">
-								<input type="checkbox">
-								<span data-id="buySpan_bottom" class="switch"></span>
-								<span data-id="buySpan_bottom" class="control-name">I agree with license terms</span>
-							</label>
-						</div>
+						if(Model.IsLicenseAvailable)
+						{
+							<div class="form-group">
+								<label data-id="buySpan_bottom" class="form-control __checkbox __license">
+									<input type="checkbox">
+									<span data-id="buySpan_bottom" class="switch"></span>
+									<span data-id="buySpan_bottom" class="control-name">I agree with license terms</span>
+								</label>
+							</div>
+						}
 					}
 				</div>
 			</div>

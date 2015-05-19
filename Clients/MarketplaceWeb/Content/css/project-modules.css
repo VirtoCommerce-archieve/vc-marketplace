@@ -926,7 +926,7 @@
 
         .footer .menu-link
         {
-            font-size: 16px;
+            font-size: 15px;
             height: 34px;
         }
 
@@ -945,7 +945,7 @@
 
     .footer .footer-dev .menu + .menu
     {
-        margin: 0 0 0 60px;
+        margin: 0 0 0 35px;
     }
 
         .footer .footer-dev .menu-link
@@ -1001,6 +1001,11 @@
         .footer-dev .__stackoverflow .menu-link::before
         {
             background-position: -216px 0;
+        }
+
+        .footer-dev .__marketplace .menu-link::before
+        {
+            background-position: -252px 0;
         }
 
     .footer .footer-social
@@ -1189,7 +1194,7 @@
     .footer .footer-dev .menu-link::before
     {
         background-image: url(../images/icons/devx2.png);
-        background-size: 252px 34px;
+        background-size: 288px 34px;
     }
 
     .info .info-ico
