@@ -20,6 +20,7 @@ namespace MarketplaceWeb.Controllers
 	[RoutePrefix("search")]
 	public class SearchController : ControllerBase
 	{
+		[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
 		[Route("ven")]
 		public async Task<ActionResult> DeveloperExtensions(string vendorId, string sort)
 		{
@@ -33,7 +34,7 @@ namespace MarketplaceWeb.Controllers
 			retVal.Results.AddRange(results.Items.Select(i => i.ToWebModel()));
 			foreach (var module in retVal.Results)
 			{
-				var reviews = await ReviewsClient.GetReviewsAsync(module.Keyword);
+				var reviews = new ResponseCollection<Review>(); //await ReviewsClient.GetReviewsAsync(module.Keyword);
 				module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Keyword)));
 			}
 
@@ -44,6 +45,7 @@ namespace MarketplaceWeb.Controllers
 			return View(retVal);
 		}
 
+		[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
 		[Route("term")]
 		[HttpGet]
 		public async Task<ActionResult> Search(string q)

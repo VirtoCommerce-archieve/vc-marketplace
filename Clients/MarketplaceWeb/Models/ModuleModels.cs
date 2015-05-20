@@ -121,5 +121,7 @@ namespace MarketplaceWeb.Models
 				return null;
 			}
 		}
+
+		public List<long> Time { get; set; }
 	}
 }

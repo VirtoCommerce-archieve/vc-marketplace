@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MarketplaceWeb.Converters;
+using MarketplaceWeb.Helpers;
 
 namespace MarketplaceWeb.Controllers
 {
+	using MarketplaceWeb.Models;
 	using System.Threading.Tasks;
 	using System.Web.Mvc;
+	using VirtoCommerce.ApiClient.DataContracts;
 
     [RoutePrefix("pages")]
     public class PageController : ControllerBase
     {
+		[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
         public async Task<ActionResult> Index()
         {
 			var stores = await StoreClient.GetStoresAsync();
@@ -24,7 +29,9 @@ namespace MarketplaceWeb.Controllers
 				ViewBag.MetaDescription = metaDescription.Value;
 			}
 
-            return View();
+			var retVal = Modules(new BrowseQuery { SortProperty = "CreatedDate", SortDirection = "asc" });
+
+			return View(retVal);
         }
 
         [Route("{pagename}")]
@@ -32,5 +39,22 @@ namespace MarketplaceWeb.Controllers
         {
             return View(pageName);
         }
+
+		// GET: Module
+		private ModulesModel Modules(BrowseQuery query)
+		{
+			var products = Task.Run(() => SearchClient.GetProductsAsync("MarketPlace", "en-US", query, ItemResponseGroups.ItemLarge)).Result;
+
+			var retVal = new ModulesModel();
+			retVal.Items.AddRange(products.Items.Select(i => i.ToWebModel()));
+
+			foreach (var item in retVal.Items)
+			{
+				var reviews = new ResponseCollection<Review>(); //Task.Run(() => ReviewsClient.GetReviewsAsync(item.Keyword)).Result;
+				item.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(item.Keyword)));
+			}
+
+			return retVal;
+		}
     }
 }

@@ -33,6 +33,7 @@ namespace MarketplaceWeb.Controllers
 			return PartialView(retVal);
 		}
 
+		[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
 		[Route("{id}")]
 		public async Task<ActionResult> Category(string id)
 		{
@@ -50,7 +51,7 @@ namespace MarketplaceWeb.Controllers
 				retVal.Modules.AddRange(products.Items.Select(i => i.ToWebModel()));
 				foreach (var module in retVal.Modules)
 				{
-					var reviews = await ReviewsClient.GetReviewsAsync(module.Keyword);
+					var reviews = new ResponseCollection<Review>(); //await ReviewsClient.GetReviewsAsync(module.Keyword);
 					module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Keyword)));
 				}
 

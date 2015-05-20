@@ -1,4 +1,6 @@
-﻿<article role="main" class="main">
+﻿@model MarketplaceWeb.Models.ModulesModel
+
+<article role="main" class="main">
 	<div class="items __responsive">
 		<div class="title-w">
 			<h2 class="t">New Extensions</h2>
@@ -9,7 +11,7 @@
 			</ul>
 		</div>
 		<div class="list __items __inline">
-			@{Html.RenderAction("MainModules", "Module");}
+			@Html.Partial("MainModules", Model)
 		</div>
 	</div>
 	<div class="info-w">

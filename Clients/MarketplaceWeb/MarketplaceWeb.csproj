@@ -315,7 +315,7 @@
     <Content Include="Views\Vendor\Information.cshtml" />
     <Content Include="Views\Shared\_ModuleLayout.cshtml" />
     <Content Include="Views\Category\CategoryMenu.cshtml" />
-    <Content Include="Views\Module\MainModules.cshtml" />
+    <Content Include="Views\Page\MainModules.cshtml" />
     <Content Include="Views\Shared\ShortModuleInfo.cshtml" />
     <Content Include="Views\Module\Module.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
