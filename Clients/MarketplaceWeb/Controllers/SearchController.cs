@@ -45,7 +45,7 @@ namespace MarketplaceWeb.Controllers
 			return View(retVal);
 		}
 
-		[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
+		[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600, VaryByParam = "q")]
 		[Route("term")]
 		[HttpGet]
 		public async Task<ActionResult> Search(string q)
