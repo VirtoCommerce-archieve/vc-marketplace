@@ -28,7 +28,7 @@ namespace MarketplaceWeb.Controllers
 			query.Filters = new Dictionary<string, string[]>();
 			query.Filters.Add("vendorId", new[] { vendorId });
 			query.Take = 1000;
-			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query, ItemResponseGroups.ItemLarge);
+			var results = await SearchClient.GetProductsAsync(StoreName, Locale, query, ItemResponseGroups.ItemLarge);
 
 			DeveloperSearchResult retVal = new DeveloperSearchResult();
 			retVal.Results.AddRange(results.Items.Select(i => i.ToWebModel()));
@@ -55,7 +55,7 @@ namespace MarketplaceWeb.Controllers
 				Search = q.EscapeSearchTerm(),
 				Take = 1000
 			};
-			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query, ItemResponseGroups.ItemLarge);
+			var results = await SearchClient.GetProductsAsync(StoreName, Locale, query, ItemResponseGroups.ItemLarge);
 
 			SearchResult retVal = new SearchResult();
 			retVal.Results.AddRange(results.Items.Select(i => i.ToWebModel()));
@@ -78,7 +78,7 @@ namespace MarketplaceWeb.Controllers
 				Take = 15,
 				Search = q.EscapeSearchTerm()
 			};
-			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query);
+			var results = await SearchClient.GetProductsAsync(StoreName, Locale, query);
 
 			var data = from i in results.Items
 					   select new

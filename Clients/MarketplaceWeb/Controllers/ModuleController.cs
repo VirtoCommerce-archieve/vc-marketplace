@@ -20,13 +20,13 @@ namespace MarketplaceWeb.Controllers
 		public ActionResult Module(string keyword)
 		{
 			var sW = Stopwatch.StartNew();
-			var product = Task.Run(() => SearchClient.GetProductByKeywordAsync("MarketPlace", "en-US", keyword, ItemResponseGroups.ItemLarge)).Result;
+			var product = Task.Run(() => SearchClient.GetProductByKeywordAsync(StoreName, Locale, keyword, ItemResponseGroups.ItemLarge)).Result;
 			var timePR = sW.ElapsedMilliseconds;
 
 			var reviews = new ResponseCollection<Review>(); //Task.Run(() => ReviewsClient.GetReviewsAsync(product.Code)).Result;
 			var timeRR = sW.ElapsedMilliseconds;
 
-			var category = Task.Run(() => SearchClient.GetCategoryAsync("MarketPlace", "en-US", product.Categories.Last())).Result;
+			var category = Task.Run(() => SearchClient.GetCategoryAsync(StoreName, Locale, product.CategoryId)).Result;
 			var timeCR = sW.ElapsedMilliseconds;
 
 			var module = product.ToWebModel();

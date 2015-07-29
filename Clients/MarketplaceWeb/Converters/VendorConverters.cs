@@ -20,10 +20,13 @@ namespace MarketplaceWeb.Converters
 				vendor.Id = contact.Id;
 				vendor.Name = contact.FullName;
 
-				vendor.Icon = contact.GetPropertyValue("Icon");
-				vendor.Description = contact.GetPropertyValue("Description");
-				vendor.FullDescription = contact.GetPropertyValue("FullDescription");
-				vendor.UserEmail = contact.GetPropertyValue("Email");
+				if (contact.DynamicProperties != null && contact.DynamicProperties.Any())
+				{
+					vendor.Icon = contact.GetPropertyValue("Icon");
+					vendor.Description = contact.GetPropertyValue("Description");
+					vendor.FullDescription = contact.GetPropertyValue("FullDescription");
+					vendor.UserEmail = contact.GetPropertyValue("Email");
+				}
 			}
 
 			return vendor;

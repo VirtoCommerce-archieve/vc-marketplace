@@ -17,7 +17,7 @@ namespace MarketplaceWeb.Controllers
 		// GET: Category
 		public ActionResult CategoryMenu()
 		{
-			var categories = Task.Run(() => SearchClient.GetCategoriesAsync("MarketPlace", "en-US")).Result;
+			var categories = Task.Run(() => SearchClient.GetCategoriesAsync(StoreName, Locale)).Result;
 
 			var retVal = new CategoryMenu();
 
@@ -39,15 +39,16 @@ namespace MarketplaceWeb.Controllers
 		{
 			CategoryResults retVal = new CategoryResults();
 
-			var category = await SearchClient.GetCategoryByCodeAsync("MarketPlace", "en-US", id);
+			var category = await SearchClient.GetCategoryByCodeAsync(StoreName, Locale, id);
 
 			if (category != null)
 			{
 				var query = new BrowseQuery();
 				query.Filters = new Dictionary<string, string[]>();
 				query.Outline = GetOutline(category);
+				query.Take = 50;
 
-				var products = await SearchClient.GetProductsAsync("MarketPlace", "en-Us", query, ItemResponseGroups.ItemLarge);
+				var products = await SearchClient.GetProductsAsync(StoreName, Locale, query, ItemResponseGroups.ItemLarge);
 				retVal.Modules.AddRange(products.Items.Select(i => i.ToWebModel()));
 				foreach (var module in retVal.Modules)
 				{
@@ -61,8 +62,8 @@ namespace MarketplaceWeb.Controllers
 
 			if(category.Seo.Any())
 			{
-				ViewBag.Title = category.Seo[0].Title;
-				ViewBag.Description = category.Seo[0].MetaDescription;
+				ViewBag.Title = category.Seo.First().Title;
+				ViewBag.Description = category.Seo.First().MetaDescription;
 			}
 
 			return View(retVal);

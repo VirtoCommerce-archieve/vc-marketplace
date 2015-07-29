@@ -10,12 +10,15 @@ namespace MarketplaceWeb.Helpers
 	{
 		public static string GetPropertyValue(this Contact contact, string propertyName)
 		{
-			var property = contact.Properties.FirstOrDefault(p => p.Name == propertyName);
+			var property = contact.DynamicProperties.FirstOrDefault(p => p.Name == propertyName);
 
 			if (property == null)
 				return string.Empty;
 
-			return property.Value;
+			if (property.Values != null && property.Values.Any())
+				return property.Values.FirstOrDefault().Value;
+
+			return string.Empty;
 		}
 	}
 }

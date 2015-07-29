@@ -51,6 +51,7 @@ namespace MarketplaceWeb.Helpers
 				user.Description = contact.GetPropertyValue("Description");
 				user.FullDescription = contact.GetPropertyValue("FullDescription");
 				user.UserEmail = contact.GetPropertyValue("Email");
+				user.Site = contact.GetPropertyValue("Site");
 
 				user.Seo.Title = contact.GetPropertyValue("Title");
 				user.Seo.MetaDescription = contact.GetPropertyValue("MetaDescription");

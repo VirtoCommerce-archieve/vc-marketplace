@@ -1,63 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://virtocommerce.com/apps/google-shopping</loc>
+    <loc>http://virtocommerce.com/apps/zendesk</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/klarna-checkout</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/mailchimp</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/merchante-solutions</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/paypal</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-shoppingcart-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-catalog-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-core-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-customer-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-marketing-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
+    <lastmod>2015-07-29</lastmod>
   </url>
 </urlset>

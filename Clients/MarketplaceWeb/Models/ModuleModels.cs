@@ -20,6 +20,7 @@ namespace MarketplaceWeb.Models
 		{
 			CategoryList = new Dictionary<string, string>();
 			Releases = new List<Release>();
+			Images = new List<ItemImage>();
 		}
 
 		/// <summary>

@@ -1,27 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://virtocommerce.com/apps/integrations</loc>
+    <loc>http://virtocommerce.com/apps/ac176</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/themes</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/utilities</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/coremodules</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-05-21</lastmod>
+    <lastmod>2015-07-29</lastmod>
   </url>
 </urlset>

@@ -16,6 +16,8 @@ namespace MarketplaceWeb.Models
 
         public UserType UserType { get; set; }
 
+		public string Site { get; set; }
+
         /// <summary>
         /// Icon is byte[] encoded as base64
         /// </summary>
