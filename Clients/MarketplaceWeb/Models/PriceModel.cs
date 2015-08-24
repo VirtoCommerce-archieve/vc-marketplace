@@ -51,7 +51,7 @@ namespace MarketplaceWeb.Models
                 retVal.FormatedPrice = CurrencyHelper.FormatCurrency(retVal.Price, retVal.Currency);
             }
 
-            if (retVal.IsFree)
+			if (retVal.IsFree || retVal.Price == 0)
             {
                 retVal.FormatedPrice = "Free";
             }

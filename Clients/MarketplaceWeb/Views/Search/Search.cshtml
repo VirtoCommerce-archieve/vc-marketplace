@@ -6,7 +6,7 @@
 			<h2 class="t">Search result for @Model.SearchTerm</h2>
 			<ul class="menu __inline __right">
 				<li class="menu-item">
-					<a class="menu-link" href="#">Sort by price</a>
+					<a class="menu-link" href="@SiteUrlHelper.ResolveServerUrl("~/search/term?q=" + Model.SearchTerm)">Sort by price</a>
 				</li>
 			</ul>
 		</div>

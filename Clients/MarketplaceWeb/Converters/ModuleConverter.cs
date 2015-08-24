@@ -96,13 +96,18 @@ namespace MarketplaceWeb.Converters
 			{
 				Id = variation.Id,
 				Compatibility = variation.VariationProperties.ParseProperty(CompatibilityProperty).ToList(),
-                DownloadLink = variation.VariationProperties.ParsePropertyToString(LinkProperty),
-                ReleaseDate = variation.VariationProperties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
-                Note = variation.VariationProperties.ParsePropertyToString(NoteProperty),
-                Version = variation.VariationProperties.ParsePropertyToString(VersionProperty),
-                ReleaseStatus = variation.VariationProperties.ParseProperty<ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
+				DownloadLink = variation.VariationProperties.ParsePropertyToString(LinkProperty),
+				ReleaseDate = variation.VariationProperties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
+				Note = variation.VariationProperties.ParsePropertyToString(NoteProperty),
+				Version = variation.VariationProperties.ParsePropertyToString(VersionProperty),
+				ReleaseStatus = variation.VariationProperties.ParseProperty<ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
 				ParentExtension = parent
 			};
+
+			if(variation.Assets.Any())
+			{
+				retVal.DownloadLink = variation.Assets.First().Url;
+			}
 
 			return retVal;
 		}

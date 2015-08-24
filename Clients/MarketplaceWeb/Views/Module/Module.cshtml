@@ -69,18 +69,27 @@
 						}
 						<a class="link __ucase" style="cursor:pointer;" data-id="reviewFormButton">Write a review</a>
 					</div>
-					<div class="extension-descr" itemprop="description">
-						@Model.Description
-					</div>
+					@if(string.IsNullOrEmpty(Model.Description))
+					{
+						<div class="extension-descr" itemprop="description">
+							@Model.Description
+						</div>
+					}
 					<ul class="list __properties">
-						<li class="list-item">
-							<span class="list-t">Locale:</span>
-							<span class="list-name">@Html.Locale(Model)</span>
-						</li>
-						<li class="list-item">
-							<span class="list-t">Compatible with:</span>
-							<span class="list-name">@Html.Compatibility(Model)</span>
-						</li>
+						@if (Model.Locale.Any())
+						{
+							<li class="list-item">
+								<span class="list-t">Locale:</span>
+								<span class="list-name">@Html.Locale(Model)</span>
+							</li>
+						}
+						@if (Model.Compatibility.Any())
+						{
+							<li class="list-item">
+								<span class="list-t">Compatible with:</span>
+								<span class="list-name">@Html.Compatibility(Model)</span>
+							</li>
+						}
 						<li class="list-item">
 							<span class="list-t">last release:</span>
 							<span class="list-name">@Html.LastRelease(Model)</span>

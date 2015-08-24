@@ -16,6 +16,9 @@ namespace MarketplaceWeb.Controllers
 {
 	public abstract class ControllerBase : Controller
 	{
+		public const string StoreName = "Marketplace";
+		public const string Locale = "en-US";
+
 		public BrowseClient SearchClient
 		{
 			get

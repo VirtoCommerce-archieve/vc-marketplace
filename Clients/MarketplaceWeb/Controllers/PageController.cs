@@ -43,7 +43,7 @@ namespace MarketplaceWeb.Controllers
 		// GET: Module
 		private ModulesModel Modules(BrowseQuery query)
 		{
-			var products = Task.Run(() => SearchClient.GetProductsAsync("MarketPlace", "en-US", query, ItemResponseGroups.ItemLarge)).Result;
+			var products = Task.Run(() => SearchClient.GetProductsAsync(StoreName, Locale, query, ItemResponseGroups.ItemLarge)).Result;
 
 			var retVal = new ModulesModel();
 			retVal.Items.AddRange(products.Items.Select(i => i.ToWebModel()));
