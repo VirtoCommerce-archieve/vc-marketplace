@@ -37,12 +37,21 @@ namespace MarketplaceWeb.Converters
 				Id = item.Id,
 				Title = item.Name,
 				CatalogId = item.CatalogId,
-				Images = item.Images.ToList(),
 				ReviewsTotal = item.ReviewsTotal,
 				Price = PriceModel.Parse(item.Properties),
 				Keyword = item.Seo.FirstOrDefault() != null ? item.Seo.First().Keyword : string.Empty,
 				//CategoryList = item.Categories != null ? item.Categories.ToList() : null
 			};
+
+            if(item.PrimaryImage != null)
+            {
+                retVal.Images.Add(item.PrimaryImage);
+            }
+
+            if(item.Images != null && item.Images.Any())
+            {
+                retVal.Images.AddRange(item.Images);
+            }
 
 			if (item.EditorialReviews != null)
 			{
@@ -86,12 +95,12 @@ namespace MarketplaceWeb.Converters
 			var retVal = new Release
 			{
 				Id = variation.Id,
-				Compatibility = variation.Properties.ParseProperty(CompatibilityProperty).ToList(),
-				DownloadLink = variation.Properties.ParsePropertyToString(LinkProperty),
-				ReleaseDate = variation.Properties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
-				Note = variation.Properties.ParsePropertyToString(NoteProperty),
-				Version = variation.Properties.ParsePropertyToString(VersionProperty),
-				ReleaseStatus = variation.Properties.ParseProperty<ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
+				Compatibility = variation.VariationProperties.ParseProperty(CompatibilityProperty).ToList(),
+                DownloadLink = variation.VariationProperties.ParsePropertyToString(LinkProperty),
+                ReleaseDate = variation.VariationProperties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
+                Note = variation.VariationProperties.ParsePropertyToString(NoteProperty),
+                Version = variation.VariationProperties.ParsePropertyToString(VersionProperty),
+                ReleaseStatus = variation.VariationProperties.ParseProperty<ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
 				ParentExtension = parent
 			};
 

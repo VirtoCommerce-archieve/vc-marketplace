@@ -52,23 +52,16 @@ namespace MarketplaceWeb.Helpers
 		public static string Image(this UrlHelper helper, Module item, string name)
 		{
 
-			if (item == null)
-				return null;
+			if (item == null && item.Images == null && !item.Images.Any())
+                return Image(helper, null);
 
-			var image = FindItemImage(item.Images, name);
-
-			return Image(helper, image);
+			return Image(helper, item.Images.First());
 		}
 
 		public static string Image(this UrlHelper helper, ItemImage image)
 		{
 			const string defaultImage = "blank.png";
 			return helper.Content(image == null ? String.Format("~/Content/themes/default/images/{0}", defaultImage) : image.Src);
-		}
-
-		private static ItemImage FindItemImage(IEnumerable<ItemImage> images, string name)
-		{
-			return images == null ? null : images.FirstOrDefault(i => i.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
 		}
 	}
 

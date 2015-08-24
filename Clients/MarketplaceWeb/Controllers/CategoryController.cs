@@ -33,7 +33,7 @@ namespace MarketplaceWeb.Controllers
 			return PartialView(retVal);
 		}
 
-		[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
+		//[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
 		[Route("{id}")]
 		public async Task<ActionResult> Category(string id)
 		{
@@ -61,8 +61,8 @@ namespace MarketplaceWeb.Controllers
 
 			if(category.Seo.Any())
 			{
-				ViewBag.Title = category.Seo[0].Title;
-				ViewBag.Description = category.Seo[0].MetaDescription;
+				ViewBag.Title = category.Seo.First().Title;
+                ViewBag.Description = category.Seo.First().MetaDescription;
 			}
 
 			return View(retVal);

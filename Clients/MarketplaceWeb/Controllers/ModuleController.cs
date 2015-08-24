@@ -15,7 +15,7 @@ namespace MarketplaceWeb.Controllers
 	[RoutePrefix("modules")]
 	public class ModuleController : ControllerBase
 	{
-		[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
+		//[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
 		[Route("{keyword}")]
 		public ActionResult Module(string keyword)
 		{
@@ -26,7 +26,7 @@ namespace MarketplaceWeb.Controllers
 			var reviews = new ResponseCollection<Review>(); //Task.Run(() => ReviewsClient.GetReviewsAsync(product.Code)).Result;
 			var timeRR = sW.ElapsedMilliseconds;
 
-			var category = Task.Run(() => SearchClient.GetCategoryAsync("MarketPlace", "en-US", product.Categories.Last())).Result;
+			var category = Task.Run(() => SearchClient.GetCategoryAsync("MarketPlace", "en-US", product.CategoryId)).Result;
 			var timeCR = sW.ElapsedMilliseconds;
 
 			var module = product.ToWebModel();

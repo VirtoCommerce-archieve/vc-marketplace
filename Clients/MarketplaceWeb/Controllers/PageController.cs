@@ -15,7 +15,7 @@ namespace MarketplaceWeb.Controllers
     [RoutePrefix("pages")]
     public class PageController : ControllerBase
     {
-		[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
+		//[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
         public async Task<ActionResult> Index()
         {
 			var stores = await StoreClient.GetStoresAsync();
