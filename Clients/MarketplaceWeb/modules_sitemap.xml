@@ -1,141 +1,147 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://virtocommerce.com/apps/skeleton-theme</loc>
+    <loc>http://virtocommerce.com/apps/integration-with-shipstation-system</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/paypal</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/zapier</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
+    <lastmod>2015-10-21</lastmod>
   </url>
   <url>
     <loc>http://virtocommerce.com/apps/google-shopping</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
+    <lastmod>2015-10-21</lastmod>
   </url>
   <url>
-    <loc>http://virtocommerce.com/apps/merchante-solutions</loc>
+    <loc>http://virtocommerce.com/apps/paypal</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/mailchimp</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/klarna-checkout</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-store-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-shoppingcart-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-marketing-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-catalog-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-pricing-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-customer-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-core-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/zendesk</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
+    <lastmod>2015-10-21</lastmod>
   </url>
   <url>
     <loc>http://virtocommerce.com/apps/timber-theme</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
+    <lastmod>2015-10-21</lastmod>
   </url>
   <url>
-    <loc>http://virtocommerce.com/apps/integration-with-shipstation-system</loc>
+    <loc>http://virtocommerce.com/apps/Swachbuckle</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
+    <lastmod>2015-10-21</lastmod>
   </url>
   <url>
-    <loc>http://virtocommerce.com/apps/import-from-shopify-to-virtocommerce-platform</loc>
+    <loc>http://virtocommerce.com/apps/virto-customer-module</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/integration-with-avalara-tax-service</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-cms-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/virto-inventory-module</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
+    <lastmod>2015-10-21</lastmod>
   </url>
   <url>
     <loc>http://virtocommerce.com/apps/virto-dynamic-expression-module</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/virto-marketing-module</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/virto-catalog-module</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/virto-pricing-module</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/klarna-checkout</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/zapier</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/skeleton-theme</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/virto-inventory-module</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/import-from-shopify-to-virtocommerce-platform</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/zendesk</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/merchante-solutions</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/virto-shoppingcart-module</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
   </url>
   <url>
     <loc>http://virtocommerce.com/apps/virto-orders-module</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-08-24</lastmod>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/virto-cms-module</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/mailchimp</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/virto-store-module</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/virto-core-module</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
+  </url>
+  <url>
+    <loc>http://virtocommerce.com/apps/integration-with-avalara-tax-service</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2015-10-21</lastmod>
   </url>
 </urlset>

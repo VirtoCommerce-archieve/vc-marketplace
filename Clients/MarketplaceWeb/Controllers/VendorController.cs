@@ -7,8 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using MarketplaceWeb.Converters;
 using MarketplaceWeb.Helpers;
-using VirtoCommerce.ApiClient.DataContracts;
-using VirtoCommerce.ApiClient.Extensions;
+using VirtoCommerce.Client.Model;
 
 namespace MarketplaceWeb.Controllers
 {
@@ -22,22 +21,24 @@ namespace MarketplaceWeb.Controllers
 		}
 
 		[Route("{vendorId}")]
-		public async Task<ActionResult> Information(string vendorId, BrowseQuery query)
+		public ActionResult Information(string vendorId, BrowseQuery query)
 		{
-			var model = new Vendor();
+            var vendor = CustomerServiceClient.CustomerModuleGetContactById(vendorId);
+            var model = vendor.ToWebModel();
 
-			var userHelper = new UserHelper();
-
-			model = await userHelper.GetUser(vendorId);
-
+            if(query == null)
+            {
+                query = new BrowseQuery();
+            }
 			query.Filters.Add("vendorId", new[] { vendorId });
 			query.Take = 50;
-			var results = await SearchClient.GetProductsAsync("MarketPlace", "en-US", query, ItemResponseGroups.ItemLarge);
+            query.ItemResponseGroup = "ItemLarge";
+			var results = GetProducts(query);
 
-			foreach (var module in results.Items.Select(x => x.ToWebModel()))
+			foreach (var module in results.Select(x => x.ToWebModel()))
 			{
-				var reviews = await ReviewsClient.GetReviewsAsync(module.Keyword);
-				module.Reviews.AddRange(reviews.Items.Select(r => r.ToWebModel(module.Keyword)));
+                var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+                module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
 
 				model.Modules.Add(module);
 			}

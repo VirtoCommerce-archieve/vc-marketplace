@@ -4,29 +4,35 @@ using System.Linq;
 using System.Web;
 using MarketplaceWeb.Converters;
 using MarketplaceWeb.Helpers;
+using VirtoCommerce.Client.Model;
 
 namespace MarketplaceWeb.Controllers
 {
 	using MarketplaceWeb.Models;
 	using System.Threading.Tasks;
 	using System.Web.Mvc;
-	using VirtoCommerce.ApiClient.DataContracts;
 
     [RoutePrefix("pages")]
     public class PageController : ControllerBase
     {
 		//[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-			var stores = await StoreClient.GetStoresAsync();
+			var stores = StoreClient.StoreModuleGetStores();
 			var store = stores.FirstOrDefault(s => s.Name == "MarketPlace");
 
-			if(store != null && store.Settings.Any())
+			if(store != null && store.DynamicProperties != null && store.DynamicProperties.Any())
 			{
-				var title = store.Settings.FirstOrDefault(s => s.Key == "Title");
-				var metaDescription = store.Settings.FirstOrDefault(s => s.Key == "MetaDescription");
-				ViewBag.Title = title.Value;
-				ViewBag.MetaDescription = metaDescription.Value;
+				var titleProperty = store.DynamicProperties.FirstOrDefault(s => s.Name == "Title");
+				var metaDescriptionProperty = store.DynamicProperties.FirstOrDefault(s => s.Name == "MetaDescription");
+                if (titleProperty != null)
+                {
+                    ViewBag.Title = titleProperty.Values.FirstOrDefault();
+                }
+                if (metaDescriptionProperty != null)
+                {
+                    ViewBag.MetaDescription = metaDescriptionProperty.Values.FirstOrDefault();
+                }
 			}
 
 			var retVal = Modules(new BrowseQuery { SortProperty = "CreatedDate", SortDirection = "asc" });
@@ -43,16 +49,17 @@ namespace MarketplaceWeb.Controllers
 		// GET: Module
 		private ModulesModel Modules(BrowseQuery query)
 		{
-			var products = Task.Run(() => SearchClient.GetProductsAsync(StoreName, Locale, query, ItemResponseGroups.ItemLarge)).Result;
+            query.ItemResponseGroup = "ItemLarge";
+            var products = GetProducts(query);
 
-			var retVal = new ModulesModel();
-			retVal.Items.AddRange(products.Items.Select(i => i.ToWebModel()));
+            var retVal = new ModulesModel();
+			retVal.Items.AddRange(products.Select(i => i.ToWebModel()));
 
 			foreach (var item in retVal.Items)
 			{
-				var reviews = new ResponseCollection<Review>(); //Task.Run(() => ReviewsClient.GetReviewsAsync(item.Keyword)).Result;
-				item.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(item.Keyword)));
-			}
+                var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+                item.Reviews.AddRange(reviews.Select(i => i.ToWebModel(item.Keyword)));
+            }
 
 			return retVal;
 		}

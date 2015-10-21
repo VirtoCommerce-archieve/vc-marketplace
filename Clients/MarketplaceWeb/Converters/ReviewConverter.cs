@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MarketplaceWeb.Models;
-using VirtoCommerce.ApiClient.DataContracts;
+using VirtoCommerce.Client.Model;
 
 namespace MarketplaceWeb.Converters
 {
 	public static class ReviewConverter
 	{
-		public static ReviewModel ToWebModel(this Review review, string productCode)
+		public static ReviewModel ToWebModel(this VirtoCommerceMerchandisingModuleWebModelReview review, string productCode)
 		{
 			var retVal = new ReviewModel
 			{
 				Created = review.Created,
 				Id = review.Id,
-				Rating = review.Rating,
+				Rating = review.Rating ?? 0,
 				ReviewText = review.ReviewText,
 				Title = review.RatingComment,
 				ProductId = productCode,

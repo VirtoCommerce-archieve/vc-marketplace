@@ -3,8 +3,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Net;
-using VirtoCommerce.ApiClient;
-using VirtoCommerce.ApiClient.Extensions;
 
 namespace MarketplaceWeb
 {
@@ -46,25 +44,25 @@ namespace MarketplaceWeb
             {
                 statusCode = httpException.GetHttpCode();
             }
-            else if (exception.Is<UnauthorizedAccessException>())
+            else if (exception is UnauthorizedAccessException)
             {
                 //to prevent login prompt in IIS
                 // which will appear when returning 401.
                 statusCode = (int)HttpStatusCode.Forbidden;
             }
 
-            if (exception.Is<ManagementClientException>())
-            {
-                var clientEx = exception as ManagementClientException;
+            //if (exception.Is<ManagementClientException>())
+            //{
+            //    var clientEx = exception as ManagementClientException;
 
-                //Skip NotFound from api service
-                if (clientEx.StatusCode == HttpStatusCode.NotFound)
-                {
-                    filterContext.ExceptionHandled = true;
-                    return;
-                }
-                errorPage = "~/Views/Error/ServiceError.cshtml";
-            }
+            //    //Skip NotFound from api service
+            //    if (clientEx.StatusCode == HttpStatusCode.NotFound)
+            //    {
+            //        filterContext.ExceptionHandled = true;
+            //        return;
+            //    }
+            //    errorPage = "~/Views/Error/ServiceError.cshtml";
+            //}
 
             var result = CreateActionResult(filterContext, statusCode, errorPage);
 

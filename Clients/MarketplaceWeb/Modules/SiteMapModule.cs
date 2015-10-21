@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Hosting;
 using System.Xml.Linq;
-using VirtoCommerce.ApiClient;
-using VirtoCommerce.ApiClient.Extensions;
-using VirtoCommerce.ApiClient.DataContracts;
+using VirtoCommerce.Client.Api;
+using VirtoCommerce.Client;
+using MarketplaceWeb.Helpers;
+using MarketplaceWeb.Models;
+using VirtoCommerce.Client.Model;
 
 namespace MarketplaceWeb.Modules
 {
 	public class SiteMapModule : IHttpModule
 	{
-		private static string _storeName = ConfigurationManager.AppSettings["StoreName"];
-		private static string _storeLocalization = ConfigurationManager.AppSettings["StoreLocalization"];
-
 		private static XNamespace _xmlNamespace = "http://www.sitemaps.org/schemas/sitemap/0.9";
 		private static string _path = HostingEnvironment.MapPath("~/");
 		private static string _baseUrl = "http://virtocommerce.com/apps";
@@ -33,19 +32,25 @@ namespace MarketplaceWeb.Modules
 
 		private static string _vendorIdPropertyName = "vendorId";
 
-		public BrowseClient SearchClient
+        public const string StoreName = "Marketplace";
+        public const string Locale = "en-US";
+
+        private readonly HmacApiClient _apiClient = new HmacApiClient(ConfigurationManager.ConnectionStrings["VirtoCommerceBaseUrl"].ConnectionString, ConfigurationManager.AppSettings["vc-public-ApiAppId"], ConfigurationManager.AppSettings["vc-public-ApiSecretKey"]);
+
+
+        public MerchandisingModuleApi SearchClient
 		{
 			get
 			{
-				return ClientContext.Clients.CreateBrowseClient();
+				return new MerchandisingModuleApi(_apiClient);
 			}
 		}
 
-		public CustomerServiceClient CustomerServiceClient
+		public CustomerManagementModuleApi CustomerServiceClient
 		{
 			get
 			{
-				return ClientContext.Clients.CreateCustomerServiceClient();
+				return new CustomerManagementModuleApi(_apiClient);
 			}
 		}
 
@@ -56,7 +61,7 @@ namespace MarketplaceWeb.Modules
 
 		private void Application_BeginRequest(Object source, EventArgs e)
 		{
-			var vendorList = new List<string>();
+            var vendorList = CustomerServiceClient.CustomerModuleSearch(null, null, null, null).Members.Select(m => m.Id).ToList();
 
 			lock (lockObject)
 			{
@@ -82,9 +87,9 @@ namespace MarketplaceWeb.Modules
 		{
 			var categoriesSitemap = new XElement(_xmlNamespace + _xmlUrlsetTag);
 
-			var categories = Task.Run(() => SearchClient.GetCategoriesAsync(_storeName, _storeLocalization)).Result;
+			var categories = SearchClient.MerchandisingModuleCategorySearchCategory(StoreName, Locale, null);
 
-			if (categories.TotalCount > 0)
+			if (categories.Items.Count > 0)
 			{
 				foreach (var category in categories.Items)
 				{
@@ -101,15 +106,15 @@ namespace MarketplaceWeb.Modules
 
 			var query = new BrowseQuery
 			{
-				Search = string.Empty.EscapeSearchTerm(),
-				Take = 1000
+				Take = 1000,
+                ItemResponseGroup = "ItemLarge"
 			};
 
-			var products = Task.Run(() => SearchClient.GetProductsAsync(_storeName, _storeLocalization, query, ItemResponseGroups.ItemLarge)).Result;
+            var products = GetProducts(query);
 
-			if (products.TotalCount > 0)
+			if (products.Length > 0)
 			{
-				foreach (var product in products.Items)
+				foreach (var product in products)
 				{
 					if (product.Properties.Any(p => p.Key == _vendorIdPropertyName))
 					{
@@ -134,7 +139,7 @@ namespace MarketplaceWeb.Modules
 			{
 				foreach (var vendorId in vendorList.Distinct())
 				{
-					var vendor = Task.Run(() => CustomerServiceClient.GetContactByIdAsync(vendorId)).Result;
+					var vendor = CustomerServiceClient.CustomerModuleGetContactById(vendorId);
 
 					if (vendor != null)
 					{
@@ -162,5 +167,26 @@ namespace MarketplaceWeb.Modules
 		{
 
 		}
-	}
+
+        private VirtoCommerceMerchandisingModuleWebModelProduct[] GetProducts(BrowseQuery query)
+        {
+            var result = SearchClient.MerchandisingModuleProductSearch(
+                StoreName,
+                null,
+                query.ItemResponseGroup,
+                query.Outline,
+                Locale,
+                null,
+                null,
+                null,
+                null,
+                null,
+                query.Skip,
+                query.Take,
+                null,
+                null);
+
+            return result.Items.ToArray();
+        }
+    }
 }

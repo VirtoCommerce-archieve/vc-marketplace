@@ -6,11 +6,12 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using MarketplaceWeb.Helpers.Marketing;
-using VirtoCommerce.ApiClient;
-using VirtoCommerce.ApiClient.Extensions;
-using VirtoCommerce.ApiClient.Utilities;
 using MarketplaceWeb.Models;
 using System.Threading.Tasks;
+using VirtoCommerce.Client.Api;
+using VirtoCommerce.Client;
+using VirtoCommerce.Client.Model;
+using MarketplaceWeb.Helpers;
 
 namespace MarketplaceWeb.Controllers
 {
@@ -19,52 +20,69 @@ namespace MarketplaceWeb.Controllers
 		public const string StoreName = "Marketplace";
 		public const string Locale = "en-US";
 
-		public BrowseClient SearchClient
+        private readonly HmacApiClient _apiClient = new HmacApiClient(ConfigurationManager.ConnectionStrings["VirtoCommerceBaseUrl"].ConnectionString, ConfigurationManager.AppSettings["vc-public-ApiAppId"], ConfigurationManager.AppSettings["vc-public-ApiSecretKey"]);
+
+        public ApiHelper ApiHelper = new ApiHelper();
+
+		public MerchandisingModuleApi MerchandisingClient
 		{
 			get
 			{
-				return ClientContext.Clients.CreateBrowseClient();
+				return new MerchandisingModuleApi(_apiClient);
 			}
 		}
 
-		//public  ContentClient
-		//{
-		//	get
-		//	{
-		//		return ClientContext.Clients.CreateDefaultContentClient();
-		//	}
-		//}
+        public CatalogModuleApi CatalogClient
+        {
+            get
+            {
+                return new CatalogModuleApi(_apiClient);
+            }
+        }
 
-		public ReviewsClient ReviewsClient
-		{
-			get
-			{
-				return ClientContext.Clients.CreateReviewsClient();
-			}
-		}
+        public CustomerManagementModuleApi CustomerServiceClient
+        {
+            get
+            {
+                return new CustomerManagementModuleApi(_apiClient);
+            }
+        }
 
-		public SecurityClient SecurityClient
-		{
-			get
-			{
-				return ClientContext.Clients.CreateSecurityClient();
-			}
-		}
+        public StoreModuleApi StoreClient
+        {
+            get
+            {
+                return new StoreModuleApi(_apiClient);
+            }
+        }
 
-		public CustomerServiceClient CustomerServiceClient
-		{
-			get
-			{
-				return ClientContext.Clients.CreateCustomerServiceClient();
-			}
-		}
+        public CommerceCoreModuleApi CommerceClient
+        {
+            get
+            {
+                return new CommerceCoreModuleApi(_apiClient);
+            }
+        }
 
-		public StoreClient StoreClient
-		{
-			get
-			{
-				return ClientContext.Clients.CreateStoreClient();
-			}
-		}
-	}
+        protected VirtoCommerceMerchandisingModuleWebModelProduct[] GetProducts(BrowseQuery query)
+        {
+            var result = MerchandisingClient.MerchandisingModuleProductSearch(
+                StoreName,
+                null,
+                query.ItemResponseGroup,
+                query.Outline,
+                Locale,
+                null,
+                null,
+                null,
+                null,
+                null,
+                query.Skip,
+                query.Take,
+                null,
+                null);
+
+            return result.Items.ToArray();
+        }
+    }
 }

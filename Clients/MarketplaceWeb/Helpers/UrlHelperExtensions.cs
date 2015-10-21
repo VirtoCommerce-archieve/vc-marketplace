@@ -5,8 +5,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MarketplaceWeb.Models;
-using VirtoCommerce.ApiClient.DataContracts;
-using VirtoCommerce.ApiClient.Extensions;
 
 namespace MarketplaceWeb.Helpers
 {
@@ -262,7 +260,7 @@ namespace MarketplaceWeb.Helpers
 		/// <returns>Resulting URL</returns>
 		public static string SetParameter(this UrlHelper helper, string key, object value, bool replace = true)
 		{
-			return helper.SetParameter(helper.RequestContext.HttpContext.Request.RawUrl, key, value.ToNullOrString(), replace);
+			return helper.SetParameter(helper.RequestContext.HttpContext.Request.RawUrl, key, value.ToString(), replace);
 		}
 
 		/// <summary>
@@ -274,10 +272,10 @@ namespace MarketplaceWeb.Helpers
 		/// <returns>
 		/// Resulting URL
 		/// </returns>
-		public static string SetParameters(this UrlHelper helper, object parameterDictionary, bool replace = true)
-		{
-			return helper.SetParameters(helper.RequestContext.HttpContext.Request.RawUrl, parameterDictionary.ToPropertyDictionary(), replace);
-		}
+		//public static string SetParameters(this UrlHelper helper, object parameterDictionary, bool replace = true)
+		//{
+		//	return helper.SetParameters(helper.RequestContext.HttpContext.Request.RawUrl, parameterDictionary.ToPropertyDictionary(), replace);
+		//}
 
 		/// <summary>
 		/// Parses a query string. If duplicates are present, the last key/value is kept.

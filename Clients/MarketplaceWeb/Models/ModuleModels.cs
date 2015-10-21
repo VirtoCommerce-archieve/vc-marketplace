@@ -4,7 +4,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using Microsoft.Ajax.Utilities;
-using VirtoCommerce.ApiClient.DataContracts;
 
 namespace MarketplaceWeb.Models
 {

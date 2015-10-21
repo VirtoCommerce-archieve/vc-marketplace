@@ -5,10 +5,10 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using MarketplaceWeb.Helpers;
-using MarketplaceWeb.Models;
-using VirtoCommerce.ApiClient.DataContracts;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
+using clientModels = VirtoCommerce.Client.Model;
+using webModels = MarketplaceWeb.Models;
 
 namespace MarketplaceWeb.Converters
 {
@@ -29,90 +29,182 @@ namespace MarketplaceWeb.Converters
 		public const string VersionProperty = "ReleaseVersion";
 
 
-		public static Module ToWebModel(this Product item)
-		{
-			var retVal = new Module
-			{
-				Code = item.Code,
-				Id = item.Id,
-				Title = item.Name,
-				CatalogId = item.CatalogId,
-				ReviewsTotal = item.ReviewsTotal,
-				Price = PriceModel.Parse(item.Properties),
-				Keyword = item.Seo.FirstOrDefault() != null ? item.Seo.First().Keyword : string.Empty,
-				//CategoryList = item.Categories != null ? item.Categories.ToList() : null
-			};
-
-            if(item.PrimaryImage != null)
+        public static webModels.Module ToWebModel(this clientModels.VirtoCommerceMerchandisingModuleWebModelProduct item)
+        {
+            var retVal = new webModels.Module
             {
-                retVal.Images.Add(item.PrimaryImage);
+                Code = item.Code,
+                Id = item.Id,
+                Title = item.Name,
+                CatalogId = item.CatalogId,
+                ReviewsTotal = item.ReviewsTotal ?? 0,
+                Price = webModels.PriceModel.Parse(item.Properties),
+                Keyword = item.Seo.FirstOrDefault() != null ? item.Seo.First().Keyword : string.Empty,
+            };
+
+            if (item.PrimaryImage != null)
+            {
+                retVal.Images.Add(item.PrimaryImage.ToWebModel());
             }
 
-            if(item.Images != null && item.Images.Any())
+            if (item.Images != null && item.Images.Any())
             {
-                retVal.Images.AddRange(item.Images);
+                retVal.Images.AddRange(item.Images.Select(i => i.ToWebModel()));
             }
 
-			if (item.EditorialReviews != null)
-			{
-				var reviews = item.EditorialReviews.Where(x => !string.IsNullOrWhiteSpace(x.ReviewType)).ToArray();
-				var shortReview = reviews.FirstOrDefault(
-					x => x.ReviewType.Equals("QuickReview", StringComparison.OrdinalIgnoreCase));
+            if (item.EditorialReviews != null)
+            {
+                var reviews = item.EditorialReviews.Where(x => !string.IsNullOrWhiteSpace(x.ReviewType)).ToArray();
+                var shortReview = reviews.FirstOrDefault(
+                    x => x.ReviewType.Equals("QuickReview", StringComparison.OrdinalIgnoreCase));
 
-				var fullReview = reviews.FirstOrDefault(
-					x => x.ReviewType.Equals("FullReview", StringComparison.OrdinalIgnoreCase));
+                var fullReview = reviews.FirstOrDefault(
+                    x => x.ReviewType.Equals("FullReview", StringComparison.OrdinalIgnoreCase));
 
-				if (fullReview != null)
-				{
-					retVal.FullDescription = fullReview.Content;
-				}
-			}
+                if (fullReview != null)
+                {
+                    retVal.FullDescription = fullReview.Content;
+                }
+            }
 
-			if (item.Properties != null)
-			{
-				retVal.Overview = item.Properties.ParsePropertyToString(OverviewProperty);
-				retVal.Locale = item.Properties.ParseProperty(LocaleProperty).ToList();
-				retVal.UserId = item.Properties.ParsePropertyToString(UserIdProperty);
-				retVal.Description = item.Properties.ParsePropertyToString(DescriptionProperty);
-				retVal.License = item.Properties.ParsePropertyToString(LicenseProperty);
-			}
+            if (item.Properties != null)
+            {
+                retVal.Overview = item.Properties.ParsePropertyToString(OverviewProperty);
+                retVal.Locale = item.Properties.ParseProperty(LocaleProperty).ToList();
+                retVal.UserId = item.Properties.ParsePropertyToString(UserIdProperty);
+                retVal.Description = item.Properties.ParsePropertyToString(DescriptionProperty);
+                retVal.License = item.Properties.ParsePropertyToString(LicenseProperty);
+            }
 
-			if (item.Variations != null)
-			{
-				retVal.Releases = item.Variations.Select(x => x.ToWebModel(retVal)).ToList();
-			}
+            if (item.Variations != null)
+            {
+                retVal.Releases = item.Variations.Select(x => x.ToWebModel(retVal)).ToList();
+            }
 
-			if (retVal.Releases.Count > 0)
-			{
-				retVal.DownloadLink = retVal.Releases.OrderBy(r => r.ReleaseDate).First().DownloadLink;
-			}
+            if (retVal.Releases.Count > 0)
+            {
+                retVal.DownloadLink = retVal.Releases.OrderBy(r => r.ReleaseDate).First().DownloadLink;
+            }
 
-			return retVal;
-		}
+            return retVal;
+        }
 
-		public static Release ToWebModel(this CatalogItem variation, Module parent)
-		{
-			var retVal = new Release
-			{
-				Id = variation.Id,
-				Compatibility = variation.VariationProperties.ParseProperty(CompatibilityProperty).ToList(),
-				DownloadLink = variation.VariationProperties.ParsePropertyToString(LinkProperty),
-				ReleaseDate = variation.VariationProperties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
-				Note = variation.VariationProperties.ParsePropertyToString(NoteProperty),
-				Version = variation.VariationProperties.ParsePropertyToString(VersionProperty),
-				ReleaseStatus = variation.VariationProperties.ParseProperty<ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
-				ParentExtension = parent
-			};
+        public static webModels.Release ToWebModel(this clientModels.VirtoCommerceMerchandisingModuleWebModelProductVariation variation, webModels.Module parent)
+        {
+            var retVal = new webModels.Release
+            {
+                Id = variation.Id,
+                Compatibility = variation.VariationProperties.ParseProperty(CompatibilityProperty).ToList(),
+                DownloadLink = variation.VariationProperties.ParsePropertyToString(LinkProperty),
+                ReleaseDate = variation.VariationProperties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
+                Note = variation.VariationProperties.ParsePropertyToString(NoteProperty),
+                Version = variation.VariationProperties.ParsePropertyToString(VersionProperty),
+                ReleaseStatus = variation.VariationProperties.ParseProperty<webModels.ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
+                ParentExtension = parent
+            };
 
-			if(variation.Assets.Any())
-			{
-				retVal.DownloadLink = variation.Assets.First().Url;
-			}
+            if (variation.Assets.Any())
+            {
+                retVal.DownloadLink = variation.Assets.First().Url;
+            }
 
-			return retVal;
-		}
+            return retVal;
+        }
 
-		public static string[] ParseProperty(this IDictionary<string, object> properties, string name)
+        public static webModels.Module ToWebModel(this clientModels.VirtoCommerceCatalogModuleWebModelProduct item)
+        {
+            var retVal = new webModels.Module
+            {
+                Code = item.Code,
+                Id = item.Id,
+                Title = item.Name,
+                CatalogId = item.CatalogId,
+                ReviewsTotal = 0,
+                Price = webModels.PriceModel.Parse(item.Properties),
+                Keyword = item.SeoInfos.Count > 0 ? item.SeoInfos.First().SemanticUrl : string.Empty,
+            };
+
+            //if (item.PrimaryImage != null)
+            //{
+            //    retVal.Images.Add(item.PrimaryImage.ToWebModel());
+            //}
+
+            if (item.Images != null && item.Images.Any())
+            {
+                retVal.Images.AddRange(item.Images.Select(i => i.ToWebModel()));
+            }
+
+            //if (item.EditorialReviews != null)
+            //{
+            //    var reviews = item.EditorialReviews.Where(x => !string.IsNullOrWhiteSpace(x.ReviewType)).ToArray();
+            //    var shortReview = reviews.FirstOrDefault(
+            //        x => x.ReviewType.Equals("QuickReview", StringComparison.OrdinalIgnoreCase));
+
+            //    var fullReview = reviews.FirstOrDefault(
+            //        x => x.ReviewType.Equals("FullReview", StringComparison.OrdinalIgnoreCase));
+
+            //    if (fullReview != null)
+            //    {
+            //        retVal.FullDescription = fullReview.Content;
+            //    }
+            //}
+
+            if (item.Properties != null)
+            {
+                retVal.Overview = item.Properties.ParsePropertyToString(OverviewProperty);
+                retVal.Locale = item.Properties.ParseProperty(LocaleProperty).ToList();
+                retVal.UserId = item.Properties.ParsePropertyToString(UserIdProperty);
+                retVal.Description = item.Properties.ParsePropertyToString(DescriptionProperty);
+                retVal.License = item.Properties.ParsePropertyToString(LicenseProperty);
+            }
+
+            if (item.Variations != null && item.Variations.Count > 0)
+            {
+                retVal.Releases = item.Variations.Select(x => x.ToVariationWebModel(retVal)).ToList();
+            }
+
+            if (retVal.Releases.Count > 0)
+            {
+                retVal.DownloadLink = retVal.Releases.OrderBy(r => r.ReleaseDate).First().DownloadLink;
+            }
+
+            return retVal;
+        }
+
+        public static webModels.Release ToVariationWebModel(this clientModels.VirtoCommerceCatalogModuleWebModelProduct variation, webModels.Module parent)
+        {
+            var retVal = new webModels.Release
+            {
+                Id = variation.Id,
+                Compatibility = variation.Properties.ParseProperty(CompatibilityProperty).ToList(),
+                DownloadLink = variation.Properties.ParsePropertyToString(LinkProperty),
+                ReleaseDate = variation.Properties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
+                Note = variation.Properties.ParsePropertyToString(NoteProperty),
+                Version = variation.Properties.ParsePropertyToString(VersionProperty),
+                ReleaseStatus = variation.Properties.ParseProperty<webModels.ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
+                ParentExtension = parent
+            };
+
+            if (variation.Assets.Any())
+            {
+                retVal.DownloadLink = variation.Assets.First().Url;
+            }
+
+            return retVal;
+        }
+
+        public static string[] ParseProperty(this List<clientModels.VirtoCommerceCatalogModuleWebModelProperty> properties, string name)
+        {
+            var property = properties.FirstOrDefault(p => p.Name == name);
+            if(property != null)
+            {
+                return property.Values.Select(v => v.Value.ToString()).ToArray();
+            }
+
+            return new string[0];
+        }
+
+        public static string[] ParseProperty(this IDictionary<string, object> properties, string name)
 		{
 			var key = properties.Keys.FirstOrDefault(x => x.Equals(name, StringComparison.OrdinalIgnoreCase));
 			if (!string.IsNullOrEmpty(key))
@@ -164,7 +256,35 @@ namespace MarketplaceWeb.Converters
 			return retVal.ToArray();
 		}
 
-		public static string ParsePropertyToString(this IDictionary<string, object> properties, string name,
+        public static T[] ParseProperty<T>(this List<clientModels.VirtoCommerceCatalogModuleWebModelProperty> properties, string name)
+        {
+            var retVal = new List<T>();
+            var values = ParseProperty(properties, name);
+            if (values != null && values.Any())
+            {
+                var type = typeof(T);
+
+
+                var tc = TypeDescriptor.GetConverter(type);
+
+                foreach (var value in values)
+                {
+                    try
+                    {
+                        var result = (T)tc.ConvertFromString(null, CultureInfo.InvariantCulture, value);
+                        retVal.Add(result);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+            }
+
+            return retVal.ToArray();
+        }
+
+        public static string ParsePropertyToString(this IDictionary<string, object> properties, string name,
 			string separator = ", ")
 		{
 			var values = ParseProperty(properties, name);
@@ -177,7 +297,17 @@ namespace MarketplaceWeb.Converters
 			return null;
 		}
 
+        public static string ParsePropertyToString(this List<clientModels.VirtoCommerceCatalogModuleWebModelProperty> properties, string name, string separator = ", ")
+        {
+            var values = ParseProperty(properties, name);
 
+            if (values != null)
+            {
+                return values.Length > 1 ? string.Join(separator, values) : values.FirstOrDefault();
+            }
+
+            return null;
+        }
 
 	}
 }

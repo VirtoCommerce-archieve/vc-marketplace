@@ -6,9 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using VirtoCommerce.ApiClient.DataContracts;
 using MarketplaceWeb.Helpers;
-using System.Diagnostics;
+using VirtoCommerce.Client.Model;
 
 namespace MarketplaceWeb.Controllers
 {
@@ -19,38 +18,30 @@ namespace MarketplaceWeb.Controllers
 		[Route("{keyword}")]
 		public ActionResult Module(string keyword)
 		{
-			var sW = Stopwatch.StartNew();
-			var product = Task.Run(() => SearchClient.GetProductByKeywordAsync(StoreName, Locale, keyword, ItemResponseGroups.ItemLarge)).Result;
-			var timePR = sW.ElapsedMilliseconds;
+            var product = ApiHelper.GetProduct(CommerceClient, CatalogClient, keyword);
 
-			var reviews = new ResponseCollection<Review>(); //Task.Run(() => ReviewsClient.GetReviewsAsync(product.Code)).Result;
-			var timeRR = sW.ElapsedMilliseconds;
-
-			var category = Task.Run(() => SearchClient.GetCategoryAsync(StoreName, Locale, product.CategoryId)).Result;
-			var timeCR = sW.ElapsedMilliseconds;
+            var category = MerchandisingClient.MerchandisingModuleCategoryGetCategoryById(product.CategoryId, StoreName, Locale);
 
 			var module = product.ToWebModel();
 
-			var vendor = Task.Run(() => CustomerServiceClient.GetContactByIdAsync(module.UserId)).Result;
+            var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+            module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
+
+            var vendor = CustomerServiceClient.CustomerModuleGetContactById(module.UserId);
 			module.Vendor = vendor.ToWebModel();
 			module.CategoryList.Add(category.Code, category.Name);
-			var timeVR = sW.ElapsedMilliseconds;
 
-			foreach (var review in reviews.Items.Select(x => x.ToWebModel(product.Id)))
+			foreach (var review in reviews.Select(x => x.ToWebModel(product.Id)))
 			{
 				module.Reviews.Add(review);
 			}
 
-			if (product.Seo.Any())
+			if (product.SeoInfos.Any())
 			{
-				ViewBag.Title = product.Seo[0].Title;
-				ViewBag.Description = product.Seo[0].MetaDescription;
+				ViewBag.Title = product.SeoInfos[0].PageTitle;
+				ViewBag.Description = product.SeoInfos[0].MetaDescription;
 			}
-			var allTime = sW.ElapsedMilliseconds;
 
-			sW.Stop();
-			module.Time = new List<long>();
-			module.Time.AddRange(new long[] { timePR, timeRR, timeCR, timeVR, allTime });
 			return View(module);
 		}
 	}

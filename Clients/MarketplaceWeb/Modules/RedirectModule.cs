@@ -4,27 +4,50 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
-using VirtoCommerce.ApiClient;
-using VirtoCommerce.ApiClient.Extensions;
-using VirtoCommerce.ApiClient.Utilities;
+using VirtoCommerce.Client.Api;
+using VirtoCommerce.Client;
+using System.Configuration;
 
 namespace MarketplaceWeb.Modules
 {
 	public class RedirectModule : IHttpModule
 	{
-		public BrowseClient SearchClient
-		{
-			get
-			{
-				return ClientContext.Clients.CreateBrowseClient();
-			}
-		}
+        public const string StoreName = "Marketplace";
+        public const string Locale = "en-US";
 
-		public CustomerServiceClient CustomerServiceClient
+        private readonly HmacApiClient _apiClient = new HmacApiClient(ConfigurationManager.ConnectionStrings["VirtoCommerceBaseUrl"].ConnectionString, ConfigurationManager.AppSettings["vc-public-ApiAppId"], ConfigurationManager.AppSettings["vc-public-ApiSecretKey"]);
+
+        public ApiHelper _apiHelper = new ApiHelper();
+
+        public CommerceCoreModuleApi CommerceClient
+        {
+            get
+            {
+                return new CommerceCoreModuleApi(_apiClient);
+            }
+        }
+
+        public CatalogModuleApi CatalogClient
+        {
+            get
+            {
+                return new CatalogModuleApi(_apiClient);
+            }
+        }
+
+        public MerchandisingModuleApi MerchandisingClient
+        {
+            get
+            {
+                return new MerchandisingModuleApi(_apiClient);
+            }
+        }
+
+		public CustomerManagementModuleApi CustomerServiceClient
 		{
 			get
 			{
-				return ClientContext.Clients.CreateCustomerServiceClient();
+                return new CustomerManagementModuleApi(_apiClient);
 			}
 		}
 
@@ -52,8 +75,8 @@ namespace MarketplaceWeb.Modules
 				var id = steps.Last();
 				bool stop = false;
 
-				var category = Task.Run(() => SearchClient.GetCategoryByCodeAsync("MarketPlace", "en-US", id)).Result;
-				if (category != null)
+                var category = _apiHelper.GetCategory(MerchandisingClient, StoreName, Locale, id);
+                if (category != null)
 				{
 					context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/cat/" + id);
 					stop = true;
@@ -61,7 +84,7 @@ namespace MarketplaceWeb.Modules
 
 				if (!stop)
 				{
-					var product = Task.Run(() => SearchClient.GetProductByKeywordAsync("MarketPlace", "en-US", id)).Result;
+					var product = _apiHelper.GetProduct(CommerceClient, CatalogClient, id);
 					if (product != null)
 					{
 						context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/modules/" + id);
@@ -70,7 +93,7 @@ namespace MarketplaceWeb.Modules
 
 					if (!stop)
 					{
-						var vendor = Task.Run(() => CustomerServiceClient.GetContactByIdAsync(id)).Result;
+						var vendor = _apiHelper.GetContact(CustomerServiceClient, id);
 						if (vendor != null)
 						{
 							context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/vendor/" + id);

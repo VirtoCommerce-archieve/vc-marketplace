@@ -10,10 +10,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using VirtoCommerce.ApiClient;
-using VirtoCommerce.ApiClient.DataContracts;
-using VirtoCommerce.ApiClient.Extensions;
 using System.Collections.Generic;
+using VirtoCommerce.Client.Model;
 
 namespace MarketplaceWeb.Controllers
 {
@@ -22,23 +20,24 @@ namespace MarketplaceWeb.Controllers
 	{
 		//[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
 		[Route("ven")]
-		public async Task<ActionResult> DeveloperExtensions(string vendorId, string sort)
+		public ActionResult DeveloperExtensions(string vendorId, string sort)
 		{
 			var query = new BrowseQuery();
 			query.Filters = new Dictionary<string, string[]>();
 			query.Filters.Add("vendorId", new[] { vendorId });
 			query.Take = 1000;
-			var results = await SearchClient.GetProductsAsync(StoreName, Locale, query, ItemResponseGroups.ItemLarge);
+            query.ItemResponseGroup = "ItemLarge";
+			var results = GetProducts(query);
 
 			DeveloperSearchResult retVal = new DeveloperSearchResult();
-			retVal.Results.AddRange(results.Items.Select(i => i.ToWebModel()));
+			retVal.Results.AddRange(results.Select(i => i.ToWebModel()));
 			foreach (var module in retVal.Results)
 			{
-				var reviews = new ResponseCollection<Review>(); //await ReviewsClient.GetReviewsAsync(module.Keyword);
-				module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Keyword)));
-			}
+                var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+                module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
+            }
 
-			var customer = await CustomerServiceClient.GetContactByIdAsync(vendorId);
+			var customer = CustomerServiceClient.CustomerModuleGetContactById(vendorId);
 			retVal.VenderName = customer.FullName;
 			retVal.VendorId = vendorId;
 
@@ -48,22 +47,23 @@ namespace MarketplaceWeb.Controllers
 		//[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600, VaryByParam = "q")]
 		[Route("term")]
 		[HttpGet]
-		public async Task<ActionResult> Search(string q)
+		public ActionResult Search(string q)
 		{
 			var query = new BrowseQuery
 			{
 				Search = q.EscapeSearchTerm(),
-				Take = 1000
+				Take = 1000,
+                ItemResponseGroup = "ItemLarge"
 			};
-			var results = await SearchClient.GetProductsAsync(StoreName, Locale, query, ItemResponseGroups.ItemLarge);
+			var results = GetProducts(query);
 
 			SearchResult retVal = new SearchResult();
-			retVal.Results.AddRange(results.Items.Select(i => i.ToWebModel()));
+			retVal.Results.AddRange(results.Select(i => i.ToWebModel()));
 			foreach (var module in retVal.Results)
 			{
-				var reviews = await ReviewsClient.GetReviewsAsync(module.Keyword);
-				module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Keyword)));
-			}
+                var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+                module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
+            }
 
 			retVal.SearchTerm = q;
 
@@ -71,21 +71,22 @@ namespace MarketplaceWeb.Controllers
 		}
 
 		[Route("find")]
-		public async Task<ActionResult> Find(string q)
+		public ActionResult Find(string q)
 		{
 			var query = new BrowseQuery
 			{
 				Take = 15,
 				Search = q.EscapeSearchTerm()
 			};
-			var results = await SearchClient.GetProductsAsync(StoreName, Locale, query);
+			var results = GetProducts(query);
 
-			var data = from i in results.Items
+			var data = from i in results
 					   select new
 					   {
 						   url = string.Format(SiteUrlHelper.ResolveServerUrl("~/modules/{0}"), i.Code),
 						   value = i.Name
 					   };
+
 			return Json(data.ToArray(), JsonRequestBehavior.AllowGet);
 		}
 	}

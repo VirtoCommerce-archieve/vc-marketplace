@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using VirtoCommerce.ApiClient.DataContracts;
+using VirtoCommerce.Client.Model;
 using MarketplaceWeb.Helpers;
 using MarketplaceWeb.Converters;
 
@@ -17,7 +17,7 @@ namespace MarketplaceWeb.Controllers
 		// GET: Category
 		public ActionResult CategoryMenu()
 		{
-			var categories = Task.Run(() => SearchClient.GetCategoriesAsync(StoreName, Locale)).Result;
+			var categories = MerchandisingClient.MerchandisingModuleCategorySearchCategory(StoreName, Locale, null);
 
 			var retVal = new CategoryMenu();
 
@@ -35,11 +35,11 @@ namespace MarketplaceWeb.Controllers
 
 		//[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
 		[Route("{id}")]
-		public async Task<ActionResult> Category(string id)
+		public ActionResult Category(string id)
 		{
 			CategoryResults retVal = new CategoryResults();
 
-			var category = await SearchClient.GetCategoryByCodeAsync(StoreName, Locale, id);
+			var category = MerchandisingClient.MerchandisingModuleCategoryGetCategoryByCode(StoreName, id, Locale);
 
 			if (category != null)
 			{
@@ -47,13 +47,14 @@ namespace MarketplaceWeb.Controllers
 				query.Filters = new Dictionary<string, string[]>();
 				query.Outline = GetOutline(category);
 				query.Take = 50;
+                query.ItemResponseGroup = "ItemLarge";
 
-				var products = await SearchClient.GetProductsAsync(StoreName, Locale, query, ItemResponseGroups.ItemLarge);
-				retVal.Modules.AddRange(products.Items.Select(i => i.ToWebModel()));
+				var products = GetProducts(query);
+				retVal.Modules.AddRange(products.Select(i => i.ToWebModel()));
 				foreach (var module in retVal.Modules)
 				{
-					var reviews = new ResponseCollection<Review>(); //await ReviewsClient.GetReviewsAsync(module.Keyword);
-					module.Reviews.AddRange(reviews.Items.Select(i => i.ToWebModel(module.Keyword)));
+					var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+                    module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
 				}
 
 				retVal.CategoryCode = category.Code;
@@ -69,12 +70,11 @@ namespace MarketplaceWeb.Controllers
 			return View(retVal);
 		}
 
-		private string GetOutline(Category category)
+		private string GetOutline(VirtoCommerceMerchandisingModuleWebModelCategory category)
 		{
 			var ids = category.Parents != null ? category.Parents.Select(x => x.Id).ToList() : new List<string>();
 			ids.Add(category.Id);
 			return string.Join("/", ids);
 		}
-
 	}
 }
