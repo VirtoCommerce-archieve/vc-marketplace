@@ -165,7 +165,7 @@ namespace MarketplaceWeb.Converters
 
             if (retVal.Releases.Count > 0)
             {
-                retVal.DownloadLink = retVal.Releases.OrderBy(r => r.ReleaseDate).First().DownloadLink;
+                retVal.DownloadLink = retVal.Releases.OrderBy(r => r.ReleaseDate).Last().DownloadLink;
             }
 
             return retVal;
@@ -271,7 +271,7 @@ namespace MarketplaceWeb.Converters
                 {
                     try
                     {
-                        var result = (T)tc.ConvertFromString(null, CultureInfo.InvariantCulture, value);
+                        var result = (T)tc.ConvertFromString(null, null, value);
                         retVal.Add(result);
                     }
                     catch (Exception ex)

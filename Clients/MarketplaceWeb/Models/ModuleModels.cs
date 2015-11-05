@@ -102,7 +102,7 @@ namespace MarketplaceWeb.Models
 			{
 				if (HasRelease)
 				{
-					return Releases.SelectMany(x => x.Compatibility).Distinct();
+					return Releases.OrderBy(r => r.ReleaseDate).Select(x => x.Compatibility).Last();
 				}
 
 				return new string[0];
