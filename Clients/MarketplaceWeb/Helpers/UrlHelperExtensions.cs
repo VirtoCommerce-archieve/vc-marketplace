@@ -49,8 +49,7 @@ namespace MarketplaceWeb.Helpers
 
 		public static string Image(this UrlHelper helper, Module item, string name)
 		{
-
-			if (item == null && item.Images == null && !item.Images.Any())
+			if (item == null || item.Images == null || !item.Images.Any())
                 return Image(helper, null);
 
 			return Image(helper, item.Images.First());
