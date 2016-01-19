@@ -24,11 +24,16 @@ namespace MarketplaceWeb.Controllers
 
         public ApiHelper ApiHelper = new ApiHelper();
 
-		public MerchandisingModuleApi MerchandisingClient
+        public ControllerBase()
+        {
+            this.Store = StoreClient.StoreModuleGetStoreById(StoreName);
+        }
+
+		public SearchModuleApi SearchClient
 		{
 			get
 			{
-				return new MerchandisingModuleApi(_apiClient);
+				return new SearchModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
 			}
 		}
 
@@ -36,7 +41,7 @@ namespace MarketplaceWeb.Controllers
         {
             get
             {
-                return new CatalogModuleApi(_apiClient);
+                return new CatalogModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
             }
         }
 
@@ -44,7 +49,7 @@ namespace MarketplaceWeb.Controllers
         {
             get
             {
-                return new CustomerManagementModuleApi(_apiClient);
+                return new CustomerManagementModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
             }
         }
 
@@ -52,7 +57,7 @@ namespace MarketplaceWeb.Controllers
         {
             get
             {
-                return new StoreModuleApi(_apiClient);
+                return new StoreModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
             }
         }
 
@@ -60,29 +65,27 @@ namespace MarketplaceWeb.Controllers
         {
             get
             {
-                return new CommerceCoreModuleApi(_apiClient);
+                return new CommerceCoreModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
             }
         }
 
-        protected VirtoCommerceMerchandisingModuleWebModelProduct[] GetProducts(BrowseQuery query)
+        protected VirtoCommerceCatalogModuleWebModelProduct[] GetProducts(BrowseQuery query)
         {
-            var result = MerchandisingClient.MerchandisingModuleProductSearch(
-                StoreName,
-                null,
-                query.ItemResponseGroup,
-                query.Outline,
-                Locale,
-                null,
-                null,
-                null,
-                null,
-                null,
-                query.Skip,
-                query.Take,
-                null,
-                null);
+            var result = SearchClient.SearchModuleSearch(
+                criteriaStoreId: StoreName,
+                criteriaCatalogId: Store.Catalog,
+                criteriaResponseGroup: "21",
+                criteriaOutline: query.Outline,
+                criteriaCategoryId: query.CategoryId,
+                criteriaSkip: query.Skip,
+                criteriaTake: query.Take);
 
-            return result.Items.ToArray();
+            return result.Products.ToArray();
+        }
+
+        public VirtoCommerceStoreModuleWebModelStore Store
+        {
+            get; set;
         }
     }
 }

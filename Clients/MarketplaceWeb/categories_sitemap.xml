@@ -4,24 +4,18 @@
     <loc>http://virtocommerce.com/apps/integrations</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-12-15</lastmod>
+    <lastmod>2016-01-19</lastmod>
   </url>
   <url>
     <loc>http://virtocommerce.com/apps/themes</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-12-15</lastmod>
-  </url>
-  <url>
-    <loc>http://virtocommerce.com/apps/utilities</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.8</priority>
-    <lastmod>2015-12-15</lastmod>
+    <lastmod>2016-01-19</lastmod>
   </url>
   <url>
     <loc>http://virtocommerce.com/apps/coremodules</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
-    <lastmod>2015-12-15</lastmod>
+    <lastmod>2016-01-19</lastmod>
   </url>
 </urlset>

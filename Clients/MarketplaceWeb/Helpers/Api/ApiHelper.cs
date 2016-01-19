@@ -10,19 +10,19 @@ namespace MarketplaceWeb.Helpers
 {
     public class ApiHelper
     {
-        public VirtoCommerceMerchandisingModuleWebModelCategory GetCategory(MerchandisingModuleApi api, string storeName, string locale, string code)
+        public VirtoCommerceCatalogModuleWebModelCategory GetCategory(SearchModuleApi api, string storeName, string locale, string code)
         {
-            VirtoCommerceMerchandisingModuleWebModelCategory retVal;
-            try
-            {
-                retVal = api.MerchandisingModuleCategoryGetCategoryByCode(storeName, code, locale);
-            }
-            catch(ApiException)
-            {
-                retVal = null;
-            }
+            //VirtoCommerceCatalogModuleWebModelCategory retVal;
+            //try
+            //{
+            //    var categories = api.SearchModuleSearch(criteriaCode: code, );
+            //}
+            //catch(ApiException)
+            //{
+            //    retVal = null;
+            //}
 
-            return retVal;
+            return null;
         }
 
         public VirtoCommerceCatalogModuleWebModelProduct GetProduct(CommerceCoreModuleApi api, CatalogModuleApi catalogApi, string code)

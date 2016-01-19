@@ -23,7 +23,7 @@ namespace MarketplaceWeb.Modules
         {
             get
             {
-                return new CommerceCoreModuleApi(_apiClient);
+                return new CommerceCoreModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
             }
         }
 
@@ -31,15 +31,7 @@ namespace MarketplaceWeb.Modules
         {
             get
             {
-                return new CatalogModuleApi(_apiClient);
-            }
-        }
-
-        public MerchandisingModuleApi MerchandisingClient
-        {
-            get
-            {
-                return new MerchandisingModuleApi(_apiClient);
+                return new CatalogModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
             }
         }
 
@@ -47,7 +39,7 @@ namespace MarketplaceWeb.Modules
 		{
 			get
 			{
-                return new CustomerManagementModuleApi(_apiClient);
+                return new CustomerManagementModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
 			}
 		}
 
@@ -73,33 +65,28 @@ namespace MarketplaceWeb.Modules
 			if (steps.Length > 0)
 			{
 				var id = steps.Last();
-				bool stop = false;
 
-                var category = _apiHelper.GetCategory(MerchandisingClient, StoreName, Locale, id);
-                if (category != null)
-				{
-					context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/cat/" + id);
-					stop = true;
-				}
-
-				if (!stop)
-				{
-					var product = _apiHelper.GetProduct(CommerceClient, CatalogClient, id);
-					if (product != null)
-					{
-						context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/modules/" + id);
-						stop = true;
-					}
-
-					if (!stop)
-					{
-						var vendor = _apiHelper.GetContact(CustomerServiceClient, id);
-						if (vendor != null)
-						{
-							context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/vendor/" + id);
-						}
-					}
-				}
+                var seoInfos = CommerceClient.CommerceGetSeoInfoBySlug(id);
+                if (seoInfos != null && seoInfos.Any())
+                {
+                    var seoInfo = seoInfos.FirstOrDefault();
+                    if(seoInfo.ObjectType == "Category")
+                    {
+                        context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/cat/" + seoInfo.ObjectId);
+                    }
+                    else if (seoInfo.ObjectType == "CatalogProduct")
+                    {
+                        context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/modules/" + seoInfo.ObjectId);
+                    }
+                }
+                else
+                {
+                    var vendor = _apiHelper.GetContact(CustomerServiceClient, id);
+                    if (vendor != null)
+                    {
+                        context.RewritePath(context.Request.Path.Replace("/" + id, string.Empty) + "/vendor/" + id);
+                    }
+                }
 			}
 		}
 

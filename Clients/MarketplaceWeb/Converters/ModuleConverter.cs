@@ -29,7 +29,7 @@ namespace MarketplaceWeb.Converters
 		public const string VersionProperty = "ReleaseVersion";
 
 
-        public static webModels.Module ToWebModel(this clientModels.VirtoCommerceMerchandisingModuleWebModelProduct item)
+        public static webModels.Module ToWebModel(this clientModels.VirtoCommerceCatalogModuleWebModelProduct item)
         {
             var retVal = new webModels.Module
             {
@@ -37,24 +37,19 @@ namespace MarketplaceWeb.Converters
                 Id = item.Id,
                 Title = item.Name,
                 CatalogId = item.CatalogId,
-                ReviewsTotal = item.ReviewsTotal ?? 0,
+                ReviewsTotal = 0,
                 Price = webModels.PriceModel.Parse(item.Properties),
-                Keyword = item.Seo.FirstOrDefault() != null ? item.Seo.First().Keyword : string.Empty,
+                Keyword = item.SeoInfos?.FirstOrDefault()?.SemanticUrl ?? item.Id,
             };
-
-            if (item.PrimaryImage != null)
-            {
-                retVal.Images.Add(item.PrimaryImage.ToWebModel());
-            }
 
             if (item.Images != null && item.Images.Any())
             {
                 retVal.Images.AddRange(item.Images.Select(i => i.ToWebModel()));
             }
 
-            if (item.EditorialReviews != null)
+            if (item.Reviews != null)
             {
-                var reviews = item.EditorialReviews.Where(x => !string.IsNullOrWhiteSpace(x.ReviewType)).ToArray();
+                var reviews = item.Reviews.Where(x => !string.IsNullOrWhiteSpace(x.ReviewType)).ToArray();
                 var shortReview = reviews.FirstOrDefault(
                     x => x.ReviewType.Equals("QuickReview", StringComparison.OrdinalIgnoreCase));
 
@@ -78,7 +73,7 @@ namespace MarketplaceWeb.Converters
 
             if (item.Variations != null)
             {
-                retVal.Releases = item.Variations.Select(x => x.ToWebModel(retVal)).ToList();
+                retVal.Releases = item.Variations.Select(x => x.ToVariationWebModel(retVal)).ToList();
             }
 
             if (retVal.Releases.Count > 0)
@@ -89,87 +84,87 @@ namespace MarketplaceWeb.Converters
             return retVal;
         }
 
-        public static webModels.Release ToWebModel(this clientModels.VirtoCommerceMerchandisingModuleWebModelProductVariation variation, webModels.Module parent)
-        {
-            var retVal = new webModels.Release
-            {
-                Id = variation.Id,
-                Compatibility = variation.VariationProperties.ParseProperty(CompatibilityProperty).ToList(),
-                DownloadLink = variation.VariationProperties.ParsePropertyToString(LinkProperty),
-                ReleaseDate = variation.VariationProperties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
-                Note = variation.VariationProperties.ParsePropertyToString(NoteProperty),
-                Version = variation.VariationProperties.ParsePropertyToString(VersionProperty),
-                ReleaseStatus = variation.VariationProperties.ParseProperty<webModels.ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
-                ParentExtension = parent
-            };
+        //public static webModels.Release ToWebModel(this clientModels.VirtoCommerceCatalogModuleWebModelProduct variation, webModels.Module parent)
+        //{
+        //    var retVal = new webModels.Release
+        //    {
+        //        Id = variation.Id,
+        //        Compatibility = variation.Properties.ParseProperty(CompatibilityProperty).ToList(),
+        //        DownloadLink = variation.Properties.ParsePropertyToString(LinkProperty),
+        //        ReleaseDate = variation.Properties.ParseProperty<DateTime>(ReleaseDateProperty).FirstOrDefault(),
+        //        Note = variation.Properties.ParsePropertyToString(NoteProperty),
+        //        Version = variation.Properties.ParsePropertyToString(VersionProperty),
+        //        ReleaseStatus = variation.Properties.ParseProperty<webModels.ReleaseStatus>(ReleaseStatusProperty).FirstOrDefault(),
+        //        ParentExtension = parent
+        //    };
 
-            if (variation.Assets.Any())
-            {
-                retVal.DownloadLink = variation.Assets.First().Url;
-            }
+        //    if (variation.Assets.Any())
+        //    {
+        //        retVal.DownloadLink = variation.Assets.First().Url;
+        //    }
 
-            return retVal;
-        }
+        //    return retVal;
+        //}
 
-        public static webModels.Module ToWebModel(this clientModels.VirtoCommerceCatalogModuleWebModelProduct item)
-        {
-            var retVal = new webModels.Module
-            {
-                Code = item.Code,
-                Id = item.Id,
-                Title = item.Name,
-                CatalogId = item.CatalogId,
-                ReviewsTotal = 0,
-                Price = webModels.PriceModel.Parse(item.Properties),
-                Keyword = item.SeoInfos.Count > 0 ? item.SeoInfos.First().SemanticUrl : string.Empty,
-            };
+        //public static webModels.Module ToWebModel(this clientModels.VirtoCommerceCatalogModuleWebModelProduct item)
+        //{
+        //    var retVal = new webModels.Module
+        //    {
+        //        Code = item.Code,
+        //        Id = item.Id,
+        //        Title = item.Name,
+        //        CatalogId = item.CatalogId,
+        //        ReviewsTotal = 0,
+        //        Price = webModels.PriceModel.Parse(item.Properties),
+        //        Keyword = item.SeoInfos.Count > 0 ? item.SeoInfos.First().SemanticUrl : string.Empty,
+        //    };
 
-            //if (item.PrimaryImage != null)
-            //{
-            //    retVal.Images.Add(item.PrimaryImage.ToWebModel());
-            //}
+        //    //if (item.PrimaryImage != null)
+        //    //{
+        //    //    retVal.Images.Add(item.PrimaryImage.ToWebModel());
+        //    //}
 
-            if (item.Images != null && item.Images.Any())
-            {
-                retVal.Images.AddRange(item.Images.Select(i => i.ToWebModel()));
-            }
+        //    if (item.Images != null && item.Images.Any())
+        //    {
+        //        retVal.Images.AddRange(item.Images.Select(i => i.ToWebModel()));
+        //    }
 
-            //if (item.EditorialReviews != null)
-            //{
-            //    var reviews = item.EditorialReviews.Where(x => !string.IsNullOrWhiteSpace(x.ReviewType)).ToArray();
-            //    var shortReview = reviews.FirstOrDefault(
-            //        x => x.ReviewType.Equals("QuickReview", StringComparison.OrdinalIgnoreCase));
+        //    //if (item.EditorialReviews != null)
+        //    //{
+        //    //    var reviews = item.EditorialReviews.Where(x => !string.IsNullOrWhiteSpace(x.ReviewType)).ToArray();
+        //    //    var shortReview = reviews.FirstOrDefault(
+        //    //        x => x.ReviewType.Equals("QuickReview", StringComparison.OrdinalIgnoreCase));
 
-            //    var fullReview = reviews.FirstOrDefault(
-            //        x => x.ReviewType.Equals("FullReview", StringComparison.OrdinalIgnoreCase));
+        //    //    var fullReview = reviews.FirstOrDefault(
+        //    //        x => x.ReviewType.Equals("FullReview", StringComparison.OrdinalIgnoreCase));
 
-            //    if (fullReview != null)
-            //    {
-            //        retVal.FullDescription = fullReview.Content;
-            //    }
-            //}
+        //    //    if (fullReview != null)
+        //    //    {
+        //    //        retVal.FullDescription = fullReview.Content;
+        //    //    }
+        //    //}
 
-            if (item.Properties != null)
-            {
-                retVal.Overview = item.Properties.ParsePropertyToString(OverviewProperty);
-                retVal.Locale = item.Properties.ParseProperty(LocaleProperty).ToList();
-                retVal.UserId = item.Properties.ParsePropertyToString(UserIdProperty);
-                retVal.Description = item.Properties.ParsePropertyToString(DescriptionProperty);
-                retVal.License = item.Properties.ParsePropertyToString(LicenseProperty);
-            }
+        //    if (item.Properties != null)
+        //    {
+        //        retVal.Overview = item.Properties.ParsePropertyToString(OverviewProperty);
+        //        retVal.Locale = item.Properties.ParseProperty(LocaleProperty).ToList();
+        //        retVal.UserId = item.Properties.ParsePropertyToString(UserIdProperty);
+        //        retVal.Description = item.Properties.ParsePropertyToString(DescriptionProperty);
+        //        retVal.License = item.Properties.ParsePropertyToString(LicenseProperty);
+        //    }
 
-            if (item.Variations != null && item.Variations.Count > 0)
-            {
-                retVal.Releases = item.Variations.Select(x => x.ToVariationWebModel(retVal)).ToList();
-            }
+        //    if (item.Variations != null && item.Variations.Count > 0)
+        //    {
+        //        retVal.Releases = item.Variations.Select(x => x.ToVariationWebModel(retVal)).ToList();
+        //    }
 
-            if (retVal.Releases.Count > 0)
-            {
-                retVal.DownloadLink = retVal.Releases.OrderBy(r => r.ReleaseDate).Last().DownloadLink;
-            }
+        //    if (retVal.Releases.Count > 0)
+        //    {
+        //        retVal.DownloadLink = retVal.Releases.OrderBy(r => r.ReleaseDate).Last().DownloadLink;
+        //    }
 
-            return retVal;
-        }
+        //    return retVal;
+        //}
 
         public static webModels.Release ToVariationWebModel(this clientModels.VirtoCommerceCatalogModuleWebModelProduct variation, webModels.Module parent)
         {

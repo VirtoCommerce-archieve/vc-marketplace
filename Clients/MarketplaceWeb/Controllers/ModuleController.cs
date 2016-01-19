@@ -15,26 +15,26 @@ namespace MarketplaceWeb.Controllers
 	public class ModuleController : ControllerBase
 	{
 		//[OutputCache(Location = System.Web.UI.OutputCacheLocation.Server, Duration = 3600)]
-		[Route("{keyword}")]
-		public ActionResult Module(string keyword)
+		[Route("{id}")]
+		public ActionResult Module(string id)
 		{
-            var product = ApiHelper.GetProduct(CommerceClient, CatalogClient, keyword);
+            var product = CatalogClient.CatalogModuleProductsGet(id);
 
-            var category = MerchandisingClient.MerchandisingModuleCategoryGetCategoryById(product.CategoryId, StoreName, Locale);
+            var category = CatalogClient.CatalogModuleCategoriesGet(product.CategoryId);
 
 			var module = product.ToWebModel();
 
-            var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
-            module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
+            //var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+            //module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
 
             var vendor = CustomerServiceClient.CustomerModuleGetContactById(module.UserId);
 			module.Vendor = vendor.ToWebModel();
 			module.CategoryList.Add(category.Code, category.Name);
 
-			foreach (var review in reviews.Select(x => x.ToWebModel(product.Id)))
-			{
-				module.Reviews.Add(review);
-			}
+			//foreach (var review in reviews.Select(x => x.ToWebModel(product.Id)))
+			//{
+			//	module.Reviews.Add(review);
+			//}
 
 			if (product.SeoInfos.Any())
 			{

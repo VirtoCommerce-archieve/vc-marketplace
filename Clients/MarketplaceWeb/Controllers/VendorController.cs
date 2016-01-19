@@ -35,13 +35,13 @@ namespace MarketplaceWeb.Controllers
             query.ItemResponseGroup = "ItemLarge";
 			var results = GetProducts(query);
 
-			foreach (var module in results.Select(x => x.ToWebModel()))
-			{
-                var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
-                module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
+			//foreach (var module in results.Select(x => x.ToWebModel()))
+			//{
+   //             var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+   //             module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
 
-				model.Modules.Add(module);
-			}
+			//	model.Modules.Add(module);
+			//}
 
 			ViewBag.Title = model.Seo.Title;
 			ViewBag.MetaDescription = model.Seo.MetaDescription;

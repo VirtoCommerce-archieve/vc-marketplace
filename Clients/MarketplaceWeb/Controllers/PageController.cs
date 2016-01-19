@@ -35,7 +35,7 @@ namespace MarketplaceWeb.Controllers
                 }
 			}
 
-			var retVal = Modules(new BrowseQuery { SortProperty = "CreatedDate", SortDirection = "asc" });
+			var retVal = Modules(new BrowseQuery { SortProperty = "CreatedDate", SortDirection = "asc", Skip = 0, Take = 10 });
 
 			return View(retVal);
         }
@@ -49,17 +49,16 @@ namespace MarketplaceWeb.Controllers
 		// GET: Module
 		private ModulesModel Modules(BrowseQuery query)
 		{
-            query.ItemResponseGroup = "ItemLarge";
             var products = GetProducts(query);
 
             var retVal = new ModulesModel();
 			retVal.Items.AddRange(products.Select(i => i.ToWebModel()));
 
-			foreach (var item in retVal.Items)
-			{
-                var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
-                item.Reviews.AddRange(reviews.Select(i => i.ToWebModel(item.Keyword)));
-            }
+			//foreach (var item in retVal.Items)
+			//{
+   //             var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+   //             item.Reviews.AddRange(reviews.Select(i => i.ToWebModel(item.Keyword)));
+   //         }
 
 			return retVal;
 		}

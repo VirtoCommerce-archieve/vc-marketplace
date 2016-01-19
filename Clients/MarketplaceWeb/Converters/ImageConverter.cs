@@ -9,20 +9,6 @@ namespace MarketplaceWeb.Converters
 {
     public static class ImageConverter
     {
-        public static webModels.ItemImage ToWebModel(this clientModels.VirtoCommerceMerchandisingModuleWebModelImage image)
-        {
-            var retVal = new webModels.ItemImage
-            {
-                Attachement = image.Attachement,
-                Group = image.Group,
-                Name = image.Name,
-                Src = image.Src,
-                ThumbSrc = image.ThumbSrc
-            };
-
-            return retVal;
-        }
-
         public static webModels.ItemImage ToWebModel(this clientModels.VirtoCommerceCatalogModuleWebModelImage image)
         {
             var retVal = new webModels.ItemImage

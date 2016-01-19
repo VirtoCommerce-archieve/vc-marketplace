@@ -27,6 +27,8 @@ namespace MarketplaceWeb.Models
         [DefaultValue("")]
         public string Outline { get; set; }
 
+        public string CategoryId { get; set; }
+
         public string[] PriceLists { get; set; }
 
         /// <summary>

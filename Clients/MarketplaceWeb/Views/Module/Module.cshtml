@@ -69,7 +69,7 @@
 						}
 						<a class="link __ucase" style="cursor:pointer;" data-id="reviewFormButton">Write a review</a>
 					</div>
-					@if(string.IsNullOrEmpty(Model.Description))
+					@if(!string.IsNullOrEmpty(Model.Description))
 					{
 						<div class="extension-descr" itemprop="description">
 							@Model.Description

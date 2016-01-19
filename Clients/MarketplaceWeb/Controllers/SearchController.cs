@@ -31,11 +31,11 @@ namespace MarketplaceWeb.Controllers
 
 			DeveloperSearchResult retVal = new DeveloperSearchResult();
 			retVal.Results.AddRange(results.Select(i => i.ToWebModel()));
-			foreach (var module in retVal.Results)
-			{
-                var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
-                module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
-            }
+			//foreach (var module in retVal.Results)
+			//{
+   //             var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+   //             module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
+   //         }
 
 			var customer = CustomerServiceClient.CustomerModuleGetContactById(vendorId);
 			retVal.VenderName = customer.FullName;
@@ -59,11 +59,11 @@ namespace MarketplaceWeb.Controllers
 
 			SearchResult retVal = new SearchResult();
 			retVal.Results.AddRange(results.Select(i => i.ToWebModel()));
-			foreach (var module in retVal.Results)
-			{
-                var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
-                module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
-            }
+			//foreach (var module in retVal.Results)
+			//{
+   //             var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+   //             module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
+   //         }
 
 			retVal.SearchTerm = q;
 

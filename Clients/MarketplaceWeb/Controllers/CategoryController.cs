@@ -17,15 +17,15 @@ namespace MarketplaceWeb.Controllers
 		// GET: Category
 		public ActionResult CategoryMenu()
 		{
-			var categories = MerchandisingClient.MerchandisingModuleCategorySearchCategory(StoreName, Locale, null);
+			var result = CatalogClient.CatalogModuleSearchSearch(criteriaCatalogId: Store.Catalog, criteriaResponseGroup: "WithCategories");
 
 			var retVal = new CategoryMenu();
 
-			foreach (var category in categories.Items)
+			foreach (var category in result.Categories.Where(c => c.IsActive ?? true))
 			{
 				retVal.Categories.Add(new ShortCategoryInfo
 				{
-					CategoryCode = category.Code,
+					CategoryCode = category.SeoInfos?.FirstOrDefault()?.SemanticUrl ?? category.Id,
 					CategoryName = category.Name
 				});
 			}
@@ -39,40 +39,45 @@ namespace MarketplaceWeb.Controllers
 		{
 			CategoryResults retVal = new CategoryResults();
 
-			var category = MerchandisingClient.MerchandisingModuleCategoryGetCategoryByCode(StoreName, id, Locale);
+            var category = CatalogClient.CatalogModuleCategoriesGet(id);                
 
 			if (category != null)
 			{
+                if(category.IsActive.HasValue && !category.IsActive.Value)
+                {
+                    return Redirect("~");
+                }
+
 				var query = new BrowseQuery();
 				query.Filters = new Dictionary<string, string[]>();
-				query.Outline = GetOutline(category);
+				query.CategoryId = id;
 				query.Take = 50;
-                query.ItemResponseGroup = "ItemLarge";
+                query.ItemResponseGroup = "21";
 
 				var products = GetProducts(query);
 				retVal.Modules.AddRange(products.Select(i => i.ToWebModel()));
-				foreach (var module in retVal.Modules)
-				{
-					var reviews = new List<VirtoCommerceMerchandisingModuleWebModelReview>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
-                    module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
-				}
+				//foreach (var module in retVal.Modules)
+				//{
+				//	var reviews = new List<VirtoCommerce>(); //MerchandisingClient.MerchandisingModuleReviewGetProductReviews();
+    //                module.Reviews.AddRange(reviews.Select(i => i.ToWebModel(module.Keyword)));
+				//}
 
 				retVal.CategoryCode = category.Code;
 				retVal.CategoryName = category.Name;
 			}
 
-			if(category.Seo.Any())
+			if(category.SeoInfos.Any())
 			{
-				ViewBag.Title = category.Seo.First().Title;
-				ViewBag.Description = category.Seo.First().MetaDescription;
+				ViewBag.Title = category.SeoInfos.First().PageTitle;
+				ViewBag.Description = category.SeoInfos.First().MetaDescription;
 			}
 
 			return View(retVal);
 		}
 
-		private string GetOutline(VirtoCommerceMerchandisingModuleWebModelCategory category)
+		private string GetOutline(VirtoCommerceCatalogModuleWebModelCategory category)
 		{
-			var ids = category.Parents != null ? category.Parents.Select(x => x.Id).ToList() : new List<string>();
+			var ids = category.Parents != null ? category.Parents.Select(x => x.Key).ToList() : new List<string>();
 			ids.Add(category.Id);
 			return string.Join("/", ids);
 		}

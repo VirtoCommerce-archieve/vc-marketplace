@@ -38,11 +38,11 @@ namespace MarketplaceWeb.Modules
         private readonly HmacApiClient _apiClient = new HmacApiClient(ConfigurationManager.ConnectionStrings["VirtoCommerceBaseUrl"].ConnectionString, ConfigurationManager.AppSettings["vc-public-ApiAppId"], ConfigurationManager.AppSettings["vc-public-ApiSecretKey"]);
 
 
-        public MerchandisingModuleApi SearchClient
+        public SearchModuleApi SearchClient
 		{
 			get
 			{
-				return new MerchandisingModuleApi(_apiClient);
+				return new SearchModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
 			}
 		}
 
@@ -50,11 +50,27 @@ namespace MarketplaceWeb.Modules
 		{
 			get
 			{
-				return new CustomerManagementModuleApi(_apiClient);
+				return new CustomerManagementModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
 			}
 		}
 
-		public void Init(HttpApplication context)
+        public StoreModuleApi StoreClient
+        {
+            get
+            {
+                return new StoreModuleApi(new VirtoCommerce.Client.Client.Configuration(_apiClient));
+            }
+        }
+
+        public VirtoCommerceStoreModuleWebModelStore Store
+        {
+            get
+            {
+                return StoreClient.StoreModuleGetStoreById(StoreName);
+            }
+        }
+
+        public void Init(HttpApplication context)
 		{
 			context.BeginRequest += (new EventHandler(this.Application_BeginRequest));
 		}
@@ -87,17 +103,14 @@ namespace MarketplaceWeb.Modules
 		{
 			var categoriesSitemap = new XElement(_xmlNamespace + _xmlUrlsetTag);
 
-			var categories = SearchClient.MerchandisingModuleCategorySearchCategory(StoreName, Locale, null);
+            var result = SearchClient.SearchModuleSearch(criteriaCatalogId: Store.Catalog, criteriaResponseGroup: "WithCategories");
 
-			if (categories.Items.Count > 0)
+			foreach (var category in result.Categories)
 			{
-				foreach (var category in categories.Items)
-				{
-					categoriesSitemap.Add(BuildUrlElement(category.Code));
-				}
-
-				categoriesSitemap.Save(Path.Combine(_path, _categoriesSitemapFileName));
+				categoriesSitemap.Add(BuildUrlElement(category.Code));
 			}
+
+			categoriesSitemap.Save(Path.Combine(_path, _categoriesSitemapFileName));
 		}
 
 		private void AddProductsToSitemap(List<string> vendorList)
@@ -116,14 +129,14 @@ namespace MarketplaceWeb.Modules
 			{
 				foreach (var product in products)
 				{
-					if (product.Properties.Any(p => p.Key == _vendorIdPropertyName))
+					if (product.Properties.Any(p => p.Name == _vendorIdPropertyName))
 					{
-						vendorList.Add((string)product.Properties.First(p => p.Key == _vendorIdPropertyName).Value);
+						vendorList.Add((string)product.Properties.First(p => p.Name == _vendorIdPropertyName).Values.FirstOrDefault().Value);
 					}
 
-					if (product.Seo.Any())
+					if (product.SeoInfos.Any())
 					{
-						productsSitemap.Add(BuildUrlElement(product.Seo.First().Keyword));
+						productsSitemap.Add(BuildUrlElement(product.SeoInfos.First().SemanticUrl));
 					}
 				}
 
@@ -168,25 +181,17 @@ namespace MarketplaceWeb.Modules
 
 		}
 
-        private VirtoCommerceMerchandisingModuleWebModelProduct[] GetProducts(BrowseQuery query)
+        protected VirtoCommerceCatalogModuleWebModelProduct[] GetProducts(BrowseQuery query)
         {
-            var result = SearchClient.MerchandisingModuleProductSearch(
-                StoreName,
-                null,
-                query.ItemResponseGroup,
-                query.Outline,
-                Locale,
-                null,
-                null,
-                null,
-                null,
-                null,
-                query.Skip,
-                query.Take,
-                null,
-                null);
+            var result = SearchClient.SearchModuleSearch(
+                criteriaStoreId: StoreName,
+                criteriaResponseGroup: query.ItemResponseGroup,
+                criteriaOutline: query.Outline,
+                criteriaLanguageCode: Locale,
+                criteriaSkip: query.Skip,
+                criteriaTake: query.Take);
 
-            return result.Items.ToArray();
+            return result.Products.ToArray();
         }
     }
 }
