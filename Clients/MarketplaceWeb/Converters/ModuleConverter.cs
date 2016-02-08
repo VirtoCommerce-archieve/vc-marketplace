@@ -78,7 +78,7 @@ namespace MarketplaceWeb.Converters
 
             if (retVal.Releases.Count > 0)
             {
-                retVal.DownloadLink = retVal.Releases.OrderBy(r => r.ReleaseDate).First().DownloadLink;
+                retVal.DownloadLink = retVal.Releases.OrderByDescending(r => r.ReleaseDate).First().DownloadLink;
             }
 
             return retVal;
@@ -266,7 +266,7 @@ namespace MarketplaceWeb.Converters
                 {
                     try
                     {
-                        var result = (T)tc.ConvertFromString(null, null, value);
+                        var result = (T)tc.ConvertFromString(null, CultureInfo.InvariantCulture, value);
                         retVal.Add(result);
                     }
                     catch (Exception ex)
